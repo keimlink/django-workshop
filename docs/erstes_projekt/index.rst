@@ -5,3 +5,4 @@ Das erste Django Projekt
    :maxdepth: 2
    
    start
+   app
