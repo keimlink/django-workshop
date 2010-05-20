@@ -79,6 +79,10 @@ Als letztes muss der Pfad zu den Templates definiert werden::
         os.path.join(SITE_ROOT, 'templates')
     )
 
-Hier benutzen wir wieder den zu Beginn definierten Pfad.
+Das Verzeichnis für die Templates erzeugen wir später in der Wurzel des Projekts. Deshalb benutzen wir wieder den zu Beginn definierten Pfad als Präfix.
+
+..  note::
+
+    Es wäre auch möglich die Templates außerhalb des Projekts zu speichern. Dazu muss der Pfad auf dieses Verzeichnis verweisen.
 
 Mehr zur Konfiguration von Django kannst du in der `Dokumentation nachlesen <http://docs.djangoproject.com/en/1.2/topics/settings/#topics-settings>`_. Dort findest du auch eine `Liste aller in der Konfiguration benutzten Konstanten <http://docs.djangoproject.com/en/1.2/ref/settings/#ref-settings>`_.
