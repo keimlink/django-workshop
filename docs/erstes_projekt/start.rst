@@ -15,6 +15,8 @@ Es ist gut, alle Python Projekte in einem Verzeichnis zu haben.
 Das Django Projekt erstellen
 ============================
 
+Jetzt werden wir das Django Projekt erstellen. Es soll ein Kochbuch werden, also nennen wir das Projekt ``cookbook``.
+
 Wechsel nun in das neu erstellte Verzeichnis und erstelle ein Django Projekt::
 
     $ cd pythonprojects
@@ -27,7 +29,7 @@ Dein neues Projekt wurde erstellt. Erstmal enthält es nicht viel::
     settings.py
     urls.py
 
-Die leere Datei ``__init__.py`` zeigt an, dass es sich beim Verzeichnis ``cookbook`` um ein Python Package handelt.
+Die leere Datei ``__init__.py`` zeigt an, dass es sich beim Verzeichnis ``cookbook`` um ein `Python Paket <http://docs.python.org/tutorial/modules.html#packages>`_ handelt.
 
 ``manage.py`` wirst du benutzen, um dein Projekt zu verwalten.
 
@@ -50,9 +52,9 @@ Damit wir das Arbeitsverzeichnis nicht mehrfach in die Konfiguration eintragen m
 
     In Python sind Bezeichner in Grossbuchstaben per Konvention Konstanten.
 
-Nun konfigurieren wir die Datenbankverbindung. Wir werden eine `SQLite <http://www.sqlite.org/>`_ Datenbank benutzen, da ein ``sqlite3`` Package ab der Version 2.5 in Python enthalten ist.
+Nun konfigurieren wir die Datenbankverbindung. Wir werden eine `SQLite <http://www.sqlite.org/>`_ Datenbank benutzen, da ein ``sqlite3`` Paket ab der Version 2.5 in Python enthalten ist.
 
-Wenn du Python 2.4 benutzt musst du selbst ein Package für SQLite installieren.
+Wenn du Python 2.4 benutzt musst du selbst ein Paket für SQLite installieren.
 
 Konfiguriere die Datenbankverbindung ``default`` wird folgt::
 
