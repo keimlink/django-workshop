@@ -1,5 +1,5 @@
-Das erste Django Projekt
-************************
+Ein neues Projekt beginnen
+**************************
 
 Nachdem nun alle Vorbereitungen getroffen wurden, um mit Django und Python zu arbeiten kann das erste Projekt beginnen.
 
@@ -18,7 +18,7 @@ Das Django Projekt erstellen
 Wechsel nun in das neu erstellte Verzeichnis und erstelle ein Django Projekt::
 
     $ cd pythonprojects
-    $ django-admin.py startproject kochbuch
+    $ django-admin.py startproject cookbook
 
 Dein neues Projekt wurde erstellt. Erstmal enthält es nicht viel::
 
@@ -27,15 +27,17 @@ Dein neues Projekt wurde erstellt. Erstmal enthält es nicht viel::
     settings.py
     urls.py
 
-Die leere Datei ``__init__.py`` zeigt an, dass es sich beim Verzeichnis ``kochbuch`` um ein Python Package handelt.
+Die leere Datei ``__init__.py`` zeigt an, dass es sich beim Verzeichnis ``cookbook`` um ein Python Package handelt.
 
 ``manage.py`` wirst du benutzen, um dein Projekt zu verwalten.
 
 Die Datei ``settings.py`` enthält alle Einstellungen deines Projekts.
 
-In ``urls.py`` enthält die regulären Ausdrücke, um einen URL zum richtigen View zu leiten. Dazu später mehr.
+In ``urls.py`` sind die regulären Ausdrücke enthalten, um einen URL zum richtigen View zu leiten. Dazu später mehr.
 
-Die Konfiguration anpassen
+Anpassen der Konfiguration
 ==========================
+
+Als erstes muss die Konfiguration angepasst werden. Dazu öffnest du die Datei ``settings.py`` in einem Texteditor.
 
 
