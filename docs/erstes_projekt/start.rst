@@ -40,4 +40,45 @@ Anpassen der Konfiguration
 
 Als erstes muss die Konfiguration angepasst werden. Dazu öffnest du die Datei ``settings.py`` in einem Texteditor.
 
+Damit wir das Arbeitsverzeichnis nicht mehrfach in die Konfiguration eintragen müssen ermitteln wir er dynamisch und speichern es in einer "Konstanten"::
 
+    import os
+
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+
+..  note::
+
+    In Python sind Bezeichner in Grossbuchstaben per Konvention Konstanten.
+
+Nun konfigurieren wir die Datenbankverbindung. Wir werden eine `SQLite <http://www.sqlite.org/>`_ Datenbank benutzen, da ein ``sqlite3`` Package ab der Version 2.5 in Python enthalten ist.
+
+Wenn du Python 2.4 benutzt musst du selbst ein Package für SQLite installieren.
+
+Konfiguriere die Datenbankverbindung ``default`` wird folgt::
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(SITE_ROOT, 'cookbook.db'),
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
+    }
+
+Als nächstes passen wir Zeitzone und Sprache an::
+
+    TIME_ZONE = 'Europe/Berlin'
+
+    LANGUAGE_CODE = 'de-de'
+
+Als letztes muss der Pfad zu den Templates definiert werden::
+
+    TEMPLATE_DIRS = (
+        os.path.join(SITE_ROOT, 'templates')
+    )
+
+Hier benutzen wir wieder den zu Beginn definierten Pfad.
+
+Mehr zur Konfiguration von Django kannst du in der `Dokumentation nachlesen <http://docs.djangoproject.com/en/1.2/topics/settings/#topics-settings>`_. Dort findest du auch eine `Liste aller in der Konfiguration benutzten Konstanten <http://docs.djangoproject.com/en/1.2/ref/settings/#ref-settings>`_.
