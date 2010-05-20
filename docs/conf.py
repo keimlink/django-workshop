@@ -173,7 +173,7 @@ latex_font_size = '10pt'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'DjangoWorkshop.tex', u'Django Workshop Dokumentation',
-   u'Markus Zapke-Gründemann', 'manual', False),
+   u'Markus Zapke-Gründemann', 'manual', True),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
