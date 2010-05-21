@@ -37,10 +37,28 @@ Die Datei ``settings.py`` enthält alle Einstellungen deines Projekts.
 
 In ``urls.py`` sind die regulären Ausdrücke enthalten, um einen URL zum richtigen View zu leiten. Dazu später mehr.
 
+Das Projekt in das *virtual environment* einbinden
+==================================================
+
+Der Code aus unserem Projekt muss auch im *virtual environment* zur Verfügung stehen. Also müssen wir dem *virtual environment* mitteilen, wo sich unser Projekt befindet.
+
+Das Paket ``virtualenvwrapper`` hat dafür ein Kommando::
+
+    $ add2virtualenv pythonprojects
+
+Wenn ``virtualenvwrapper`` nicht installiert ist muss der Pfad zum Verzeichnis ``pythonprojects`` per Hand eingefügt werden::
+
+    $ cd .virtualenvs/django-workshop/lib/python2.6/site-packages
+    $ echo $HOME/pythonprojects > virtualenv_path_extensions.pth
+
+..  note::
+
+    Wenn das *virtual environment* mit einer anderen Python Version erzeugt wurde kann der Pfad zum Verzeichnis ``site-packages`` abweichen.
+
 Anpassen der Konfiguration
 ==========================
 
-Als erstes muss die Konfiguration angepasst werden. Dazu öffnest du die Datei ``settings.py`` in einem Texteditor.
+Damit wir mit dem Projekt arbeiten können muss als erstes die Konfiguration angepasst werden. Dazu öffnest du die Datei ``settings.py`` in einem Texteditor.
 
 Damit wir das Arbeitsverzeichnis nicht mehrfach in die Konfiguration eintragen müssen ermitteln wir er dynamisch und speichern es in einer "Konstanten"::
 
