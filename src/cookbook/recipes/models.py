@@ -9,7 +9,8 @@ class Category(models.Model):
     description = models.TextField(u'Beschreibung', blank=True)
 
     class Meta:
-        pass
+        verbose_name = u'Kategorie'
+        verbose_name_plural = u'Kategorien'
 
     def __unicode__(self):
         return self.name
@@ -40,6 +41,8 @@ class Recipe(models.Model):
     date_updated = models.DateTimeField(editable=False)
 
     class Meta:
+        verbose_name = u'Rezept'
+        verbose_name_plural = u'Rezepte'
         ordering = ['-date_created']
 
     def __unicode__(self):
