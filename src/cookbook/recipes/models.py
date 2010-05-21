@@ -36,17 +36,17 @@ class Recipe(models.Model):
         choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
     category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
     author = models.ForeignKey(User, verbose_name=u'Autor')
-    created_at = models.DateTimeField(editable=False)
-    updated_at = models.DateTimeField(editable=False)
+    date_created = models.DateTimeField(editable=False)
+    date_updated = models.DateTimeField(editable=False)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-date_created']
 
     def __unicode__(self):
         return self.title
     
     def save(self, force_insert=False, force_update=False):
         if not self.id:
-            self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+            self.date_created = datetime.datetime.now()
+        self.date_updated = datetime.datetime.now()
         super(Recipe, self).save(force_insert, force_update)
