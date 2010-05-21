@@ -55,12 +55,13 @@ Der Parameter ``blank=True`` ermöglicht es dieses Feld im Admin leer zu lassen.
 Nun wird die Klasse ``Category`` noch mit dem folgenden Code erweitert::
 
         class Meta:
-            pass
+            verbose_name = u'Kategorie'
+            verbose_name_plural = u'Kategorien'
 
         def __unicode__(self):
             return self.name
 
-Die Klasse ``Meta`` werden wir beim nächsten Model benutzen, hier bleibt sie leer.
+Die Klasse ``Meta`` hat zwei Attribute, die den Namen des Models bestimmen.
 
 Die Methode ``__unicode__`` soll einen Unicode-String zurückgeben. Dies wird zum Beispiel im Admin benutzt.
 
@@ -122,6 +123,8 @@ Diese Verknüpfen wir mit dem Feld::
 Zuletzt muss wieder eine ``Meta`` Klasse und eine ``__unicode__`` Methode erstellt werden::
 
         class Meta:
+            verbose_name = u'Rezept'
+            verbose_name_plural = u'Rezepte'
             ordering = ['-created_at']
 
         def __unicode__(self):
@@ -163,7 +166,8 @@ Die Datei ``models.py`` sollte nun so aussehen::
         description = models.TextField(u'Beschreibung', blank=True)
 
         class Meta:
-            pass
+            verbose_name = u'Kategorie'
+            verbose_name_plural = u'Kategorien'
 
         def __unicode__(self):
             return self.name
@@ -194,6 +198,8 @@ Die Datei ``models.py`` sollte nun so aussehen::
         updated_at = models.DateTimeField(editable=False)
 
         class Meta:
+            verbose_name = u'Rezept'
+            verbose_name_plural = u'Rezepte'
             ordering = ['-created_at']
 
         def __unicode__(self):
