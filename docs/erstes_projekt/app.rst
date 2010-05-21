@@ -205,6 +205,26 @@ Die Datei ``models.py`` sollte nun so aussehen::
             self.updated_at = datetime.datetime.now()
             super(Recipe, self).save(force_insert, force_update)
 
+Die Applikation aktivieren
+==========================
+
+Damit wir die Applikation im Projekt nutzen können müssen wir sie in die Konfiguration eintragen.
+
+Öffne dazu die Datei ``settings.py`` und füge den Namen unserer Applikation am Ende von ``INSTALLED_APPS`` ein.
+
+Danach sieht ``INSTALLED_APPS`` so aus::
+
+    INSTALLED_APPS = (
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.sites',
+        'django.contrib.messages',
+        # Uncomment the next line to enable the admin:
+        # 'django.contrib.admin',
+        'recipes'
+    )
+
 Weiterführende Links zur Django Dokumentation
 =============================================
 
