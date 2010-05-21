@@ -88,8 +88,8 @@ Außerdem bekommt das Model noch fünf weitere Felder::
     difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad')
     category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
     author = models.ForeignKey(User, verbose_name=u'Autor')
-    created_at = models.DateTimeField(editable=False)
-    updated_at = models.DateTimeField(editable=False)
+    date_created = models.DateTimeField(editable=False)
+    date_updated = models.DateTimeField(editable=False)
 
 Hier stellen wir eine Relation zum Model ``Category`` mit Hilfe des Feldtyps ``ManyToManyField`` her. Da dieser als erstes Argument die Klasse erwartet, mit der die Relation hergestellt werden soll, müssen wir den Bezeichner des Felds im Admin mit dem Parameter ``verbose_name`` angeben.
 
