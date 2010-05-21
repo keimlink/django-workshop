@@ -8,6 +8,8 @@ Ein Verzeichnis für alle Python Projekte
 
 Zuerst erstellst du ein Verzeichnis für dies und alle zukünftigen Projekte:
 
+..  code-block:: bash
+
     $ mkdir pythonprojects
 
 Es ist gut, alle Python Projekte in einem Verzeichnis zu haben.
@@ -17,7 +19,9 @@ Das Django Projekt erstellen
 
 Jetzt werden wir das Django Projekt erstellen. Es soll ein Kochbuch werden, also nennen wir das Projekt ``cookbook``.
 
-Wechsel nun in das neu erstellte Verzeichnis und erstelle ein Django Projekt::
+Wechsel nun in das neu erstellte Verzeichnis und erstelle ein Django Projekt:
+
+..  code-block:: bash
 
     $ cd pythonprojects
     $ django-admin.py startproject cookbook
@@ -42,11 +46,15 @@ Das Projekt in das *virtual environment* einbinden
 
 Der Code aus unserem Projekt muss auch im *virtual environment* zur Verfügung stehen. Also müssen wir dem *virtual environment* mitteilen, wo sich unser Projekt befindet.
 
-Das Paket ``virtualenvwrapper`` hat dafür ein Kommando::
+Das Paket ``virtualenvwrapper`` hat dafür ein Kommando:
+
+..  code-block:: bash
 
     $ add2virtualenv pythonprojects
 
-Wenn ``virtualenvwrapper`` nicht installiert ist muss der Pfad zum Verzeichnis ``pythonprojects`` per Hand eingefügt werden::
+Wenn ``virtualenvwrapper`` nicht installiert ist muss der Pfad zum Verzeichnis ``pythonprojects`` per Hand eingefügt werden:
+
+..  code-block:: bash
 
     $ cd .virtualenvs/django-workshop/lib/python2.6/site-packages
     $ echo $HOME/pythonprojects > virtualenv_path_extensions.pth

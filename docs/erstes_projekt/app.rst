@@ -6,7 +6,9 @@ Nun beginnen wir mit der ersten Applikation für unser Projekt "Kochbuch".
 Anlegen der Applikation
 =======================
 
-Die Applikation soll die Rezepte verwalten, also nennen wir sie ``recipes``::
+Die Applikation soll die Rezepte verwalten, also nennen wir sie ``recipes``:
+
+..  code-block:: bash
 
     $ cd cookbook
     $ python manage.py startapp recipes

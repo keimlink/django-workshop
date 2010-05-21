@@ -19,26 +19,34 @@ Außerdem lässt sich ``virtualenv`` auch im Produktivbetrieb auf dem Server ein
 Installation
 ============
 
-``virtualenv`` wird mit Hilfe von ``pip`` installiert::
+``virtualenv`` wird mit Hilfe von ``pip`` installiert:
+
+..  code-block:: bash
 
     $ pip install virtualenv
-    
+
 ..  note::
 
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation benötigt.
 
-Nach der Installation sollte ein Verzeichnis für *alle* virtuellen Projekte anlegt werden, zum Beispiel im Home Verzeichnis::
+Nach der Installation sollte ein Verzeichnis für *alle* virtuellen Projekte anlegt werden, zum Beispiel im Home Verzeichnis:
+
+..  code-block:: bash
 
     $ mkdir .virtualenvs
 
 Einfacher Arbeiten mit ``virtualenvwrapper``
 ============================================
 
-Um die Arbeit mit ``virtualenv`` zu vereinfachen kann man unter Linux oder Mac OS X das Paket ``virtualenvwrapper`` installieren::
+Um die Arbeit mit ``virtualenv`` zu vereinfachen kann man unter Linux oder Mac OS X das Paket ``virtualenvwrapper`` installieren:
+
+..  code-block:: bash
 
     $ pip install virtualenvwrapper
 
-Nach der Installation werden die folgenden beiden Zeilen in die Datei ``.profile`` eingefügt::
+Nach der Installation werden die folgenden beiden Zeilen in die Datei ``.profile`` eingefügt:
+
+..  code-block:: bash
 
     export WORKON_HOME=$HOME/.virtualenvs
     source /usr/local/bin/virtualenvwrapper.sh

@@ -8,7 +8,9 @@ Python installieren
 
 Django 1.2 unterstützt die Python Versionen 2.4, 2.5 und 2.6. Wenn du eine ältere Python Version hast, solltest du diese aktualisieren.
 
-Deine Python Version kannst du heraus finden indem du den Python Interpreter an der Kommandozeile startest::
+Deine Python Version kannst du heraus finden indem du den Python Interpreter an der Kommandozeile startest:
+
+..  code-block:: bash
 
     $ python
     Python 2.6.1 (r261:67515, Feb 11 2010, 00:51:29) 
@@ -52,7 +54,9 @@ Falls sich die ``setuptools`` nicht nach der oben genannten Anleitung installier
 
 Dazu muss das Skript ``ez_setup.py`` herunterladen werden: http://peak.telecommunity.com/dist/ez_setup.py
 
-Und dann das Skript starten::
+Und dann das Skript starten:
+
+..  code-block:: bash
 
     $ python ez_setup.py
 
@@ -63,14 +67,18 @@ Und dann das Skript starten::
 ``easy_install``
 ----------------
 
-Nach der Installation der ``setuptools`` steht das Programm ``easy_install`` zur Verfügung. Du kannst es so ausprobieren::
+Nach der Installation der ``setuptools`` steht das Programm ``easy_install`` zur Verfügung. Du kannst es so ausprobieren:
+
+..  code-block:: bash
 
     $ easy_install --help
 
 ``pip``
 -------
 
-Mit Hilfe von ``easy_install`` wird jetzt ``pip`` installiert. ``pip`` ist ein Ersatz für ``easy_install`` mit `größerem Funktionsumfang <http://pip.openplans.org/#differences-from-easy-install>`_::
+Mit Hilfe von ``easy_install`` wird jetzt ``pip`` installiert. ``pip`` ist ein Ersatz für ``easy_install`` mit `größerem Funktionsumfang <http://pip.openplans.org/#differences-from-easy-install>`_:
+
+..  code-block:: bash
 
     $ easy_install pip
 
@@ -78,14 +86,18 @@ Mit Hilfe von ``easy_install`` wird jetzt ``pip`` installiert. ``pip`` ist ein E
 
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation benötigt.
 
-Nach der Installation kannst du ``pip`` so testen::
+Nach der Installation kannst du ``pip`` so testen:
+
+..  code-block:: bash
 
     $ pip --help
 
 ``distribute``
 ---------------
 
-Zuletzt muss ``distribute`` als Ersatz für ``setuptools`` installiert werden::
+Zuletzt muss ``distribute`` als Ersatz für ``setuptools`` installiert werden:
+
+..  code-block:: bash
 
     $ wget http://python-distribute.org/distribute_setup.py
     $ python distribute_setup.py
