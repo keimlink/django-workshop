@@ -25,8 +25,8 @@ Tests werden in der Datei ``tests.py`` erstellt.
 
 Die Datei ``views.py`` enthält die Views der Applikation.
 
-Ein Model für die Applikation
-=============================
+Die Models
+==========
 
 Öffne die Datei ``models.py`` in einem Texteditor. Sie enthält nur einen ``import``::
 
@@ -35,7 +35,7 @@ Ein Model für die Applikation
 Damit wird das Paket, dass die Models des ORMs enthält, geladen.
 
 Ein Model für die Kategorien
-============================
+----------------------------
 
 Darunter beginnen wir mit dem ersten Model für die Kategorien::
 
@@ -65,7 +65,7 @@ Die Klasse ``Meta`` werden wir beim nächsten Model benutzen, hier bleibt sie le
 Die Methode ``__unicode__`` soll einen Unicode-String zurückgeben. Dies wird zum Beispiel im Admin benutzt.
 
 Das Model für die Rezepte
-=========================
+-------------------------
 
 Jetzt legen wird das zweite Model für die Rezepte an::
 
