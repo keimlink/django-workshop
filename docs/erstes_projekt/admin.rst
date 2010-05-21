@@ -28,7 +28,7 @@ Als nächstes erstellen wir eine Klasse, um das Model ``Category`` beim Admin zu
 
 Mehr ist nicht zu tun.
 
-Das Attribut ``prepopulated_fields`` hilft im Admin dabei, dass Feld ``slug`` bei der Eingabe automatisch zu füllen.
+Das Attribut ``prepopulated_fields`` hilft im Admin dabei, dass Feld ``slug`` bei der Eingabe automatisch zu füllen. In diesem Fall mit dem Attribut ``name`` des Models.
 
 Das gleiche tun wir jetzt für das Model ``Recipe``::
 

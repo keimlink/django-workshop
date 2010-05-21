@@ -8,14 +8,15 @@ Anlegen der Applikation
 
 Die Applikation soll die Rezepte verwalten, also nennen wir sie ``recipes``::
 
+    $ cd cookbook
     $ python manage.py startapp recipes
 
 Das Kommando legt ein Verzeichnis ``recipes`` an, in dem sich vier Dateien befinden:
 
-    * __init__.py
-    * models.py
-    * tests.py
-    * views.py
+    * ``__init__.py``
+    * ``models.py``
+    * ``tests.py``
+    * ``views.py``
 
 Die Datei ``__init__.py`` definiert, wie schon beim Projektverzeichnis, dass das Verzeichnis ``recipes`` ein `Python Paket <http://docs.python.org/tutorial/modules.html#packages>`_ ist.
 
@@ -125,22 +126,22 @@ Zuletzt muss wieder eine ``Meta`` Klasse und eine ``__unicode__`` Methode erstel
         class Meta:
             verbose_name = u'Rezept'
             verbose_name_plural = u'Rezepte'
-            ordering = ['-created_at']
+            ordering = ['-date_created']
 
         def __unicode__(self):
             return self.title
 
-Diesmal benutzen wir das Attribut ``ordering`` der ``Meta`` Klasse, um die Standardsortierung der Datensätze zu bestimmen.
+Zusätzlich benutzen wir das Attribut ``ordering`` der ``Meta`` Klasse, um die Standardsortierung der Datensätze zu bestimmen.
 
 Außerdem wollen wir, dass die Zeitangaben automatisch ausgefüllt werden, da sie ja nicht im Admin bearbeitet werden können. Dazu überschreiben wir die Methode ``save``::
 
         def save(self, force_insert=False, force_update=False):
             if not self.id:
-                self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
+                self.date_created = datetime.datetime.now()
+            self.date_updated = datetime.datetime.now()
             super(Recipe, self).save(force_insert, force_update)
 
-Das Feld ``created_at`` wird nur gefüllt, wenn das Model zum ersten mal gespeichert wird und daher noch kein Attribut ``id`` besitzt. Das Feld ``updated_at`` wird bei jedem Speichern aktualisiert. Am Ende wird die Methode der Elternklasse aufgerufen.
+Das Feld ``date_created`` wird nur gefüllt, wenn das Model zum ersten mal gespeichert wird und daher noch kein Attribut ``id`` besitzt. Das Feld ``date_updated`` wird bei jedem Speichern aktualisiert. Am Ende wird die Methode der Elternklasse aufgerufen.
 
 Das Paket ``datetime`` müssen wir ebenfalls noch importieren. Also schreiben wir an den Anfang der Datei::
 
@@ -194,21 +195,21 @@ Die Datei ``models.py`` sollte nun so aussehen::
             choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
         category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
         author = models.ForeignKey(User, verbose_name=u'Autor')
-        created_at = models.DateTimeField(editable=False)
-        updated_at = models.DateTimeField(editable=False)
+        date_created = models.DateTimeField(editable=False)
+        date_updated = models.DateTimeField(editable=False)
 
         class Meta:
             verbose_name = u'Rezept'
             verbose_name_plural = u'Rezepte'
-            ordering = ['-created_at']
+            ordering = ['-date_created']
 
         def __unicode__(self):
             return self.title
 
         def save(self, force_insert=False, force_update=False):
             if not self.id:
-                self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
+                self.date_created = datetime.datetime.now()
+            self.date_updated = datetime.datetime.now()
             super(Recipe, self).save(force_insert, force_update)
 
 Die Applikation aktivieren
