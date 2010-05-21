@@ -93,3 +93,11 @@ Zuletzt muss ``distribute`` als Ersatz für ``setuptools`` installiert werden::
 ..  note::
     
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation benötigt.
+
+Weiterführende Links
+====================
+
+    * `Python Homepage <http://python.org/>`_
+    * `Offizielles Python Tutorial <http://docs.python.org/tut/tut.html>`_
+    * `Dive Into Python <http://diveintopython.org/>`_
+    * `Code Like a Pythonista: Idiomatic Python (interaktives Tutorial) <http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html>`_

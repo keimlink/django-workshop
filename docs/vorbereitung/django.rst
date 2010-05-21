@@ -39,3 +39,9 @@ Wenn der ``virtualenvwrapper`` installiert ist, kann man sich die installierten 
 Ohne ``virtualenvwrapper`` kann man sich die Pakete einfach direkt im Verzeichnis ansehen::
 
     $ ls -l .virtualenvs/django-workshop/lib/python2.6/site-packages/
+
+Weiterführende Links
+====================
+
+    * `Django Homepage <http://www.djangoproject.com/>`_
+    * `The Django Book <http://djangobook.com/en/2.0/>`_

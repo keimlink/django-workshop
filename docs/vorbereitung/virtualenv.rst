@@ -27,7 +27,7 @@ Installation
 
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation benötigt.
 
-Nach der Installation muss ein Verzeichnis für *alle* virtuellen Projekte anlegt werden, zum Beispiel im Home Verzeichnis::
+Nach der Installation sollte ein Verzeichnis für *alle* virtuellen Projekte anlegt werden, zum Beispiel im Home Verzeichnis::
 
     $ mkdir .virtualenvs
 
@@ -44,3 +44,9 @@ Nach der Installation werden die folgenden beiden Zeilen in die Datei ``.profile
     source /usr/local/bin/virtualenvwrapper.sh
 
 Dadurch weiss ``virtualenvwrapper`` wo sich alle virtuellen Projekte befinden. Das Skript ``virtualenvwrapper.sh`` aktiviert die Bash-Completion.
+
+Weiterführende Links
+====================
+
+    * `virtualenv Dokumentation <http://virtualenv.openplans.org/>`_
+    * `virtualenvwrapper Homepage <http://www.doughellmann.com/projects/virtualenvwrapper/>`_
