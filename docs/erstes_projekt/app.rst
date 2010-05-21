@@ -37,7 +37,7 @@ Damit wird das Paket, dass die Models des ORMs enthält, geladen.
 Ein Model für die Kategorien
 ============================
 
-Darunter beginnen wir mit den ersten Model für die Kategorien::
+Darunter beginnen wir mit dem ersten Model für die Kategorien::
 
     class Category(models.Model):
         name = models.CharField(u'Name', max_length=100)
@@ -46,7 +46,7 @@ Darunter beginnen wir mit den ersten Model für die Kategorien::
 
 Das Model hat nun drei Attribute, die drei Feldern in einer Tabelle entsprechen. Die Feldtypen definieren den Datentyp.
 
-Das Attribut ``name`` würde zum Beispiel einem VARCHAR(100) entsprechen.
+Das Attribut ``name`` entspricht zum Beispiel einem ``VARCHAR(100)`` in der Datenbank.
 
 Als ersten Parameter kann man optional einen Titel für das Feld angeben, der dann im Admin benutzt wird.
 
@@ -83,7 +83,7 @@ Das Model ist dem ersten ähnlich. Neu ist der Parameter ``help_text``, der in d
 
 Neu ist auch das ``IntegerField``. Wenn man bei diesem keine Eingabe verlangt sollte man den Parameter ``null=True`` benutzen, denn sonst wird ein leerer String benutzt.
 
-Das Model bekommt aber noch weitere Felder::
+Außerdem bekommt das Model noch fünf weitere Felder::
 
     difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad')
     category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
