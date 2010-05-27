@@ -80,7 +80,7 @@ Jetzt legen wird das zweite Model für die Rezepte an::
             help_text=u'Eine Zutat pro Zeile angeben')
         preparation = models.TextField(u'Zubereitung')
         time_for_preparation = models.IntegerField(u'Zubereitungszeit',
-            blank=True, null=True)
+            help_text=u'Zeit in Minuten angeben', blank=True, null=True)
         number_of_portions = models.IntegerField(u'Anzahl der Portionen')
 
 Das Model ist dem ersten ähnlich. Neu ist der Parameter ``help_text``, der in der Bearbeitungsansicht im Admin als Hilfe benutzt wird.
@@ -191,7 +191,7 @@ Die Datei ``models.py`` sollte nun so aussehen::
             help_text=u'Eine Zutat pro Zeile angeben')
         preparation = models.TextField(u'Zubereitung')
         time_for_preparation = models.IntegerField(u'Zubereitungszeit',
-            blank=True, null=True)
+            help_text=u'Zeit in Minuten angeben', blank=True, null=True)
         number_of_portions = models.IntegerField(u'Anzahl der Portionen')
         difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad',
             choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
