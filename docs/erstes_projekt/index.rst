@@ -8,3 +8,4 @@ Das erste Django Projekt
    app
    admin
    datenbank
+   views_templates
