@@ -31,7 +31,7 @@ class Recipe(models.Model):
         help_text=u'Eine Zutat pro Zeile angeben')
     preparation = models.TextField(u'Zubereitung')
     time_for_preparation = models.IntegerField(u'Zubereitungszeit',
-        blank=True, null=True)
+        help_text=u'Zeit in Minuten angeben', blank=True, null=True)
     number_of_portions = models.IntegerField(u'Anzahl der Portionen')
     difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad',
         choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
