@@ -9,3 +9,4 @@ Das erste Django Projekt
    admin
    datenbank
    views_templates
+   rueckblick_ausblick
