@@ -14,4 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^rezept/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
+    (r'^$', 'recipes.views.index'),
 )
