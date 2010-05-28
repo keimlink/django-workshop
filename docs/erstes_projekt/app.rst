@@ -151,7 +151,7 @@ Das Paket ``datetime`` müssen wir ebenfalls noch importieren. Also schreiben wi
 
 ..  note::
 
-    Mehr zum Thema ``import`` kannst du im `PEP 8 <http://www.python.org/dev/peps/pep-0008/>`_ und in der `Python Dokumentation <http://docs.python.org/reference/simple_stmts.html#import>`_ nachlesen.
+    Mehr zum Thema ``import`` kannst du im :pep:`8` und in der `Python Dokumentation <http://docs.python.org/reference/simple_stmts.html#import>`_ nachlesen.
 
 Die vollständige Datei
 ======================
