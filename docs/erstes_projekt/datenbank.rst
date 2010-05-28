@@ -103,3 +103,8 @@ Nachdem die Datenbank erstellt wurde kannst du den Entwicklungs-Webserver starte
     Quit the server with CONTROL-C.
 
 Unter der URL http://127.0.0.1:8000/admin/ kannst du nun den Admin aufrufen, dich mit dem eben erstellten Superuser anmelden und ein paar Rezepte anlegen.
+
+Weiterführende Links zur Django Dokumentation
+=============================================
+
+    * `Informationen zu django-admin.py and manage.py <http://docs.djangoproject.com/en/1.2/ref/django-admin/#ref-django-admin>`_
