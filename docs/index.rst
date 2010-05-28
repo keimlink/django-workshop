@@ -3,6 +3,8 @@ Django Workshop
 
 Der *Django Workshop* ist ein freies deutsches `Django <http://www.djangoproject.com/>`_ Tutorial.
 
+Mehr Informationen zum Projekt finden sich auf der Seite :ref:`projekt`.
+
 Inhaltsverzeichnis:
 
 .. toctree::
@@ -11,4 +13,5 @@ Inhaltsverzeichnis:
    einfuehrung
    vorbereitung/index
    erstes_projekt/index
+   projekt
    lizenz
