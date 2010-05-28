@@ -46,7 +46,9 @@ Der **View** holt die Daten, zum Beispiel mit Hilfe des **Object Relational Mapp
 
 Die **URLConf** steuert das Routing. Mit Hilfe von regulären Ausdrücken wird der Request dem richtigen View zugewiesen.
 
-.. digraph:: request_response
+..  _grafik_request_response:
+
+..  digraph:: request_response
 
     label = "Schematische Darstellung einer Request / Response Verarbeitung"
     {rank=same; "Browser" "Webserver"}
