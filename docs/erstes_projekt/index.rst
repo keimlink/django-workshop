@@ -7,4 +7,4 @@ Das erste Django Projekt
    start
    app
    admin
-   database
+   datenbank
