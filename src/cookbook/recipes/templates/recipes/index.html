@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Alle Rezepte{% endblock %}
+
+{% block content %}
+<h2>Alle Rezepte</h2>
+<ul>
+    {% for recipe in object_list %}
+    <li><a href="/rezept/{{ recipe.slug }}">{{ recipe.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
