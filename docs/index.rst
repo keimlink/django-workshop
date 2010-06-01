@@ -13,5 +13,7 @@ Inhaltsverzeichnis:
    einfuehrung
    vorbereitung/index
    erste_schritte/index
+   datenbank_api
+   ausbau/index
    projekt
    lizenz
