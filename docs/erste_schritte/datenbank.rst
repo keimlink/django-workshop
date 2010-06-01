@@ -118,4 +118,4 @@ Unter der URL http://127.0.0.1:8000/admin/ kannst du nun den Admin aufrufen, dic
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-    * `Informationen zu django-admin.py and manage.py <http://docs.djangoproject.com/en/1.2/ref/django-admin/#ref-django-admin>`_
+* `Informationen zu django-admin.py and manage.py <http://docs.djangoproject.com/en/1.2/ref/django-admin/#ref-django-admin>`_

@@ -96,4 +96,4 @@ Damit der Admin auch im Browser aufgerufen werden kann müssen wir die URL des A
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-    * `Informationen zum Admin <http://docs.djangoproject.com/en/1.2/ref/contrib/admin/#ref-contrib-admin>`_
+* `Informationen zum Admin <http://docs.djangoproject.com/en/1.2/ref/contrib/admin/#ref-contrib-admin>`_

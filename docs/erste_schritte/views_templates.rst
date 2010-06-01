@@ -63,7 +63,7 @@ Der erste View sieht so aus::
         c = Context({'object_list': recipes})
         return HttpResponse(t.render(c))
 
-Wenn du nun http://127.0.0.1:8000/ aufrufst bekommst du eine ``TemplateDoesNotExist`` Exception. Klar - du hast das Template auch noch nicht erstellt.
+Wenn du nun http://127.0.0.1:8000/ aufrufst wird eine ``TemplateDoesNotExist`` Exception ausgelöst. Klar - du hast das Template auch noch nicht erstellt.
 
 Templates erstellen
 ===================
@@ -172,6 +172,6 @@ Nun fehlt nur noch das zweite Template ``recipes/detail.html``. Lege es im gleic
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-    * `Der URL dispatcher <http://docs.djangoproject.com/en/1.2/topics/http/urls/#topics-http-urls>`_
-    * `Views schreiben <http://docs.djangoproject.com/en/1.2/topics/http/views/#topics-http-views>`_
-    * `Templates und deren Vererbung <http://docs.djangoproject.com/en/1.2/topics/templates/#topics-templates>`_
+* `Der URL dispatcher <http://docs.djangoproject.com/en/1.2/topics/http/urls/#topics-http-urls>`_
+* `Views schreiben <http://docs.djangoproject.com/en/1.2/topics/http/views/#topics-http-views>`_
+* `Templates und deren Vererbung <http://docs.djangoproject.com/en/1.2/topics/templates/#topics-templates>`_

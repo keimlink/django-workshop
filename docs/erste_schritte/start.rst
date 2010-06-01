@@ -116,5 +116,5 @@ Das Verzeichnis für die Templates erzeugen wir später in der Wurzel des Projek
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-    * `Konfiguration von Django <http://docs.djangoproject.com/en/1.2/topics/settings/#topics-settings>`_
-    * `Liste aller möglichen Konstanten für die Konfiguration <http://docs.djangoproject.com/en/1.2/ref/settings/#ref-settings>`_
+* `Konfiguration von Django <http://docs.djangoproject.com/en/1.2/topics/settings/#topics-settings>`_
+* `Liste aller möglichen Konstanten für die Konfiguration <http://docs.djangoproject.com/en/1.2/ref/settings/#ref-settings>`_

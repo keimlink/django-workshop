@@ -52,7 +52,7 @@ Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle Proj
     u'leckere-salate'
     
     # Wenn eine Model nicht gefunden wird, wird immer eine DoesNotExist
-    # Exception geworfen
+    # Exception ausgelöst
     >>> Category.objects.get(pk=23)
     Traceback (most recent call last):
         ...
@@ -87,5 +87,5 @@ Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle Proj
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-    * `Query API <http://docs.djangoproject.com/en/1.2/topics/db/queries/#topics-db-queries>`_
-    * `QuerySet API <http://docs.djangoproject.com/en/1.2/ref/models/querysets/>`_
+* `Query API <http://docs.djangoproject.com/en/1.2/topics/db/queries/#topics-db-queries>`_
+* `QuerySet API <http://docs.djangoproject.com/en/1.2/ref/models/querysets/>`_

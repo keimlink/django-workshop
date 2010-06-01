@@ -237,6 +237,6 @@ Danach sieht ``INSTALLED_APPS`` so aus::
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-    * `Allgemeine Informationen zu den Models <http://docs.djangoproject.com/en/1.2/topics/db/models/#topics-db-models>`_
-    * `Alle in Django enthaltenen Feldtypen <http://docs.djangoproject.com/en/1.2/ref/models/fields/#ref-models-fields>`_
-    * `Die Parameter der Meta Klasse <http://docs.djangoproject.com/en/1.2/ref/models/options/#ref-models-options>`_
+* `Allgemeine Informationen zu den Models <http://docs.djangoproject.com/en/1.2/topics/db/models/#topics-db-models>`_
+* `Alle in Django enthaltenen Feldtypen <http://docs.djangoproject.com/en/1.2/ref/models/fields/#ref-models-fields>`_
+* `Die Parameter der Meta Klasse <http://docs.djangoproject.com/en/1.2/ref/models/options/#ref-models-options>`_
