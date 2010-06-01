@@ -3,6 +3,17 @@ Datenbank und Entwicklungs-Webserver
 
 Nun können wir die Datenbank füllen und danach den Entwicklungs-Webserver auf rufen, um den Admin zu benutzen.
 
+Datenmodel überprüfen
+=====================
+
+Als erstes solltest du dein Datenmodel mit folgendem Kommando überprüfen:
+
+..  code-block:: bash
+
+    $ python manage.py validate
+
+Django überprüft das Datenmodel automatisch bei allen Operationen, die Models benutzten. Mit Hilfe dieses Befehls kannst du die Prüfung auch gezielt durchführen.
+
 Datenbank synchronisieren
 =========================
 
