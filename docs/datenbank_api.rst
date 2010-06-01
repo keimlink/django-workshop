@@ -1,32 +1,40 @@
 Die Datenbank API
 *****************
 
+Django bringt eine Datenbank API mit, die Objekte erstellen, lesen, schreiben und löschen kann.
+
 Arbeiten mit der Datenbank API
 ==============================
 
-Den Python Interpreter starten:
+Ein Weg mit der Datenbank API zu Arbeiten ist der Python Interpreter. Mit dem folgenden Befehl kannst du diesen starten:
 
 ..  code-block:: bash
 
     $ python manage.py shell
 
+Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle Projekt, was beim Start durch die Eingabe von ``python`` nicht passieren würde.
+
 ..  code-block:: pycon
 
+    # Importieren der Models
     >>> from recipes.models import Category, Recipe
+    
+    # Ein QuerySet mit allen Rezepten
     >>> all_recipes = Recipe.objects.all()
     >>> all_recipes
     [<Recipe: Omas beste Frikadellen>, <Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
     >>> all_recipes.count()
     3
+    
+    # Betrachten eines Rezepts
     >>> all_recipes[0]
     <Recipe: Omas beste Frikadellen>
     >>> all_recipes[0].title
     u'Omas beste Frikadellen'
     >>> all_recipes[0].number_of_portions
     4
-
-..  code-block:: pycon
-
+    
+    # Eine neue Kategorie
     >>> salate = Category(name='Leckere Salate')
     >>> salate.save()
     >>> salate.id
@@ -35,34 +43,40 @@ Den Python Interpreter starten:
     'Leckere Salate'
     >>> salate.slug
     ''
+    
+    # Den Slug füllen
     >>> from django.template.defaultfilters import slugify
     >>> salate.slug = slugify(salate.name)
     >>> salate.save()
     >>> salate.slug
     u'leckere-salate'
-
-..  code-block:: pycon
-
+    
+    # Wenn eine Model nicht gefunden wird, wird immer eine DoesNotExist
+    # Exception geworfen
     >>> Category.objects.get(pk=23)
     Traceback (most recent call last):
         ...
     DoesNotExist: Category matching query does not exist.
+    
+    # Filter benutzen
     >>> Category.objects.get(pk=6)
     <Category: Leckere Salate>
     >>> Category.objects.filter(name__startswith='Salate')
     []
     >>> Category.objects.filter(name__startswith='Lecker')
     [<Category: Leckere Salate>]
-
-..  code-block:: pycon
-
+    
+    # Über die Relation eines Rezepts eine Kategorie anlegen
     >>> recipe = all_recipes[0]
+    # Zwei Kategorien am Model
     >>> recipe.category.all()
     [<Category: Hauptspeise>, <Category: Party>]
     >>> recipe.category.create(name='Foo')
     <Category: Foo>
+    # Jetzt sind es drei Kategorien
     >>> recipe.category.all()
     [<Category: Hauptspeise>, <Category: Party>, <Category: Foo>]
+    # Die neu angelegte Kategorie wieder löschen
     >>> foo = Category.objects.filter(name='Foo')
     >>> foo
     [<Category: Foo>]
