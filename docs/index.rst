@@ -12,6 +12,6 @@ Inhaltsverzeichnis:
    
    einfuehrung
    vorbereitung/index
-   erstes_projekt/index
+   erste_schritte/index
    projekt
    lizenz

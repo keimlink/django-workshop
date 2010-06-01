@@ -1,5 +1,5 @@
-Das erste Django Projekt
-************************
+Erste Schritte mit Django
+*************************
 
 .. toctree::
    :maxdepth: 2
