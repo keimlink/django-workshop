@@ -39,6 +39,8 @@ Aber auch die zweite View Funktion wollen wir vereinfachen. Dazu nutzen wir eine
         recipe = get_object_or_404(Recipe, slug=slug)
         return render_to_response('recipes/detail.html', {'object': recipe})
 
+Die Funktion ``get_object_or_404`` versucht eine Instanz des übergebenen Models mit der Manager-Methode ``get()`` zu holen. Das zweite Argument ``slug=slug`` wird dabei an ``get()`` übergeben. Wird kein entsprechendes Model gefunden wird eine ``Http404`` Exception ausgelöst.
+
 Wir haben also mit Hilfe der beiden Hilfsfunktionen den Code, den wir im View selbst schreiben müssen, stark reduziert.
 
 Weiterführende Links zur Django Dokumentation
