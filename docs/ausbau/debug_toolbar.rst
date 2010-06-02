@@ -29,15 +29,15 @@ So kannst du den Debug Toolbar installieren:
 Konfiguration
 =============
 
-Um den Debug Toolbar für dein Projekt zu aktivieren fügst du den folgenden Code in die Datei ``local_settings.py`` ein::
+Um den Debug Toolbar für dein Projekt zu aktivieren fügst du den folgenden Code in die Datei ``settings.py`` ein::
 
-    from settings import MIDDLEWARE_CLASSES, INSTALLED_APPS
-    
-    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
+    MIDDLEWARE_CLASSES = (
+        ...
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
 
-    INSTALLED_APPS = INSTALLED_APPS + (
+    INSTALLED_APPS = (
+        ...
         'debug_toolbar',
     )
 
