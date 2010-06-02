@@ -45,6 +45,10 @@ class Recipe(models.Model):
         verbose_name_plural = u'Rezepte'
         ordering = ['-date_created']
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('recipes_recipe_detail', (), {'slug': self.slug})
+
     def __unicode__(self):
         return self.title
     
