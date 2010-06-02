@@ -3,6 +3,9 @@ Ausbau der Views
 
 Die Views sind zwar schon relativ kompakt, enthalten aber immer noch einigen Code, der sich wiederholt. Also machen wir uns daran, dass zu verbessern.
 
+Die Funktion ``render_to_response``
+===================================
+
 Als Erstes entfernen wir die beiden folgenden Imports am Anfang der Datei::
 
     from django.http import Http404, HttpResponse
@@ -31,6 +34,9 @@ Dadurch können wir die erste Funktion im View stark reduzieren. Der Beginn der 
         recipes = Recipe.objects.all()
         return render_to_response('recipes/index.html', {'object_list': recipes})
 
+Die Funktion ``get_object_or_404``
+==================================
+
 Aber auch die zweite View Funktion wollen wir vereinfachen. Dazu nutzen wir eine weitere Funktion, die ``django.shortcuts`` bereitstellt - sie heißt ``get_object_or_404``::
 
     from django.shortcuts import get_object_or_404
@@ -41,7 +47,24 @@ Aber auch die zweite View Funktion wollen wir vereinfachen. Dazu nutzen wir eine
 
 Die Funktion ``get_object_or_404`` versucht eine Instanz des übergebenen Models mit der Manager-Methode ``get()`` zu holen. Das zweite Argument ``slug=slug`` wird dabei an ``get()`` übergeben. Wird kein entsprechendes Model gefunden wird eine ``Http404`` Exception ausgelöst.
 
+Die vollständige Datei
+======================
+
 Wir haben also mit Hilfe der beiden Hilfsfunktionen den Code, den wir im View selbst schreiben müssen, stark reduziert.
+
+..  code-block:: python
+
+    from django.shortcuts import get_object_or_404, render_to_response
+
+    from recipes.models import Recipe
+
+    def index(request):
+        recipes = Recipe.objects.all()
+        return render_to_response('recipes/index.html', {'object_list': recipes})
+
+    def detail(render, slug):
+        recipe = get_object_or_404(Recipe, slug=slug)
+        return render_to_response('recipes/detail.html', {'object': recipe})
 
 Weiterführende Links zur Django Dokumentation
 =============================================
