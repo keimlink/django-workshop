@@ -20,6 +20,8 @@ Loose Coupling
 
 **Loose Coupling**, also die lose Koppelung der verschiedenen Teile des Frameworks und der Applikation, stehen bei Django stark im Vordergrund. Dadurch soll die Qualität und Wiederverwendbarkeit des Codes erhöht werden.
 
+..  _dry:
+
 Don't Repeat Yourself
 =====================
 
