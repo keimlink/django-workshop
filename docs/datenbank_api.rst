@@ -23,6 +23,9 @@ Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle Proj
     >>> all_recipes = Recipe.objects.all()
     >>> all_recipes
     [<Recipe: Omas beste Frikadellen>, <Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
+    # all_recipes ist ein QuerySet
+    >>> type(all_recipes)
+    <class 'django.db.models.query.QuerySet'>
     >>> all_recipes.count()
     3
     
@@ -63,7 +66,15 @@ Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle Proj
     <Category: Leckere Salate>
     >>> Category.objects.filter(name__startswith='Salate')
     []
+    # Es wird ein QuerySet zurückgegeben
     >>> Category.objects.filter(name__startswith='Lecker')
+    [<Category: Leckere Salate>]
+    # So kann man direkt das Objekt bekommen
+    >>> Category.objects.filter(name__startswith='Lecker')[0]
+    <Category: Leckere Salate>
+    # Auch auf ein QuerySet kann ein Filter angewendet werden
+    >>> categories = Category.objects.all()
+    >>> categories.filter(title__startswith='Lecker')
     [<Category: Leckere Salate>]
     
     # Über die Relation eines Rezepts eine Kategorie anlegen
