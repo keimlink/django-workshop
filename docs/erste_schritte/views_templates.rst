@@ -41,7 +41,19 @@ Die Datei ``urls.py`` sieht danach so aus::
         (r'^$', 'recipes.views.index'),
     )
 
-Wenn du nun den Entwicklungs-Webserver startest und den URL http://127.0.0.1:8000/ aufrufst siehst du eine ``ViewDoesNotExist`` Exception. Das ist auch richtig so, denn bis jetzt hast du ja noch keinen View geschrieben. Es zeigt aber, dass dein URL funktioniert.
+Nun startest du den Entwicklungs-Webserver:
+
+..  code-block:: bash
+
+    $ python manage.py runserver
+    Validating models...
+    0 errors found
+
+    Django version 1.2.1, using settings 'cookbook.settings'
+    Development server is running at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+
+Der Aufruf der URL http://127.0.0.1:8000/ zeigt eine ``ViewDoesNotExist`` Exception. Das ist auch richtig so, denn bis jetzt hast du ja noch keinen View geschrieben. Es zeigt aber, dass dein URL funktioniert.
 
 Den ersten View schreiben
 =========================
