@@ -99,7 +99,7 @@ Als nächstes passen wir Zeitzone und Sprache an::
 
     TIME_ZONE = 'Europe/Berlin'
 
-    LANGUAGE_CODE = 'de-de'
+    LANGUAGE_CODE = 'de'
 
 Als letztes muss der Pfad zu den Templates definiert werden::
 
