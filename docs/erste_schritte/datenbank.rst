@@ -1,7 +1,7 @@
 Datenbank und Entwicklungs-Webserver
 ************************************
 
-Nun können wir die Datenbank füllen und danach den Entwicklungs-Webserver auf rufen, um den Admin zu benutzen.
+Nun können wir die Datenbank füllen und danach den Entwicklungs-Webserver auf rufen, um die Admin-Applikation zu benutzen.
 
 Datenmodel überprüfen
 =====================
@@ -113,7 +113,7 @@ Nachdem die Datenbank erstellt wurde kannst du den Entwicklungs-Webserver starte
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
-Unter der URL http://127.0.0.1:8000/admin/ kannst du nun den Admin aufrufen, dich mit dem eben erstellten Superuser anmelden und ein paar Rezepte anlegen.
+Unter der URL http://127.0.0.1:8000/admin/ kannst du nun die Admin-Applikation aufrufen, dich mit dem eben erstellten Superuser anmelden und ein paar Rezepte anlegen.
 
 Weiterführende Links zur Django Dokumentation
 =============================================

@@ -1,12 +1,12 @@
-Der Admin
-*********
+Die Admin-Applikation
+*********************
 
-Als nächstes werden wir den Admin aktivieren, damit wir Daten für unser Projekt eingeben, bearbeiten und löschen können.
+Als nächstes werden wir die Admin-Applikation aktivieren, damit wir Daten für unser Projekt eingeben, bearbeiten und löschen können.
 
-Der Admin ist eine Applikation, die schon in Django enthalten ist.
+Diese Applikation ist schon in Django enthalten.
 
-Die Applikation beim Admin registrieren
-=======================================
+Die eigene Applikation beim Admin registrieren
+==============================================
 
 Damit der Admin mit unser Applikation benutzt werden kann, müssen wir unsere Models dem Admin bekannt machen.
 
@@ -28,7 +28,7 @@ Als nächstes erstellen wir eine Klasse, um das Model ``Category`` beim Admin zu
 
 Mehr ist nicht zu tun.
 
-Das Attribut ``prepopulated_fields`` hilft im Admin dabei, dass Feld ``slug`` bei der Eingabe automatisch zu füllen. In diesem Fall mit dem Attribut ``name`` des Models.
+Das Attribut ``prepopulated_fields`` hilft in der Admin-Applikation dabei, dass Feld ``slug`` bei der Eingabe automatisch zu füllen. In diesem Fall mit dem Attribut ``name`` des Models.
 
 Das gleiche tun wir jetzt für das Model ``Recipe``::
 
@@ -58,20 +58,20 @@ Die Datei ``admin.py`` sollte nun so aussehen::
     admin.site.register(Category, CategoryAdmin)
     admin.site.register(Recipe, RecipeAdmin)
 
-Den Admin aktivieren
-====================
+Die Admin-Applikation aktivieren
+================================
 
-Um den Admin zu aktivieren sind zwei Schritte nötig.
+Um die Admin-Applikation zu aktivieren sind zwei Schritte nötig.
 
 Anpassen der Konfiguration
 --------------------------
 
-Entferne in der Datei ``settings.py`` in ``INSTALLED_APPS`` das Kommentarzeichen vor der Zeile ``'django.contrib.admin',``, um den Admin zu aktivieren.
+Entferne in der Datei ``settings.py`` in ``INSTALLED_APPS`` das Kommentarzeichen vor der Zeile ``'django.contrib.admin',``, um die Admin-Applikation zu aktivieren.
 
 URLConf anpassen
 ----------------
 
-Damit der Admin auch im Browser aufgerufen werden kann müssen wir die URL des Admins ebenfalls aktivieren.
+Damit die Admin-Applikation auch im Browser aufgerufen werden kann müssen wir die URL des Admins ebenfalls aktivieren.
 
 Öffne dazu die Datei ``cookbook/urls.py`` und entferne die Kommentarzeichen in den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
 
@@ -96,4 +96,4 @@ Damit der Admin auch im Browser aufgerufen werden kann müssen wir die URL des A
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Informationen zum Admin <http://docs.djangoproject.com/en/1.2/ref/contrib/admin/#ref-contrib-admin>`_
+* `Informationen zur Admin-Applikation <http://docs.djangoproject.com/en/1.2/ref/contrib/admin/#ref-contrib-admin>`_

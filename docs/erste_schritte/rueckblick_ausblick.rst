@@ -7,11 +7,11 @@ Dein erstes Django Projekt mit einer einfachen Applikation ist nun fertig! Folge
 * Installation von Django in einem virtuellen Environment
 * Erstellen und Konfigurieren eines Django Projekts
 * Erstellen einer einfachen Django Applikation
-    * Models
-    * Admin
-    * URLConf
-    * Views
-    * Templates
+    * Models erstellen
+    * Einbinden der Admin-Applikation
+    * URLConf erweitern
+    * Views erstellen
+    * Templates anlegen
 
 Aber wie du dir sicherlich denken kannst, gibt es noch viel mehr zu lernen.
 

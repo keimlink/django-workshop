@@ -51,9 +51,9 @@ Das Model hat nun drei Attribute, die drei Feldern in einer Tabelle entsprechen.
 
 Das Attribut ``name`` entspricht zum Beispiel einem ``VARCHAR(100)`` in der Datenbank.
 
-Als ersten Parameter kann man optional einen Titel für das Feld angeben, der dann im Admin benutzt wird.
+Als ersten Parameter kann man optional einen Titel für das Feld angeben, der dann in der Admin-Applikation benutzt wird.
 
-Der Parameter ``blank=True`` ermöglicht es dieses Feld im Admin leer zu lassen. Alle Felder eines Models sind also Pflichtfelder.
+Der Parameter ``blank=True`` ermöglicht es dieses Feld leer zu lassen. Alle Felder eines Models sind also Pflichtfelder.
 
 Nun wird die Klasse ``Category`` noch mit dem folgenden Code erweitert::
 
@@ -66,7 +66,7 @@ Nun wird die Klasse ``Category`` noch mit dem folgenden Code erweitert::
 
 Die Klasse ``Meta`` hat zwei Attribute, die den Namen des Models bestimmen.
 
-Die Methode ``__unicode__`` soll einen Unicode-String zurückgeben. Dies wird zum Beispiel im Admin benutzt.
+Die Methode ``__unicode__`` soll einen Unicode-String zurückgeben. Dies wird zum Beispiel in der Admin-Applikation benutzt.
 
 Das Model für die Rezepte
 -------------------------
@@ -83,7 +83,7 @@ Jetzt legen wird das zweite Model für die Rezepte an::
             help_text=u'Zeit in Minuten angeben', blank=True, null=True)
         number_of_portions = models.IntegerField(u'Anzahl der Portionen')
 
-Das Model ist dem ersten ähnlich. Neu ist der Parameter ``help_text``, der in der Bearbeitungsansicht im Admin als Hilfe benutzt wird.
+Das Model ist dem ersten ähnlich. Neu ist der Parameter ``help_text``, der in der Bearbeitungsansicht der Admin-Applikation als Hilfe benutzt wird.
 
 Neu ist auch das ``IntegerField``. Wenn man bei diesem keine Eingabe verlangt sollte man den Parameter ``null=True`` benutzen, denn sonst wird ein leerer String benutzt.
 
@@ -95,11 +95,11 @@ Außerdem bekommt das Model noch fünf weitere Felder::
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField(editable=False)
 
-Hier stellen wir eine Relation zum Model ``Category`` mit Hilfe des Feldtyps ``ManyToManyField`` her. Da dieser als erstes Argument die Klasse erwartet, mit der die Relation hergestellt werden soll, müssen wir den Bezeichner des Felds im Admin mit dem Parameter ``verbose_name`` angeben.
+Hier stellen wir eine Relation zum Model ``Category`` mit Hilfe des Feldtyps ``ManyToManyField`` her. Da dieser als erstes Argument die Klasse erwartet, mit der die Relation hergestellt werden soll, müssen wir den Bezeichner des Felds in der Admin-Applikation mit dem Parameter ``verbose_name`` angeben.
 
 Den Autor eines Rezepts legen wir über einen ``ForeignKey`` fest, also eine 1-n Beziehnung.
 
-Die Zeitangaben sollen nicht im Admin bearbeitet werden, deshalb benutzen wir den Parameter ``editable=False``.
+Die Zeitangaben sollen nicht in der Admin-Applikation bearbeitet werden, deshalb benutzen wir den Parameter ``editable=False``.
 
 Damit das Objekt ``User`` auch zur Verfügung steht muss vor dem ersten ``import`` ein weiterer eingefügt werden::
 
@@ -135,7 +135,7 @@ Zuletzt muss wieder eine ``Meta`` Klasse und eine ``__unicode__`` Methode erstel
 
 Zusätzlich benutzen wir das Attribut ``ordering`` der ``Meta`` Klasse, um die Standardsortierung der Datensätze zu bestimmen.
 
-Außerdem wollen wir, dass die Zeitangaben automatisch ausgefüllt werden, da sie ja nicht im Admin bearbeitet werden können. Dazu überschreiben wir die Methode ``save``::
+Außerdem wollen wir, dass die Zeitangaben automatisch ausgefüllt werden, da sie ja nicht in der Admin-Applikation bearbeitet werden können. Dazu überschreiben wir die Methode ``save``::
 
         def save(self, force_insert=False, force_update=False):
             if not self.id:

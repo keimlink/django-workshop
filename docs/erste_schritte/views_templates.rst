@@ -1,7 +1,7 @@
 Die ersten Views
 ****************
 
-Nachdem du nun einige Datensätze mit Hilfe des Admins angelegt hast ist der nächste Schritt, diese auch im Frontend anzuzeigen. Dazu musst du drei Dinge tun:
+Nachdem du nun einige Datensätze mit Hilfe der Admins-Applikation angelegt hast ist der nächste Schritt, diese auch im Frontend anzuzeigen. Dazu musst du drei Dinge tun:
 
     #. URLs definieren
     #. Views schreiben

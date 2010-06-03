@@ -70,7 +70,7 @@ Eingebauter Entwicklungs-Webserver
 
 Der in Django enthaltene **Entwicklungs-Webserver** hilft bei der Entwicklung, da nicht extra ein "vollwertiger" Webserver installiert werden muss.
 
-Der Admin
-=========
+Die Admin-Applikation
+=====================
 
-Django stellt mit dem **Admin** ein `CRUD <http://de.wikipedia.org/wiki/CRUD>`_-Interface bereit, mit dem sich eine Website ohne Aufwand pflegen läßt. Der **Admin** wird mit Hilfe der Models automatisch erstellt.
+Django stellt mit der **Admin-Applikation** ein `CRUD <http://de.wikipedia.org/wiki/CRUD>`_-Interface bereit, mit dem sich eine Website ohne Aufwand pflegen läßt. Die **Admina-Applikation** wird mit Hilfe der Models automatisch erstellt.
