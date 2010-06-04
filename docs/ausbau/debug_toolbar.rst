@@ -1,3 +1,5 @@
+..  _debug_toolbar:
+
 Debug Toolbar
 *************
 
