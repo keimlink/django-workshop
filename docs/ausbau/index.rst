@@ -9,3 +9,4 @@ Ausbau des Django Projekts
    fehlerbehandlung
    views
    urls
+   debugging

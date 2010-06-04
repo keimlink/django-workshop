@@ -15,3 +15,12 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+if DEBUG:
+    import logging
+    logging.basicConfig(
+        level = logging.DEBUG,
+        format = '%(asctime)s %(levelname)s %(message)s', 
+        filename = '/tmp/debug.log',
+        filemode = 'w'
+    )
