@@ -9,4 +9,5 @@
     <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
     {% endfor %}
 </ul>
+<a href="{% url recipes_recipe_add %}">Ein Rezept hinzufügen</a>
 {% endblock %}

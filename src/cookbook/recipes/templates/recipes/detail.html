@@ -10,5 +10,6 @@
 <h3>Zubereitung</h3>
 {{ object.preparation|linebreaks }}
 <p>Zubereitungszeit: {{ object.time_for_preparation }} Minuten</p>
+<a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
 <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
 {% endblock %}
