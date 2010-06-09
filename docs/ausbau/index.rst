@@ -11,3 +11,4 @@ Ausbau des Django Projekts
    urls
    debugging
    authentifizierung_registrierung
+   rezept_formular
