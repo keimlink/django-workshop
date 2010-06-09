@@ -10,3 +10,4 @@ Ausbau des Django Projekts
    views
    urls
    debugging
+   authentifizierung_registrierung
