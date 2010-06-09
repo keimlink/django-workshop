@@ -97,7 +97,12 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'recipes',
     'debug_toolbar',
+    'userauth',
 )
+
+LOGIN_URL = '/benutzer/anmelden/'
+LOGOUT_URL = '/benutzer/abmelden/'
+LOGIN_REDIRECT_URL = '/'
 
 INTERNAL_IPS = ('127.0.0.1',)
 

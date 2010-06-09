@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Kochbuch</h1>
+    {% block toggle_login %}
+        {% include "userauth/toggle_login.html" %}
+    {% endblock %}
     {% block content %}{% endblock %}
 </body>
 </html>
