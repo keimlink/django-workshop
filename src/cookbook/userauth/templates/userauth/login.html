@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Login{% endblock %}
+
+{% block toggle_login %}{% endblock %}
+
+{% block content %}
+    <form action="{% url userauth_login %}" method="post" accept-charset="utf-8">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="submit" value="Login"/>
+    </form>
+{% endblock %}
