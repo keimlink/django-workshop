@@ -1,8 +1,8 @@
 Authentifizierung & Registrierung
 *********************************
 
-Eine neue Applikation erstellen
-===============================
+Eine weitere Applikation erstellen
+==================================
 
 ..  code-block:: bash
 
@@ -254,4 +254,4 @@ Test: http://127.0.0.1:8000/
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-TDB
+TBD

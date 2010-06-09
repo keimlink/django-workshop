@@ -28,10 +28,12 @@ Wechsel nun in das neu erstellte Verzeichnis und erstelle ein Django Projekt:
 
 Dein neues Projekt wurde erstellt. Das Verzeichnis ``cookbook`` enthält erstmal nicht viel:
 
-    * ``__init__.py``
-    * ``manage.py``
-    * ``settings.py``
-    * ``urls.py``
+..  code-block:: bash
+
+    __init__.py
+    manage.py
+    settings.py
+    urls.py
 
 Die leere Datei ``__init__.py`` zeigt an, dass es sich beim Verzeichnis ``cookbook`` um ein `Python Paket <http://docs.python.org/tutorial/modules.html#packages>`_ handelt.
 

@@ -15,10 +15,12 @@ Die Applikation soll die Rezepte verwalten, also nennen wir sie ``recipes``:
 
 Das Kommando legt ein Verzeichnis ``recipes`` an, in dem sich vier Dateien befinden:
 
-    * ``__init__.py``
-    * ``models.py``
-    * ``tests.py``
-    * ``views.py``
+..  code-block:: bash
+
+    __init__.py
+    models.py
+    tests.py
+    views.py
 
 Die Datei ``__init__.py`` definiert, wie schon beim Projektverzeichnis, dass das Verzeichnis ``recipes`` ein `Python Paket <http://docs.python.org/tutorial/modules.html#packages>`_ ist.
 
