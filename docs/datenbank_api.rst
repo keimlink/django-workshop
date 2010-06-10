@@ -1,3 +1,5 @@
+..  _datenbank-api:
+
 Die Datenbank API
 *****************
 
