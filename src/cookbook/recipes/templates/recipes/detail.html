@@ -3,6 +3,7 @@
 {% block title %}{{ block.super }} - {{ object.title }}{% endblock %}
 
 {% block content %}
+{% load recipes %}
 <h2>{{ object.title }}</h2>
 <p>Ergibt {{ object.number_of_portions }} Portionen.</p>
 <h3>Zutaten</h3>
@@ -10,6 +11,10 @@
 <h3>Zubereitung</h3>
 {{ object.preparation|linebreaks }}
 <p>Zubereitungszeit: {{ object.time_for_preparation }} Minuten</p>
+{% is_author user object %}
 <a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
+{% else %}
+Bitte <a href="{% url userauth_login %}">einloggen</a>, um das Rezept zu bearbeiten.
+{% endis_author %}
 <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
 {% endblock %}
