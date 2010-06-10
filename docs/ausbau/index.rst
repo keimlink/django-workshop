@@ -12,3 +12,4 @@ Ausbau des Django Projekts
    debugging
    authentifizierung_registrierung
    rezept_formular
+   middleware_403
