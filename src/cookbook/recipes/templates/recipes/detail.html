@@ -19,6 +19,14 @@
         <li>{{ category.name }}</li>
     {% endfor %}
 </ul>
+{% if object.get_related_recipes %}
+<h4>Verwandte Rezepte</h4>
+<ul>
+{% for recipe in object.get_related_recipes %}
+    <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
 {% is_author user object %}
 <a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
 {% else %}

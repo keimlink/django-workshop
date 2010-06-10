@@ -57,3 +57,9 @@ class Recipe(models.Model):
             self.date_created = datetime.datetime.now()
         self.date_updated = datetime.datetime.now()
         super(Recipe, self).save(force_insert, force_update)
+    
+    def get_related_recipes(self):
+        categories = self.category.all()
+        related_recipes = Recipe.objects.all().filter(
+            difficulty__exact=self.difficulty, category__in=categories)
+        return related_recipes.exclude(pk=self.id).distinct()
