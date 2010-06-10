@@ -1,5 +1,7 @@
 from django import template
 
+register = template.Library()
+
 class IsAuthorNode(template.Node):
     def __init__(self, user, recipe, nodelist_true, nodelist_false):
         self.user = template.Variable(user)
@@ -19,6 +21,7 @@ class IsAuthorNode(template.Node):
             return self.nodelist_false.render(context)
 
 
+@register.tag(name='is_author')
 def do_is_author(parser, token):
     """The ``{% is_author %}`` tag displays the first section, if the user is
     the author of the recipe or a staff member. Otherwise the second section
@@ -44,6 +47,3 @@ def do_is_author(parser, token):
     else:
         nodelist_false = template.NodeList()
     return IsAuthorNode(user, recipe, nodelist_true, nodelist_false)
-
-register = template.Library()
-register.tag('is_author', do_is_author)
