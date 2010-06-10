@@ -13,3 +13,4 @@ Ausbau des Django Projekts
    authentifizierung_registrierung
    rezept_formular
    middleware_403
+   templatetags
