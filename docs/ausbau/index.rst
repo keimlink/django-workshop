@@ -15,3 +15,4 @@ Ausbau des Django Projekts
    middleware_403
    templates_aufwerten
    templatetags
+   modelmethoden
