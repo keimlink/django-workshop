@@ -21,6 +21,21 @@ class IsAuthorNode(template.Node):
             return self.nodelist_false.render(context)
 
 
+class GetRelatedRecipesNode(template.Node):
+    def __init__(self, recipe, limit, name):
+        self.recipe = template.Variable(recipe)
+        self.limit = limit
+        self.name = name
+
+    def render(self, context):
+        try:
+            recipe = self.recipe.resolve(context)
+            context[self.name] = recipe.get_related_recipes()[:self.limit]
+        except template.ValueDoesNotExist:
+            pass
+        return ''
+
+
 @register.tag(name='is_author')
 def do_is_author(parser, token):
     """The ``{% is_author %}`` tag displays the first section, if the user is
@@ -47,3 +62,22 @@ def do_is_author(parser, token):
     else:
         nodelist_false = template.NodeList()
     return IsAuthorNode(user, recipe, nodelist_true, nodelist_false)
+
+@register.tag(name='get_related_recipes')
+def do_get_related_recipes(parser, token):
+    """Gets the defined number of related recipes.
+    
+    ::
+    
+        <ul>
+        {% get_related_recipes recipe 5 as related_recipes %}
+        {% for recipe in related_recipes %}
+            <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
+        {% endfor %}
+        </ul>
+    """
+    try:
+        tag_name, recipe, limit, keyword_as, name = token.split_contents()
+    except ValueError:
+        raise template.TemplateSyntaxError('%s takes exactly three arguments' % token.contents.split()[0])
+    return GetRelatedRecipesNode(recipe, limit, name)
