@@ -38,7 +38,7 @@ def do_is_author(parser, token):
     try:
         tag_name, user, recipe = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError('%r requires a Recipe and an User as arguments' % tag_name)
+        raise template.TemplateSyntaxError('%s requires a Recipe and an User as arguments' % token.contents.split()[0])
     nodelist_true = parser.parse(('else', 'endis_author'))
     token = parser.next_token()
     if token.contents == 'else':
