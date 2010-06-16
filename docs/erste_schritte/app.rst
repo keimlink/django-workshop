@@ -153,7 +153,7 @@ Das Paket ``datetime`` müssen wir ebenfalls noch importieren. Also schreiben wi
 
 ..  note::
 
-    Mehr zum Thema ``import`` kannst du im :pep:`8` und in der `Python Dokumentation <http://docs.python.org/reference/simple_stmts.html#import>`_ nachlesen.
+    Mehr zum Thema ``import`` kannst du im :pep:`8`, in der `Python Dokumentation <http://docs.python.org/reference/simple_stmts.html#import>`_ sowie diesem `kurzen Artikel <http://effbot.org/zone/import-confusion.htm>`_ nachlesen.
 
 Die vollständige Datei
 ======================
