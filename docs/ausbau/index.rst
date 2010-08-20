@@ -17,3 +17,4 @@ Ausbau des Django Projekts
    templatetags
    modelmethoden
    softwaretests
+   internationalisierung
