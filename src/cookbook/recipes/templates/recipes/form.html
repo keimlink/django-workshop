@@ -10,7 +10,7 @@
 {% url recipes_recipe_add as action_url %}
 {% else %}
 <h2>Rezept "{{ object.title }}" bearbeiten</h2>
-{% url recipes_recipe_edit as action_url %}
+{% url recipes_recipe_edit object.pk as action_url %}
 {% endif %}
 <form action="{{ action_url }}" method="post" accept-charset="utf-8">
     {{ form.as_p }}

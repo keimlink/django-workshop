@@ -68,7 +68,7 @@ Den Renderer schreiben
             try:
                 user = self.user.resolve(context)
                 recipe = self.recipe.resolve(context)
-            except template.ValueDoesNotExist:
+            except template.VariableDoesNotExist:
                 return ''
             if recipe.author.id == user.id or user.is_staff:
                 return self.nodelist_true.render(context)

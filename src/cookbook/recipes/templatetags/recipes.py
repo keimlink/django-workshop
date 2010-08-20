@@ -13,7 +13,7 @@ class IsAuthorNode(template.Node):
         try:
             user = self.user.resolve(context)
             recipe = self.recipe.resolve(context)
-        except template.ValueDoesNotExist:
+        except template.VariableDoesNotExist:
             return ''
         if recipe.author.id == user.id or user.is_staff:
             return self.nodelist_true.render(context)
@@ -31,7 +31,7 @@ class GetRelatedRecipesNode(template.Node):
         try:
             recipe = self.recipe.resolve(context)
             context[self.name] = recipe.get_related_recipes()[:self.limit]
-        except template.ValueDoesNotExist:
+        except template.VariableDoesNotExist:
             pass
         return ''
 

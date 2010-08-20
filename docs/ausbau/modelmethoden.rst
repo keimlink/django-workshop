@@ -41,7 +41,7 @@ Mehr Flexibilität mit einem Templatetag
             try:
                 recipe = self.recipe.resolve(context)
                 context[self.name] = recipe.get_related_recipes()[:self.limit]
-            except template.ValueDoesNotExist:
+            except template.VariableDoesNotExist:
                 pass
             return ''
     

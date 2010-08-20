@@ -33,7 +33,7 @@ def add(request):
 @login_required
 def edit(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
-    if recipe.author != request.user and request.user.is_staff == False:
+    if recipe.author != request.user and not request.user.is_staff:
         return HttpResponseForbidden()
     if request.method == 'POST':
         form = RecipeForm(instance=recipe, data=request.POST)

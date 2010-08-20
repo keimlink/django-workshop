@@ -81,7 +81,7 @@ views::
     @login_required
     def edit(request, recipe_id):
         recipe = get_object_or_404(Recipe, pk=recipe_id)
-        if recipe.author != request.user and request.user.is_staff == False:
+        if recipe.author != request.user and not request.user.is_staff:
             return HttpResponseForbidden()
         if request.method == 'POST':
             form = RecipeForm(instance=recipe, data=request.POST)
@@ -113,7 +113,7 @@ recipes/templates/recipes/form.html:
     {% url recipes_recipe_add as action_url %}
     {% else %}
     <h2>Rezept "{{ object.title }}" bearbeiten</h2>
-    {% url recipes_recipe_edit as action_url %}
+    {% url recipes_recipe_edit object.pk as action_url %}
     {% endif %}
     <form action="{{ action_url }}" method="post" accept-charset="utf-8">
         {{ form.as_p }}
