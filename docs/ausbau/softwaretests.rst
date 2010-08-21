@@ -399,5 +399,5 @@ Weitere Möglichkeiten beim Testen von Views
 Weiterführende Links zur Django und Python Dokumentation
 ========================================================
 
-* `Django Applikationen testen <http://docs.djangoproject.com/en/dev/topics/testing/>`_
+* `Django Applikationen testen <http://docs.djangoproject.com/en/1.2/topics/testing/>`_
 * `Python Unit testing framework <http://docs.python.org/library/unittest.html>`_
