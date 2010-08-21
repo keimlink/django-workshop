@@ -129,9 +129,68 @@ Die .po-Dateien
     "    Ergibt %(number_of_portions)s Portionen.\n"
     "    "
 
-Middleware
-==========
+``LocaleMiddleware`` Middleware einbinden
+=========================================
 
-``django.middleware.locale.LocaleMiddleware`` nach ``SessionMiddleware`` einbinden.
+Ohne weitere Konfiguration entscheidet Django anhand des Wertes von ``LANGUAGE_CODE`` welche Sprache benutzt wird. So benutzen alle Benutzer die selbe Sprache.
 
-TODO: Reihenfolge der Auswertung durch die Middleware
+Damit jeder Benutzer die Sprache selbst bestimmen kann muss eine Middleware eingebunden werden: ``LocaleMiddleware``.
+
+Dazu muss ``django.middleware.locale.LocaleMiddleware`` zu der Liste der Middlewares ``MIDDLEWARE_CLASSES`` in der ``settings.py`` hinzugefügt werden.
+
+Dabei ist die Reihenfolge wichtig:
+
+* Nach ``SessionMiddleware`` einbinden, denn ``LocaleMiddleware`` benutzt Sessiondaten.
+* Falls ``CacheMiddleware`` benutzt wird sollte ``LocaleMiddleware`` danach eingebunden werden.
+
+In unser Konfiguration sieht es dann so aus::
+
+    MIDDLEWARE_CLASSES = (
+        'django.middleware.common.CommonMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.locale.LocaleMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+        'middleware.Http403Middleware'
+    )
+
+Wie ``LocaleMiddleware`` die Sprache ermittelt
+----------------------------------------------
+
+#. Zuerst wird der Schlüssel ``django_language`` in der Session gesucht.
+#. Ist in der Session nichts definiert wird nach einem Cookie gesucht. Dessen Name ist in ``LANGUAGE_COOKIE_NAME`` definiert (Standard ist ``django_language``).
+#. Ist der Cookie nicht vorhanden wird der ``Accept-Language`` HTTP Header untersucht. Wird dort eine Sprache gefunden, für die eine Übersetzung existiert, wird diese benutzt.
+#. Schlagen alle vorherigen drei Methoden fehl wird ``LANGUAGE_CODE`` benutzt.
+
+Einschränken der Sprachen
+-------------------------
+
+Um die Auswahl der Sprachen einzuschränken kann man die Liste der verfügbaren Sprachen in der ``settings.py`` reduzieren::
+
+    ugettext = lambda s: s
+    
+    LANGUAGES = (
+        (’de’, ugettext(’German’)),
+        (’en’, ugettext(’English’)),
+    )
+
+Das ``lambda``-Konstrukt ist notwenig, da ``django.utils.translation`` in der ``settings.py`` noch nicht zur Verfügung steht. Es hängt selbst von der Konfiguration ab.
+
+Damit die Namen der Sprachen auch wirklich übersetzt werden, muss dieser Code noch einmal an einer Stelle eingesetzt werden, an der er auch wirklich ausgeführt wird (zum Beispiel in der ``urls.py``).
+
+Ausgewählte Sprache ermitteln
+-----------------------------
+
+Die ausgewählte Sprache wird von ``HttpRequest`` als Eigenschaft ``LANGUAGE_CODE`` zur Verfügung gestellt::
+
+    def my_view(request):
+        if request.LANGUAGE_CODE == ’de-at’:
+            # do something
+
+Weiterführende Links zur Django und Python Dokumentation
+========================================================
+
+* `Internationalisierung und Lokalisierung <http://docs.djangoproject.com/en/1.2/topics/i18n/>`_
+* `Lambdas <http://docs.python.org/reference/expressions.html#lambda>`_
