@@ -50,7 +50,7 @@ Nun kann man im View in das Log schreiben::
 
 Die Ausgabe wird in die Datei ``debug.log`` im Verzeichnis ``/tmp`` geschrieben.
 
-Da der Code in ``local_settings.py`` nur ausgeführt wird wenn ``DEBUG`` den Wert ``True`` hat, findet kein Logging statt wenn ``DEBUG = False`` benutzt wird. Denn in der Standardkonfiguration verarbeitet ``logging`` nur Meldungen mit dem Level WARNING oder höher. So kannst du sicherstellen, dass das Logging im Produktivbetrieb nicht stattfindet, auch wenn diese Zeile nicht aus dem Code entfernt wurden.
+Da der Code in ``local_settings.py`` nur ausgeführt wird wenn ``DEBUG`` den Wert ``True`` hat, findet kein Logging statt wenn ``DEBUG = False`` benutzt wird.
 
 Mit dem Python-Debugger arbeiten
 ================================
