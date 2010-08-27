@@ -270,9 +270,7 @@ Damit es auch einen Link zum Registrierungsformular gibt fügen wir noch eine Ze
 ..  code-block:: html+django
 
     {% if user.is_authenticated %}
-        <p>Hallo {{ user.username }}!
-        <a href="{% url userauth_password_change %}">Passwort ändern</a>
-        <a href="{% url userauth_logout %}">Logout</a></p>
+        ...
     {% else %}
         <p><a href="{% url userauth_login %}">Login</a>
         <a href="{% url userauth_register %}">Registrieren</a></p>
