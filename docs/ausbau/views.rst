@@ -1,7 +1,7 @@
 Ausbau der Views
 ****************
 
-Die Views sind zwar schon relativ kompakt, enthalten aber immer noch einigen Code, der sich wiederholt. Also machen wir uns daran, dass zu verbessern.
+Die Views sind zwar schon relativ kompakt, enthalten aber immer noch einigen Code, der sich wiederholt. Also machen wir uns daran das zu verbessern.
 
 Die Funktion ``render_to_response``
 ===================================
