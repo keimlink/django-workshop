@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template import RequestContext
-from django.template.defaultfilters import slugify
 from django.shortcuts import get_object_or_404, render_to_response
 
 from recipes.forms import RecipeForm
@@ -25,7 +24,7 @@ def add(request):
             recipe = form.save()
             return HttpResponseRedirect(recipe.get_absolute_url())
     else:
-        form = RecipeForm(user=request.user)
+        form = RecipeForm()
     return render_to_response('recipes/form.html',
         {'form': form, 'add': True},
         context_instance=RequestContext(request))
