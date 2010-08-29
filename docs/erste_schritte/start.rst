@@ -30,10 +30,11 @@ Dein neues Projekt wurde erstellt. Das Verzeichnis ``cookbook`` enthält erstmal
 
 ..  code-block:: bash
 
-    __init__.py
-    manage.py
-    settings.py
-    urls.py
+    cookbook/
+    |-- __init__.py
+    |-- manage.py
+    |-- settings.py
+    `-- urls.py
 
 Die leere Datei ``__init__.py`` zeigt an, dass es sich beim Verzeichnis ``cookbook`` um ein `Python Paket <http://docs.python.org/tutorial/modules.html#packages>`_ handelt.
 

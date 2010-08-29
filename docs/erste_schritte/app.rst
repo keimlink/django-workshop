@@ -17,10 +17,11 @@ Das Kommando legt ein Verzeichnis ``recipes`` an, in dem sich vier Dateien befin
 
 ..  code-block:: bash
 
-    __init__.py
-    models.py
-    tests.py
-    views.py
+    recipes/
+    |-- __init__.py
+    |-- models.py
+    |-- tests.py
+    `-- views.py
 
 Die Datei ``__init__.py`` definiert, wie schon beim Projektverzeichnis, dass das Verzeichnis ``recipes`` ein `Python Paket <http://docs.python.org/tutorial/modules.html#packages>`_ ist.
 
