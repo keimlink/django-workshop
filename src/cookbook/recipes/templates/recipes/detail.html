@@ -19,10 +19,10 @@
         <li>{{ category.name }}</li>
     {% endfor %}
 </ul>
-{% if object.get_related_recipes %}
+{% get_related_recipes object 5 as related_recipes %}
+{% if related_recipes %}
 <h4>Verwandte Rezepte</h4>
 <ul>
-{% get_related_recipes object 5 as related_recipes %}
 {% for recipe in related_recipes %}
     <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
 {% endfor %}

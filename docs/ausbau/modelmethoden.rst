@@ -1,8 +1,14 @@
 Methoden am Model definieren
 ****************************
 
+Wenn man komplizierte Operationen mit dem ORM durchführt, definiert man dafür besser eine Methode am Model. So folgt man dem :ref:`dry`-Prinzip und kann dadurch den Code an verschiedenen Stellen nutzen.
+
 Eine neue Methode für das Model
 ===============================
+
+Mit der folgenden neuen Methode kannst du alle Rezepte ermitteln, die mit dem aktuellen Rezept bestimmte Ähnlichkeiten haben. Als Kriterien wurden hier die gleiche Schwierigkeit und eine übereinstimmende Kategorie gewählt.
+
+Füge also diese Methode dem Model ``Recipe`` in der Datei ``recipes/models.py`` hinzu:
 
 ..  code-block:: python
 
@@ -14,6 +20,8 @@ Eine neue Methode für das Model
 
 Das Template erweitern
 ======================
+
+Du kannst die neue Methode sofort im Template ``recipes/templates/recipes/detail.html`` einsetzen:
 
 ..  code-block:: html+django
 
@@ -28,6 +36,8 @@ Das Template erweitern
 
 Mehr Flexibilität mit einem Templatetag
 =======================================
+
+Im :ref:`vorhergehenden Kapitel <templatetags>` hast du gelernt, dass man mit Templatetags wesentlich flexibler und effektiver arbeiten kann. Also benutzen wir doch die neue Methode am Model, um ein neues Templatetag in ``recipes/templatetags/recipes.py`` zu erstellen:
 
 ..  code-block:: python
 
@@ -63,6 +73,24 @@ Mehr Flexibilität mit einem Templatetag
         except ValueError:
             raise template.TemplateSyntaxError('%s takes exactly three arguments' % token.contents.split()[0])
         return GetRelatedRecipesNode(recipe, limit, name)
+
+Nun kannst du den Code im Template mit dem Templatetag ersetzen:
+
+..  code-block:: html+django
+
+    {% get_related_recipes object 5 as related_recipes %}
+    {% if related_recipes %}
+    <h4>Verwandte Rezepte</h4>
+    <ul>
+    {% for recipe in related_recipes %}
+        <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+..  note::
+
+    Durch die Verwendung des Templatetags sparst du auch einen SQL Query.
 
 Weiterführende Links zur Django Dokumentation
 =============================================

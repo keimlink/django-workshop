@@ -1,3 +1,5 @@
+..  _templatetags:
+
 Templatetags
 ************
 
