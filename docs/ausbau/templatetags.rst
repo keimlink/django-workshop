@@ -74,7 +74,7 @@ Zuerst erstellt du die Kompilierungsfunktion in der neu angelegten Datei ``recip
             nodelist_false = template.NodeList()
         return IsAuthorNode(user, recipe, nodelist_true, nodelist_false)
 
-Den Renderer
+Der Renderer
 ------------
 
 Danach schreibst du die Node, die die Ausgabe rendert:
