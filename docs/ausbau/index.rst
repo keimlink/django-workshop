@@ -16,5 +16,5 @@ Ausbau des Django Projekts
    templates_aufwerten
    templatetags
    modelmethoden
-   softwaretests
+   softwaretests/index
    internationalisierung
