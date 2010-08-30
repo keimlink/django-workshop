@@ -52,11 +52,11 @@ class Recipe(models.Model):
     def __unicode__(self):
         return self.title
     
-    def save(self, **kwargs):
+    def save(self, *args, **kwargs):
         if not self.id:
             self.date_created = datetime.datetime.now()
         self.date_updated = datetime.datetime.now()
-        super(Recipe, self).save(**kwargs)
+        super(Recipe, self).save(*args, **kwargs)
     
     def get_related_recipes(self):
         categories = self.category.all()

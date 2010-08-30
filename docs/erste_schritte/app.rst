@@ -211,11 +211,11 @@ Die Datei ``models.py`` sollte nun so aussehen::
         def __unicode__(self):
             return self.title
 
-        def save(self, **kwargs):
+        def save(self, *args, **kwargs):
             if not self.id:
                 self.date_created = datetime.datetime.now()
             self.date_updated = datetime.datetime.now()
-            super(Recipe, self).save(**kwargs)
+            super(Recipe, self).save(*args, **kwargs)
 
 Die Applikation aktivieren
 ==========================
