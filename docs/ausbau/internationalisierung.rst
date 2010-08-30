@@ -109,14 +109,25 @@ Und für die Applikation ``recipes``::
     $ mkdir locale
     $ django-admin.py makemessages -l de
 
-Die .po-Dateien
-===============
+Dadurch wird die folgende Verzeichnisstruktur generiert::
 
-Jetzt kann in den erzeugten .po-Dateien mit der Übersetzung begonnen werden::
+    locale/
+    `-- de
+        `-- LC_MESSAGES
+            `-- django.po
+
+Die .po-Dateien
+---------------
+
+Jetzt kann in den erzeugten .po-Dateien mit der Übersetzung begonnen werden.
+
+``locale/de/LC_MESSAGES/django.po``::
 
     #: templates/base.html:7 templates/base.html.py:10
     msgid "Cookbook"
     msgstr "Kochbuch"
+
+``recipes/locale/de/LC_MESSAGES/django.po``::
 
     #: templates/recipes/detail.html:11
     #, python-format
@@ -136,6 +147,28 @@ Jetzt kann in den erzeugten .po-Dateien mit der Übersetzung begonnen werden::
     "\n"
     "    Ergibt %(number_of_portions)s Portionen.\n"
     "    "
+
+Die .mo-Dateien erzeugen
+------------------------
+
+Nachdem die Übersetzung in den .po-Dateien durchgeführt worden ist können die binären .mo-Dateien erzeugt werden. Dies muss auch wieder für das Projekt und jede Applikation einzeln durchgeführt werden.
+
+Für das Projekt im Projektverzeichnis::
+
+    $ django-admin.py compilemessages
+
+Und für die Applikation ``recipes``::
+
+    $ cd recipes
+    $ django-admin.py compilemessages
+
+Die .mo-Datei wird im gleichen Verzeichnis wie die dazu gehörende .po-Datei abgelegt::
+
+    locale/
+    `-- de
+        `-- LC_MESSAGES
+            |-- django.mo
+            `-- django.po
 
 ``LocaleMiddleware`` Middleware einbinden
 =========================================
