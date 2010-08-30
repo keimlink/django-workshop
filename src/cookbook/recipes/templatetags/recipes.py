@@ -53,7 +53,8 @@ def do_is_author(parser, token):
     try:
         tag_name, user, recipe = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError('%s requires a Recipe and an User as arguments' % token.contents.split()[0])
+        raise template.TemplateSyntaxError(
+            '%s requires a Recipe and an User as arguments' % token.contents.split()[0])
     nodelist_true = parser.parse(('else', 'endis_author'))
     token = parser.next_token()
     if token.contents == 'else':
@@ -79,5 +80,6 @@ def do_get_related_recipes(parser, token):
     try:
         tag_name, recipe, limit, keyword_as, name = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError('%s takes exactly three arguments' % token.contents.split()[0])
+        raise template.TemplateSyntaxError(
+            '%s takes exactly three arguments' % token.contents.split()[0])
     return GetRelatedRecipesNode(recipe, limit, name)

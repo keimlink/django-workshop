@@ -71,7 +71,8 @@ Im :ref:`vorhergehenden Kapitel <templatetags>` hast du gelernt, dass man mit Te
         try:
             tag_name, recipe, limit, keyword_as, name = token.split_contents()
         except ValueError:
-            raise template.TemplateSyntaxError('%s takes exactly three arguments' % token.contents.split()[0])
+            raise template.TemplateSyntaxError(
+                '%s takes exactly three arguments' % token.contents.split()[0])
         return GetRelatedRecipesNode(recipe, limit, name)
 
 Nun kannst du den Code im Template mit dem Templatetag ersetzen:

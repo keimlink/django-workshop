@@ -64,7 +64,8 @@ Zuerst erstellt du die Kompilierungsfunktion in der neu angelegten Datei ``recip
         try:
             tag_name, user, recipe = token.split_contents()
         except ValueError:
-            raise template.TemplateSyntaxError('%s requires a Recipe and an User as arguments' % token.contents.split()[0])
+            raise template.TemplateSyntaxError(
+                '%s requires a Recipe and an User as arguments' % token.contents.split()[0])
         nodelist_true = parser.parse(('else', 'endis_author'))
         token = parser.next_token()
         if token.contents == 'else':

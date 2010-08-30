@@ -16,7 +16,8 @@ Neuer Code:
 
 ..  code-block:: html+django
 
-    <p>Ergibt {{ object.number_of_portions }} Portion{{ object.number_of_portions|pluralize:"en" }}.</p>
+    <p>Ergibt {{ object.number_of_portions }} 
+        Portion{{ object.number_of_portions|pluralize:"en" }}.</p>
 
 Hier bestimmst du mit dem Filter ``pluralize``, ob das Attribut ``number_of_portions`` den Wert 1 oder höher hat. Ist der Wert höher, werden die Buchstaben "en" angehängt.
 

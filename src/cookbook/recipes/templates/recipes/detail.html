@@ -6,7 +6,8 @@
 {% load recipes %}
 <h2>{{ object.title }}</h2>
 <p>Schwierigkeitsgrad: {{ object.get_difficulty_display }}</p>
-<p>Ergibt {{ object.number_of_portions }} Portion{{ object.number_of_portions|pluralize:"en" }}.</p>
+<p>Ergibt {{ object.number_of_portions }} 
+    Portion{{ object.number_of_portions|pluralize:"en" }}.</p>
 <h3>Zutaten</h3>
 {{ object.ingredients|linebreaks }}
 <h3>Zubereitung</h3>

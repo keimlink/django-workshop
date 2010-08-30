@@ -163,7 +163,8 @@ Nun geht es daran das Template anzulegen. In den beiden Views wurde ``recipes/te
     {% extends "base.html" %}
 
     {% block title %}
-    {{ block.super }} - Rezept {% if add %}erstellen{% else %}"{{ object.title }}" bearbeiten{% endif %}
+    {{ block.super }} - Rezept {% if add %}erstellen
+        {% else %}"{{ object.title }}" bearbeiten{% endif %}
     {% endblock %}
 
     {% block content %}

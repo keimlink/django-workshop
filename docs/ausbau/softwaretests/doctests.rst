@@ -15,7 +15,8 @@ Doctests sind die einfachste Art Tests zu schreiben. Starte dafür eine Python S
     >>> from django.template.defaultfilters import slugify
     >>> from django.contrib.auth.models import User
     >>> admin = User.objects.get(username='admin')
-    >>> r = Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4, author=admin)
+    >>> r = Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4,
+    ... author=admin)
     >>> r.title
     'Doctest'
     >>> r.slug
@@ -38,7 +39,8 @@ Jetzt wollen wir noch einige Fehler provozieren:
 
 ..  code-block:: pycon
 
-    >>> Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4, author=admin)
+    >>> Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4,
+    ... author=admin)
     Traceback (most recent call last):
       ...
     IntegrityError: column slug is not unique
@@ -93,7 +95,8 @@ Die Datei ``recipes/tests.py`` sieht dann so aus::
     >>> from django.template.defaultfilters import slugify
     >>> from django.contrib.auth.models import User
     >>> admin = User.objects.create(username='admin', password='admin')
-    >>> r = Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4, author=admin)
+    >>> r = Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4,
+    ... author=admin)
     >>> r.title
     'Doctest'
     >>> r.slug
@@ -109,7 +112,8 @@ Die Datei ``recipes/tests.py`` sieht dann so aus::
     True
     >>> r.difficulty == Recipe.DIFFICULTY_MEDIUM
     True
-    >>> Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4, author=admin)
+    >>> Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4,
+    ... author=admin)
     Traceback (most recent call last):
       ...
     IntegrityError: column slug is not unique
