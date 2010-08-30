@@ -16,4 +16,5 @@ Inhaltsverzeichnis:
    datenbank_api
    ausbau/index
    projekt
+   autoren
    lizenz

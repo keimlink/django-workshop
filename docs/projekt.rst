@@ -9,4 +9,4 @@ Das gesamte Material ist unter einer freien :ref:`lizenz` erschienen. Verbesseru
 
 Das Projekt ist in einem `Mercurial-Repository auf bitbucket verfügbar <http://bitbucket.org/streetcleaner/django-workshop>`_. Dort finden sich auch alle Code-Beispiele.
 
-Autor ist `Markus Zapke-Gründemann <http://www.keimlink.de/>`_.
+Alle Autoren werden auf der Seite :ref:`autoren` genannt.
