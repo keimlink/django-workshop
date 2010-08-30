@@ -1,10 +1,12 @@
 Internationalisierung
 *********************
 
+Um einen Applikation in verschiedenen Sprachen anbieten zu können ist Internationalisierung (I18N) und Lokalisierung (L10N) notwendig. Django benutzt dazu das `gettext Modul <http://docs.python.org/library/gettext.html>`_ von Python.
+
 Standard-Übersetzung
 ====================
 
-::
+Eine einfache Übersetzung im View würde mit Hilfe von ``ugettext`` wie folgt durchgeführt werden::
 
     from django.utils.translation import ugettext as _ 
     
@@ -15,7 +17,7 @@ Standard-Übersetzung
 Mehrzahl
 ========
 
-::
+Um zwischen Einzahl und Mehrzahl zu unterscheiden steht die Funktion ``ungettext`` zur Verfügung::
 
     from django.utils.translation import ungettext
 
@@ -34,10 +36,10 @@ Mehrzahl
         'name': name
     }
 
-Späte Übersetzung
-=================
+Verzögerung der Übersetzung
+===========================
 
-::
+In bestimmten Fällen bietet sich auch eine Verzögerung der Übersetzung mit ``ugettext_lazy`` an, zum Beispiel bei Models::
 
     from django.utils.translation import ugettext_lazy as _
 
@@ -53,7 +55,7 @@ Späte Übersetzung
 Übersetzte Zeichenketten zusammenfügen
 --------------------------------------
 
-::
+Mit Hilfe von ``string_concat`` lassen sich übersetzte Zeichenketten zusammenfügen::
 
     from django.utils.translation import string_concat, ugettext_lazy
     
@@ -64,16 +66,16 @@ Späte Übersetzung
 Templates übersetzen
 ====================
 
-templates/base.html
+Natürlich kann man die Übersetzung auch innerhalb der Templateengine nutzen.
 
-::
+Hier für das Basistemplate ``templates/base.html``::
 
     {% load i18n %}
     <title>{% block title %}{% trans "Cookbook" %}{% endblock %}</title>
 
-templates/recipes/detail.html
+Zuerst werden die Templatetags zur Internationalisierung mit dem Befehl ``{% load i18n %}`` geladen. Dann kann mit dem Tag ``trans`` ein Wort zur Übersetzung markiert werden.
 
-::
+In einer Detailansicht mit Einzahl und Mehrzahl, wie zum Beispiel im Template ``templates/recipes/detail.html``, sieht es dann so aus::
 
     {% load i18n %}
     ...
@@ -87,15 +89,21 @@ templates/recipes/detail.html
     <p>Zubereitungszeit: {{ time_for_preparation }} Minuten</p>
     {% endblocktrans %}
 
+Hier können mit dem Templatetag ``blocktrans`` ganze Blöcke von Text zur Übersetzung markiert werden, auch unter Berücksichtigung von Singular und Plural.
+
+Mit einer Konstruktion wie ``{% blocktrans with object.time_for_preparation as time_for_preparation %}`` ist es möglich einen generierten Wert in eine Zeichenkette einzusetzen.
+
 Locale Dateien erzeugen
 =======================
 
-Projekt::
+Um nun die Übersetzung in eine andere Sprache durchführen zu können müssen die Sprachdateien für Projekt und Applikation erzeugt werden.
+
+Erzeugen der Sprachdateien für das Projekt::
 
     $ mkdir locale
     $ django-admin.py makemessages -l de
 
-App ``recipes``::
+Und für die Applikation ``recipes``::
 
     $ cd recipes
     $ mkdir locale
@@ -104,7 +112,7 @@ App ``recipes``::
 Die .po-Dateien
 ===============
 
-::
+Jetzt kann in den erzeugten .po-Dateien mit der Übersetzung begonnen werden::
 
     #: templates/base.html:7 templates/base.html.py:10
     msgid "Cookbook"
