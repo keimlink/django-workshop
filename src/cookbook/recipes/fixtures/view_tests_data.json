@@ -1,0 +1,156 @@
+[
+    {
+        "pk": 1, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Nudeln und Pasta", 
+            "slug": "nudeln-und-pasta"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Hauptspeise", 
+            "slug": "hauptspeise"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Pfannengerichte", 
+            "slug": "pfannengerichte"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "Vegetarische Gerichte", 
+            "name": "vegetarisch", 
+            "slug": "vegetarisch"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Party", 
+            "slug": "party"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Leckere Salate", 
+            "slug": "leckere-salate"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                5
+            ], 
+            "time_for_preparation": 50, 
+            "number_of_portions": 4, 
+            "author": 1, 
+            "ingredients": "500 g  \t Aprikose(n), reife\r\n500 g \tQuark\r\n7 EL \tMehl\r\n3  \tEigelb\r\n  \tZucker (Kristallzucker und W\u00fcrfelzucker)\r\n  \tZimt\r\n  \tSalz\r\n  \tButter\r\n", 
+            "date_updated": "2010-08-27 17:16:24", 
+            "title": "Aprikosenkn\u00f6del", 
+            "preparation": "Aus Quark, Mehl und Eigelb einen glatten Teig r\u00fchren.\r\nAprikosen entsteinen und in die Mitte jeweils ein St\u00fcck W\u00fcrfelzucker geben. Die H\u00e4nde mit viel Mehl best\u00e4uben, die Aprikosen St\u00fcck f\u00fcr St\u00fcck mit den Quarkteig umh\u00fcllen und einen Kn\u00f6del daraus formen. Erfordert etwas Zeit und \u00dcbung.\r\n\r\nIn einen Topf reichlich Wasser zum Kochen bringen. Etwas Salz ins Wasser streuen.\r\nDie Kn\u00f6del ins kochende Wasser geben. Ca. 3 -4 Minuten sprudelnd kochen lassen, anschlie\u00dfend 20 Min. ziehen lassen.\r\n\r\nDie Butter schmelzen . Die Aprikosenkn\u00f6del auf Tellern verteilen und mit einer Gabel aufrei\u00dfen. Mit Butter \u00fcbergie\u00dfen und mit Zimt und Zucker bestreuen. Sofort servieren. ", 
+            "difficulty": 2, 
+            "date_created": "2010-08-27 17:16:24", 
+            "slug": "aprikosenknodel"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                6
+            ], 
+            "time_for_preparation": 15, 
+            "number_of_portions": 6, 
+            "author": 7, 
+            "ingredients": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\r\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 
+            "date_updated": "2010-08-30 00:56:39", 
+            "title": "Salat", 
+            "preparation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\r\n\r\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 
+            "difficulty": 1, 
+            "date_created": "2010-06-09 20:50:33", 
+            "slug": "salat"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                2, 
+                5
+            ], 
+            "time_for_preparation": 25, 
+            "number_of_portions": 1, 
+            "author": 1, 
+            "ingredients": "500 g \tHackfleisch (halb und halb)\r\n1  \tZwiebel(n)\r\n1  \tBr\u00f6tchen\r\n1  \tEi(er)\r\n1 TL \tSalz\r\n1 TL \tSenf\r\n1 TL, gestr. \tMajoran, getrocknet\r\n1 TL \tPaprikapulver\r\n viel \tPfeffer, aus der M\u00fchle\r\n2 TL \tPetersilie, getrocknet\r\n n. B. \tKnoblauch\r\n1 TL \tMaggi\r\n  \tMargarine, zum Braten\r\n evtl. \tMehl, oder Semmelbr\u00f6sel", 
+            "date_updated": "2010-06-10 14:52:56", 
+            "title": "Omas beste Frikadellen", 
+            "preparation": "Br\u00f6tchen in Wasser einweichen. Die Zwiebel sch\u00e4len und in feine W\u00fcrfel schneiden. Wer m\u00f6chte, kann die Zwiebel auch kurz in Butter glasig d\u00fcnsten (ich bevorzuge die rohe Zwiebelst\u00fcckchen-Variante).\r\n\r\nDas Ei, die Zwiebel und die Gew\u00fcrze zur Hackmasse geben und sehr gut!!! vermengen, entweder mit einem gro\u00dfen L\u00f6ffel oder mit den H\u00e4nden. NICHT mit dem Mixer arbeiten, dabei werden die Frikadellen oft z\u00e4h!\r\n\r\nDie Br\u00f6tchenmasse sehr gut ausdr\u00fccken,(entweder wieder mit den H\u00e4nden, oder auch zwischen zwei Brettchen) zur Hackmasse geben und wieder gut vermengen. Bis hierhin sollten diese Arbeitsschritte wenigstens 10 - 15 Minuten dauern, denn je ordentlicher vermengt und geknetet wird, umso besser und lockerer das Ergebnis!\r\n\r\nWer die rohe Masse abschmecken kann, sollte das jetzt noch mal tun, oder eine Probe braten!\r\nJetzt gleichm\u00e4\u00dfige, NICHT zu kleine B\u00e4llchen/Kl\u00f6\u00dfe/Klopse formen und auf einer bemehlten Arbeitsfl\u00e4che flachdr\u00fccken und gl\u00e4tten. Wer m\u00f6chte, kann in Mehl oder Semmelbr\u00f6sel wenden. Oma und ich braten sie \"ohne alles\"!\r\n\r\nEine schwere Pfanne mit guter Margarine stark erhitzen und die Frikadellen einlegen, KURZ auf beiden Seiten scharf anbraten und dann ca.15 - 20 Minuten (1 - 2mal vorsichtig wenden) auf mittlerer/schwacher Hitze fertig braten. Nicht zu viele Frikadellen \"auf einmal\" in einer Pfanne braten, eher eine zweite benutzen oder nacheinander braten!", 
+            "difficulty": 2, 
+            "date_created": "2010-05-28 11:51:00", 
+            "slug": "omas-beste-frikadellen"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                1, 
+                2, 
+                4
+            ], 
+            "time_for_preparation": 15, 
+            "number_of_portions": 4, 
+            "author": 1, 
+            "ingredients": "3 Zehe/n \tKnoblauch\r\n1  \tChilischote(n), rot\r\n6 EL \tOliven\u00f6l\r\n\u00bd Bund \tPetersilie\r\n  \tSalz\r\n400 g \tSpaghetti\r\n  \tWasser (Salzwasser)", 
+            "date_updated": "2010-05-28 11:49:27", 
+            "title": "Aglio e Olio", 
+            "preparation": "Die Spaghetti im Salzwasser kochen. Den Knoblauch in d\u00fcnne Scheiben schneiden, die Chili entkernen und fein hacken.\r\n\r\nDas \u00d6l in einer Pfanne erhitzen. Knoblauch und Chili darin leicht anr\u00f6sten. Petersilie hacken und unterr\u00fchren. In der Pfanne mit den Spaghetti mischen und salzen.", 
+            "difficulty": 1, 
+            "date_created": "2010-05-28 11:49:27", 
+            "slug": "aglio-e-olio"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                1, 
+                2, 
+                3
+            ], 
+            "time_for_preparation": 30, 
+            "number_of_portions": 4, 
+            "author": 1, 
+            "ingredients": "1 Pck. \tNudeln (Kurzkochnudeln)\r\n500 g \tGulasch vom Schwein oder anderes Fleisch\r\n1 Dose/n \tChampignons\r\n2  \tPaprikaschote(n)\r\n2  \tZwiebel(n)\r\n4 EL \t\u00d6l\r\n1 Pck. \tTomatenmark\r\n  \tSalz und Pfeffer\r\n  \tKnoblauch\r\n  \tPaprikapulver\r\n  \tCurry ", 
+            "date_updated": "2010-06-10 22:19:46", 
+            "title": "Bratnudeln auf deutsche Art", 
+            "preparation": "Den Gulasch in ganz kleine St\u00fccke schneiden, die Zwiebeln in Streifen schneiden und beides mit den Pilzen und mit etwas \u00d6l in einer gro\u00dfen, hei\u00dfen Pfanne (Tiegel) anbraten. Gew\u00fcrzt wird mit Salz, Pfeffer, Paprika, Knoblauch und Curry.\r\n\r\nZwischenzeitlich die Nudeln in Salzwasser eine Minute kochen, in ein Sieb geben und kalt absp\u00fclen.\r\n\r\nWenn das Fleisch weich ist, den in kleine St\u00fccke geschnittenen Paprika bzw. anderes Gem\u00fcse zugeben. Kurz braten lassen und die Nudeln dazugeben. Mit noch etwas mehr \u00d6l alles gut durchbraten (auf gro\u00dfer Hitze). Je nach Geschmack kann das Tomatenmark unterger\u00fchrt werden. ", 
+            "difficulty": 2, 
+            "date_created": "2010-05-27 17:50:38", 
+            "slug": "bratnudeln-auf-deutsche-art"
+        }
+    }
+]

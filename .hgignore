@@ -3,4 +3,5 @@ syntax: glob
 *.db
 *.pyc
 docs/_build
-
+.coverage
+htmlcov
