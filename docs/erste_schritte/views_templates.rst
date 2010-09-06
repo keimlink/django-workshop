@@ -41,6 +41,12 @@ Die Datei ``urls.py`` sieht danach so aus::
         (r'^$', 'recipes.views.index'),
     )
 
+..  note::
+
+    Der erste String im URL-Tupel ist ein `Raw-String <http://docs.python.org/reference/lexical_analysis.html#string-literals>`_, der einen regulären Ausdruck enthält.
+    
+    Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr darüber auf `Regular-Expressions.info <http://www.regular-expressions.info/>`_ oder im Artikel über das `re-Modul <http://www.doughellmann.com/PyMOTW/re/>`_ erfahren.
+
 Nun startest du den Entwicklungs-Webserver:
 
 ..  code-block:: bash
