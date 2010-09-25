@@ -140,11 +140,11 @@ Zusätzlich benutzen wir das Attribut ``ordering`` der ``Meta`` Klasse, um die S
 
 Außerdem wollen wir, dass die Zeitangaben automatisch ausgefüllt werden, da sie ja nicht in der Admin-Applikation bearbeitet werden können. Dazu überschreiben wir die Methode ``save``::
 
-        def save(self, force_insert=False, force_update=False):
+        def save(self, *args, **kwargs):
             if not self.id:
                 self.date_created = datetime.datetime.now()
             self.date_updated = datetime.datetime.now()
-            super(Recipe, self).save(force_insert, force_update)
+            super(Recipe, self).save(*args, **kwargs)
 
 Das Feld ``date_created`` wird nur gefüllt, wenn das Model zum ersten mal gespeichert wird und daher noch kein Attribut ``id`` besitzt. Das Feld ``date_updated`` wird bei jedem Speichern aktualisiert. Am Ende wird die Methode der Elternklasse aufgerufen.
 
