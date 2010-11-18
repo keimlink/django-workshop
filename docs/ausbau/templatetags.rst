@@ -3,9 +3,14 @@
 Templatetags
 ************
 
-Mit den Templatetags, die Django zur Verfügung stellt, lässt sich gut arbeiten. Wirklich interessant ist aber die Möglichkeit eigene Templatetags zu schreiben.
+Mit den Templatetags, die Django zur Verfügung stellt, lässt sich gut
+arbeiten. Wirklich interessant ist aber die Möglichkeit eigene Templatetags zu
+schreiben.
 
-Wir wollen ein Templatetag für unser Projekt schreiben mit dem wir ermitteln können ob ein Benutzer der Autor eines Rezeptes ist. Außerdem soll es die Möglichkeit bieten einen alternativen Block zu rendern, wenn dies nicht der Fall ist.
+Wir wollen ein Templatetag für unser Projekt schreiben mit dem wir ermitteln
+können ob ein Benutzer der Autor eines Rezeptes ist. Außerdem soll es die
+Möglichkeit bieten einen alternativen Block zu rendern, wenn dies nicht der
+Fall ist.
 
 Das Templatetag dafür soll also so aussehen:
 
@@ -17,12 +22,19 @@ Das Templatetag dafür soll also so aussehen:
         Dieses Rezept darf von diesem Benutzer nicht bearbeitet werden.
     {% endis_author %}
 
-Das Templatetag ist ``is_author``. Das erste Argument ``user`` ist ein User Objekt. Das zweite Argument ``recipe`` ist eine Recipe Instanz. Ansonsten soll das Templatetag wie eine ``if``-Bedingung funktionieren.
+Das Templatetag ist ``is_author``. Das erste Argument ``user`` ist ein User
+Objekt. Das zweite Argument ``recipe`` ist eine Recipe Instanz. Ansonsten soll
+das Templatetag wie eine ``if``-Bedingung funktionieren.
 
 Die Verzeichnisstruktur für Templatetags
 ========================================
 
-Templatetags müssen mit einer bestimmten Verzeichnisstruktur angelegt werden. Im Verzeichnis der Applikation wird ein neues Verzeichnis ``templatetags`` erstellt. Darin wird die leere Datei ``__init__.py`` angelegt, um das Verzeichnis als Python Package zu markieren. Als letztes legen wir eine Python Datei an, die das Modul für unsere Templatetags ist. Unser erstes Modul nennen wir ``recipes.py``.
+Templatetags müssen mit einer bestimmten Verzeichnisstruktur angelegt werden.
+Im Verzeichnis der Applikation wird ein neues Verzeichnis ``templatetags``
+erstellt. Darin wird die leere Datei ``__init__.py`` angelegt, um das
+Verzeichnis als Python Package zu markieren. Als letztes legen wir eine Python
+Datei an, die das Modul für unsere Templatetags ist. Unser erstes Modul nennen
+wir ``recipes.py``.
 
 ..  code-block:: bash
 
@@ -34,12 +46,16 @@ Templatetags müssen mit einer bestimmten Verzeichnisstruktur angelegt werden. I
 Das Templatetag erstellen
 =========================
 
-Ein Templatetag besteht immer aus einer Kompilierungsfunktion und einer Node. Die Kompilierungsfunktion parst das Tag mit Hilfe eines Parsers. Als Ergebnis gibt sie eine Instanz der Node zurück. Diese hat eine ``render``-Methode, die die Ausgabe erzeugt.
+Ein Templatetag besteht immer aus einer Kompilierungsfunktion und einer Node.
+Die Kompilierungsfunktion parst das Tag mit Hilfe eines Parsers. Als Ergebnis
+gibt sie eine Instanz der Node zurück. Diese hat eine ``render``-Methode, die
+die Ausgabe erzeugt.
 
 Die Kompilierungsfunktion
 -------------------------
 
-Zuerst erstellt du die Kompilierungsfunktion in der neu angelegten Datei ``recipes.py``:
+Zuerst erstellt du die Kompilierungsfunktion in der neu angelegten Datei
+``recipes.py``:
 
 ..  code-block:: python
 
@@ -103,9 +119,11 @@ Danach schreibst du die Node, die die Ausgabe rendert:
 Das Templatetag nutzen
 ======================
 
-Nun kannst du das neue Templatetag nutzen, zum Beispiel im Template ``recipes/templates/recipes/detail.html``.
+Nun kannst du das neue Templatetag nutzen, zum Beispiel im Template
+``recipes/templates/recipes/detail.html``.
 
-Dazu muss zuerst unser Templatetag geladen werden. Das machst du am besten im Kopf des Templates:
+Dazu muss zuerst unser Templatetag geladen werden. Das machst du am besten im
+Kopf des Templates:
 
 ..  code-block:: html+django
 
@@ -113,7 +131,10 @@ Dazu muss zuerst unser Templatetag geladen werden. Das machst du am besten im Ko
 
 ..  note::
 
-    Der Bezeichner hinter dem ``load`` Templatetag ist immer der Name des Python Moduls, dass die Templatetags enthält, die geladen werden sollen (ohne die Endung ".py"). Das Python Modul muss sich im Verzeichnis ``templatetags`` einer installierten Applikation befinden.
+    Der Bezeichner hinter dem ``load`` Templatetag ist immer der Name des Python
+    Moduls, dass die Templatetags enthält, die geladen werden sollen (ohne die
+    Endung ".py"). Das Python Modul muss sich im Verzeichnis ``templatetags``
+    einer installierten Applikation befinden.
 
 Dann ersetzt du diese beiden Zeilen:
 

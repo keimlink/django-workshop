@@ -1,7 +1,8 @@
 Rückblick und Ausblick
 **********************
 
-Dein erstes Django Projekt mit einer einfachen Applikation ist nun fertig! Folgenden Dinge hast du gelernt:
+Dein erstes Django Projekt mit einer einfachen Applikation ist nun fertig!
+Folgenden Dinge hast du gelernt:
 
 * Django Grundlagen
 * Installation von Django in einem virtuellen Environment
@@ -15,4 +16,5 @@ Dein erstes Django Projekt mit einer einfachen Applikation ist nun fertig! Folge
 
 Aber wie du dir sicherlich denken kannst, gibt es noch viel mehr zu lernen.
 
-Im nächsten Teil des Workshops werden wir die Applikation weiter ausbauen und die Wiederverwendbarkeit des Codes verbessern.
+Im nächsten Teil des Workshops werden wir die Applikation weiter ausbauen und
+die Wiederverwendbarkeit des Codes verbessern.

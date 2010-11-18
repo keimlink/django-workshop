@@ -3,7 +3,9 @@
 Debug Toolbar
 *************
 
-Der `Debug Toolbar <http://github.com/robhudson/django-debug-toolbar>`_ kann während der Entwicklung eines Projekts mit Django eine große Hilfe sein. Folgende Panels können im Browser eingeblendet werden:
+Der `Debug Toolbar <http://github.com/robhudson/django-debug-toolbar>`_ kann
+während der Entwicklung eines Projekts mit Django eine große Hilfe sein.
+Folgende Panels können im Browser eingeblendet werden:
 
 * Django Version
 * Request Timer
@@ -11,13 +13,15 @@ Der `Debug Toolbar <http://github.com/robhudson/django-debug-toolbar>`_ kann wä
 * HTTP Header
 * GET/POST/cookie/session Variablen
 * Templates und deren Context sowie die Template-Pfade
-* SQL Queries mit Ausführungszeit und Links, die für jeden Query ein EXPLAIN aufrufen
+* SQL Queries mit Ausführungszeit und Links, die für jeden Query ein EXPLAIN
+  aufrufen
 * Liste der Signale mit deren Argumenten und Empfängern
 * Log-Ausgabe mit dem in Python integrierten ``logging`` Modul
 
 Außerdem wird ein weiteres Kommando zur ``manage.py`` hinzugefügt:
 
-* *debugsqlshell*: Während der Arbeit mit der Datenbank API im Python Interpreter werden die SQL Queries ausgegeben
+* *debugsqlshell*: Während der Arbeit mit der Datenbank API im Python
+  Interpreter werden die SQL Queries ausgegeben
 
 Installation
 ============
@@ -31,7 +35,8 @@ So kannst du den Debug Toolbar installieren:
 Konfiguration
 =============
 
-Um den Debug Toolbar für dein Projekt zu aktivieren fügst du den folgenden Code in die Datei ``settings.py`` ein::
+Um den Debug Toolbar für dein Projekt zu aktivieren fügst du den folgenden
+Code in die Datei ``settings.py`` ein::
 
     MIDDLEWARE_CLASSES = (
         ...

@@ -1,14 +1,19 @@
 Methoden am Model definieren
 ****************************
 
-Wenn man komplizierte Operationen mit dem ORM durchführt, definiert man dafür besser eine Methode am Model. So folgt man dem :ref:`dry`-Prinzip und kann dadurch den Code an verschiedenen Stellen nutzen.
+Wenn man komplizierte Operationen mit dem ORM durchführt, definiert man dafür
+besser eine Methode am Model. So folgt man dem :ref:`dry`-Prinzip und kann
+dadurch den Code an verschiedenen Stellen nutzen.
 
 Eine neue Methode für das Model
 ===============================
 
-Mit der folgenden neuen Methode kannst du alle Rezepte ermitteln, die mit dem aktuellen Rezept bestimmte Ähnlichkeiten haben. Als Kriterien wurden hier die gleiche Schwierigkeit und eine übereinstimmende Kategorie gewählt.
+Mit der folgenden neuen Methode kannst du alle Rezepte ermitteln, die mit dem
+aktuellen Rezept bestimmte Ähnlichkeiten haben. Als Kriterien wurden hier die
+gleiche Schwierigkeit und eine übereinstimmende Kategorie gewählt.
 
-Füge also diese Methode dem Model ``Recipe`` in der Datei ``recipes/models.py`` hinzu:
+Füge also diese Methode dem Model ``Recipe`` in der Datei
+``recipes/models.py`` hinzu:
 
 ..  code-block:: python
 
@@ -21,7 +26,8 @@ Füge also diese Methode dem Model ``Recipe`` in der Datei ``recipes/models.py``
 Das Template erweitern
 ======================
 
-Du kannst die neue Methode sofort im Template ``recipes/templates/recipes/detail.html`` einsetzen:
+Du kannst die neue Methode sofort im Template
+``recipes/templates/recipes/detail.html`` einsetzen:
 
 ..  code-block:: html+django
 
@@ -37,7 +43,10 @@ Du kannst die neue Methode sofort im Template ``recipes/templates/recipes/detail
 Mehr Flexibilität mit einem Templatetag
 =======================================
 
-Im :ref:`vorhergehenden Kapitel <templatetags>` hast du gelernt, dass man mit Templatetags wesentlich flexibler und effektiver arbeiten kann. Also benutzen wir doch die neue Methode am Model, um ein neues Templatetag in ``recipes/templatetags/recipes.py`` zu erstellen:
+Im :ref:`vorhergehenden Kapitel <templatetags>` hast du gelernt, dass man mit
+Templatetags wesentlich flexibler und effektiver arbeiten kann. Also benutzen
+wir doch die neue Methode am Model, um ein neues Templatetag in
+``recipes/templatetags/recipes.py`` zu erstellen:
 
 ..  code-block:: python
 

@@ -1,16 +1,20 @@
 Die Admin-Applikation
 *********************
 
-Als nächstes werden wir die Admin-Applikation aktivieren, damit wir Daten für unser Projekt eingeben, bearbeiten und löschen können.
+Als nächstes werden wir die Admin-Applikation aktivieren, damit wir Daten für
+unser Projekt eingeben, bearbeiten und löschen können.
 
 Diese Applikation ist schon in Django enthalten.
 
 Die eigene Applikation beim Admin registrieren
 ==============================================
 
-Damit der Admin mit unser Applikation benutzt werden kann, müssen wir unsere Models dem Admin bekannt machen.
+Damit der Admin mit unser Applikation benutzt werden kann, müssen wir unsere
+Models dem Admin bekannt machen.
 
-Dazu muss die Datei ``admin.py`` in der Applikation angelegt werden. Danach öffnest du die Datei in deinem Editor und fügst die beiden folgenden Zeilen Code ein::
+Dazu muss die Datei ``admin.py`` in der Applikation angelegt werden. Danach
+öffnest du die Datei in deinem Editor und fügst die beiden folgenden Zeilen
+Code ein::
 
     from django.contrib import admin
     
@@ -18,7 +22,8 @@ Dazu muss die Datei ``admin.py`` in der Applikation angelegt werden. Danach öff
 
 Damit stehen dir der Admin und die Models der Applikation zur Verfügung.
 
-Als nächstes erstellen wir eine Klasse, um das Model ``Category`` beim Admin zu registrieren::
+Als nächstes erstellen wir eine Klasse, um das Model ``Category`` beim Admin
+zu registrieren::
 
     class CategoryAdmin(admin.ModelAdmin):
         prepopulated_fields = {'slug': ['name']}
@@ -28,7 +33,9 @@ Als nächstes erstellen wir eine Klasse, um das Model ``Category`` beim Admin zu
 
 Mehr ist nicht zu tun.
 
-Das Attribut ``prepopulated_fields`` hilft in der Admin-Applikation dabei, dass Feld ``slug`` bei der Eingabe automatisch zu füllen. In diesem Fall mit dem Attribut ``name`` des Models.
+Das Attribut ``prepopulated_fields`` hilft in der Admin-Applikation dabei,
+dass Feld ``slug`` bei der Eingabe automatisch zu füllen. In diesem Fall mit
+dem Attribut ``name`` des Models.
 
 Das gleiche tun wir jetzt für das Model ``Recipe``::
 
@@ -66,14 +73,18 @@ Um die Admin-Applikation zu aktivieren sind zwei Schritte nötig.
 Anpassen der Konfiguration
 --------------------------
 
-Entferne in der Datei ``settings.py`` in ``INSTALLED_APPS`` das Kommentarzeichen vor der Zeile ``'django.contrib.admin',``, um die Admin-Applikation zu aktivieren.
+Entferne in der Datei ``settings.py`` in ``INSTALLED_APPS`` das
+Kommentarzeichen vor der Zeile ``'django.contrib.admin',``, um die
+Admin-Applikation zu aktivieren.
 
 URLConf anpassen
 ----------------
 
-Damit die Admin-Applikation auch im Browser aufgerufen werden kann müssen wir die URL des Admins ebenfalls aktivieren.
+Damit die Admin-Applikation auch im Browser aufgerufen werden kann müssen wir
+die URL des Admins ebenfalls aktivieren.
 
-Öffne dazu die Datei ``cookbook/urls.py`` und entferne die Kommentarzeichen in den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
+Öffne dazu die Datei ``cookbook/urls.py`` und entferne die Kommentarzeichen in
+den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
 
     from django.conf.urls.defaults import *
 

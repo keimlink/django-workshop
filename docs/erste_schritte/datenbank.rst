@@ -1,7 +1,8 @@
 Datenbank und Entwicklungs-Webserver
 ************************************
 
-Nun können wir die Datenbank füllen und danach den Entwicklungs-Webserver auf rufen, um die Admin-Applikation zu benutzen.
+Nun können wir die Datenbank füllen und danach den Entwicklungs-Webserver auf
+rufen, um die Admin-Applikation zu benutzen.
 
 Datenmodel überprüfen
 =====================
@@ -12,12 +13,15 @@ Als erstes solltest du dein Datenmodel mit folgendem Kommando überprüfen:
 
     $ python manage.py validate
 
-Django überprüft das Datenmodel automatisch bei allen Operationen, die Models benutzten. Mit Hilfe dieses Befehls kannst du die Prüfung auch gezielt durchführen.
+Django überprüft das Datenmodel automatisch bei allen Operationen, die Models
+benutzten. Mit Hilfe dieses Befehls kannst du die Prüfung auch gezielt
+durchführen.
 
 Datenbank synchronisieren
 =========================
 
-Aus den Models müssen nun SQL Queries erzeugt werden, um die Datenbank zu füllen.
+Aus den Models müssen nun SQL Queries erzeugt werden, um die Datenbank zu
+füllen.
 
 Mit dem folgenden Kommando kannst du dir die Queries ausgeben lassen:
 
@@ -59,7 +63,8 @@ Mit dem folgenden Kommando kannst du dir die Queries ausgeben lassen:
     CREATE INDEX "recipes_recipe_cc846901" ON "recipes_recipe" ("author_id");
     COMMIT;
 
-Um diese Queries direkt auszuführen und so die Tabellen und Indizes anzulegen musst du folgendes Kommando ausführen::
+Um diese Queries direkt auszuführen und so die Tabellen und Indizes anzulegen
+musst du folgendes Kommando ausführen::
 
     $ python manage.py syncdb
     Creating table auth_permission
@@ -96,12 +101,14 @@ Um diese Queries direkt auszuführen und so die Tabellen und Indizes anzulegen m
 
 ..  note::
 
-    Weil die in Django enthaltene App zur Authentifizierung zum ersten mal installiert wird, wird auch ein neuer Superuser angelegt.
+    Weil die in Django enthaltene App zur Authentifizierung zum ersten mal
+    installiert wird, wird auch ein neuer Superuser angelegt.
 
 Entwicklungs-Webserver starten
 ==============================
 
-Nachdem die Datenbank erstellt wurde kannst du den Entwicklungs-Webserver starten:
+Nachdem die Datenbank erstellt wurde kannst du den Entwicklungs-Webserver
+starten:
 
 ..  code-block:: bash
 
@@ -113,7 +120,9 @@ Nachdem die Datenbank erstellt wurde kannst du den Entwicklungs-Webserver starte
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
-Unter der URL http://127.0.0.1:8000/admin/ kannst du nun die Admin-Applikation aufrufen, dich mit dem eben erstellten Superuser anmelden und ein paar Rezepte anlegen.
+Unter der URL http://127.0.0.1:8000/admin/ kannst du nun die Admin-Applikation
+aufrufen, dich mit dem eben erstellten Superuser anmelden und ein paar Rezepte
+anlegen.
 
 Weiterführende Links zur Django Dokumentation
 =============================================

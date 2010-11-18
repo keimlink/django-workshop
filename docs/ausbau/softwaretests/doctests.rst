@@ -1,7 +1,9 @@
 Doctests schreiben
 ******************
 
-Doctests sind die einfachste Art Tests zu schreiben. Starte dafür eine Python Shell und führe einige Operationen an der Datenbank durch, ähnlich wie im Kapitel :ref:`datenbank-api`.
+Doctests sind die einfachste Art Tests zu schreiben. Starte dafür eine Python
+Shell und führe einige Operationen an der Datenbank durch, ähnlich wie im
+Kapitel :ref:`datenbank-api`.
 
 ..  code-block:: pycon
 
@@ -33,7 +35,8 @@ Doctests sind die einfachste Art Tests zu schreiben. Starte dafür eine Python S
     >>> r.difficulty == Recipe.DIFFICULTY_MEDIUM
     True
 
-Die gerade durchgeführten Operationen haben ein neues Rezept erstellt und einige Attribute getestet.
+Die gerade durchgeführten Operationen haben ein neues Rezept erstellt und
+einige Attribute getestet.
 
 Jetzt wollen wir noch einige Fehler provozieren:
 
@@ -54,7 +57,9 @@ Jetzt wollen wir noch einige Fehler provozieren:
       ...
     IntegrityError: recipes_recipe.author_id may not be NULL
 
-Damit sind wir mit der Erstellung der Doctests fertig. Du musst den Code aus der Shell jetzt nur noch in die Datei ``recipes/tests.py`` kopieren. Und zwar als Ersatz für den einfachen Beispiel-Doctest::
+Damit sind wir mit der Erstellung der Doctests fertig. Du musst den Code aus
+der Shell jetzt nur noch in die Datei ``recipes/tests.py`` kopieren. Und zwar
+als Ersatz für den einfachen Beispiel-Doctest::
 
     __test__ = {"doctest": """
     Another way to test that 1 + 1 is equal to 2.
@@ -63,7 +68,8 @@ Damit sind wir mit der Erstellung der Doctests fertig. Du musst den Code aus der
     True
     """}
 
-Da der Benutzer "admin" in der Testdatenbank nicht existiert musst du ihn manuell während des Tests erstellen. Ersetze dazu die Zeile::
+Da der Benutzer "admin" in der Testdatenbank nicht existiert musst du ihn
+manuell während des Tests erstellen. Ersetze dazu die Zeile::
 
     >>> admin = User.objects.get(username='admin')
 
@@ -132,7 +138,10 @@ Die Datei ``recipes/tests.py`` sieht dann so aus::
 
     Die Details der Tracebacks werden wirklich durch den String "..." ersetzt.
 
-Jetzt kannst du mit dem Kommando ``python manage.py test recipes -v 2`` die Tests laufen lassen und sehen, dass die Doctests ausgeführt werden. Mit ``python manage.py test recipes.doctest -v 2`` kannst du auch nur die Doctests alleine aufrufen.
+Jetzt kannst du mit dem Kommando ``python manage.py test recipes -v 2`` die
+Tests laufen lassen und sehen, dass die Doctests ausgeführt werden. Mit
+``python manage.py test recipes.doctest -v 2`` kannst du auch nur die Doctests
+alleine aufrufen.
 
 Vor- und Nachteile von Doctests
 ===============================
@@ -147,7 +156,8 @@ Vorteile
 Nachteile
 ---------
 
-* Dokumentation kann zu umfangreich werden (kann durch Verschieben in die Testsuite umgangen werden)
+* Dokumentation kann zu umfangreich werden (kann durch Verschieben in die
+  Testsuite umgangen werden)
 * Ausgabe beim Ausführen der Tests nicht immer eindeutig
 * Abhängigkeiten von der Umgebung (zum Beispiel Ausgaben im Interpreter)
 * Datenbank-Operationen sind nicht in Transaktionen gekapselt

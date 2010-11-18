@@ -1,12 +1,14 @@
 Rezepte mit einem Formular hinzufügen
 *************************************
 
-Nun wollen wir das Erstellen von Rezepten im Frontend für authentifizierte Benutzer ermöglichen.
+Nun wollen wir das Erstellen von Rezepten im Frontend für authentifizierte
+Benutzer ermöglichen.
 
 URLConf erweitern
 =================
 
-Dazu legst du zuerst die entsprechenden URLs zum Erstellen und Bearbeiten der Rezepte an in ``recipes/urls.py`` an::
+Dazu legst du zuerst die entsprechenden URLs zum Erstellen und Bearbeiten der
+Rezepte an in ``recipes/urls.py`` an::
 
     url(r'^erstellen/$', 'add', name='recipes_recipe_add'),
     url(r'^bearbeiten/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
@@ -25,7 +27,8 @@ Die vollständige URLConf sieht dann so aus::
 Ein Formular erstellen
 ======================
 
-Als nächstes legst du das Formular an. Erstelle dazu die Datei ``recipes/forms.py``::
+Als nächstes legst du das Formular an. Erstelle dazu die Datei
+``recipes/forms.py``::
 
     from django.forms import ModelForm
 
@@ -36,9 +39,12 @@ Als nächstes legst du das Formular an. Erstelle dazu die Datei ``recipes/forms.
             model = Recipe
             exclude = ('slug', 'author', 'date_created', 'date_updated')
 
-Mit Hilfe von ``ModelForm`` kannst du direkt aus dem Model ``Recipe`` ein Formular bauen und musst nur noch angeben welche Felder nicht im Formular auftauchen sollen.
+Mit Hilfe von ``ModelForm`` kannst du direkt aus dem Model ``Recipe`` ein
+Formular bauen und musst nur noch angeben welche Felder nicht im Formular
+auftauchen sollen.
 
-Damit du später das Rezept mit einem Benutzer verbinden kannst musst du den Konstruktor von ``RecipeForm`` überschreiben::
+Damit du später das Rezept mit einem Benutzer verbinden kannst musst du den
+Konstruktor von ``RecipeForm`` überschreiben::
 
     def __init__(self, **kwargs):
         try:
@@ -57,9 +63,12 @@ Als letztes überschreibst du die Methode ``save``::
             self.instance.author = self.__user
         return super(RecipeForm, self).save(commit)
 
-Wenn noch keine Instanz des Objekts ``Recipe`` erstellt wurde (``if self.instance.pk is None``) wird für diese ein Slug erstellt und sie wird mit dem Benutzer verbunden.
+Wenn noch keine Instanz des Objekts ``Recipe`` erstellt wurde (``if
+self.instance.pk is None``) wird für diese ein Slug erstellt und sie wird mit
+dem Benutzer verbunden.
 
-Damit die Funktion ``slugify`` zur Verfügung steht musst du noch den folgenden Import hinzufügen::
+Damit die Funktion ``slugify`` zur Verfügung steht musst du noch den folgenden
+Import hinzufügen::
 
         from django.template.defaultfilters import slugify
 
@@ -93,7 +102,8 @@ Die komplette Datei sieht dann so aus::
 Zwei Views für das Formular
 ===========================
 
-Jetzt wollen wir die Views zum Erstellen und Bearbeiten der Rezepte in ``recipes/views.py`` erstellen.
+Jetzt wollen wir die Views zum Erstellen und Bearbeiten der Rezepte in
+``recipes/views.py`` erstellen.
 
 Dazu sind zuerst einige weitere Imports nötig::
 
@@ -117,13 +127,19 @@ Zuerst legst du den View zum Erstellen eines neuen Rezeptes an::
             {'form': form, 'add': True},
             context_instance=RequestContext(request))
 
-Wenn POST-Daten vorhanden sind werden diese zusammen mit dem Benutzer an die Instanz von ``RecipeForm`` gebunden. Danach wird überprüft, ob die Daten valide sind. Nach dem Speichern des Formulars (und damit auch des Rezeptes) wird zur Seite des neuen Rezeptes weitergeleitet.
+Wenn POST-Daten vorhanden sind werden diese zusammen mit dem Benutzer an die
+Instanz von ``RecipeForm`` gebunden. Danach wird überprüft, ob die Daten
+valide sind. Nach dem Speichern des Formulars (und damit auch des Rezeptes)
+wird zur Seite des neuen Rezeptes weitergeleitet.
 
 Sind keine POST-Daten vorhanden wird nur eine Instanz der Formulars erstellt.
 
-Mit dem Parameter ``add`` unterscheiden wir später im Template, ob wir gerade ein Rezept erstellen oder hinzufügen. Denn wir benutzen nur ein Template für beide Aktionen.
+Mit dem Parameter ``add`` unterscheiden wir später im Template, ob wir gerade
+ein Rezept erstellen oder hinzufügen. Denn wir benutzen nur ein Template für
+beide Aktionen.
 
-Durch den Decorator ``login_required`` kann dieser View nur von angemeldeten Benutzern aufgerufen werden.
+Durch den Decorator ``login_required`` kann dieser View nur von angemeldeten
+Benutzern aufgerufen werden.
 
 Der zweite View dient zum Bearbeiten der Rezepte::
 
@@ -143,11 +159,15 @@ Der zweite View dient zum Bearbeiten der Rezepte::
             {'form': form, 'add': False, 'object': recipe},
             context_instance=RequestContext(request))
 
-Aus dem URL bekommen wir die Id des Rezeptes. Diese wird dazu benutzt eine Instanz zu holen oder eine 404 Seite anzuzeigen, falls dies nicht möglich ist.
+Aus dem URL bekommen wir die Id des Rezeptes. Diese wird dazu benutzt eine
+Instanz zu holen oder eine 404 Seite anzuzeigen, falls dies nicht möglich ist.
 
-Falls der angemeldete Benutzer nicht der Autor ist oder nicht zu den Redakteuren der Website gehört wird eine 403 Seite angezeigt, da die Benutzer nur ihre eigenen Rezepte bearbeiten sollen.
+Falls der angemeldete Benutzer nicht der Autor ist oder nicht zu den
+Redakteuren der Website gehört wird eine 403 Seite angezeigt, da die Benutzer
+nur ihre eigenen Rezepte bearbeiten sollen.
 
-Die restliche Verarbeitung der POST-Daten unterscheidet sich nur in drei Punkten vom View ``add``:
+Die restliche Verarbeitung der POST-Daten unterscheidet sich nur in drei
+Punkten vom View ``add``:
 
 #. Die Instanz von RecipeForm wird mit ``instance=recipe`` statt ``user`` erstellt.
 #. Der Parameter ``add`` im Kontext ist ``False``.
@@ -156,7 +176,8 @@ Die restliche Verarbeitung der POST-Daten unterscheidet sich nur in drei Punkten
 Templates anlegen und erweitern
 ===============================
 
-Nun geht es daran das Template anzulegen. In den beiden Views wurde ``recipes/templates/recipes/form.html`` genutzt. So sieht das Template aus:
+Nun geht es daran das Template anzulegen. In den beiden Views wurde
+``recipes/templates/recipes/form.html`` genutzt. So sieht das Template aus:
 
 ..  code-block:: html+django
 
@@ -183,21 +204,25 @@ Nun geht es daran das Template anzulegen. In den beiden Views wurde ``recipes/te
     <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
     {% endblock %}
 
-Im Template kann man jetzt sehen, wie der Parameter ``add`` zur Unterscheidung zwischen Erstellen und Bearbeiten genutzt wird.
+Im Template kann man jetzt sehen, wie der Parameter ``add`` zur Unterscheidung
+zwischen Erstellen und Bearbeiten genutzt wird.
 
-Jetzt kannst du das Template ``recipes/templates/recipes/detail.html`` um einen Link zum Bearbeiten des Rezeptes erweitern:
+Jetzt kannst du das Template ``recipes/templates/recipes/detail.html`` um
+einen Link zum Bearbeiten des Rezeptes erweitern:
 
 ..  code-block:: html+django
 
     <a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
 
-Und im Listentemplate ``recipes/templates/recipes/index.html`` einen Link zum Hinzufügen eines Rezeptes einsetzen:
+Und im Listentemplate ``recipes/templates/recipes/index.html`` einen Link zum
+Hinzufügen eines Rezeptes einsetzen:
 
 ..  code-block:: html+django
 
     <a href="{% url recipes_recipe_add %}">Ein Rezept hinzufügen</a>
 
-Fertig! Nun kannst du als angemeldeter Benutzer im Frontend Rezepte erstellen und bearbeiten.
+Fertig! Nun kannst du als angemeldeter Benutzer im Frontend Rezepte erstellen
+und bearbeiten.
 
 Weiterführende Links zur Django Dokumentation
 =============================================

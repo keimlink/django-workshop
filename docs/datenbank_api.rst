@@ -3,18 +3,22 @@
 Die Datenbank API
 *****************
 
-Django bringt eine Datenbank API mit, die Objekte erstellen, lesen, schreiben und löschen kann.
+Django bringt eine Datenbank API mit, die Objekte erstellen, lesen, schreiben
+und löschen kann.
 
 Arbeiten mit der Datenbank API
 ==============================
 
-Ein Weg mit der Datenbank API zu Arbeiten ist der Python Interpreter. Mit dem folgenden Befehl kannst du diesen starten:
+Ein Weg mit der Datenbank API zu Arbeiten ist der Python Interpreter. Mit dem
+folgenden Befehl kannst du diesen starten:
 
 ..  code-block:: bash
 
     $ python manage.py shell
 
-Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle Projekt, was beim Start durch die Eingabe von ``python`` nicht passieren würde.
+Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle
+Projekt, was beim Start durch die Eingabe von ``python`` nicht passieren
+würde.
 
 ..  code-block:: pycon
 

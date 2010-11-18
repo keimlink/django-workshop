@@ -1,7 +1,8 @@
 Unit Tests schreiben
 ********************
 
-Mit Hilfe des "Python unit testing frameworks" kannst du klassenbasierte Unit Tests schreiben.
+Mit Hilfe des "Python unit testing frameworks" kannst du klassenbasierte Unit
+Tests schreiben.
 
 Ersetzte den folgenden Teil der Datei ``recipes/tests.py``::
 
@@ -60,13 +61,17 @@ mit diesem Code::
                 title=self.title, slug=slugify(self.title),
                 number_of_portions=self.number_of_portions, author=self.author)
 
-Der Kommentar ``# -*- coding: utf-8 -*-`` zu Beginn der Datei ist bei Python 2.x Code nötig, damit Zeichen außerhalb der ASCII-Tabelle benutzt werden können.
+Der Kommentar ``# -*- coding: utf-8 -*-`` zu Beginn der Datei ist bei Python
+2.x Code nötig, damit Zeichen außerhalb der ASCII-Tabelle benutzt werden
+können.
 
-Die Methode ``setUp`` wird vor dem Aufruf jeder Testmethode der Testklasse aufgerufen. In diesem Fall legt sie einen neuen Benutzer zum Testen an.
+Die Methode ``setUp`` wird vor dem Aufruf jeder Testmethode der Testklasse
+aufgerufen. In diesem Fall legt sie einen neuen Benutzer zum Testen an.
 
 Danach folgen zwei Tests, die zwei Features des ``Recipe`` Models testen.
 
-Du kannst diese Tests mit den schon gezeigten Kommandos starten oder gezielt nur diese Testklasse mit dem folgenden Kommando aufrufen::
+Du kannst diese Tests mit den schon gezeigten Kommandos starten oder gezielt
+nur diese Testklasse mit dem folgenden Kommando aufrufen::
 
     $ python manage.py test recipes.RecipeSaveTest
 
@@ -79,12 +84,16 @@ Vorteile
 * Ausgabe beim Ausführen der Tests ist eindeutiger
 * Jeder Test kann einzeln aufgerufen werden
 * Eindeutig vom Quellcode getrennt (kann auch ein Nachteil sein)
-* Weniger Abhängigkeiten von der Umgebung (da nicht der Python-Interpreter benutzt wird)
-* Jede Methode einer Test-Klasse wird automatisch innerhalb einer Transaktion aufgerufen
+* Weniger Abhängigkeiten von der Umgebung (da nicht der Python-Interpreter
+  benutzt wird)
+* Jede Methode einer Test-Klasse wird automatisch innerhalb einer Transaktion
+  aufgerufen
 * Keine Unicode-Probleme
 
 Nachteile
 ---------
 
-* Erstellen der Unit Tests erfordert mehr Aufwand als das Erstellen von Doctests
-* Auch eine Dokumentation des Quellcodes, aber nicht so offensichtlich wie beim Doctest
+* Erstellen der Unit Tests erfordert mehr Aufwand als das Erstellen von
+  Doctests
+* Auch eine Dokumentation des Quellcodes, aber nicht so offensichtlich wie
+  beim Doctest

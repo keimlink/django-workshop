@@ -1,18 +1,25 @@
 Views testen
 ************
 
-Natürlich möchte man auch gerne das Frontend der Applikation testen. Dafür gibt es zum Beispiel Werkzeuge wie `Selenium <http://selenium.openqa.org/>`_. Selenium lässt sich mit Hilfe von `django-sane-testing <http://devel.almad.net/trac/django-sane-testing/>`_ in Django integrieren.
+Natürlich möchte man auch gerne das Frontend der Applikation testen. Dafür
+gibt es zum Beispiel Werkzeuge wie `Selenium <http://selenium.openqa.org/>`_.
+Selenium lässt sich mit Hilfe von `django-sane-testing
+<http://devel.almad.net/trac/django-sane-testing/>`_ in Django integrieren.
 
-Mit dem in Django eingebauten Testclient steht ein einfacher Testbrowser zur Verfügung, der zwar nicht alle Features von Selenium bietet, aber dafür auch einfacher einzusetzen ist.
+Mit dem in Django eingebauten Testclient steht ein einfacher Testbrowser zur
+Verfügung, der zwar nicht alle Features von Selenium bietet, aber dafür auch
+einfacher einzusetzen ist.
 
 Wir werden einige Tests mit dem Testbrowser erstellen.
 
 Fixtures erstellen
 ==================
 
-Zuerst benötigen wir einige Fixtures, damit Daten im Frontend zum Testen zur Verfügung stehen.
+Zuerst benötigen wir einige Fixtures, damit Daten im Frontend zum Testen zur
+Verfügung stehen.
 
-Erstelle dazu das Verzeichnis ``fixtures`` für die Applikationen ``recipes`` und ``userauth``::
+Erstelle dazu das Verzeichnis ``fixtures`` für die Applikationen ``recipes``
+und ``userauth``::
 
     $ mkdir recipes/fixtures
     $ mkdir userauth/fixtures
@@ -22,7 +29,8 @@ Dann erstellst du eine JSON-Datei mit den Models jeder Applikation::
     $ python manage.py dumpdata recipes --indent 4 > recipes/fixtures/view_tests_data.json
     $ python manage.py dumpdata auth --indent 4 > userauth/fixtures/test_users.json
 
-Mit dem folgenden Kommando können wir diese Fixtures in einen Testserver laden und uns im Browser ansehen::
+Mit dem folgenden Kommando können wir diese Fixtures in einen Testserver laden
+und uns im Browser ansehen::
 
     $ python manage.py testserver view_tests_data.json test_users.json
     Creating test database 'default'...
@@ -62,11 +70,13 @@ Mit dem folgenden Kommando können wir diese Fixtures in einen Testserver laden 
 Tests für die Rezept-Views schreiben
 ====================================
 
-Damit die Frontend-Tests auch geladen werden müssen sie in ``recipes/tests/__init__.py`` importiert werden::
+Damit die Frontend-Tests auch geladen werden müssen sie in
+``recipes/tests/__init__.py`` importiert werden::
 
     from view_tests import RecipeViewsTests
 
-Nun erstellst du die Datei ``recipes/tests/view_tests.py`` mit folgendem Inhalt::
+Nun erstellst du die Datei ``recipes/tests/view_tests.py`` mit folgendem
+Inhalt::
 
     # -*- coding: utf-8 -*-
 
@@ -90,11 +100,15 @@ Nun erstellst du die Datei ``recipes/tests/view_tests.py`` mit folgendem Inhalt:
             self.assertEqual(map(repr, response.context['object_list']),
                 map(repr, Recipe.objects.all()))
 
-Die Funktion ``reverse`` importieren wir, damit wir die Namen der URLs auch auflösen können und diese nicht "hart" in den Test eintragen müssen.
+Die Funktion ``reverse`` importieren wir, damit wir die Namen der URLs auch
+auflösen können und diese nicht "hart" in den Test eintragen müssen.
 
-Mit dem vom Testbrowser erzeugten Response-Objekt führen wir dann die Tests durch. Wir können sowohl das generierte HTML, die verwendeten Templates als auch den Kontext testen.
+Mit dem vom Testbrowser erzeugten Response-Objekt führen wir dann die Tests
+durch. Wir können sowohl das generierte HTML, die verwendeten Templates als
+auch den Kontext testen.
 
-Um die Testsuite für das Frontend zu erweitern kannst du noch den folgenden Import::
+Um die Testsuite für das Frontend zu erweitern kannst du noch den folgenden
+Import::
 
     from django.template.defaultfilters import slugify
 
@@ -148,7 +162,9 @@ und diese Testmethoden zur Klasse ``RecipeViewsTests`` hinzufügen::
         self.assertEqual(response.status_code, 302)
         self.assertTemplateNotUsed(response, 'recipes/form.html')
 
-Die letzten beiden Tests ``test_add`` und ``test_add_302`` demonstrieren das Versenden von POST-Daten mit dem Testbrowser, um die Formulare und die Authentifizierung zu testen.
+Die letzten beiden Tests ``test_add`` und ``test_add_302`` demonstrieren das
+Versenden von POST-Daten mit dem Testbrowser, um die Formulare und die
+Authentifizierung zu testen.
 
 Die Frontend-Tests können gezielt mit diesem Befehl aufgerufen werden::
 
@@ -160,5 +176,6 @@ Weitere Möglichkeiten beim Testen von Views
 * HTTP Methoden ``HEAD``, ``OPTIONS``, ``PUT`` und ``DELETE`` nutzen
 * ``Client.session`` und ``Client.cookies`` bilden die Sitzungsdaten ab
 * ``Client.template`` führt eine Liste aller gerenderten Templates
-* ``TestCase`` stellt mit ``django.core.mail.outbox`` ein Mock-Outbox zum Testen des E-Mail-Versands zur Verfügung
+* ``TestCase`` stellt mit ``django.core.mail.outbox`` ein Mock-Outbox zum
+  Testen des E-Mail-Versands zur Verfügung
 * Jede Test-Klasse kann eine eigene URLConf haben

@@ -1,14 +1,19 @@
 Tests ausführen
 ***************
 
-In Django ist bereits ein Framework für Softwaretests integriert - das "Python unit testing framework".
+In Django ist bereits ein Framework für Softwaretests integriert - das "Python
+unit testing framework".
 
-Der Test Runner erstellt bei jeden Start eine SQLite Datenbank für die Tests und lässt alle Tests voneinander abgekapselt in Transaktionen laufen. Bei der Auswahl des Datenbanksystems richtet sich der Test Runner nach dem Backend, der in der ``settings.py`` konfiguriert wurde.
+Der Test Runner erstellt bei jeden Start eine SQLite Datenbank für die Tests
+und lässt alle Tests voneinander abgekapselt in Transaktionen laufen. Bei der
+Auswahl des Datenbanksystems richtet sich der Test Runner nach dem Backend,
+der in der ``settings.py`` konfiguriert wurde.
 
 Tests für alle Applikationen durchführen
 ========================================
 
-Mit dem Befehl ``python manage.py test`` werden alle für das Projekt installierten Applikationen getestet::
+Mit dem Befehl ``python manage.py test`` werden alle für das Projekt
+installierten Applikationen getestet::
 
     $ python manage.py test
     Creating test database 'default'...
@@ -84,7 +89,8 @@ Man kann auch gezielt eine Applikation testen::
 Ausgabe der Tests verändern
 ===========================
 
-Mit dem Parameter ``-v 0`` wird der Großteil der Ausgaben des Test Runners unterdrückt::
+Mit dem Parameter ``-v 0`` wird der Großteil der Ausgaben des Test Runners
+unterdrückt::
 
     $ python manage.py test recipes -v 0
     ----------------------------------------------------------------------
@@ -92,7 +98,8 @@ Mit dem Parameter ``-v 0`` wird der Großteil der Ausgaben des Test Runners unte
 
     OK
 
-Umgekehrt kannst du mit dem Parameter ``-v 2`` alle Details beim Ablaufen der Tests beobachten::
+Umgekehrt kannst du mit dem Parameter ``-v 2`` alle Details beim Ablaufen der
+Tests beobachten::
 
     $ python manage.py test recipes -v 2
     Creating test database 'default'...

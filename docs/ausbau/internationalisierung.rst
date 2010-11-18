@@ -1,12 +1,16 @@
 Internationalisierung
 *********************
 
-Um einen Applikation in verschiedenen Sprachen anbieten zu können ist Internationalisierung (I18N) und Lokalisierung (L10N) notwendig. Django benutzt dazu das `gettext Modul <http://docs.python.org/library/gettext.html>`_ von Python.
+Um einen Applikation in verschiedenen Sprachen anbieten zu können ist
+Internationalisierung (I18N) und Lokalisierung (L10N) notwendig. Django
+benutzt dazu das `gettext Modul
+<http://docs.python.org/library/gettext.html>`_ von Python.
 
 Standard-Übersetzung
 ====================
 
-Eine einfache Übersetzung im View würde mit Hilfe von ``ugettext`` wie folgt durchgeführt werden::
+Eine einfache Übersetzung im View würde mit Hilfe von ``ugettext`` wie folgt
+durchgeführt werden::
 
     from django.utils.translation import ugettext as _ 
     
@@ -17,7 +21,8 @@ Eine einfache Übersetzung im View würde mit Hilfe von ``ugettext`` wie folgt d
 Mehrzahl
 ========
 
-Um zwischen Einzahl und Mehrzahl zu unterscheiden steht die Funktion ``ungettext`` zur Verfügung::
+Um zwischen Einzahl und Mehrzahl zu unterscheiden steht die Funktion
+``ungettext`` zur Verfügung::
 
     from django.utils.translation import ungettext
 
@@ -39,7 +44,8 @@ Um zwischen Einzahl und Mehrzahl zu unterscheiden steht die Funktion ``ungettext
 Verzögerung der Übersetzung
 ===========================
 
-In bestimmten Fällen bietet sich auch eine Verzögerung der Übersetzung mit ``ugettext_lazy`` an, zum Beispiel bei Models::
+In bestimmten Fällen bietet sich auch eine Verzögerung der Übersetzung mit
+``ugettext_lazy`` an, zum Beispiel bei Models::
 
     from django.utils.translation import ugettext_lazy as _
 
@@ -55,7 +61,8 @@ In bestimmten Fällen bietet sich auch eine Verzögerung der Übersetzung mit ``
 Übersetzte Zeichenketten zusammenfügen
 --------------------------------------
 
-Mit Hilfe von ``string_concat`` lassen sich übersetzte Zeichenketten zusammenfügen::
+Mit Hilfe von ``string_concat`` lassen sich übersetzte Zeichenketten
+zusammenfügen::
 
     from django.utils.translation import string_concat, ugettext_lazy
     
@@ -73,9 +80,12 @@ Hier für das Basistemplate ``templates/base.html``::
     {% load i18n %}
     <title>{% block title %}{% trans "Cookbook" %}{% endblock %}</title>
 
-Zuerst werden die Templatetags zur Internationalisierung mit dem Befehl ``{% load i18n %}`` geladen. Dann kann mit dem Tag ``trans`` ein Wort zur Übersetzung markiert werden.
+Zuerst werden die Templatetags zur Internationalisierung mit dem Befehl ``{%
+load i18n %}`` geladen. Dann kann mit dem Tag ``trans`` ein Wort zur
+Übersetzung markiert werden.
 
-In einer Detailansicht mit Einzahl und Mehrzahl, wie zum Beispiel im Template ``templates/recipes/detail.html``, sieht es dann so aus::
+In einer Detailansicht mit Einzahl und Mehrzahl, wie zum Beispiel im Template
+``templates/recipes/detail.html``, sieht es dann so aus::
 
     {% load i18n %}
     ...
@@ -89,14 +99,19 @@ In einer Detailansicht mit Einzahl und Mehrzahl, wie zum Beispiel im Template ``
     <p>Zubereitungszeit: {{ time_for_preparation }} Minuten</p>
     {% endblocktrans %}
 
-Hier können mit dem Templatetag ``blocktrans`` ganze Blöcke von Text zur Übersetzung markiert werden, auch unter Berücksichtigung von Singular und Plural.
+Hier können mit dem Templatetag ``blocktrans`` ganze Blöcke von Text zur
+Übersetzung markiert werden, auch unter Berücksichtigung von Singular und
+Plural.
 
-Mit einer Konstruktion wie ``{% blocktrans with object.time_for_preparation as time_for_preparation %}`` ist es möglich einen generierten Wert in eine Zeichenkette einzusetzen.
+Mit einer Konstruktion wie ``{% blocktrans with object.time_for_preparation as
+time_for_preparation %}`` ist es möglich einen generierten Wert in eine
+Zeichenkette einzusetzen.
 
 Locale Dateien erzeugen
 =======================
 
-Um nun die Übersetzung in eine andere Sprache durchführen zu können müssen die Sprachdateien für Projekt und Applikation erzeugt werden.
+Um nun die Übersetzung in eine andere Sprache durchführen zu können müssen die
+Sprachdateien für Projekt und Applikation erzeugt werden.
 
 Erzeugen der Sprachdateien für das Projekt::
 
@@ -151,7 +166,9 @@ Jetzt kann in den erzeugten .po-Dateien mit der Übersetzung begonnen werden.
 Die .mo-Dateien erzeugen
 ------------------------
 
-Nachdem die Übersetzung in den .po-Dateien durchgeführt worden ist können die binären .mo-Dateien erzeugt werden. Dies muss auch wieder für das Projekt und jede Applikation einzeln durchgeführt werden.
+Nachdem die Übersetzung in den .po-Dateien durchgeführt worden ist können die
+binären .mo-Dateien erzeugt werden. Dies muss auch wieder für das Projekt und
+jede Applikation einzeln durchgeführt werden.
 
 Für das Projekt im Projektverzeichnis::
 
@@ -162,7 +179,8 @@ Und für die Applikation ``recipes``::
     $ cd recipes
     $ django-admin.py compilemessages
 
-Die .mo-Datei wird im gleichen Verzeichnis wie die dazu gehörende .po-Datei abgelegt::
+Die .mo-Datei wird im gleichen Verzeichnis wie die dazu gehörende .po-Datei
+abgelegt::
 
     locale/
     `-- de
@@ -173,16 +191,22 @@ Die .mo-Datei wird im gleichen Verzeichnis wie die dazu gehörende .po-Datei abg
 ``LocaleMiddleware`` Middleware einbinden
 =========================================
 
-Ohne weitere Konfiguration entscheidet Django anhand des Wertes von ``LANGUAGE_CODE`` welche Sprache benutzt wird. So benutzen alle Benutzer die selbe Sprache.
+Ohne weitere Konfiguration entscheidet Django anhand des Wertes von
+``LANGUAGE_CODE`` welche Sprache benutzt wird. So benutzen alle Benutzer die
+selbe Sprache.
 
-Damit jeder Benutzer die Sprache selbst bestimmen kann muss eine Middleware eingebunden werden: ``LocaleMiddleware``.
+Damit jeder Benutzer die Sprache selbst bestimmen kann muss eine Middleware
+eingebunden werden: ``LocaleMiddleware``.
 
-Dazu muss ``django.middleware.locale.LocaleMiddleware`` zu der Liste der Middlewares ``MIDDLEWARE_CLASSES`` in der ``settings.py`` hinzugefügt werden.
+Dazu muss ``django.middleware.locale.LocaleMiddleware`` zu der Liste der
+Middlewares ``MIDDLEWARE_CLASSES`` in der ``settings.py`` hinzugefügt werden.
 
 Dabei ist die Reihenfolge wichtig:
 
-* Nach ``SessionMiddleware`` einbinden, denn ``LocaleMiddleware`` benutzt Sessiondaten.
-* Falls ``CacheMiddleware`` benutzt wird sollte ``LocaleMiddleware`` danach eingebunden werden.
+* Nach ``SessionMiddleware`` einbinden, denn ``LocaleMiddleware`` benutzt
+  Sessiondaten.
+* Falls ``CacheMiddleware`` benutzt wird sollte ``LocaleMiddleware`` danach
+  eingebunden werden.
 
 In unser Konfiguration sieht es dann so aus::
 
@@ -208,7 +232,8 @@ Wie ``LocaleMiddleware`` die Sprache ermittelt
 Einschränken der Sprachen
 -------------------------
 
-Um die Auswahl der Sprachen einzuschränken kann man die Liste der verfügbaren Sprachen in der ``settings.py`` reduzieren::
+Um die Auswahl der Sprachen einzuschränken kann man die Liste der verfügbaren
+Sprachen in der ``settings.py`` reduzieren::
 
     ugettext = lambda s: s
     
@@ -217,14 +242,19 @@ Um die Auswahl der Sprachen einzuschränken kann man die Liste der verfügbaren 
         (’en’, ugettext(’English’)),
     )
 
-Das ``lambda``-Konstrukt ist notwenig, da ``django.utils.translation`` in der ``settings.py`` noch nicht zur Verfügung steht. Es hängt selbst von der Konfiguration ab.
+Das ``lambda``-Konstrukt ist notwenig, da ``django.utils.translation`` in der
+``settings.py`` noch nicht zur Verfügung steht. Es hängt selbst von der
+Konfiguration ab.
 
-Damit die Namen der Sprachen auch wirklich übersetzt werden, muss dieser Code noch einmal an einer Stelle eingesetzt werden, an der er auch wirklich ausgeführt wird (zum Beispiel in der ``urls.py``).
+Damit die Namen der Sprachen auch wirklich übersetzt werden, muss dieser Code
+noch einmal an einer Stelle eingesetzt werden, an der er auch wirklich
+ausgeführt wird (zum Beispiel in der ``urls.py``).
 
 Ausgewählte Sprache ermitteln
 -----------------------------
 
-Die ausgewählte Sprache wird von ``HttpRequest`` als Eigenschaft ``LANGUAGE_CODE`` zur Verfügung gestellt::
+Die ausgewählte Sprache wird von ``HttpRequest`` als Eigenschaft
+``LANGUAGE_CODE`` zur Verfügung gestellt::
 
     def my_view(request):
         if request.LANGUAGE_CODE == ’de-at’:

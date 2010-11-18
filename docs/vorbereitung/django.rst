@@ -4,13 +4,15 @@ Django
 Ein neues *virtual environment* für das Projekt anlegen
 =======================================================
 
-Nachdem nun Python und ``virtualenv`` installiert sind kann ein neues *virtual environment* für Django angelegt werden:
+Nachdem nun Python und ``virtualenv`` installiert sind kann ein neues *virtual
+environment* für Django angelegt werden:
 
 ..  code-block:: bash
 
     $ mkvirtualenv --distribute --no-site-packages django-workshop
 
-Falls kein ``virtualenvwrapper`` installiert wurde muss folgendes Kommando ausgeführt werden:
+Falls kein ``virtualenvwrapper`` installiert wurde muss folgendes Kommando
+ausgeführt werden:
 
 ..  code-block:: bash
 
@@ -18,9 +20,12 @@ Falls kein ``virtualenvwrapper`` installiert wurde muss folgendes Kommando ausge
 
 Folgendes passiert:
 
-    * Die Option ``--distribute`` installiert im *virtual environment* ``distribute`` statt ``setuptools``
-    * Durch die Option ``--no-site-packages`` stehen die in der zentralen Python Installation vorhandenen Pakete nicht zur Verfügung
-    * ``django-workshop`` ist der Name, unter dem das *virtual environment* später zur Verfügung steht
+    * Die Option ``--distribute`` installiert im *virtual environment*
+      ``distribute`` statt ``setuptools``
+    * Durch die Option ``--no-site-packages`` stehen die in der zentralen Python
+      Installation vorhandenen Pakete nicht zur Verfügung
+    * ``django-workshop`` ist der Name, unter dem das *virtual environment* später
+      zur Verfügung steht
 
 Falls der ``virtualenvwrapper`` benutzt wurde ist das *virtual environment* jetzt schon aktiviert.
 
@@ -40,13 +45,15 @@ Jetzt installieren wir Django in das aktivierte *virtual environment*:
 
     $ pip install django
 
-Wenn der ``virtualenvwrapper`` installiert ist, kann man sich die installierten Pakete mit folgendem Kommando anzeigen lassen:
+Wenn der ``virtualenvwrapper`` installiert ist, kann man sich die
+installierten Pakete mit folgendem Kommando anzeigen lassen:
 
 ..  code-block:: bash
 
     $ lssitepackages -l
 
-Ohne ``virtualenvwrapper`` kann man sich die Pakete einfach direkt im Verzeichnis ansehen:
+Ohne ``virtualenvwrapper`` kann man sich die Pakete einfach direkt im
+Verzeichnis ansehen:
 
 ..  code-block:: bash
 

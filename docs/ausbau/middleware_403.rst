@@ -1,9 +1,13 @@
 Middleware für 403 Fehler
 *************************
 
-Im vorhergehenden Kapitel haben wir einen 403 Fehler erzeugt wenn ein Benutzer ein Rezept bearbeiten wollte, dessen Autor er nicht war. Allerdings ist das Ergebnis eine weiße Seite, was nicht besonders schön ist.
+Im vorhergehenden Kapitel haben wir einen 403 Fehler erzeugt wenn ein Benutzer
+ein Rezept bearbeiten wollte, dessen Autor er nicht war. Allerdings ist das
+Ergebnis eine weiße Seite, was nicht besonders schön ist.
 
-Dieses Problem ist eine gute Gelegenheit eine einfache Middleware zu schreiben. Lege dazu im Projektverzeichnis die Datei ``middleware.py`` an und erstelle darin die folgende Klasse:
+Dieses Problem ist eine gute Gelegenheit eine einfache Middleware zu
+schreiben. Lege dazu im Projektverzeichnis die Datei ``middleware.py`` an und
+erstelle darin die folgende Klasse:
 
 ..  code-block:: python
 
@@ -17,7 +21,9 @@ Dieses Problem ist eine gute Gelegenheit eine einfache Middleware zu schreiben. 
                 response.write(t.render(c))
             return response
 
-Es wird der ``process_response``-Hook benutzt, um bei einem 403 Status Code das Template ``403.html`` zu rendern. Da es dieses Template noch nicht gibt muss es jetzt angelegt werden:
+Es wird der ``process_response``-Hook benutzt, um bei einem 403 Status Code
+das Template ``403.html`` zu rendern. Da es dieses Template noch nicht gibt
+muss es jetzt angelegt werden:
 
 ..  code-block:: html
 
@@ -34,7 +40,8 @@ Es wird der ``process_response``-Hook benutzt, um bei einem 403 Status Code das 
     </body>
     </html>
 
-Damit die Middleware auch benutzt wird muss sie in die Liste der Middlewares in der ``settings.py`` eingefügt werden:
+Damit die Middleware auch benutzt wird muss sie in die Liste der Middlewares
+in der ``settings.py`` eingefügt werden:
 
 ..  code-block:: python
 

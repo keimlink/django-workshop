@@ -1,7 +1,9 @@
 Die ersten Views
 ****************
 
-Nachdem du nun einige Datensätze mit Hilfe der Admins-Applikation angelegt hast ist der nächste Schritt, diese auch im Frontend anzuzeigen. Dazu musst du drei Dinge tun:
+Nachdem du nun einige Datensätze mit Hilfe der Admins-Applikation angelegt
+hast ist der nächste Schritt, diese auch im Frontend anzuzeigen. Dazu musst du
+drei Dinge tun:
 
     #. URLs definieren
     #. Views schreiben
@@ -9,12 +11,16 @@ Nachdem du nun einige Datensätze mit Hilfe der Admins-Applikation angelegt hast
 
 ..  note::
 
-    Siehe :ref:`Grafik: Schematische Darstellung einer Request / Response Verarbeitung <grafik_request_response>`
+    Siehe :ref:`Grafik: Schematische Darstellung einer Request / Response
+    Verarbeitung <grafik_request_response>`
 
 URLs definieren
 ===============
 
-Zuerst definieren wir die URLs, die zum Abruf der verschiedenen Views dienen sollen. Fürs Erste wollen wir zwei URLs anlegen. Öffne dazu die Datei ``urls.py`` und füge am Ende der ``urlpatterns`` die folgenden beiden Zeilen ein::
+Zuerst definieren wir die URLs, die zum Abruf der verschiedenen Views dienen
+sollen. Fürs Erste wollen wir zwei URLs anlegen. Öffne dazu die Datei
+``urls.py`` und füge am Ende der ``urlpatterns`` die folgenden beiden Zeilen
+ein::
 
     (r'^rezept/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
     (r'^$', 'recipes.views.index'),
@@ -43,9 +49,14 @@ Die Datei ``urls.py`` sieht danach so aus::
 
 ..  note::
 
-    Der erste String im URL-Tupel ist ein `Raw-String <http://docs.python.org/reference/lexical_analysis.html#string-literals>`_, der einen regulären Ausdruck enthält.
+    Der erste String im URL-Tupel ist ein `Raw-String
+    <http://docs.python.org/reference/lexical_analysis.html#string-literals>`_,
+    der einen regulären Ausdruck enthält.
     
-    Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr darüber auf `Regular-Expressions.info <http://www.regular-expressions.info/>`_ oder im Artikel über das `re-Modul <http://www.doughellmann.com/PyMOTW/re/>`_ erfahren.
+    Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr darüber
+    auf `Regular-Expressions.info <http://www.regular-expressions.info/>`_ oder im
+    Artikel über das `re-Modul <http://www.doughellmann.com/PyMOTW/re/>`_
+    erfahren.
 
 Nun startest du den Entwicklungs-Webserver:
 
@@ -59,14 +70,18 @@ Nun startest du den Entwicklungs-Webserver:
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
-Der Aufruf der URL http://127.0.0.1:8000/ zeigt eine ``ViewDoesNotExist`` Exception. Das ist auch richtig so, denn bis jetzt hast du ja noch keinen View geschrieben. Es zeigt aber, dass dein URL funktioniert.
+Der Aufruf der URL http://127.0.0.1:8000/ zeigt eine ``ViewDoesNotExist``
+Exception. Das ist auch richtig so, denn bis jetzt hast du ja noch keinen View
+geschrieben. Es zeigt aber, dass dein URL funktioniert.
 
 Den ersten View schreiben
 =========================
 
-Also müssen nun die Views erstellt werden. Sie sollen die Daten, die angezeigt werden sollen, mit Hilfe des ORMs aus der Datenbank holen.
+Also müssen nun die Views erstellt werden. Sie sollen die Daten, die angezeigt
+werden sollen, mit Hilfe des ORMs aus der Datenbank holen.
 
-Dazu öffnest du die Datei ``views.py`` in der Applikation ``recipes``, die durch das Kommando ``startapp recipes`` angelegt wurde.
+Dazu öffnest du die Datei ``views.py`` in der Applikation ``recipes``, die
+durch das Kommando ``startapp recipes`` angelegt wurde.
 
 Der erste View sieht so aus::
 
@@ -81,12 +96,15 @@ Der erste View sieht so aus::
         c = Context({'object_list': recipes})
         return HttpResponse(t.render(c))
 
-Wenn du nun http://127.0.0.1:8000/ aufrufst wird eine ``TemplateDoesNotExist`` Exception ausgelöst. Klar - du hast das Template auch noch nicht erstellt.
+Wenn du nun http://127.0.0.1:8000/ aufrufst wird eine ``TemplateDoesNotExist``
+Exception ausgelöst. Klar - du hast das Template auch noch nicht erstellt.
 
 Templates erstellen
 ===================
 
-Als erstes benötigst du ein Basis-Template für deine Website. Erstelle das Verzeichnis ``templates`` im Projektverzeichnis. Darin erstellt du die Datei ``base.html``:
+Als erstes benötigst du ein Basis-Template für deine Website. Erstelle das
+Verzeichnis ``templates`` im Projektverzeichnis. Darin erstellt du die Datei
+``base.html``:
 
 ..  code-block:: html+django
 
@@ -103,9 +121,12 @@ Als erstes benötigst du ein Basis-Template für deine Website. Erstelle das Ver
     </body>
     </html>
 
-Sie enthält HTML und zwei **Blöcke**. Diese werden von den anderen Templates gefüllt, die von diesem Template ableiten.
+Sie enthält HTML und zwei **Blöcke**. Diese werden von den anderen Templates
+gefüllt, die von diesem Template ableiten.
 
-Innerhalb der Applikation musst du auch zwei Verzeichnisse für die Templates anlegen, nämlich ``recipes/templates/recipes``. Darin erstellt du die Datei ``index.html``:
+Innerhalb der Applikation musst du auch zwei Verzeichnisse für die Templates
+anlegen, nämlich ``recipes/templates/recipes``. Darin erstellt du die Datei
+``index.html``:
 
 ..  code-block:: html+django
 
@@ -122,12 +143,14 @@ Innerhalb der Applikation musst du auch zwei Verzeichnisse für die Templates an
     </ul>
     {% endblock %}
 
-Nun solltest du eine Liste aller Rezepte sehen, wenn du http://127.0.0.1:8000/ aufrufst.
+Nun solltest du eine Liste aller Rezepte sehen, wenn du http://127.0.0.1:8000/
+aufrufst.
 
 Den zweiten View hinzufügen
 ===========================
 
-Damit auch die Detailansicht der Rezepte funktioniert, muss ein zweiter View geschrieben werden.
+Damit auch die Detailansicht der Rezepte funktioniert, muss ein zweiter View
+geschrieben werden.
 
 Als erstes muss ein zusätzlicher Import an den Beginn der Datei ``views.py``::
 
@@ -169,7 +192,8 @@ Die komplette Datei sieht dann so aus::
 Ein zweites Template erstellen
 ==============================
 
-Nun fehlt nur noch das zweite Template ``recipes/detail.html``. Lege es im gleichen Verzeichnis wie auch ``recipes/index.html`` an:
+Nun fehlt nur noch das zweite Template ``recipes/detail.html``. Lege es im
+gleichen Verzeichnis wie auch ``recipes/index.html`` an:
 
 ..  code-block:: html+django
 
