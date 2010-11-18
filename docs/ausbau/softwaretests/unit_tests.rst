@@ -39,8 +39,8 @@ mit diesem Code::
         number_of_portions = 4
 
         def setUp(self):
-            self.author = User.objects.create(username='testuser',
-                password='testuser')
+            self.author = User.objects.create_user('testuser', 'test@example.com',
+                'testuser')
 
         def testDateCreatedAutoset(self):
             """Verify date_created is autoset correctly"""

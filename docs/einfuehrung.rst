@@ -38,9 +38,9 @@ Außerdem erleichtert es die tägliche Arbeit, wenn der Code nicht über verschi
 Model-Template-View
 ===================
 
-Django ist nach dem **Model-Template-View (MTV)** Muster aufgebaut. **MTV** orientiert sich am bekannten `Model-View-Controller Muster <http://de.wikipedia.org/wiki/Model_View_Controller>`_.
+Django ist nach dem **Model-Template-View (MTV)** Muster aufgebaut. **MTV** orientiert sich am bekannten `Model-View-Controller Muster <http://de.wikipedia.org/wiki/Model_View_Controller>`_ (MVC).
 
-Der in Django enthaltene **Object Relational Mapper** überträgt die Models in Datenbankstrukturen und führt alle Operationen in der Datenbank durch. Es können alle gängigen Datenbanken benutzt werden. Alle Models werden in Python geschrieben.
+Der in Django enthaltene **Object Relational Mapper** (ORM) überträgt die Models in Datenbankstrukturen und führt alle Operationen in der Datenbank durch. Es können alle gängigen Datenbanken benutzt werden. Alle Models werden in Python geschrieben.
 
 Die **Template-Engine** unterstützt die Vererbung von Templates und bietet umfangreiche Filter und Templates. Diese können auch selbst erweitert werden.
 

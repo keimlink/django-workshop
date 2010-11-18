@@ -12,7 +12,7 @@ Zuerst erstellst du ein Verzeichnis für dies und alle zukünftigen Projekte:
 
     $ mkdir pythonprojects
 
-Es ist gut, alle Python Projekte in einem Verzeichnis zu haben.
+Es ist sinnvoll, alle Python Projekte in einem Verzeichnis zu haben.
 
 Das Django Projekt erstellen
 ============================

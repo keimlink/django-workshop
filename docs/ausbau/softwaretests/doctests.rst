@@ -69,7 +69,7 @@ Da der Benutzer "admin" in der Testdatenbank nicht existiert musst du ihn manuel
 
 mit folgendem Code::
 
-    >>> admin = User.objects.create(username='admin', password='admin')
+    >>> admin = User.objects.create_user('admin', 'admin@example.com', 'admin')
 
 Die Datei ``recipes/tests.py`` sieht dann so aus::
 
@@ -94,7 +94,7 @@ Die Datei ``recipes/tests.py`` sieht dann so aus::
     >>> title = 'Doctest'
     >>> from django.template.defaultfilters import slugify
     >>> from django.contrib.auth.models import User
-    >>> admin = User.objects.create(username='admin', password='admin')
+    >>> admin = User.objects.create_user('admin', 'admin@example.com', 'admin')
     >>> r = Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4,
     ... author=admin)
     >>> r.title

@@ -31,7 +31,7 @@ Alternativ kannst du auch die `Quellen von der Python Website herunter laden <ht
 Mac OS X
 --------
 
-Mac OS X hat Python schon installiert. Snow Leopard bringt eine Python 2.6 Installation mit.
+Mac OS X wird mit einer Python-Installation ausgeliefert: Snow Leopard bringt eine Python 2.6 Installation mit.
 
 Windows
 -------
@@ -45,42 +45,41 @@ Python Paketmanager
 
 Python benutzt ein eigenes Paketsystem zur Verteilung und Installation von Python Paketen. Da wir einige Pakete installieren werden muss vorher der Paketmanager installiert werden.
 
-``setuptools``
---------------
+``distribute``
+---------------
 
-Eine Anleitung zur Installation von ``setuptools`` für alle Betriebssysteme findest du hier: http://pypi.python.org/pypi/setuptools
+Zuerst muss ``distribute`` installiert werden. ``distribute`` ist ein Ersatz für ``setuptools``, dass auf machen Systemen schon installiert ist.
 
-Falls sich die ``setuptools`` nicht nach der oben genannten Anleitung installieren lassen gibt es auch die Möglichkeit dies mit Hilfe eines *bootstrap*-Skripts zu tun.
-
-Dazu muss das Skript ``ez_setup.py`` herunterladen werden: http://peak.telecommunity.com/dist/ez_setup.py
-
-Und dann das Skript starten:
+Es wird mit Hilfe eines Bootstrap-Skripts installiert:
 
 ..  code-block:: bash
 
-    $ python ez_setup.py
+    $ wget http://python-distribute.org/distribute_setup.py
+    $ python distribute_setup.py
 
 ..  note::
 
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation benötigt.
 
-``easy_install``
-----------------
-
-Nach der Installation der ``setuptools`` steht das Programm ``easy_install`` zur Verfügung. Du kannst es so ausprobieren:
-
-..  code-block:: bash
-
-    $ easy_install --help
-
 ``pip``
 -------
 
-Mit Hilfe von ``easy_install`` wird jetzt ``pip`` installiert. ``pip`` ist ein Ersatz für ``easy_install`` mit `größerem Funktionsumfang <http://pip.openplans.org/#differences-from-easy-install>`_:
+Das eigentliche Programm zum Installieren der Pakete ist ``pip``. Es ist ein Ersatz für ``easy_install`` mit `größerem Funktionsumfang <http://pip.openplans.org/#differences-from-easy-install>`_. Wer ``easy_install`` schon installiert hat, kann ``pip`` mit dessen Hilfe installieren:
 
 ..  code-block:: bash
 
     $ easy_install pip
+
+Wer ``easy_install`` nicht zur Verfügung hat lädt sich den Quellcode von ``pip`` herunter und installiert das Programm auf diesem Weg:
+
+..  TODO: Link zur pip Downloadseite
+..  TODO: Beispiel zur Installation vervollständigen
+
+..  code-block:: bash
+
+    $ tar xzf pip
+    $ cd pip
+    $ python setup.py install
 
 ..  note::
 
@@ -92,20 +91,6 @@ Nach der Installation kannst du ``pip`` so testen:
 
     $ pip --help
 
-``distribute``
----------------
-
-Zuletzt muss ``distribute`` als Ersatz für ``setuptools`` installiert werden:
-
-..  code-block:: bash
-
-    $ wget http://python-distribute.org/distribute_setup.py
-    $ python distribute_setup.py
-
-..  note::
-    
-    Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation benötigt.
-
 Weiterführende Links
 ====================
 
@@ -113,3 +98,4 @@ Weiterführende Links
     * `Offizielles Python Tutorial <http://docs.python.org/tut/tut.html>`_
     * `Dive Into Python <http://diveintopython.org/>`_
     * `Code Like a Pythonista: Idiomatic Python (interaktives Tutorial) <http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html>`_
+..  TODO: Links zu distribute und pip einfügen

@@ -12,7 +12,7 @@ Solche Probleme kann ``virtualenv`` lösen.
 
 ``virtualenv`` kann für jedes Projekt einen "Container" erstellen, der die installierten Pakete von der Basisinstallation abkapselt.
 
-Außerdem kann ``virtualenv`` jeder Umgebung eine bestimmte Python Version zuordnen. Man kann also ein virtuelles Projekt mit Python 2.5 erstellen, das nächste mit Python 2.6.
+Außerdem kann ``virtualenv`` jeder Umgebung eine bestimmte Python Version zuordnen. Man kann also ein virtuelle Arbeitsumgebung mit Python 2.5 erstellen, das nächste mit Python 2.6.
 
 Außerdem lässt sich ``virtualenv`` auch im Produktivbetrieb auf dem Server einsetzen. Man kann dort also die gleiche Umgebung nutzen wie schon während der Entwicklung.
 
@@ -29,7 +29,7 @@ Installation
 
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation benötigt.
 
-Nach der Installation sollte ein Verzeichnis für *alle* virtuellen Projekte anlegt werden, zum Beispiel im Home Verzeichnis:
+Nach der Installation sollte ein Verzeichnis für *alle* virtuellen Projekte anlegt werden, zum Beispiel im Home-Verzeichnis:
 
 ..  code-block:: bash
 
@@ -51,7 +51,7 @@ Nach der Installation werden die folgenden beiden Zeilen in die Datei ``.profile
     export WORKON_HOME=$HOME/.virtualenvs
     source /usr/local/bin/virtualenvwrapper.sh
 
-Dadurch weiss ``virtualenvwrapper`` wo sich alle virtuellen Projekte befinden. Das Skript ``virtualenvwrapper.sh`` aktiviert die Bash-Completion.
+Dadurch "weiss" ``virtualenvwrapper`` wo sich alle virtuellen Arbeitsumgebungen befinden. Das Skript ``virtualenvwrapper.sh`` lädt die Shell-Befehle, mit denen wir arbeiten werden.
 
 Weiterführende Links
 ====================

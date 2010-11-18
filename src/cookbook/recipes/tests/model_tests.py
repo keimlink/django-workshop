@@ -14,8 +14,8 @@ class RecipeSaveTest(TestCase):
     number_of_portions = 4
 
     def setUp(self):
-        self.author = User.objects.create(username='testuser',
-            password='testuser')
+        self.author = User.objects.create_user('testuser', 'test@example.com',
+            'testuser')
 
     def testDateCreatedAutoset(self):
         """Verify date_created is autoset correctly"""
@@ -40,7 +40,7 @@ __test__ = {"doctest": """
 >>> title = 'Doctest'
 >>> from django.template.defaultfilters import slugify
 >>> from django.contrib.auth.models import User
->>> admin = User.objects.create(username='admin', password='admin')
+>>> admin = User.objects.create_user('admin', 'admin@example.com', 'admin')
 >>> r = Recipe.objects.create(title=title, slug=slugify(title), number_of_portions=4,
 ... author=admin)
 >>> r.title
