@@ -10,8 +10,8 @@ Tutorial zum Selbststudium als auch für Schulungen benutzt werden.
 Das gesamte Material ist unter einer freien :ref:`lizenz` erschienen.
 Verbesserungen und Mitarbeit sind gerne gesehen.
 
-Das Projekt ist in einem `Mercurial-Repository auf bitbucket verfügbar
-<http://bitbucket.org/streetcleaner/django-workshop>`_. Dort finden sich auch
+Das Projekt ist in einem `Mercurial-Repository auf Bitbucket verfügbar
+<https://bitbucket.org/keimlink/django-workshop/src>`_. Dort finden sich auch
 alle Code-Beispiele.
 
 Alle Autoren werden auf der Seite :ref:`autoren` genannt.
