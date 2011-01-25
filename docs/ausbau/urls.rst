@@ -58,7 +58,7 @@ URLs zentral definieren
 =======================
 
 Nun sind die URLs aus der URLConf des Projekts in die Applikation verschoben
-worden, was zu mehr Übersichtichkeit geführt hat. Aber es gibt immer noch
+worden, was zu mehr Übersichtlichkeit geführt hat. Aber es gibt immer noch
 Teile der Applikation, die ihre URLs selbst definieren.
 
 Im Template ``recipes/templates/recipes/index.html`` wird der Link zum Rezept
