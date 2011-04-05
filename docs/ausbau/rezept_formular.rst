@@ -227,5 +227,5 @@ und bearbeiten.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Forms API <http://docs.djangoproject.com/en/1.2/ref/forms/api/>`_
-* `Formulare für Models erstellen <http://docs.djangoproject.com/en/1.2/topics/forms/modelforms/>`_
+* :djangodocs:`Forms API <ref/forms/api/>`
+* :djangodocs:`Formulare für Models erstellen <topics/forms/modelforms/>`

@@ -137,5 +137,5 @@ Präfix.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Konfiguration von Django <http://docs.djangoproject.com/en/1.2/topics/settings/#topics-settings>`_
-* `Liste aller möglichen Konstanten für die Konfiguration <http://docs.djangoproject.com/en/1.2/ref/settings/#ref-settings>`_
+* :djangodocs:`Konfiguration von Django <topics/settings/#topics-settings>`
+* :djangodocs:`Liste aller möglichen Konstanten für die Konfiguration <ref/settings/#ref-settings>`

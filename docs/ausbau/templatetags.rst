@@ -157,4 +157,4 @@ Mit dem neuen Templatetag:
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Eigene Templatetags und Filter schreiben <http://docs.djangoproject.com/en/1.2/howto/custom-template-tags/#howto-custom-template-tags>`_
+* :djangodocs:`Eigene Templatetags und Filter schreiben <howto/custom-template-tags/#howto-custom-template-tags>`

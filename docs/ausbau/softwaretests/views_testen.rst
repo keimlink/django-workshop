@@ -2,7 +2,7 @@ Views testen
 ************
 
 Natürlich möchte man auch gerne das Frontend der Applikation testen. Dafür
-gibt es zum Beispiel Werkzeuge wie `Selenium <http://selenium.openqa.org/>`_.
+gibt es zum Beispiel Werkzeuge wie `Selenium <http://seleniumhq.org/>`_.
 Selenium lässt sich mit Hilfe von `django-sane-testing
 <http://devel.almad.net/trac/django-sane-testing/>`_ in Django integrieren.
 
@@ -63,7 +63,7 @@ und uns im Browser ansehen::
     Validating models...
     0 errors found
 
-    Django version 1.2.1, using settings 'cookbook.settings'
+    Django version 1.3, using settings 'cookbook.settings'
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 

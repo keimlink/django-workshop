@@ -2,7 +2,7 @@ Django Workshop
 ***************
 
 Der *Django Workshop* ist ein freies deutsches `Django
-<http://www.djangoproject.com/>`_ Tutorial.
+<http://www.djangoproject.com/>`_ |djangoversion| Tutorial.
 
 Mehr Informationen zum Projekt finden sich auf der Seite :ref:`projekt`.
 

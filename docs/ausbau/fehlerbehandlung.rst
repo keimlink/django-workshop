@@ -40,4 +40,4 @@ gesetzt.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Anpassung der Views für Fehler <http://docs.djangoproject.com/en/1.2/topics/http/views/#customizing-error-views>`_
+* :djangodocs:`Anpassung der Views für Fehler <topics/http/views/#customizing-error-views>`

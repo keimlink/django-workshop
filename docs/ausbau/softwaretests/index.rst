@@ -35,5 +35,5 @@ Diese Themen werden in den folgenden Kapiteln behandelt.
 Weiterführende Links zur Django und Python Dokumentation
 ========================================================
 
-* `Django Applikationen testen <http://docs.djangoproject.com/en/1.2/topics/testing/>`_
+* :djangodocs:`Django Applikationen testen <topics/testing/>`
 * `Python unit testing framework <http://docs.python.org/library/unittest.html>`_

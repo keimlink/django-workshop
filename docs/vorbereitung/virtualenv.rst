@@ -8,8 +8,8 @@ Wenn man beginnt an mehreren Projekten parallel zu arbeiten kommt irgendwann
 der Zeitpunkt, an den Kollisionen bei den installierten Paketen auftreten.
 
 Ein altes Projekt benutzt zum Beispiel noch Django 1.1 und kann aus Zeitmangel
-nicht migriert werden. Gleichzeitig soll aber ein neues Projekt mit Django 1.2
-gestartet werden.
+nicht migriert werden. Gleichzeitig soll aber ein neues Projekt mit Django
+|djangoversion| gestartet werden.
 
 Solche Probleme kann ``virtualenv`` lösen.
 
@@ -70,5 +70,5 @@ Shell-Befehle, mit denen wir arbeiten werden.
 Weiterführende Links
 ====================
 
-    * `virtualenv Dokumentation <http://virtualenv.openplans.org/>`_
+    * `virtualenv Dokumentation <http://www.virtualenv.org/en/latest/>`_
     * `virtualenvwrapper Homepage <http://www.doughellmann.com/projects/virtualenvwrapper/>`_

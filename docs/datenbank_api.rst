@@ -104,5 +104,5 @@ würde.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Query API <http://docs.djangoproject.com/en/1.2/topics/db/queries/#topics-db-queries>`_
-* `QuerySet API <http://docs.djangoproject.com/en/1.2/ref/models/querysets/>`_
+* :djangodocs:`Query API <topics/db/queries/#topics-db-queries>`
+* :djangodocs:`QuerySet API <ref/models/querysets/>`

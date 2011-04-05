@@ -107,4 +107,4 @@ den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Informationen zur Admin-Applikation <http://docs.djangoproject.com/en/1.2/ref/contrib/admin/#ref-contrib-admin>`_
+* :djangodocs:`Informationen zur Admin-Applikation <ref/contrib/admin/#ref-contrib-admin>`

@@ -66,7 +66,7 @@ Nun startest du den Entwicklungs-Webserver:
     Validating models...
     0 errors found
 
-    Django version 1.2.1, using settings 'cookbook.settings'
+    Django version 1.3, using settings 'cookbook.settings'
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
@@ -214,6 +214,6 @@ gleichen Verzeichnis wie auch ``recipes/index.html`` an:
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Der URL dispatcher <http://docs.djangoproject.com/en/1.2/topics/http/urls/#topics-http-urls>`_
-* `Views schreiben <http://docs.djangoproject.com/en/1.2/topics/http/views/#topics-http-views>`_
-* `Templates und deren Vererbung <http://docs.djangoproject.com/en/1.2/topics/templates/#topics-templates>`_
+* :djangodocs:`Der URL dispatcher <topics/http/urls/#topics-http-urls>`
+* :djangodocs:`Views schreiben <topics/http/views/#topics-http-views>`
+* :djangodocs:`Templates und deren Vererbung <topics/templates/#topics-templates>`

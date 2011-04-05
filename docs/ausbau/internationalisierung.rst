@@ -263,5 +263,5 @@ Die ausgewählte Sprache wird von ``HttpRequest`` als Eigenschaft
 Weiterführende Links zur Django und Python Dokumentation
 ========================================================
 
-* `Internationalisierung und Lokalisierung <http://docs.djangoproject.com/en/1.2/topics/i18n/>`_
+* :djangodocs:`Internationalisierung und Lokalisierung <topics/i18n/>`
 * `Lambdas <http://docs.python.org/reference/expressions.html#lambda>`_

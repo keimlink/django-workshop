@@ -116,7 +116,7 @@ starten:
     Validating models...
     0 errors found
 
-    Django version 1.2.1, using settings 'cookbook.settings'
+    Django version 1.3, using settings 'cookbook.settings'
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
@@ -127,4 +127,4 @@ anlegen.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Informationen zu django-admin.py and manage.py <http://docs.djangoproject.com/en/1.2/ref/django-admin/#ref-django-admin>`_
+* :djangodocs:`Informationen zu django-admin.py and manage.py <ref/django-admin/#ref-django-admin>`

@@ -128,5 +128,5 @@ So können alle URLs zentral in der URLConf verwaltet werden.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `permalink() Dokumentation <http://docs.djangoproject.com/en/1.2/ref/models/instances/#django.db.models.permalink>`_
-* `URLs mit Namen versehen <http://docs.djangoproject.com/en/1.2/topics/http/urls/#id2>`_
+* :djangodocs:`permalink() Dokumentation <ref/models/instances/#django.db.models.permalink>`
+* :djangodocs:`URLs mit Namen versehen <topics/http/urls/#id2>`

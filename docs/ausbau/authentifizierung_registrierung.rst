@@ -228,8 +228,8 @@ Zuerst wird die URLConf in ``userauth/urls.py`` um zwei URLs erweitert::
     )
 
 Der zweite URL ``userauth_register_done`` benutzt den generischen View
-``django.views.generic.simple.direct_to_template`` (`Dokumentation
-<http://docs.djangoproject.com/en/1.2/ref/generic-views/#django-views-generic-simple-direct-to-template>`_),
+``django.views.generic.simple.direct_to_template`` (:djangodocs:`Dokumentation
+<ref/generic-views/#django-views-generic-simple-direct-to-template>`),
 da wir hier einfach nur das Template rendern wollen.
 
 Ein View für das Formular
@@ -327,4 +327,4 @@ Nun kannst du auch die Registrierung im Frontend testen.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Authentifizierung mit Django <http://docs.djangoproject.com/en/1.2/topics/auth/>`_
+* :djangodocs:`Authentifizierung mit Django <topics/auth/>`

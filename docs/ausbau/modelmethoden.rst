@@ -105,4 +105,4 @@ Nun kannst du den Code im Template mit dem Templatetag ersetzen:
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `QuerySet API Referenz <http://docs.djangoproject.com/en/1.2/ref/models/querysets/#ref-models-querysets>`_
+* :djangodocs:`QuerySet API Referenz <ref/models/querysets/#ref-models-querysets>`

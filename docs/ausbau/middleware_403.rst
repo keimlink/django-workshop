@@ -53,4 +53,4 @@ in der ``settings.py`` eingefügt werden:
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* `Middleware benutzen und selbst schreiben <http://docs.djangoproject.com/en/1.2/topics/http/middleware/#topics-http-middleware>`_
+* :djangodocs:`Middleware benutzen und selbst schreiben <topics/http/middleware/#topics-http-middleware>`

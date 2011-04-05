@@ -7,8 +7,9 @@ werden.
 Python installieren
 ===================
 
-Django 1.2 unterstützt die Python Versionen 2.4, 2.5 und 2.6. Wenn du eine
-ältere Python Version hast, solltest du diese aktualisieren.
+Django |djangoversion| unterstützt die Python Versionen 2.4, 2.5 und 2.6. Wenn
+du eine ältere Python Version hast, solltest du diese aktualisieren. Ab Django
+1.4 wird Python 2.4 nicht mehr unterstützt werden.
 
 Deine Python Version kannst du heraus finden indem du den Python Interpreter
 an der Kommandozeile startest:
@@ -80,8 +81,8 @@ Es wird mit Hilfe eines Bootstrap-Skripts installiert:
 
 Das eigentliche Programm zum Installieren der Pakete ist ``pip``. Es ist ein
 Ersatz für ``easy_install`` mit `größerem Funktionsumfang
-<http://pip.openplans.org/#differences-from-easy-install>`_. Wer
-``easy_install`` schon installiert hat, kann ``pip`` mit dessen Hilfe
+<http://www.pip-installer.org/en/latest/index.html#pip-compared-to-easy-install>`_.
+Wer ``easy_install`` schon installiert hat, kann ``pip`` mit dessen Hilfe
 installieren:
 
 ..  code-block:: bash
@@ -115,7 +116,7 @@ Weiterführende Links
 ====================
 
     * `Python Homepage <http://python.org/>`_
-    * `Offizielles Python Tutorial <http://docs.python.org/tut/tut.html>`_
+    * `Offizielles Python Tutorial <http://docs.python.org/tutorial/index.html>`_
     * `Dive Into Python <http://diveintopython.org/>`_
     * `Code Like a Pythonista: Idiomatic Python (interaktives Tutorial) <http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html>`_
 
