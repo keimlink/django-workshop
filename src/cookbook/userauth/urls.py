@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('django.contrib.auth.views',
     url(r'^anmelden/$', 'login', {'template_name': 'userauth/login.html'},

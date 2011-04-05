@@ -11,11 +11,11 @@ Eine URLConf für die ``recipes`` Applikation
 Also legen wir in der Applikation ``recipes`` eine leere Datei ``urls.py`` an.
 Sie soll die URLs der Rezepte aufnehmen::
 
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, include, url
 
     urlpatterns = patterns('recipes.views',
-        (r'^rezept/(?P<slug>[-\w]+)/$', 'detail'),
-        (r'^$', 'index'),
+        url(r'^rezept/(?P<slug>[-\w]+)/$', 'detail'),
+        url(r'^$', 'index'),
     )
 
 Das erste Argument der Funktion ``patterns``, dass bis jetzt nur ein leerer
@@ -32,23 +32,23 @@ Wir können also nun die beiden URLs für die ``recipes`` Applikation aus der
 URLConf des Projekts entfernen. Statt dessen müssen wir die neue URLConf der
 Applikation einem URL zuweisen::
 
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, include, url
 
     # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
     admin.autodiscover()
 
     urlpatterns = patterns('',
-        # Example:
-        # (r'^cookbook/', include('cookbook.foo.urls')),
+        # Examples:
+        # url(r'^$', 'cookbook.views.home', name='home'),
+        # url(r'^cookbook/', include('cookbook.foo.urls')),
 
-        # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-        # to INSTALLED_APPS to enable admin documentation:
-        # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+        # Uncomment the admin/doc line below to enable admin documentation:
+        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
         # Uncomment the next line to enable the admin:
-        (r'^admin/', include(admin.site.urls)),
-        (r'^', include('recipes.urls')),
+        url(r'^admin/', include(admin.site.urls)),
+        url(r'^', include('recipes.urls')),
     )
 
 Diese Konfiguration kannst du jetzt testen. Das Frontend sollte wie gewohnt

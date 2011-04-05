@@ -15,7 +15,7 @@ Rezepte an in ``recipes/urls.py`` an::
 
 Die vollständige URLConf sieht dann so aus::
 
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, include, url
 
     urlpatterns = patterns('recipes.views',
         url(r'^rezept/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
