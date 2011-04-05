@@ -58,11 +58,12 @@ Python benutzt ein eigenes Paketsystem zur Verteilung und Installation von
 Python Paketen. Da wir einige Pakete installieren werden muss vorher der
 Paketmanager installiert werden.
 
-``distribute``
----------------
+distribute
+----------
 
-Zuerst muss ``distribute`` installiert werden. ``distribute`` ist ein Ersatz
-für ``setuptools``, dass auf machen Systemen schon installiert ist.
+Zuerst muss :program:`distribute` installiert werden. :program:`distribute`
+ist ein Ersatz für :program:`setuptools`, dass auf machen Systemen schon
+installiert ist.
 
 Es wird mit Hilfe eines Bootstrap-Skripts installiert:
 
@@ -76,37 +77,25 @@ Es wird mit Hilfe eines Bootstrap-Skripts installiert:
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation
     benötigt.
 
-``pip``
--------
+pip
+---
 
-Das eigentliche Programm zum Installieren der Pakete ist ``pip``. Es ist ein
-Ersatz für ``easy_install`` mit `größerem Funktionsumfang
+Das eigentliche Programm zum Installieren der Pakete ist :program:`pip`. Es
+ist ein Ersatz für :program:`easy_install` mit `größerem Funktionsumfang
 <http://www.pip-installer.org/en/latest/index.html#pip-compared-to-easy-install>`_.
-Wer ``easy_install`` schon installiert hat, kann ``pip`` mit dessen Hilfe
-installieren:
+:program:`pip` kann mit dessen Hilfe von :program:`easy_install` installiert
+werden:
 
 ..  code-block:: bash
 
     $ easy_install pip
-
-Wer ``easy_install`` nicht zur Verfügung hat lädt sich den Quellcode von
-``pip`` herunter und installiert das Programm auf diesem Weg:
-
-..  TODO: Link zur pip Downloadseite
-..  TODO: Beispiel zur Installation vervollständigen
-
-..  code-block:: bash
-
-    $ tar xzf pip
-    $ cd pip
-    $ python setup.py install
 
 ..  note::
 
     Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation
     benötigt.
 
-Nach der Installation kannst du ``pip`` so testen:
+Nach der Installation kannst du :program:`pip` so testen:
 
 ..  code-block:: bash
 
@@ -119,5 +108,5 @@ Weiterführende Links
     * `Offizielles Python Tutorial <http://docs.python.org/tutorial/index.html>`_
     * `Dive Into Python <http://diveintopython.org/>`_
     * `Code Like a Pythonista: Idiomatic Python (interaktives Tutorial) <http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html>`_
-
-..  TODO: Links zu distribute und pip einfügen
+    * `distribute Dokumentation <http://packages.python.org/distribute/>`_
+    * `pip Homepage <http://www.pip-installer.org/>`_
