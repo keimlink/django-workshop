@@ -9,7 +9,7 @@ Folgende Panels können im Browser eingeblendet werden:
 
 * Django Version
 * Request Timer
-* Eine Liste der Werte aus ``settings.py``
+* Eine Liste der Werte aus :file:`settings.py`
 * HTTP Header
 * GET/POST/cookie/session Variablen
 * Templates und deren Context sowie die Template-Pfade
@@ -18,9 +18,9 @@ Folgende Panels können im Browser eingeblendet werden:
 * Liste der Signale mit deren Argumenten und Empfängern
 * Log-Ausgabe mit dem in Python integrierten ``logging`` Modul
 
-Außerdem wird ein weiteres Kommando zur ``manage.py`` hinzugefügt:
+Außerdem wird ein weiteres Kommando zur :file:`manage.py` hinzugefügt:
 
-* *debugsqlshell*: Während der Arbeit mit der Datenbank API im Python
+* :command:`debugsqlshell`: Während der Arbeit mit der Datenbank API im Python
   Interpreter werden die SQL Queries ausgegeben
 
 Installation
@@ -36,7 +36,7 @@ Konfiguration
 =============
 
 Um den Debug Toolbar für dein Projekt zu aktivieren fügst du den folgenden
-Code in die Datei ``settings.py`` ein::
+Code in die Datei :file:`settings.py` ein::
 
     MIDDLEWARE_CLASSES = (
         ...

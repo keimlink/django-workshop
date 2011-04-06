@@ -14,7 +14,7 @@ aufgerufen, sondern ein Hinweisseite mit weiteren Informationen angezeigt.
 
 Der ``handler404`` ist per Default ``django.views.defaults.page_not_found``.
 Dieser View erwartet, dass in der Wurzel des Template-Verzeichnisses ein
-Template mit dem Namen ``404.html`` existiert, um dieses zu rendern.
+Template mit dem Namen :file:`404.html` existiert, um dieses zu rendern.
 
 Der View übergibt die Variable ``request_path`` an das Template, welchen den
 URL enthält, der den 404 Fehler erzeugte. Außerdem kann über den Context auf
@@ -31,11 +31,11 @@ sowie weitere Debug-Informationen angezeigt.
 
 Ist ``DEBUG`` aber auf ``False`` gesetzt wird der in ``handler500`` definierte
 View aufgerufen, welcher per Default ``django.views.defaults.server_error``
-ist. Dieser rendert das Template ``500.html``, dass in der Wurzel des
+ist. Dieser rendert das Template :file:`500.html`, dass in der Wurzel des
 Template-Verzeichnisses erwartet wird.
 
-Das Template ``500.html`` hat einen leeren Context und es sind keine Variablen
-gesetzt.
+Das Template :file:`500.html` hat einen leeren Context und es sind keine
+Variablen gesetzt.
 
 Weiterführende Links zur Django Dokumentation
 =============================================

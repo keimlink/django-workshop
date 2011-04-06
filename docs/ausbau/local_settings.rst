@@ -1,28 +1,28 @@
 Eine lokale Konfiguration
 =========================
 
-Einige Einstellungen in der Konfigurationsdatei ``settings.py`` sind nur für
-die Entwicklung sinnvoll. Zum Beispiel sollte ``DEBUG`` während der
+Einige Einstellungen in der Konfigurationsdatei :file:`settings.py` sind nur
+für die Entwicklung sinnvoll. Zum Beispiel sollte ``DEBUG`` während der
 Entwicklung den Wert ``True`` haben, auf dem Produktivsystem aber den Wert
 ``False``.
 
 Um die Konfiguration für das Produktivsystem unverändert zu lassen bietet sich
 folgendes Vorgehen an.
 
-Am Ende der Datei ``settings.py`` wird folgender Code eingefügt::
+Am Ende der Datei :file:`settings.py` wird folgender Code eingefügt::
 
     try:
         from local_settings import *
     except ImportError:
         pass
 
-Dieser Code lädt alle Einstellungen aus der Datei ``local_settings.py`` wenn
-diese existiert. Ist diese Datei nicht vorhanden passiert nichts. So kann man
-in der Datei ``local_settings.py`` bestimmte Werte neu definieren und so die
-in ``settings.py`` definierten Werte überschreiben.
+Dieser Code lädt alle Einstellungen aus der Datei :file:`local_settings.py`
+wenn diese existiert. Ist diese Datei nicht vorhanden passiert nichts. So kann
+man in der Datei :file:`local_settings.py` bestimmte Werte neu definieren und
+so die in :file:`settings.py` definierten Werte überschreiben.
 
-Erweitere deine Datei ``settings.py`` am Ende wie oben angegeben. Dann passe
-die folgenden Werte an::
+Erweitere deine Datei :file:`settings.py` am Ende wie oben angegeben. Dann
+passe die folgenden Werte an::
 
     DEBUG = False
     
@@ -43,7 +43,7 @@ die folgenden Werte an::
     Datenbankkonfiguration eintragen.
 
 Jetzt legst du im Projektverzeichnis ``cookbook`` die Datei
-``local_settings.py`` mit folgendem Inhalt an::
+:file:`local_settings.py` mit folgendem Inhalt an::
 
     import os
 
@@ -63,7 +63,7 @@ Jetzt legst du im Projektverzeichnis ``cookbook`` die Datei
         }
     }
 
-So lange nun die Datei ``local_settings.py`` vorhanden ist arbeitest du mit
-einer Konfiguration für die Entwicklung. Fehlt diese Datei benutzt du die
-Einstellungen aus der Datei ``settings.py``, die für das Produktivsystem
+So lange nun die Datei :file:`local_settings.py` vorhanden ist arbeitest du
+mit einer Konfiguration für die Entwicklung. Fehlt diese Datei benutzt du die
+Einstellungen aus der Datei :file:`settings.py`, die für das Produktivsystem
 optimiert sind.
