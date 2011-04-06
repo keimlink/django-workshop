@@ -58,8 +58,8 @@ Jetzt wollen wir noch einige Fehler provozieren:
     IntegrityError: recipes_recipe.author_id may not be NULL
 
 Damit sind wir mit der Erstellung der Doctests fertig. Du musst den Code aus
-der Shell jetzt nur noch in die Datei ``recipes/tests.py`` kopieren. Und zwar
-als Ersatz für den einfachen Beispiel-Doctest::
+der Shell jetzt nur noch in die Datei :file:`recipes/tests.py` kopieren. Und
+zwar als Ersatz für den einfachen Beispiel-Doctest::
 
     __test__ = {"doctest": """
     Another way to test that 1 + 1 is equal to 2.
@@ -77,7 +77,7 @@ mit folgendem Code::
 
     >>> admin = User.objects.create_user('admin', 'admin@example.com', 'admin')
 
-Die Datei ``recipes/tests.py`` sieht dann so aus::
+Die Datei :file:`recipes/tests.py` sieht dann so aus::
 
     """
     This file demonstrates two different styles of tests (one doctest and one

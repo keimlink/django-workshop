@@ -75,7 +75,7 @@ Templates übersetzen
 
 Natürlich kann man die Übersetzung auch innerhalb der Templateengine nutzen.
 
-Hier für das Basistemplate ``templates/base.html``::
+Hier für das Basistemplate :file:`templates/base.html`::
 
     {% load i18n %}
     <title>{% block title %}{% trans "Cookbook" %}{% endblock %}</title>
@@ -85,7 +85,7 @@ load i18n %}`` geladen. Dann kann mit dem Tag ``trans`` ein Wort zur
 Übersetzung markiert werden.
 
 In einer Detailansicht mit Einzahl und Mehrzahl, wie zum Beispiel im Template
-``templates/recipes/detail.html``, sieht es dann so aus::
+:file:`templates/recipes/detail.html`, sieht es dann so aus::
 
     {% load i18n %}
     ...
@@ -136,13 +136,13 @@ Die .po-Dateien
 
 Jetzt kann in den erzeugten .po-Dateien mit der Übersetzung begonnen werden.
 
-``locale/de/LC_MESSAGES/django.po``::
+Für das Projekt in :file:`locale/de/LC_MESSAGES/django.po`::
 
     #: templates/base.html:7 templates/base.html.py:10
     msgid "Cookbook"
     msgstr "Kochbuch"
 
-``recipes/locale/de/LC_MESSAGES/django.po``::
+Für die Applikation ``recipes`` in :file:`recipes/locale/de/LC_MESSAGES/django.po`::
 
     #: templates/recipes/detail.html:11
     #, python-format
@@ -199,7 +199,8 @@ Damit jeder Benutzer die Sprache selbst bestimmen kann muss eine Middleware
 eingebunden werden: ``LocaleMiddleware``.
 
 Dazu muss ``django.middleware.locale.LocaleMiddleware`` zu der Liste der
-Middlewares ``MIDDLEWARE_CLASSES`` in der ``settings.py`` hinzugefügt werden.
+Middlewares ``MIDDLEWARE_CLASSES`` in der :file:`settings.py` hinzugefügt
+werden.
 
 Dabei ist die Reihenfolge wichtig:
 
@@ -233,7 +234,7 @@ Einschränken der Sprachen
 -------------------------
 
 Um die Auswahl der Sprachen einzuschränken kann man die Liste der verfügbaren
-Sprachen in der ``settings.py`` reduzieren::
+Sprachen in der :file:`settings.py` reduzieren::
 
     ugettext = lambda s: s
     
@@ -243,12 +244,12 @@ Sprachen in der ``settings.py`` reduzieren::
     )
 
 Das ``lambda``-Konstrukt ist notwenig, da ``django.utils.translation`` in der
-``settings.py`` noch nicht zur Verfügung steht. Es hängt selbst von der
+:file:`settings.py` noch nicht zur Verfügung steht. Es hängt selbst von der
 Konfiguration ab.
 
 Damit die Namen der Sprachen auch wirklich übersetzt werden, muss dieser Code
 noch einmal an einer Stelle eingesetzt werden, an der er auch wirklich
-ausgeführt wird (zum Beispiel in der ``urls.py``).
+ausgeführt wird (zum Beispiel in der :file:`urls.py`).
 
 Ausgewählte Sprache ermitteln
 -----------------------------

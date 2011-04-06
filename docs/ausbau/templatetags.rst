@@ -30,11 +30,11 @@ Die Verzeichnisstruktur für Templatetags
 ========================================
 
 Templatetags müssen mit einer bestimmten Verzeichnisstruktur angelegt werden.
-Im Verzeichnis der Applikation wird ein neues Verzeichnis ``templatetags``
-erstellt. Darin wird die leere Datei ``__init__.py`` angelegt, um das
+Im Verzeichnis der Applikation wird ein neues Verzeichnis :file:`templatetags`
+erstellt. Darin wird die leere Datei :file:`__init__.py` angelegt, um das
 Verzeichnis als Python Package zu markieren. Als letztes legen wir eine Python
 Datei an, die das Modul für unsere Templatetags ist. Unser erstes Modul nennen
-wir ``recipes.py``.
+wir :file:`recipes.py`.
 
 ..  code-block:: bash
 
@@ -55,7 +55,7 @@ Die Kompilierungsfunktion
 -------------------------
 
 Zuerst erstellt du die Kompilierungsfunktion in der neu angelegten Datei
-``recipes.py``:
+:file:`recipes.py`:
 
 ..  code-block:: python
 
@@ -120,7 +120,7 @@ Das Templatetag nutzen
 ======================
 
 Nun kannst du das neue Templatetag nutzen, zum Beispiel im Template
-``recipes/templates/recipes/detail.html``.
+:file:`recipes/templates/recipes/detail.html`.
 
 Dazu muss zuerst unser Templatetag geladen werden. Das machst du am besten im
 Kopf des Templates:

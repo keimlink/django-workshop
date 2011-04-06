@@ -7,7 +7,7 @@ unit testing framework".
 Der Test Runner erstellt bei jeden Start eine SQLite Datenbank für die Tests
 und lässt alle Tests voneinander abgekapselt in Transaktionen laufen. Bei der
 Auswahl des Datenbanksystems richtet sich der Test Runner nach dem Backend,
-der in der ``settings.py`` konfiguriert wurde.
+der in der :file:`settings.py` konfiguriert wurde.
 
 Tests für alle Applikationen durchführen
 ========================================

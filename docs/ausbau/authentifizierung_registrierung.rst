@@ -23,7 +23,7 @@ Projekt konfigurieren
 =====================
 
 Nun müssen wir das Projekt so konfigurieren, dass unsere neue Applikation auch
-benutzt wird. Dazu erweiterst du zuerst die Datei ``settings.py``::
+benutzt wird. Dazu erweiterst du zuerst die Datei :file:`settings.py`::
 
     INSTALLED_APPS = (
         ...
@@ -42,7 +42,7 @@ Die drei neuen Konfigurationswerte haben folgende Aufgaben:
   angegeben wurde wird zu diesem URL weitergeleitet
 
 Außerdem können wir schon die URLs einbinden, die wir später für unsere neue
-Applikation erzeugen werden. Dazu erweiterst du die Datei ``urls.py`` um
+Applikation erzeugen werden. Dazu erweiterst du die Datei :file:`urls.py` um
 folgende Zeile nach dem Eintrag für den Admin::
 
     (r'^benutzer/', include('userauth.urls')),
@@ -53,7 +53,7 @@ Authentifizierung mit der Applikation ``userauth``
 URLConf erstellen
 -----------------
 
-Nun erstellen wir die Datei ``urls.py`` im Verzeichnis ``userauth``::
+Nun erstellen wir die Datei :file:`urls.py` im Verzeichnis :file:`userauth`::
 
     from django.conf.urls.defaults import patterns, include, url
 
@@ -78,7 +78,7 @@ Templates anlegen
 -----------------
 
 Als nächstes Erstellen wir ein Template für das Login in
-``userauth/templates/userauth/login.html``:
+:file:`userauth/templates/userauth/login.html`:
 
 ..  code-block:: html+django
 
@@ -109,9 +109,9 @@ werden.
 Im versteckten Feld ``next`` kann man einen URL angeben, der nach dem
 erfolgreichen Login aufgerufen wird.
 
-Das zweite Template ``password_change_form.html`` dient dem Ändern das
+Das zweite Template :file:`password_change_form.html` dient dem Ändern das
 Passwortes. Erstelle es ebenfalls im Verzeichnis
-``userauth/templates/userauth/``:
+:file:`userauth/templates/userauth/`:
 
 ..  code-block:: html+django
 
@@ -131,7 +131,7 @@ Passwortes. Erstelle es ebenfalls im Verzeichnis
 
 Das dritte Template wird nach dem erfolgreichen Ändern des Passworts
 angezeigt. Wie in der URLConf angegeben ist sein Name
-``password_change_done.html``:
+:file:`password_change_done.html`:
 
 ..  code-block:: html+django
 
@@ -146,7 +146,7 @@ angezeigt. Wie in der URLConf angegeben ist sein Name
 
 Außerdem erstellen wir noch ein Template, um überall Login vzw. Logout
 anzuzeigen. Dieses Template erstellst du in
-``userauth/templates/userauth/toggle_login.html``:
+:file:`userauth/templates/userauth/toggle_login.html`:
 
 ..  code-block:: html+django
 
@@ -161,7 +161,7 @@ anzuzeigen. Dieses Template erstellst du in
 Das Basis-Template erweitern
 ----------------------------
 
-Das eben angelegte Template ``toggle_login.html`` binden wir nun in das
+Das eben angelegte Template :file:`toggle_login.html` binden wir nun in das
 Basis-Template als eigenen Block ein:
 
 ..  code-block:: html+django
@@ -177,14 +177,15 @@ Damit im Kontext des Response-Objekts auch die nötigen Informationen wie das
 User Objekt oder der ``csrf_token`` zur Verfügung stehen müssen wir die
 bestehenden View-Funktionen erweitern.
 
-Zuerst muss der folgende Import in ``recipes/views.py`` hinzugefügt werden::
+Zuerst muss der folgende Import in :file:`recipes/views.py` hinzugefügt
+werden::
 
     from django.template import RequestContext
 
 Dann müssen die Aufrufe von ``render_to_response`` um das Argument
 ``context_instance=RequestContext(request)`` erweitert werden.
 
-Hinterher sollte die Datei ``recipes/views.py`` so aussehen::
+Hinterher sollte die Datei :file:`recipes/views.py` so aussehen::
 
     from django.template import RequestContext
     from django.shortcuts import get_object_or_404, render_to_response
@@ -216,7 +217,7 @@ Deshalb fügen wir jetzt noch eine Registrierung hinzu.
 URLConf erweitern
 -----------------
 
-Zuerst wird die URLConf in ``userauth/urls.py`` um zwei URLs erweitert::
+Zuerst wird die URLConf in :file:`userauth/urls.py` um zwei URLs erweitert::
 
     urlpatterns += patterns('',
         url(r'^registrieren/$', 'userauth.views.register',
@@ -236,7 +237,7 @@ Ein View für das Formular
 -------------------------
 
 Jetzt muss der View für den ersten URL ``userauth_register`` geschrieben
-werden. Dazu öffnest du die Datei ``userauth/views.py`` und erstellst die
+werden. Dazu öffnest du die Datei :file:`userauth/views.py` und erstellst die
 folgende Funktion::
 
     from django.contrib.auth.forms import UserCreationForm
@@ -271,7 +272,7 @@ Templates anlegen und erweitern
 
 Natürlich brauchen beide URLs noch ein Template.
 
-Zuerst erstellst du in ``userauth/templates/userauth/register.html`` ein
+Zuerst erstellst du in :file:`userauth/templates/userauth/register.html` ein
 Template für das Formular:
 
 ..  code-block:: html+django
@@ -294,7 +295,7 @@ Da wir auf der Registrierungsseite kein Login anzeigen möchten überschreiben
 wir den Block ``toggle_login`` einfach mit einem leeren Block.
 
 Außerdem benötigen wir noch das Template, das nach dem erfolgreichen Erstellen
-des Benutzers angezeigt wird (``register_done.html``):
+des Benutzers angezeigt wird (:file:`register_done.html`):
 
 ..  code-block:: html+django
 
@@ -308,7 +309,7 @@ des Benutzers angezeigt wird (``register_done.html``):
     {% endblock %}
 
 Damit es auch einen Link zum Registrierungsformular gibt fügen wir noch eine
-Zeile in das Template ``toggle_login.html`` ein:
+Zeile in das Template :file:`toggle_login.html` ein:
 
 ..  code-block:: html+django
 

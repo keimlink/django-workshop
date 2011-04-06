@@ -13,7 +13,7 @@ aktuellen Rezept bestimmte Ähnlichkeiten haben. Als Kriterien wurden hier die
 gleiche Schwierigkeit und eine übereinstimmende Kategorie gewählt.
 
 Füge also diese Methode dem Model ``Recipe`` in der Datei
-``recipes/models.py`` hinzu:
+:file:`recipes/models.py` hinzu:
 
 ..  code-block:: python
 
@@ -27,7 +27,7 @@ Das Template erweitern
 ======================
 
 Du kannst die neue Methode sofort im Template
-``recipes/templates/recipes/detail.html`` einsetzen:
+:file:`recipes/templates/recipes/detail.html` einsetzen:
 
 ..  code-block:: html+django
 
@@ -46,7 +46,7 @@ Mehr Flexibilität mit einem Templatetag
 Im :ref:`vorhergehenden Kapitel <templatetags>` hast du gelernt, dass man mit
 Templatetags wesentlich flexibler und effektiver arbeiten kann. Also benutzen
 wir doch die neue Methode am Model, um ein neues Templatetag in
-``recipes/templatetags/recipes.py`` zu erstellen:
+:file:`recipes/templatetags/recipes.py` zu erstellen:
 
 ..  code-block:: python
 

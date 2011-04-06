@@ -6,8 +6,8 @@ ein Rezept bearbeiten wollte, dessen Autor er nicht war. Allerdings ist das
 Ergebnis eine weiße Seite, was nicht besonders schön ist.
 
 Dieses Problem ist eine gute Gelegenheit eine einfache Middleware zu
-schreiben. Lege dazu im Projektverzeichnis die Datei ``middleware.py`` an und
-erstelle darin die folgende Klasse:
+schreiben. Lege dazu im Projektverzeichnis die Datei :file:`middleware.py` an
+und erstelle darin die folgende Klasse:
 
 ..  code-block:: python
 
@@ -22,8 +22,8 @@ erstelle darin die folgende Klasse:
             return response
 
 Es wird der ``process_response``-Hook benutzt, um bei einem 403 Status Code
-das Template ``403.html`` zu rendern. Da es dieses Template noch nicht gibt
-muss es jetzt angelegt werden:
+das Template :file:`403.html` zu rendern. Da es dieses Template noch nicht
+gibt muss es jetzt angelegt werden:
 
 ..  code-block:: html
 

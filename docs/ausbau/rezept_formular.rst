@@ -8,7 +8,7 @@ URLConf erweitern
 =================
 
 Dazu legst du zuerst die entsprechenden URLs zum Erstellen und Bearbeiten der
-Rezepte an in ``recipes/urls.py`` an::
+Rezepte an in :file:`recipes/urls.py` an::
 
     url(r'^erstellen/$', 'add', name='recipes_recipe_add'),
     url(r'^bearbeiten/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
@@ -28,7 +28,7 @@ Ein Formular erstellen
 ======================
 
 Als nächstes legst du das Formular an. Erstelle dazu die Datei
-``recipes/forms.py``::
+:file:`recipes/forms.py`::
 
     from django.forms import ModelForm
 
@@ -103,7 +103,7 @@ Zwei Views für das Formular
 ===========================
 
 Jetzt wollen wir die Views zum Erstellen und Bearbeiten der Rezepte in
-``recipes/views.py`` erstellen.
+:file:`recipes/views.py` erstellen.
 
 Dazu sind zuerst einige weitere Imports nötig::
 
@@ -177,7 +177,8 @@ Templates anlegen und erweitern
 ===============================
 
 Nun geht es daran das Template anzulegen. In den beiden Views wurde
-``recipes/templates/recipes/form.html`` genutzt. So sieht das Template aus:
+:file:`recipes/templates/recipes/form.html` genutzt. So sieht das Template
+aus:
 
 ..  code-block:: html+django
 
@@ -207,15 +208,15 @@ Nun geht es daran das Template anzulegen. In den beiden Views wurde
 Im Template kann man jetzt sehen, wie der Parameter ``add`` zur Unterscheidung
 zwischen Erstellen und Bearbeiten genutzt wird.
 
-Jetzt kannst du das Template ``recipes/templates/recipes/detail.html`` um
+Jetzt kannst du das Template :file:`recipes/templates/recipes/detail.html` um
 einen Link zum Bearbeiten des Rezeptes erweitern:
 
 ..  code-block:: html+django
 
     <a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
 
-Und im Listentemplate ``recipes/templates/recipes/index.html`` einen Link zum
-Hinzufügen eines Rezeptes einsetzen:
+Und im Listentemplate :file:`recipes/templates/recipes/index.html` einen Link
+zum Hinzufügen eines Rezeptes einsetzen:
 
 ..  code-block:: html+django
 

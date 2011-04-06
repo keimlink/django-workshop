@@ -9,8 +9,8 @@ Django integriert und muss daher manuell installiert werden::
     $ pip install coverage
 
 Damit ``coverage`` auch nur unsere Applikationen und nicht das Framework
-selbst betrachtet legst du die Datei ``.coveragerc`` mit folgendem Inhalt im
-Projektverzeichnis an::
+selbst betrachtet legst du die Datei :file:`.coveragerc` mit folgendem Inhalt
+im Projektverzeichnis an::
 
     [report]
     omit = /path/to/.virtualenvs
@@ -28,4 +28,4 @@ Einen HTML-Coverage-Report kannst du mit diesem Befehl erstellen::
 
     $ coverage html
 
-Die HTML-Dateien befinden sich dann im Verzeichnis ``htmlcov``.
+Die HTML-Dateien befinden sich dann im Verzeichnis :file:`htmlcov`.

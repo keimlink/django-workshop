@@ -18,7 +18,7 @@ Fixtures erstellen
 Zuerst benötigen wir einige Fixtures, damit Daten im Frontend zum Testen zur
 Verfügung stehen.
 
-Erstelle dazu das Verzeichnis ``fixtures`` für die Applikationen ``recipes``
+Erstelle dazu das Verzeichnis :file:`fixtures` für die Applikationen ``recipes``
 und ``userauth``::
 
     $ mkdir recipes/fixtures
@@ -71,11 +71,11 @@ Tests für die Rezept-Views schreiben
 ====================================
 
 Damit die Frontend-Tests auch geladen werden müssen sie in
-``recipes/tests/__init__.py`` importiert werden::
+:file:`recipes/tests/__init__.py` importiert werden::
 
     from view_tests import RecipeViewsTests
 
-Nun erstellst du die Datei ``recipes/tests/view_tests.py`` mit folgendem
+Nun erstellst du die Datei :file:`recipes/tests/view_tests.py` mit folgendem
 Inhalt::
 
     # -*- coding: utf-8 -*-
