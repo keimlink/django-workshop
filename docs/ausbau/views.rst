@@ -7,7 +7,8 @@ Code, der sich wiederholt. Also machen wir uns daran das zu verbessern.
 Die Funktion ``render_to_response``
 ===================================
 
-Als Erstes entfernen wir die beiden folgenden Imports am Anfang der Datei::
+Als Erstes entfernen wir die beiden folgenden Imports am Anfang der Datei
+:file:`recipes/views.py`::
 
     from django.http import Http404, HttpResponse
     from django.template import Context, loader
@@ -27,7 +28,7 @@ Sie kümmert sich um die folgenden Dinge:
 * Einen HttpResponse zurückgeben, der das Ergebnis der Renderns enthält
 
 Dadurch können wir die erste Funktion im View stark reduzieren. Der Beginn der
-Datei ``views.py`` sieht dann wie folgt aus::
+Datei :file:`recipes/views.py` sieht dann wie folgt aus::
 
     from django.shortcuts import render_to_response
 

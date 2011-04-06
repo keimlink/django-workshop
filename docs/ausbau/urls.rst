@@ -1,15 +1,15 @@
 Vereinfachen und Entkoppeln der URLConf
 ***************************************
 
-Im Moment werden alle URLs in der ``urls.py`` im Hauptverzeichnis des Projekts
-definiert. Das wird auf Dauer unübersichtlich und verletzt außerdem das
-:ref:`dry`-Prinzip. Jede Applikation sollte seine URLs selbst bestimmen.
+Im Moment werden alle URLs in der :file:`urls.py` im Hauptverzeichnis des
+Projekts definiert. Das wird auf Dauer unübersichtlich und verletzt außerdem
+das :ref:`dry`-Prinzip. Jede Applikation sollte seine URLs selbst bestimmen.
 
 Eine URLConf für die ``recipes`` Applikation
 ============================================
 
-Also legen wir in der Applikation ``recipes`` eine leere Datei ``urls.py`` an.
-Sie soll die URLs der Rezepte aufnehmen::
+Also legen wir in der Applikation :file:`recipes` eine leere Datei
+:file:`urls.py` an. Sie soll die URLs der Rezepte aufnehmen::
 
     from django.conf.urls.defaults import patterns, include, url
 
@@ -28,9 +28,9 @@ Die beiden URLs übernehmen wir ansonsten aus der URLConf des Projekts.
 Die URLConf des Projekts vereinfachen
 =====================================
 
-Wir können also nun die beiden URLs für die ``recipes`` Applikation aus der
-URLConf des Projekts entfernen. Statt dessen müssen wir die neue URLConf der
-Applikation einem URL zuweisen::
+Wir können also nun die beiden URLs für die :file:`recipes` Applikation aus
+der URLConf des Projekts entfernen. Statt dessen müssen wir die neue URLConf
+der Applikation einem URL zuweisen::
 
     from django.conf.urls.defaults import patterns, include, url
 
@@ -61,9 +61,9 @@ Nun sind die URLs aus der URLConf des Projekts in die Applikation verschoben
 worden, was zu mehr Übersichtlichkeit geführt hat. Aber es gibt immer noch
 Teile der Applikation, die ihre URLs selbst definieren.
 
-Im Template ``recipes/templates/recipes/index.html`` wird der Link zum Rezept
-manuell definiert. Es kann also passieren, dass URL im Template nicht mit dem
-in der URLConf der Applikation übereinstimmt. Das werden wir ändern.
+Im Template :file:`recipes/templates/recipes/index.html` wird der Link zum
+Rezept manuell definiert. Es kann also passieren, dass URL im Template nicht
+mit dem in der URLConf der Applikation übereinstimmt. Das werden wir ändern.
 
 URLConf der Applikation erweitern
 ---------------------------------
@@ -75,8 +75,7 @@ Als erstes geben wir den URLs in der URLConf der Applikation Namen::
         url(r'^$', 'index', name='recipes_recipe_index'),
     )
 
-Dazu muss aus den beiden Tupeln ein Funktionsaufruf der Funktion ``url``
-gemacht werden. Diese akzeptiert ein Argument ``name``, um dem URL einen Namen
+Die Funktion ``url`` akzeptiert ein Argument ``name``, um dem URL einen Namen
 zu geben. Im Regelfall wird dieser nach dem Schema APPLIKATION_MODEL_VIEW
 vergeben. So kann ein Name nicht doppelt auftreten.
 
@@ -104,7 +103,7 @@ Templates anpassen
 ------------------
 
 Zuletzt müssen die Templates an die neue Methode angepasst werden. Im Template
-``recipes/templates/recipes/index.html`` wird der alte Aufruf
+:file:`recipes/templates/recipes/index.html` wird der alte Aufruf
 
 ..  code-block:: html+django
 
@@ -116,8 +115,8 @@ durch einen neuen ersetzt
 
     <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
 
-Im Template ``recipes/templates/recipes/detail.html`` fügen wir einen Link zur
-Übersicht ein:
+Im Template :file:`recipes/templates/recipes/detail.html` fügen wir einen Link
+zur Übersicht ein:
 
 ..  code-block:: html+django
 
