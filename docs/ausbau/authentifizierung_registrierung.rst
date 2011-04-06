@@ -219,19 +219,21 @@ URLConf erweitern
 
 Zuerst wird die URLConf in :file:`userauth/urls.py` um zwei URLs erweitert::
 
+    from django.views.generic import TemplateView
+
     urlpatterns += patterns('',
         url(r'^registrieren/$', 'userauth.views.register',
             {'next_page_name': 'userauth_register_done'},
             name='userauth_register'),
-        url(r'^willkommen/', 'django.views.generic.simple.direct_to_template',
-            {'template': 'userauth/register_done.html'},
+        url(r'^willkommen/',
+            TemplateView.as_view(template_name='userauth/register_done.html'),
             name='userauth_register_done')
     )
 
 Der zweite URL ``userauth_register_done`` benutzt den generischen View
-``django.views.generic.simple.direct_to_template`` (:djangodocs:`Dokumentation
-<ref/generic-views/#django-views-generic-simple-direct-to-template>`),
-da wir hier einfach nur das Template rendern wollen.
+``django.views.generic.TemplateView`` (:djangodocs:`Dokumentation
+<topics/class-based-views/#simple-usage>`), da wir hier einfach nur das
+Template ohne weitere Daten rendern wollen.
 
 Ein View für das Formular
 -------------------------

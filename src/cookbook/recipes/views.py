@@ -4,22 +4,27 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
+from django.views.generic import DetailView, ListView
 
 from recipes.forms import RecipeForm
 from recipes.models import Recipe
 
 logger = logging.getLogger('cookbook.recipes.views')
 
-def index(request):
-    recipes = Recipe.objects.all()
-    logger.debug('Anzahl der Rezepte: %d' % recipes.count())
-    return render_to_response('recipes/index.html', {'object_list': recipes},
-        context_instance=RequestContext(request))
 
-def detail(request, slug):
-    recipe = get_object_or_404(Recipe, slug=slug)
-    return render_to_response('recipes/detail.html', {'object': recipe},
-        context_instance=RequestContext(request))
+class RecipeListView(ListView):
+    template_name = 'recipes/index.html'
+    
+    def get_queryset(self):
+        recipes = Recipe.objects.all()
+        logger.debug('Anzahl der Rezepte: %d' % recipes.count())
+        return recipes
+
+
+class RecipeDetailView(DetailView):
+    queryset = Recipe.objects.all()
+    template_name = 'recipes/detail.html'
+
 
 @login_required
 def add(request):

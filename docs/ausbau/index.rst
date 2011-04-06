@@ -12,6 +12,7 @@ Ausbau des Django Projekts
    debugging
    authentifizierung_registrierung
    rezept_formular
+   generische_views
    middleware_403
    templates_aufwerten
    templatetags
