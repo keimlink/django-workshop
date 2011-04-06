@@ -1,10 +1,12 @@
 import logging
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.core import serializers
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic import DetailView, ListView
+from django.views.generic.detail import BaseDetailView
 
 from recipes.forms import RecipeForm
 from recipes.models import Recipe
@@ -24,6 +26,21 @@ class RecipeListView(ListView):
 class RecipeDetailView(DetailView):
     queryset = Recipe.objects.all()
     template_name = 'recipes/detail.html'
+
+
+class SingleObjectJSONResponseMixin(object):
+    def render_to_response(self, context):
+        "Returns a JSON response containing self.object as payload."
+        return self.get_json_response(serializers.serialize('json', [self.object]))
+
+    def get_json_response(self, content, **httpresponse_kwargs):
+        "Construct a JSON `HttpResponse` object."
+        return HttpResponse(content, content_type='application/json',
+            **httpresponse_kwargs)
+
+
+class JSONDetailView(SingleObjectJSONResponseMixin, BaseDetailView):
+    queryset = Recipe.objects.all()
 
 
 @login_required
