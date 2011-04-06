@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Category(models.Model):
-    name = models.CharField(u'Name', max_length=100)
+    name = models.CharField('Name', max_length=100)
     slug = models.SlugField(unique=True)
-    description = models.TextField(u'Beschreibung', blank=True)
+    description = models.TextField('Beschreibung', blank=True)
 
     class Meta:
-        verbose_name = u'Kategorie'
-        verbose_name_plural = u'Kategorien'
+        verbose_name = 'Kategorie'
+        verbose_name_plural = 'Kategorien'
 
     def __unicode__(self):
         return self.name
@@ -21,28 +21,28 @@ class Recipe(models.Model):
     DIFFICULTY_MEDIUM = 2
     DIFFICULTY_HARD = 3
     DIFFICULTIES = (
-        (DIFFICULTY_EASY, u'einfach'),
-        (DIFFICULTY_MEDIUM, u'normal'),
-        (DIFFICULTY_HARD, u'schwer'),
+        (DIFFICULTY_EASY, 'einfach'),
+        (DIFFICULTY_MEDIUM, 'normal'),
+        (DIFFICULTY_HARD, 'schwer'),
     )
-    title = models.CharField(u'Titel', max_length=255)
+    title = models.CharField('Titel', max_length=255)
     slug = models.SlugField(unique=True)
-    ingredients = models.TextField(u'Zutaten',
-        help_text=u'Eine Zutat pro Zeile angeben')
-    preparation = models.TextField(u'Zubereitung')
-    time_for_preparation = models.IntegerField(u'Zubereitungszeit',
-        help_text=u'Zeit in Minuten angeben', blank=True, null=True)
-    number_of_portions = models.IntegerField(u'Anzahl der Portionen')
-    difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad',
+    ingredients = models.TextField('Zutaten',
+        help_text='Eine Zutat pro Zeile angeben')
+    preparation = models.TextField('Zubereitung')
+    time_for_preparation = models.IntegerField('Zubereitungszeit',
+        help_text='Zeit in Minuten angeben', blank=True, null=True)
+    number_of_portions = models.IntegerField('Anzahl der Portionen')
+    difficulty = models.SmallIntegerField('Schwierigkeitsgrad',
         choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
-    category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
-    author = models.ForeignKey(User, verbose_name=u'Autor')
+    category = models.ManyToManyField(Category, verbose_name='Kategorie')
+    author = models.ForeignKey(User, verbose_name='Autor')
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField(editable=False)
 
     class Meta:
-        verbose_name = u'Rezept'
-        verbose_name_plural = u'Rezepte'
+        verbose_name = 'Rezept'
+        verbose_name_plural = 'Rezepte'
         ordering = ['-date_created']
 
     @models.permalink
