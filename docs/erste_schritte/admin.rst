@@ -12,9 +12,9 @@ Die eigene Applikation beim Admin registrieren
 Damit der Admin mit unser Applikation benutzt werden kann, müssen wir unsere
 Models dem Admin bekannt machen.
 
-Dazu muss die Datei ``admin.py`` in der Applikation angelegt werden. Danach
-öffnest du die Datei in deinem Editor und fügst die beiden folgenden Zeilen
-Code ein::
+Dazu muss die Datei :file:`admin.py` in der Applikation angelegt werden.
+Danach öffnest du die Datei in deinem Editor und fügst die beiden folgenden
+Zeilen Code ein::
 
     from django.contrib import admin
     
@@ -48,7 +48,7 @@ Das gleiche tun wir jetzt für das Model ``Recipe``::
 Die vollständige Datei
 ----------------------
 
-Die Datei ``admin.py`` sollte nun so aussehen::
+Die Datei :file:`admin.py` sollte nun so aussehen::
 
     from django.contrib import admin
     
@@ -73,7 +73,7 @@ Um die Admin-Applikation zu aktivieren sind zwei Schritte nötig.
 Anpassen der Konfiguration
 --------------------------
 
-Entferne in der Datei ``settings.py`` in ``INSTALLED_APPS`` das
+Entferne in der Datei :file:`settings.py` in ``INSTALLED_APPS`` das
 Kommentarzeichen vor der Zeile ``'django.contrib.admin',``, um die
 Admin-Applikation zu aktivieren.
 
@@ -83,8 +83,8 @@ URLConf anpassen
 Damit die Admin-Applikation auch im Browser aufgerufen werden kann müssen wir
 die URL des Admins ebenfalls aktivieren.
 
-Öffne dazu die Datei ``cookbook/urls.py`` und entferne die Kommentarzeichen in
-den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
+Öffne dazu die Datei :file:`cookbook/urls.py` und entferne die
+Kommentarzeichen in den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
 
     from django.conf.urls.defaults import patterns, include, url
 

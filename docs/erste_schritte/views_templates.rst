@@ -19,44 +19,44 @@ URLs definieren
 
 Zuerst definieren wir die URLs, die zum Abruf der verschiedenen Views dienen
 sollen. Fürs Erste wollen wir zwei URLs anlegen. Öffne dazu die Datei
-``urls.py`` und füge am Ende der ``urlpatterns`` die folgenden beiden Zeilen
-ein::
+:file:`urls.py` und füge am Ende der ``urlpatterns`` die folgenden beiden
+Zeilen ein::
 
-    (r'^rezept/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
-    (r'^$', 'recipes.views.index'),
+    url(r'^rezept/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
+    url(r'^$', 'recipes.views.index'),
 
-Die Datei ``urls.py`` sieht danach so aus::
+Die Datei :file:`urls.py` sieht danach so aus::
 
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, include, url
 
     # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
     admin.autodiscover()
 
     urlpatterns = patterns('',
-        # Example:
-        # (r'^cookbook/', include('cookbook.foo.urls')),
+        # Examples:
+        # url(r'^$', 'cookbook.views.home', name='home'),
+        # url(r'^cookbook/', include('cookbook.foo.urls')),
 
-        # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-        # to INSTALLED_APPS to enable admin documentation:
-        # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+        # Uncomment the admin/doc line below to enable admin documentation:
+        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
         # Uncomment the next line to enable the admin:
-        (r'^admin/', include(admin.site.urls)),
-        (r'^rezept/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
-        (r'^$', 'recipes.views.index'),
+        url(r'^admin/', include(admin.site.urls)),
+        url(r'^rezept/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
+        url(r'^$', 'recipes.views.index'),
     )
 
 ..  note::
 
-    Der erste String im URL-Tupel ist ein `Raw-String
+    Das erste Argument der ``url`` Funktion ist ein `Raw-String
     <http://docs.python.org/reference/lexical_analysis.html#string-literals>`_,
     der einen regulären Ausdruck enthält.
     
-    Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr darüber
-    auf `Regular-Expressions.info <http://www.regular-expressions.info/>`_ oder im
-    Artikel über das `re-Modul <http://www.doughellmann.com/PyMOTW/re/>`_
-    erfahren.
+    Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr
+    darüber auf `Regular-Expressions.info
+    <http://www.regular-expressions.info/>`_ oder im Artikel über das
+    `re-Modul <http://www.doughellmann.com/PyMOTW/re/>`_ erfahren.
 
 Nun startest du den Entwicklungs-Webserver:
 
@@ -80,8 +80,8 @@ Den ersten View schreiben
 Also müssen nun die Views erstellt werden. Sie sollen die Daten, die angezeigt
 werden sollen, mit Hilfe des ORMs aus der Datenbank holen.
 
-Dazu öffnest du die Datei ``views.py`` in der Applikation ``recipes``, die
-durch das Kommando ``startapp recipes`` angelegt wurde.
+Dazu öffnest du die Datei :file:`views.py` in der Applikation ``recipes``, die
+durch das Kommando :command:`startapp recipes` angelegt wurde.
 
 Der erste View sieht so aus::
 
@@ -103,8 +103,8 @@ Templates erstellen
 ===================
 
 Als erstes benötigst du ein Basis-Template für deine Website. Erstelle das
-Verzeichnis ``templates`` im Projektverzeichnis. Darin erstellt du die Datei
-``base.html``:
+Verzeichnis :file:`templates` im Projektverzeichnis. Darin erstellt du die
+Datei :file:`base.html`:
 
 ..  code-block:: html+django
 
@@ -125,8 +125,8 @@ Sie enthält HTML und zwei **Blöcke**. Diese werden von den anderen Templates
 gefüllt, die von diesem Template ableiten.
 
 Innerhalb der Applikation musst du auch zwei Verzeichnisse für die Templates
-anlegen, nämlich ``recipes/templates/recipes``. Darin erstellt du die Datei
-``index.html``:
+anlegen, nämlich :file:`recipes/templates/recipes`. Darin erstellt du die
+Datei :file:`index.html`:
 
 ..  code-block:: html+django
 
@@ -152,7 +152,8 @@ Den zweiten View hinzufügen
 Damit auch die Detailansicht der Rezepte funktioniert, muss ein zweiter View
 geschrieben werden.
 
-Als erstes muss ein zusätzlicher Import an den Beginn der Datei ``views.py``::
+Als erstes muss ein zusätzlicher Import an den Beginn der Datei
+:file:`views.py`::
 
     from django.http import Http404
 
@@ -192,8 +193,8 @@ Die komplette Datei sieht dann so aus::
 Ein zweites Template erstellen
 ==============================
 
-Nun fehlt nur noch das zweite Template ``recipes/detail.html``. Lege es im
-gleichen Verzeichnis wie auch ``recipes/index.html`` an:
+Nun fehlt nur noch das zweite Template :file:`recipes/detail.html`. Lege es im
+gleichen Verzeichnis wie auch :file:`recipes/index.html` an:
 
 ..  code-block:: html+django
 
