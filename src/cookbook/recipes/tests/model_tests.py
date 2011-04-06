@@ -5,9 +5,10 @@ import datetime
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.template.defaultfilters import slugify
-from django.test import TestCase
+from django.test import skipIfDBFeature, TestCase
 
 from recipes.models import Recipe
+
 
 class RecipeSaveTest(TestCase):
     title = u'Erbsensuppe mit Würstchen'
@@ -34,6 +35,12 @@ class RecipeSaveTest(TestCase):
         self.assertRaises(IntegrityError, Recipe.objects.create,
             title=self.title, slug=slugify(self.title),
             number_of_portions=self.number_of_portions, author=self.author)
+
+    @skipIfDBFeature('supports_transactions')
+    def testTransaction(self):
+        """Demonstrate the skipIfDBFeature decorator."""
+        assert False
+
 
 __test__ = {"doctest": """
 >>> from recipes.models import Recipe
@@ -73,4 +80,3 @@ Traceback (most recent call last):
   ...
 IntegrityError: recipes_recipe.author_id may not be NULL
 """}
-

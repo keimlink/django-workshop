@@ -1,10 +1,11 @@
 Unit Tests schreiben
 ********************
 
-Mit Hilfe des "Python unit testing frameworks" kannst du klassenbasierte Unit
-Tests schreiben.
+Mit Hilfe des `"Python unit testing frameworks"
+<http://docs.python.org/library/unittest.html>`_ kannst du klassenbasierte
+Unit Tests schreiben.
 
-Ersetzte den folgenden Teil der Datei ``recipes/tests.py``::
+Ersetzte den folgenden Teil der Datei :file:`recipes/tests.py`::
 
     """
     This file demonstrates two different styles of tests (one doctest and one
@@ -31,9 +32,10 @@ mit diesem Code::
     from django.contrib.auth.models import User
     from django.db import IntegrityError
     from django.template.defaultfilters import slugify
-    from django.test import TestCase
+    from django.test import skipIfDBFeature, TestCase
     
     from recipes.models import Recipe
+    
     
     class RecipeSaveTest(TestCase):
         title = u'Erbsensuppe mit Würstchen'
@@ -60,6 +62,11 @@ mit diesem Code::
             self.assertRaises(IntegrityError, Recipe.objects.create,
                 title=self.title, slug=slugify(self.title),
                 number_of_portions=self.number_of_portions, author=self.author)
+
+        @skipIfDBFeature('supports_transactions')
+        def testTransaction(self):
+            """Demonstrate the skipIfDBFeature decorator."""
+            assert False
 
 Der Kommentar ``# -*- coding: utf-8 -*-`` zu Beginn der Datei ist bei Python
 2.x Code nötig, damit Zeichen außerhalb der ASCII-Tabelle benutzt werden
@@ -89,6 +96,7 @@ Vorteile
 * Jede Methode einer Test-Klasse wird automatisch innerhalb einer Transaktion
   aufgerufen
 * Keine Unicode-Probleme
+* Einzelne Tests können an Bedingungen geknüpft werden
 
 Nachteile
 ---------
