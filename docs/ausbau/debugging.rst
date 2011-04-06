@@ -8,8 +8,8 @@ Die Fehlerseite gezielt aufrufen
 ================================
 
 Da die Fehlerseite eine Menge Informationen aufbereitet ist es manchmal
-sinnvoll diese gezielt aufzurufen. Dazu kann man das Statement ``assert``
-verwenden.
+sinnvoll diese gezielt aufzurufen. Dazu kann man das Statement
+``assert`` verwenden.
 
 Provozieren eines ``AssertionError`` im View ``index``::
 
@@ -18,50 +18,82 @@ Provozieren eines ``AssertionError`` im View ``index``::
         assert False
         return render_to_response('recipes/index.html', {'object_list': recipes})
 
-Man kann den optionalen zweiten Parameter von ``assert`` zur Ausgabe von
-zusätzlichen Informationen nutzen::
+Man kann den optionalen zweiten Parameter von ``assert`` zur Ausgabe
+von zusätzlichen Informationen nutzen::
 
     def index(request):
         recipes = Recipe.objects.all()
         assert False, 'Anzahl der Rezepte: %d' % recipes.count()
         return render_to_response('recipes/index.html', {'object_list': recipes})
 
-Ein Logfile nutzen
-==================
+In ein Logfile schreiben
+========================
 
 Es ist zwar möglich mit ``print`` in die Konsole des Entwicklungs-Webservers
-zu schreiben. Aber das nicht übersichtlich und kann beim Deployment zu
+zu schreiben. Das wird aber schell unübersichtlich und kann beim Deployment zu
 Problemen führen.
 
-Besser ist die Nutzung eines Logfiles. Dazu kannst du das `logging Modul
-<http://docs.python.org/library/logging.html>`_ nutzen.
+Besser ist die Nutzung des seit Version 1.3 in Django integrierten
+Logging-Frameworks.
 
-Zum Beispiel kann man den folgenden Code in die ``local_settings.py``
-einfügen::
+In der Datei :file:`settings.py` ist schon einen rudimentäre Konfiguration des
+Logging-Frameworks vorhanden. Dieser fügen wir ein Dictionary ``formatters``
+und einen neuen ``handler`` mit dem Namen ``debuglog``, der den neuen
+``formatter`` benutzt, hinzu. Die gesamte Logging Konfiguration sieht dann so
+aus::
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'simple': {
+                'format': '%(levelname)s %(asctime)s %(pathname)s %(message)s'
+            }
+        },
+        'handlers': {
+            'mail_admins': {
+                'level': 'ERROR',
+                'class': 'django.utils.log.AdminEmailHandler'
+            },
+            'debuglog': {
+                'level': 'DEBUG',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': '/tmp/debug.log',
+                'maxBytes': 1000,
+                'formatter': 'simple'
+            }
+        },
+        'loggers': {
+            'django.request': {
+                'handlers': ['mail_admins'],
+                'level': 'ERROR',
+                'propagate': True,
+            },
+        }
+    }
+
+Jetzt muss noch am Ende der Datei der folgende Code einfügt werden, um den
+``logger`` zu registrieren. Allerdings soll dieser nur ausgeführt werden wenn
+``DEBUG`` den Wert ``True`` hat::
 
     if DEBUG:
-        import logging
-        logging.basicConfig(
-            level = logging.DEBUG,
-            format = '%(asctime)s %(levelname)s %(message)s', 
-            filename = '/tmp/debug.log',
-            filemode = 'w'
+        LOGGING['loggers'].update(
+            {'cookbook': {
+                'handlers': ['debuglog'],
+                'level': 'DEBUG'
+            }}
         )
 
 Nun kann man im View in das Log schreiben::
 
+    import logging
+    
+    logger = logging.getLogger('cookbook.recipes.views')
+    
     def index(request):
         recipes = Recipe.objects.all()
-        import logging
-        logging.debug('Anzahl der Rezepte: %d' % recipes.count())
+        logger.debug('Anzahl der Rezepte: %d' % recipes.count())
         return render_to_response('recipes/index.html', {'object_list': recipes})
-
-Die Ausgabe wird in die Datei ``debug.log`` im Verzeichnis ``/tmp``
-geschrieben.
-
-Da der Code in ``local_settings.py`` nur ausgeführt wird wenn ``DEBUG`` den
-Wert ``True`` hat, findet kein Logging statt wenn ``DEBUG = False`` benutzt
-wird.
 
 Mit dem Python-Debugger arbeiten
 ================================
@@ -120,3 +152,8 @@ Hier wird der Schlüssel ``slug`` aus ``kwargs`` entfernt und mit dem Schlüssel
 
 Eine Liste aller Befehle des Debuggers `findest du in der Dokumentation
 <http://docs.python.org/library/pdb.html#debugger-commands>`_.
+
+Weiterführende Links zur Django Dokumentation
+=============================================
+
+* :djangodocs:`Das Logging-Framework <topics/logging/>`

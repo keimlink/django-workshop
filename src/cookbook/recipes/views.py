@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template import RequestContext
@@ -6,8 +8,11 @@ from django.shortcuts import get_object_or_404, render_to_response
 from recipes.forms import RecipeForm
 from recipes.models import Recipe
 
+logger = logging.getLogger('cookbook.recipes.views')
+
 def index(request):
     recipes = Recipe.objects.all()
+    logger.debug('Anzahl der Rezepte: %d' % recipes.count())
     return render_to_response('recipes/index.html', {'object_list': recipes},
         context_instance=RequestContext(request))
 

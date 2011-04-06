@@ -138,10 +138,22 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(pathname)s %(message)s'
+        }
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'debuglog': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/tmp/debug.log',
+            'maxBytes': 1000,
+            'formatter': 'simple'
         }
     },
     'loggers': {
@@ -165,3 +177,11 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+if DEBUG:
+    LOGGING['loggers'].update(
+        {'cookbook': {
+            'handlers': ['debuglog'],
+            'level': 'DEBUG'
+        }}
+    )
