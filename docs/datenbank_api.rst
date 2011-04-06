@@ -16,9 +16,9 @@ folgenden Befehl kannst du diesen starten:
 
     $ python manage.py shell
 
-Dieser Befehl lädt die Einstellungen aus ``settings.py`` für das aktuelle
-Projekt, was beim Start durch die Eingabe von ``python`` nicht passieren
-würde.
+Dieser Befehl lädt die Einstellungen aus :file:`settings.py` für das aktuelle
+Projekt, was beim Start durch die Eingabe von :program:`python` nicht
+passieren würde.
 
 ..  code-block:: pycon
 
