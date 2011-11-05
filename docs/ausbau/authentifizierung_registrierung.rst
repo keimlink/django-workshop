@@ -29,7 +29,7 @@ benutzt wird. Dazu erweiterst du zuerst die Datei :file:`settings.py`::
         ...
         'userauth'
     )
-    
+
     LOGIN_URL = '/benutzer/anmelden/'
     LOGOUT_URL = '/benutzer/abmelden/'
     LOGIN_REDIRECT_URL = '/'
@@ -167,7 +167,7 @@ Basis-Template als eigenen Block ein:
 ..  code-block:: html+django
 
     {% block toggle_login %}
-        {% include "auth/toggle_login.html" %}
+        {% include "userauth/toggle_login.html" %}
     {% endblock %}
 
 Applikation ``recipes`` erweitern
