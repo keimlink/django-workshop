@@ -52,7 +52,7 @@ Die Datei :file:`urls.py` sieht danach so aus::
     Das erste Argument der ``url`` Funktion ist ein `Raw-String
     <http://docs.python.org/reference/lexical_analysis.html#string-literals>`_,
     der einen regulären Ausdruck enthält.
-    
+
     Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr
     darüber auf `Regular-Expressions.info
     <http://www.regular-expressions.info/>`_ oder im Artikel über das
@@ -146,6 +146,43 @@ Datei :file:`index.html`:
 Nun solltest du eine Liste aller Rezepte sehen, wenn du http://127.0.0.1:8000/
 aufrufst.
 
+Wie wird ein Template gerendert?
+================================
+
+Django Templates sind einfache Python Objekte, deren Konstruktor einen String
+erwartet. Mit Hilfe eines Context Objekts werden dann die Platzhalter im
+Template durch die gewünschten Werte ersetzt.
+
+Das erste Beispiel zeigt wie man ein Dictionary als Datenstruktur nutzen
+kann::
+
+    $ python manage.py shell
+
+::
+
+    >>> from django.template import Context, Template
+    >>> t = Template('Mein Name ist {{ person.first_name }}.')
+    >>> d = {'person': {'first_name': 'Andi'}}
+    >>> t.render(Context(d))
+    u'Mein Name ist Andi.'
+
+Im zweiten Beispiel nutzen wir ein einfaches Python Objekt als Datenstruktur::
+
+    >>> class Person: pass
+    ...
+    >>> p = Person()
+    >>> p.first_name = 'Klara'
+    >>> c = Context({'person': p})
+    >>> t.render(c)
+    u'Mein Name ist Klara.'
+
+Listen können ebenfalls genutzt werden::
+
+    >>> t = Template('Erster Artikel: {{ articles.0 }}')
+    >>> c = Context({'articles': ['Brot', 'Eier', 'Milch']})
+    >>> t.render(c)
+    u'Erster Artikel: Brot'
+
 Den zweiten View hinzufügen
 ===========================
 
@@ -218,3 +255,4 @@ Weiterführende Links zur Django Dokumentation
 * :djangodocs:`Der URL dispatcher <topics/http/urls/#topics-http-urls>`
 * :djangodocs:`Views schreiben <topics/http/views/#topics-http-views>`
 * :djangodocs:`Templates und deren Vererbung <topics/templates/#topics-templates>`
+* :djangodocs:`Django Templates für Python Programmierer <ref/templates/api/>`
