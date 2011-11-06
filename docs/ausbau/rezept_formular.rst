@@ -109,7 +109,7 @@ Dazu sind zuerst einige weitere Imports nötig::
 
     from django.contrib.auth.decorators import login_required
     from django.http import HttpResponseForbidden, HttpResponseRedirect
-    
+
     from recipes.forms import RecipeForm
 
 Zuerst legst du den View zum Erstellen eines neuen Rezeptes an::
@@ -123,9 +123,14 @@ Zuerst legst du den View zum Erstellen eines neuen Rezeptes an::
                 return HttpResponseRedirect(recipe.get_absolute_url())
         else:
             form = RecipeForm()
-        return render_to_response('recipes/form.html',
-            {'form': form, 'add': True},
-            context_instance=RequestContext(request))
+        return render(request, 'recipes/form.html',
+            {'form': form, 'add': True})
+
+Statt dem :ref:`schon bekannten <request_context_vorstellung>` Shortcut ``render_to_response`` benutzen wir hier den mit Django 1.3 neu eingeführten Shortcut ``render``, um den ``RequestContext`` zu erzeugen. Dieser erstellt aus dem ersten Argument ``request`` automatisch einen ``RequestContext``. Mit ``render_to_response`` hätte der Code so ausgehen::
+
+    return render_to_response('recipes/form.html',
+        {'form': form, 'add': True},
+        context_instance=RequestContext(request))
 
 Wenn POST-Daten vorhanden sind werden diese zusammen mit dem Benutzer an die
 Instanz von ``RecipeForm`` gebunden. Danach wird überprüft, ob die Daten
@@ -155,9 +160,8 @@ Der zweite View dient zum Bearbeiten der Rezepte::
                 return HttpResponseRedirect(recipe.get_absolute_url())
         else:
             form = RecipeForm(instance=recipe)
-        return render_to_response('recipes/form.html',
-            {'form': form, 'add': False, 'object': recipe},
-            context_instance=RequestContext(request))
+        return render(request, 'recipes/form.html',
+            {'form': form, 'add': False, 'object': recipe})
 
 Aus dem URL bekommen wir die Id des Rezeptes. Diese wird dazu benutzt eine
 Instanz zu holen oder eine 404 Seite anzuzeigen, falls dies nicht möglich ist.
@@ -230,3 +234,4 @@ Weiterführende Links zur Django Dokumentation
 
 * :djangodocs:`Forms API <ref/forms/api/>`
 * :djangodocs:`Formulare für Models erstellen <topics/forms/modelforms/>`
+* :djangodocs:`Der render Shortcut <topics/http/shortcuts/#render>`

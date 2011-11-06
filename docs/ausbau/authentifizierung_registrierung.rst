@@ -170,6 +170,8 @@ Basis-Template als eigenen Block ein:
         {% include "userauth/toggle_login.html" %}
     {% endblock %}
 
+.. _request_context_vorstellung:
+
 Applikation ``recipes`` erweitern
 =================================
 

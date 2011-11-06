@@ -3,8 +3,7 @@ import logging
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
-from django.template import RequestContext
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import DetailView, ListView
 from django.views.generic.detail import BaseDetailView
 
@@ -16,7 +15,7 @@ logger = logging.getLogger('cookbook.recipes.views')
 
 class RecipeListView(ListView):
     template_name = 'recipes/index.html'
-    
+
     def get_queryset(self):
         recipes = Recipe.objects.all()
         logger.debug('Anzahl der Rezepte: %d' % recipes.count())
@@ -52,9 +51,8 @@ def add(request):
             return HttpResponseRedirect(recipe.get_absolute_url())
     else:
         form = RecipeForm()
-    return render_to_response('recipes/form.html',
-        {'form': form, 'add': True},
-        context_instance=RequestContext(request))
+    return render(request, 'recipes/form.html',
+        {'form': form, 'add': True})
 
 @login_required
 def edit(request, recipe_id):
@@ -68,6 +66,5 @@ def edit(request, recipe_id):
             return HttpResponseRedirect(recipe.get_absolute_url())
     else:
         form = RecipeForm(instance=recipe)
-    return render_to_response('recipes/form.html',
-        {'form': form, 'add': False, 'object': recipe},
-        context_instance=RequestContext(request))
+    return render(request, 'recipes/form.html',
+        {'form': form, 'add': False, 'object': recipe})
