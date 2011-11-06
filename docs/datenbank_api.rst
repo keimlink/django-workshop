@@ -24,7 +24,7 @@ passieren würde.
 
     # Importieren der Models
     >>> from recipes.models import Category, Recipe
-    
+
     # Ein QuerySet mit allen Rezepten
     >>> all_recipes = Recipe.objects.all()
     >>> all_recipes
@@ -34,7 +34,7 @@ passieren würde.
     <class 'django.db.models.query.QuerySet'>
     >>> all_recipes.count()
     3
-    
+
     # Betrachten eines Rezepts
     >>> all_recipes[0]
     <Recipe: Omas beste Frikadellen>
@@ -42,7 +42,7 @@ passieren würde.
     u'Omas beste Frikadellen'
     >>> all_recipes[0].number_of_portions
     4
-    
+
     # Eine neue Kategorie
     >>> salate = Category(name='Leckere Salate')
     >>> salate.save()
@@ -52,24 +52,25 @@ passieren würde.
     'Leckere Salate'
     >>> salate.slug
     ''
-    
+
     # Den Slug füllen
     >>> from django.template.defaultfilters import slugify
     >>> salate.slug = slugify(salate.name)
     >>> salate.save()
     >>> salate.slug
     u'leckere-salate'
-    
-    # Wenn eine Model nicht gefunden wird, wird immer eine DoesNotExist
-    # Exception ausgelöst
+
+    # Wenn eine Model nicht gefunden wird, wird immer eine DoesNotExist Exception ausgelöst
     >>> Category.objects.get(pk=23)
     Traceback (most recent call last):
         ...
     DoesNotExist: Category matching query does not exist.
-    
-    # Filter benutzen
+
+    # Ein einziges Objekt holen
     >>> Category.objects.get(pk=6)
     <Category: Leckere Salate>
+
+    # Filter benutzen
     >>> Category.objects.filter(name__startswith='Salate')
     []
     # Es wird ein QuerySet zurückgegeben
@@ -82,7 +83,15 @@ passieren würde.
     >>> categories = Category.objects.all()
     >>> categories.filter(title__startswith='Lecker')
     [<Category: Leckere Salate>]
-    
+
+    # Die Kategorie benutzen, um auf die Rezepte zuzugereifen
+    >>> categories[0]
+    <Category: Nudeln und Pasta>
+    >>> type(categories[0].recipe_set)
+    <class 'django.db.models.fields.related.ManyRelatedManager'>
+    >>> categories[0].recipe_set.all()
+    [<Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
+
     # Über die Relation eines Rezepts eine Kategorie anlegen
     >>> recipe = all_recipes[0]
     # Zwei Kategorien am Model
@@ -100,6 +109,14 @@ passieren würde.
     >>> foo.delete()
     >>> recipe.category.all()
     [<Category: Hauptspeise>, <Category: Party>]
+
+    # Komplexe Abfragen mit Q Objekten
+    # Die folgende Abfrage verknüpft beide Bedingungen mit "AND"
+    >>> Recipe.objects.filter(number_of_portions=4).filter(title__startswith='Oma')
+    []
+    # Mit einem Q Objekt kann man eine "ODER" Verknüpfung realisieren
+    >>> Recipe.objects.filter(Q(number_of_portions=4) | Q(title__startswith='Oma'))
+    [<Recipe: Aprikosenknödel>, <Recipe: Omas beste Frikadellen>, <Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
 
 Weiterführende Links zur Django Dokumentation
 =============================================
