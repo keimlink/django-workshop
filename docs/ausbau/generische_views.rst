@@ -63,59 +63,6 @@ am Ende der Datei ersetzt.
         url(r'^$', RecipeListView.as_view(), name='recipes_recipe_index'),
     )
 
-JSON mit generischen Views erzeugen
-===================================
-
-Man kann generische Views auch dazu nutzen, um z.B. JSON zurück zu geben. Dazu muss zuerst eine
-entsprechende "Mixin" Klasse erstellt werden:
-
-..  code-block:: python
-
-    from django.core import serializers
-    from django.http import HttpResponse
-    
-    class SingleObjectJSONResponseMixin(object):
-        def render_to_response(self, context):
-            "Returns a JSON response containing self.object as payload."
-            return self.get_json_response(serializers.serialize('json', [self.object]))
-
-        def get_json_response(self, content, **httpresponse_kwargs):
-            "Construct a JSON `HttpResponse` object."
-            return HttpResponse(content, content_type='application/json',
-                **httpresponse_kwargs)
-
-Mit Hilfe dieser neuen "Mixin" Klasse kann man nun eine ``JSONDetailView``
-Klasse erstellen:
-
-..  code-block:: python
-
-    from django.views.generic.detail import BaseDetailView
-    
-    class JSONDetailView(SingleObjectJSONResponseMixin, BaseDetailView):
-        queryset = Recipe.objects.all()
-
-Diese wird dann ebenfalls in der URLConf eingebunden (der Einfachheit halber
-wird die gesamte Datei dargestellt):
-
-..  code-block:: python
-
-    from django.conf.urls.defaults import patterns, include, url
-
-    from recipes.views import JSONDetailView, RecipeDetailView, RecipeListView
-
-    urlpatterns = patterns('recipes.views',
-        url(r'^erstellen/$', 'add', name='recipes_recipe_add'),
-        url(r'^bearbeiten/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
-    )
-
-    urlpatterns += patterns('',
-        url(r'^rezept/(?P<slug>[-\w]+)/$', RecipeDetailView.as_view(),
-            name='recipes_recipe_detail'),
-        url(r'^rezept/(?P<slug>[-\w]+).json/$', JSONDetailView.as_view(),
-            name='recipes_recipe_detail_json'),
-        url(r'^$', RecipeListView.as_view(), name='recipes_recipe_index'),
-    )
-
 Weiterführende Links zur Django Dokumentation
 =============================================
 
