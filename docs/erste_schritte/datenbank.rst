@@ -86,8 +86,8 @@ musst du folgendes Kommando ausführen::
     Would you like to create one now? (yes/no): yes
     Username (Leave blank to use 'zappi'): admin
     E-mail address: admin@example.com
-    Password: 
-    Password (again): 
+    Password:
+    Password (again):
     Superuser created successfully.
     Installing index for auth.Permission model
     Installing index for auth.Group_permissions model
@@ -124,7 +124,28 @@ Unter der URL http://127.0.0.1:8000/admin/ kannst du nun die Admin-Applikation
 aufrufen, dich mit dem eben erstellten Superuser anmelden und ein paar Rezepte
 anlegen.
 
+Export und Import von Daten mit Hilfe von JSON
+==============================================
+
+Damit man Daten zwischen verschiedenen Systemen austauschen kann gibt es in
+Django eingebaute Export- und Importfunktionen. Mit dem Kommando ``dumpdata``
+kannst du die eben erstellten Models aus der Applikation ``recipes``
+exportieren::
+
+    $ mkdir recipes/fixtures
+    $ python manage.py dumpdata --indent 4 recipes > recipes/fixtures/initial_data.json
+
+Django lädt die Fixtures aus einer Datei mit dem Namen ``initial_data.json``
+jedes mal wenn du ``syncdb`` ausführst. Die gerade gespeicherten Daten werden
+also automatisch geladen wenn du die Models löscht und neu anlegst.
+
+Außerdem kannst du die Daten auch manuell mit dem Befehl ``loaddata`` laden::
+
+    $ python manage.py loaddata recipes/fixtures/initial_data.json
+    Installed 4 object(s) from 1 fixture(s)
+
 Weiterführende Links zur Django Dokumentation
 =============================================
 
 * :djangodocs:`Informationen zu django-admin.py and manage.py <ref/django-admin/#ref-django-admin>`
+* :djangodocs:`Daten für die Erstellung der Models bereit stellen <howto/initial-data/>`
