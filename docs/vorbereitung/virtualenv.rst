@@ -56,7 +56,7 @@ oder Mac OS X das Paket :program:`virtualenvwrapper` installieren:
     $ pip install virtualenvwrapper
 
 Nach der Installation werden die folgenden beiden Zeilen in die Datei
-:file:`.profile` eingefügt:
+:file:`.bashrc` oder :file:`.profile` eingefügt:
 
 ..  code-block:: bash
 
