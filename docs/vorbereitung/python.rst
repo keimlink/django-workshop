@@ -17,10 +17,10 @@ an der Kommandozeile startest:
 ..  code-block:: bash
 
     $ python
-    Python 2.6.1 (r261:67515, Feb 11 2010, 00:51:29) 
+    Python 2.6.1 (r261:67515, Feb 11 2010, 00:51:29)
     [GCC 4.2.1 (Apple Inc. build 5646)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
-    
+
 Hier wurde eine Python 2.6 Installation unter Mac OS X gestartet.
 
 Wenn du Python schon in der richtigen Version installiert hast, kannst du mit
@@ -106,7 +106,7 @@ Weiterführende Links
 
     * `Python Homepage <http://python.org/>`_
     * `Offizielles Python Tutorial <http://docs.python.org/tutorial/index.html>`_
-    * `Dive Into Python <http://diveintopython.org/>`_
+    * `Learn Python The Hard Way <http://learnpythonthehardway.org/>`_
     * `Code Like a Pythonista: Idiomatic Python (interaktives Tutorial) <http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html>`_
     * `distribute Dokumentation <http://packages.python.org/distribute/>`_
     * `pip Homepage <http://www.pip-installer.org/>`_
