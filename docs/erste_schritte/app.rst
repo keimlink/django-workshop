@@ -176,7 +176,9 @@ sie ja nicht in der Admin-Applikation bearbeitet werden können. Dazu
 Das Feld ``date_created`` wird nur gefüllt, wenn das Model zum ersten mal
 gespeichert wird und daher noch kein Attribut ``id`` besitzt. Das Feld
 ``date_updated`` wird bei jedem Speichern aktualisiert. Am Ende wird die
-Methode der Elternklasse aufgerufen.
+``save`` Methode der Elternklasse mit Hilfe der Funktion super_ aufgerufen.
+
+.. _super: http://docs.python.org/library/functions.html#super
 
 Das Paket ``datetime`` müssen wir ebenfalls noch importieren. Also schreiben
 wir an den Anfang der Datei::
@@ -193,7 +195,7 @@ Die vollständige Datei
 ======================
 
 Die Datei ``models.py`` sollte nun so aussehen::
-    
+
     import datetime
 
     from django.contrib.auth.models import User
