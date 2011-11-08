@@ -162,13 +162,18 @@ Das Basis-Template erweitern
 ----------------------------
 
 Das eben angelegte Template :file:`toggle_login.html` binden wir nun in das
-Basis-Template als eigenen Block ein:
+Basis-Template als eigenen Block unterhalb der Überschrift "Kochbuch" im
+``<body>`` ein:
 
 ..  code-block:: html+django
 
-    {% block toggle_login %}
-        {% include "userauth/toggle_login.html" %}
-    {% endblock %}
+    <body>
+        <h1>Kochbuch</h1>
+        {% block toggle_login %}
+            {% include "userauth/toggle_login.html" %}
+        {% endblock %}
+        {% block content %}{% endblock %}
+    </body>
 
 .. _request_context_vorstellung:
 
