@@ -90,14 +90,18 @@ Instanz ihren URL selbst erzeugen kann. Dafür ist die Methode
     def get_absolute_url(self):
         return ('recipes_recipe_detail', (), {'slug': self.slug})
 
-Der Decorator ``models.permalink`` erwartet einen Tupel mit drei Werten:
+Der Dekorator ``models.permalink`` erwartet einen Tupel mit drei Werten:
 
 * Name der URL
 * Argumente (Variablen im regulären Ausdruck des URL, die keinen Namen
   bekommen haben)
 * Schlüsselwort-Argumente (Variablen im regulären Ausdruck des URL mit Namen)
 
-Der Decorator erstellt dann den URL und gibt diesen als String zurück.
+Der Dekorator erstellt dann den URL und gibt diesen als String zurück.
+
+..  note::
+
+    Mehr zum Thema Dekoratoren kannst du im :pep:`318` nachlesen.
 
 Templates anpassen
 ------------------
