@@ -155,7 +155,7 @@ anzuzeigen. Dieses Template erstellst du in
         <a href="{% url userauth_password_change %}">Passwort ändern</a>
         <a href="{% url userauth_logout %}">Logout</a></p>
     {% else %}
-        <p><a href="{% url userauth_login %}">Login</a>
+        <p><a href="{% url userauth_login %}">Login</a></p>
     {% endif %}
 
 Das Basis-Template erweitern
@@ -232,7 +232,7 @@ Zuerst wird die URLConf in :file:`userauth/urls.py` um zwei URLs erweitert::
         url(r'^registrieren/$', 'userauth.views.register',
             {'next_page_name': 'userauth_register_done'},
             name='userauth_register'),
-        url(r'^willkommen/',
+        url(r'^willkommen/$',
             TemplateView.as_view(template_name='userauth/register_done.html'),
             name='userauth_register_done')
     )
