@@ -45,6 +45,7 @@ passieren würde.
 
     # Eine neue Kategorie
     >>> salate = Category(name='Leckere Salate')
+    >>> salate.id
     >>> salate.save()
     >>> salate.id
     6
@@ -55,6 +56,8 @@ passieren würde.
 
     # Den Slug füllen
     >>> from django.template.defaultfilters import slugify
+    >>> slugify(salate.name)
+    u'leckere-salate'
     >>> salate.slug = slugify(salate.name)
     >>> salate.save()
     >>> salate.slug
@@ -115,6 +118,7 @@ passieren würde.
     >>> Recipe.objects.filter(number_of_portions=4).filter(title__startswith='Oma')
     []
     # Mit einem Q Objekt kann man eine "ODER" Verknüpfung realisieren
+    >>> from django.db.models import Q
     >>> Recipe.objects.filter(Q(number_of_portions=4) | Q(title__startswith='Oma'))
     [<Recipe: Aprikosenknödel>, <Recipe: Omas beste Frikadellen>, <Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
 
