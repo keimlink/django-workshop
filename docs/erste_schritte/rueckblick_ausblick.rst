@@ -8,6 +8,7 @@ Folgenden Dinge hast du gelernt:
 * Installation von Django in einem virtuellen Environment
 * Erstellen und Konfigurieren eines Django Projekts
 * Erstellen einer einfachen Django Applikation
+
     * Models erstellen
     * Einbinden der Admin-Applikation
     * URLConf erweitern
