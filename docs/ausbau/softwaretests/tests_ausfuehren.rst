@@ -16,38 +16,17 @@ Mit dem Befehl ``python manage.py test`` werden alle für das Projekt
 installierten Applikationen getestet::
 
     $ python manage.py test
-    Creating test database 'default'...
-    Creating table auth_permission
-    Creating table auth_group_permissions
-    Creating table auth_group
-    Creating table auth_user_user_permissions
-    Creating table auth_user_groups
-    Creating table auth_user
-    Creating table auth_message
-    Creating table django_content_type
-    Creating table django_session
-    Creating table django_site
-    Creating table django_admin_log
-    Creating table recipes_category
-    Creating table recipes_recipe_category
-    Creating table recipes_recipe
-    Installing index for auth.Permission model
-    Installing index for auth.Group_permissions model
-    Installing index for auth.User_user_permissions model
-    Installing index for auth.User_groups model
-    Installing index for auth.Message model
-    Installing index for admin.LogEntry model
-    Installing index for recipes.Recipe_category model
-    Installing index for recipes.Recipe model
-    No fixtures found.
-    ..........................................................................
-    ..........................................................................
-    ..........
+    Creating test database for alias 'default'...
+    .........................................................................
+    .........................................................................
+    .........................................................................
+    .........................................................................
+    ..............................
     ----------------------------------------------------------------------
-    Ran 158 tests in 3.406s
+    Ran 322 tests in 3.293s
 
     OK
-    Destroying test database 'default'...
+    Destroying test database for alias 'default'...
 
 Tests für eine Applikation durchführen
 ======================================
@@ -55,36 +34,13 @@ Tests für eine Applikation durchführen
 Man kann auch gezielt eine Applikation testen::
 
     $ python manage.py test recipes
-    Creating test database 'default'...
-    Creating table auth_permission
-    Creating table auth_group_permissions
-    Creating table auth_group
-    Creating table auth_user_user_permissions
-    Creating table auth_user_groups
-    Creating table auth_user
-    Creating table auth_message
-    Creating table django_content_type
-    Creating table django_session
-    Creating table django_site
-    Creating table django_admin_log
-    Creating table recipes_category
-    Creating table recipes_recipe_category
-    Creating table recipes_recipe
-    Installing index for auth.Permission model
-    Installing index for auth.Group_permissions model
-    Installing index for auth.User_user_permissions model
-    Installing index for auth.User_groups model
-    Installing index for auth.Message model
-    Installing index for admin.LogEntry model
-    Installing index for recipes.Recipe_category model
-    Installing index for recipes.Recipe model
-    No fixtures found.
+    Creating test database for alias 'default'...
     ..
     ----------------------------------------------------------------------
     Ran 2 tests in 0.097s
 
     OK
-    Destroying test database 'default'...
+    Destroying test database for alias 'default'...
 
 Ausgabe der Tests verändern
 ===========================
@@ -102,22 +58,25 @@ Umgekehrt kannst du mit dem Parameter ``-v 2`` alle Details beim Ablaufen der
 Tests beobachten::
 
     $ python manage.py test recipes -v 2
-    Creating test database 'default'...
-    Processing auth.Permission model
+    Creating test database for alias 'default' (':memory:')...
+    Creating tables ...
     Creating table auth_permission
-    ...
-    Running post-sync handlers for application auth
-    Adding permission 'auth | permission | Can add permission'
-    Adding permission 'auth | permission | Can change permission'
-    Adding permission 'auth | permission | Can delete permission'
-    ...
-    No custom SQL for auth.Permission model
-    ...
-    Installing index for auth.Permission model
-    ...
-    Loading 'initial_data' fixtures...
-    ...
-    No fixtures found.
+    Creating table auth_group_permissions
+    Creating table auth_group
+    Creating table auth_user_user_permissions
+    Creating table auth_user_groups
+    Creating table auth_user
+    Creating table auth_message
+    Creating table django_content_type
+    Creating table django_session
+    Creating table django_site
+    Creating table django_admin_log
+    Creating table recipes_category
+    Creating table recipes_recipe_category
+    Creating table recipes_recipe
+    Installing custom SQL ...
+    Installing indexes ...
+    Installed 4 object(s) from 1 fixture(s)
     test_basic_addition (recipes.tests.SimpleTest) ... ok
     Doctest: recipes.tests.__test__.doctest ... ok
 
@@ -125,4 +84,4 @@ Tests beobachten::
     Ran 2 tests in 0.008s
 
     OK
-    Destroying test database 'default'...
+    Destroying test database for alias 'default' (':memory:')...

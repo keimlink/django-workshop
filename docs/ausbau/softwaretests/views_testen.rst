@@ -33,37 +33,12 @@ Mit dem folgenden Kommando können wir diese Fixtures in einen Testserver laden
 und uns im Browser ansehen::
 
     $ python manage.py testserver view_tests_data.json test_users.json
-    Creating test database 'default'...
-    Creating table auth_permission
-    Creating table auth_group_permissions
-    Creating table auth_group
-    Creating table auth_user_user_permissions
-    Creating table auth_user_groups
-    Creating table auth_user
-    Creating table auth_message
-    Creating table django_content_type
-    Creating table django_session
-    Creating table django_site
-    Creating table django_admin_log
-    Creating table recipes_category
-    Creating table recipes_recipe_category
-    Creating table recipes_recipe
-    Installing index for auth.Permission model
-    Installing index for auth.Group_permissions model
-    Installing index for auth.User_user_permissions model
-    Installing index for auth.User_groups model
-    Installing index for auth.Message model
-    Installing index for admin.LogEntry model
-    Installing index for recipes.Recipe_category model
-    Installing index for recipes.Recipe model
-    No fixtures found.
-    Installing json fixture 'view_tests_data' from '/Users/zappi/Projekte/Python/cookbook/recipes/fixtures'.
-    Installing json fixture 'test_users' from '/Users/zappi/Projekte/Python/cookbook/userauth/fixtures'.
+    Creating test database for alias 'default'...
     Installed 43 object(s) from 2 fixture(s)
     Validating models...
-    0 errors found
 
-    Django version 1.3, using settings 'cookbook.settings'
+    0 errors found
+    Django version 1.3.1, using settings 'cookbook.settings'
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
