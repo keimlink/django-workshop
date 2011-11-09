@@ -26,17 +26,17 @@ Ersetzte den folgenden Teil der Datei :file:`recipes/tests.py`::
 mit diesem Code::
 
     # -*- coding: utf-8 -*-
-    
+
     import datetime
 
     from django.contrib.auth.models import User
     from django.db import IntegrityError
     from django.template.defaultfilters import slugify
     from django.test import skipIfDBFeature, TestCase
-    
+
     from recipes.models import Recipe
-    
-    
+
+
     class RecipeSaveTest(TestCase):
         title = u'Erbsensuppe mit Würstchen'
         number_of_portions = 4
@@ -81,6 +81,8 @@ Du kannst diese Tests mit den schon gezeigten Kommandos starten oder gezielt
 nur diese Testklasse mit dem folgenden Kommando aufrufen::
 
     $ python manage.py test recipes.RecipeSaveTest
+
+..  _vor_und_nachteile_unittests:
 
 Vor- und Nachteile von Unit Tests
 =================================
