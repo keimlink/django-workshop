@@ -74,6 +74,8 @@ Sie enthält die URLs für Login und Logout sowie zum Ändern des Passworts.
 Dabei werden die Views aus ``django.contrib.auth.views`` benutzt. Sie werden
 aber mit eigenen Templates gerendert.
 
+.. _toggle_login:
+
 Templates anlegen
 -----------------
 

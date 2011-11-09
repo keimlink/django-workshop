@@ -10,12 +10,13 @@ Inhaltsverzeichnis:
 
 .. toctree::
    :maxdepth: 2
-   
+
    einfuehrung
    vorbereitung/index
    erste_schritte/index
    datenbank_api
    ausbau/index
+   konzepte
    projekt
    autoren
    lizenz

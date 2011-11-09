@@ -26,6 +26,8 @@ von zusätzlichen Informationen nutzen::
         assert False, 'Anzahl der Rezepte: %d' % recipes.count()
         return render_to_response('recipes/index.html', {'object_list': recipes})
 
+..  _logging_framework:
+
 In ein Logfile schreiben
 ========================
 
@@ -87,13 +89,15 @@ Jetzt muss noch am Ende der Datei der folgende Code einfügt werden, um den
 Nun kann man im View in das Log schreiben::
 
     import logging
-    
+
     logger = logging.getLogger('cookbook.recipes.views')
-    
+
     def index(request):
         recipes = Recipe.objects.all()
         logger.debug('Anzahl der Rezepte: %d' % recipes.count())
         return render_to_response('recipes/index.html', {'object_list': recipes})
+
+..  _python_debugger:
 
 Mit dem Python-Debugger arbeiten
 ================================
@@ -118,7 +122,7 @@ Konsole:
     -> return render_to_response('recipes/detail.html', {'object': recipe})
     (Pdb) l
       7         return render_to_response('recipes/index.html', {'object_list': recipes})
-      8  
+      8
       9     def detail(render, slug):
      10         recipe = get_object_or_404(Recipe, slug=slug)
      11         import pdb; pdb.set_trace()
