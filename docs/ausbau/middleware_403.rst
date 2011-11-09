@@ -47,7 +47,7 @@ in der ``settings.py`` eingefügt werden:
 
     MIDDLEWARE_CLASSES = (
         ...
-        'middleware.Http403Middleware'
+        'cookbook.middleware.Http403Middleware'
     )
 
 Weiterführende Links zur Django Dokumentation
