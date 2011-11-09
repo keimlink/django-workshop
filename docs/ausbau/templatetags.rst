@@ -94,7 +94,9 @@ Zuerst erstellt du die Kompilierungsfunktion in der neu angelegten Datei
 Der Renderer
 ------------
 
-Danach schreibst du die Node, die die Ausgabe rendert:
+Danach schreibst du die Node, die die Ausgabe rendert. Dieser Code muss
+oberhalb der Funktion ``do_is_author`` stehen, denn sonst steht die Klasse
+``IsAuthorNode`` nicht in der Funktion zur Verfügung.
 
 ..  code-block:: python
 

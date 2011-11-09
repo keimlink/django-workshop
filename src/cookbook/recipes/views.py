@@ -21,7 +21,7 @@ class RecipeListView(ListView):
 
 
 class RecipeDetailView(DetailView):
-    queryset = Recipe.objects.all()
+    model = Recipe
     template_name = 'recipes/detail.html'
 
 

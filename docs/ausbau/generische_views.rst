@@ -14,12 +14,13 @@ Funktionen basierten.
 Erstellen der generischen Views
 ===============================
 
-Ersetzen wir also die beiden Funktionen ``index`` und ``detail`` durch
-"class-based generic views" in der Datei :file:`recipes/views.py`. Zuerst muss
-ein weiterer Import hinzugefügt werden:
+Ersetzen wir also die beiden Funktionen ``index`` und ``detail`` durch "class-
+based generic views" in der Datei :file:`recipes/views.py`. Zuerst müssen zwei
+weiterere Imports hinzugefügt werden:
 
 ..  code-block:: python
 
+    from django.shortcuts import render
     from django.views.generic import DetailView, ListView
 
 Nun werden die beiden Funktionen durch die Klassen ersetzt:
@@ -36,7 +37,7 @@ Nun werden die beiden Funktionen durch die Klassen ersetzt:
 
 
     class RecipeDetailView(DetailView):
-        queryset = Recipe.objects.all()
+        model = Recipe
         template_name = 'recipes/detail.html'
 
 Die generischen Views in der URLConf

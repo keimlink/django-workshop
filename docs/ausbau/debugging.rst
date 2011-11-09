@@ -97,6 +97,10 @@ Nun kann man im View in das Log schreiben::
         logger.debug('Anzahl der Rezepte: %d' % recipes.count())
         return render_to_response('recipes/index.html', {'object_list': recipes})
 
+Die Einträge in der Logdatei kann man auch im Bereich "Logging" des Django
+Debug Toolbar sehen. So spart man sich das Öffnen der Datei, um die Einträge
+anzusehen.
+
 ..  _python_debugger:
 
 Mit dem Python-Debugger arbeiten
