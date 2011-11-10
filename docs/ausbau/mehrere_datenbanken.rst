@@ -158,11 +158,11 @@ Tabellen. Wir können das auch prüfen::
     Enter ".help" for instructions
     Enter SQL statements terminated with a ";"
     sqlite> .tables
-    news_article            south_migrationhistory
+    south_migrationhistory
 
 Jetzt führen wir die erste Migration durch::
 
-    $ python manage.py migrate news
+    $ python manage.py migrate news --database=newsdb
     Running migrations for news:
      - Migrating forwards to 0001_initial.
      > news:0001_initial
@@ -276,15 +276,15 @@ Diese schreiben wir dann in die Datei :file:`addressbook/models.py`::
 
     $ python manage.py inspectdb --database=addressdb > addressbook/models.py
 
-Damit die Models auch funktionieren passen wir sie noch ein wenig an (die
-gänderten Zeilen sind farbig markiert):
+Damit die Models auch funktionieren passen wir sie noch ein wenig an (Zeilen
+5, 10, 14, 16-17, 21, 23, 26, 28-29):
 
 ..  literalinclude:: ../../src/cookbook/addressbook/models.py
     :emphasize-lines: 5, 10, 14, 16-17, 21, 23, 26, 28-29
     :linenos:
 
-Außerdem müssen wir den ``CookbookRouter`` erweitern (die
-hinzugefügten Zeilen sind farbig markiert):
+Außerdem müssen wir den ``CookbookRouter`` erweitern (Zeilen 7-8, 14-15,
+21-22):
 
 ..  literalinclude:: ../../src/cookbook/router.py
     :emphasize-lines: 7-8, 14-15, 21-22
@@ -300,3 +300,8 @@ der Liste an und machen alle Felder im Formular nur lesbar:
 Zuletzt aktivieren wir noch die App ``addressbook`` in den ``INSTALLED_APPS``
 in der :file:`settings.py` und starten dann den Entwicklungs-Webserver, um uns
 die Daten anzusehen.
+
+Weiterführende Links zur Django und Python Dokumentation
+========================================================
+
+* :djangodocs:`Mehrere Datenbank nutzen <topics/db/multi-db/>`
