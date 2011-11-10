@@ -18,4 +18,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(SITE_ROOT, 'news.db'),
     },
+    'addressdb': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(SITE_ROOT, 'address.db'),
+    },
 }

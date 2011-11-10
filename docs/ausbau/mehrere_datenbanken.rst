@@ -1,5 +1,5 @@
 Mehrere Datenbanken nutzen
-==========================
+**************************
 
 Seit Django 1.2 kann man mit mehreren Datenbanken gleichzeitig arbeiten.
 
@@ -89,49 +89,21 @@ können::
 
     admin.site.register(Article, ArticleAdmin)
 
-Die Klasse ``NewsRouter`` erstellen
-===================================
+Die Klasse ``CookbookRouter`` erstellen
+=======================================
 
 Damit wir die neue Datenbank auch mit der App "news" nutzen können benötigen
 wir einen "database router". Diesen legen wir in der Datei
-:file:`cookbook/router.py` an::
+:file:`cookbook/router.py` an:
 
-    class NewsRouter(object):
-        """A router to control all database operations on models in the news application.
-        """
-        def db_for_read(self, model, **hints):
-            "Point all operations on the news app models to newsdb."
-            if model._meta.app_label == 'news':
-                return 'newsdb'
-            return None
-
-        def db_for_write(self, model, **hints):
-            "Point all operations on the news app models to newsdb."
-            if model._meta.app_label == 'news':
-                return 'newsdb'
-            return None
-
-        def allow_relation(self, obj1, obj2, **hints):
-            "Allow no relation if a model in news app is involved."
-            if obj1._meta.app_label == 'news' or obj2._meta.app_label == 'news':
-                return False
-            return None
-
-        def allow_syncdb(self, db, model):
-            "Make sure the news app only appears on the newsdb."
-            allowed = ['south']
-            if model._meta.app_label in allowed:
-                return True
-            elif db == 'newsdb':
-                return model._meta.app_label == 'news'
-            elif model._meta.app_label == 'news':
-                return False
-            return None
+..  literalinclude:: ../../src/cookbook/router.py
+    :lines: 1-6, 9-13, 16-20, 23-
+    :linenos:
 
 Danach müssen wir ``DATABASE_ROUTERS`` in der Datei :file:`settings.py`
 konfigurieren::
 
-    DATABASE_ROUTERS = ['cookbook.router.NewsRouter']
+    DATABASE_ROUTERS = ['cookbook.router.CookbookRouter']
 
 Außerdem aktivieren wir noch die neue App "news" in den ``INSTALLED_APPS``.
 
@@ -178,7 +150,7 @@ South anlegen::
     (use ./manage.py migrate to migrate these)
 
 Dabei sieht es so aus, als ob noch weitere Tabellen angelegt werden. Das ist
-aber nicht der Fall, denn der ``NewsRouter`` unterbindet das anlegen der
+aber nicht der Fall, denn der ``CookbookRouter`` unterbindet das anlegen der
 Tabellen. Wir können das auch prüfen::
 
     $ python manage.py dbshell --database=newsdb
@@ -199,3 +171,132 @@ Jetzt führen wir die erste Migration durch::
 
 Danach können wir den Entwicklungs-Webserver starten und einige Artikel in der
 neuen News App anlegen.
+
+Eine existierende Datenbank einbinden
+=====================================
+
+Seit Django 1.2 ist es auch möglich eine existierende Datenbank in Django
+einzubinden. Dazu müssen wir zuerst eine solche anlegen. Ich dafür ein Python
+Skript geschrieben, dass eine SQLite Datenbank mit Adressen füllt:
+
+..  literalinclude:: ../../src/cookbook/sqltestdata.py
+    :linenos:
+
+Wenn man das Skript an der Kommandozeile aufruft werden die erzeugten SQL
+Queries ausgegeben::
+
+    $ python sqltestdata.py
+
+Man kann auch mit einem Argument die Anzahl der erzeugten Adressen bestimmen::
+
+    $ python sqltestdata.py 200
+
+Zuerst muss aber die Datenbankverbidung in der :file:`local_settings.py`
+angelegt werden::
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(SITE_ROOT, 'cookbook.db'),
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        },
+        'newsdb': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(SITE_ROOT, 'news.db'),
+        },
+        'addressdb': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(SITE_ROOT, 'address.db'),
+        },
+    }
+
+Nun können wir die Queries mit der neuen Datenbank ausführen::
+
+    $ python sqltestdata.py 2000 | python manage.py dbshell --database=addressdb
+
+Und uns auch gleich die Daten ansehen::
+
+    $ python manage.py dbshell --database=addressdb
+    SQLite version 3.7.6.3
+    Enter ".help" for instructions
+    Enter SQL statements terminated with a ";"
+    sqlite> .tables
+    address  city
+    sqlite> select * from address join city on city_id = city.id limit 10;
+    1|Andrea|Schulze|Alte Straße 73|64831|5|5|Bremen
+    2|Malte|Schulze|Neuer Ring 35|87214|5|5|Bremen
+    3|Maria|Hirsch|Hauptstraße 78|68412|5|5|Bremen
+    4|Malte|Weiland|Brunnengasse 70|48076|2|2|Dresden
+    5|Andrea|Drescher|Am Markt 35|91046|1|1|Berlin
+    6|Maria|Drescher|Hauptstraße 13|08457|6|6|Stuttgart
+    7|Peter|Drescher|Hauptstraße 67|69318|3|3|Hamburg
+    8|Maria|Drescher|Alte Straße 89|87126|4|4|Bonn
+    9|Maria|Hirsch|Hauptstraße 25|41359|4|4|Bonn
+    10|Maria|Meier|Neuer Ring 17|95746|1|1|Berlin
+
+Als nächstes erstellen wir eine App für die neue Datenbank::
+
+    $ python manage.py startapp addressbook
+
+Und lassen Django mit Hilfe des Befehls ``inspectdb`` Models aus den Tabellen
+der Datenbank erzeugen::
+
+    $ python manage.py inspectdb --database=addressdb
+    # This is an auto-generated Django model module.
+    # You'll have to do the following manually to clean this up:
+    #     * Rearrange models' order
+    #     * Make sure each model has one field with primary_key=True
+    # Feel free to rename the models, but don't rename db_table values or field names.
+    #
+    # Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
+    # into your database.
+
+    from django.db import models
+
+    class Address(models.Model):
+        id = models.IntegerField(primary_key=True)
+        first_name = models.CharField(max_length=100)
+        last_name = models.CharField(max_length=100)
+        street = models.CharField(max_length=255)
+        zipcode = models.CharField(max_length=5)
+        city = models.ForeignKey(City)
+        class Meta:
+            db_table = u'address'
+
+    class City(models.Model):
+        id = models.IntegerField(primary_key=True)
+        name = models.CharField(max_length=255)
+        class Meta:
+            db_table = u'city'
+
+Diese schreiben wir dann in die Datei :file:`addressbook/models.py`::
+
+    $ python manage.py inspectdb --database=addressdb > addressbook/models.py
+
+Damit die Models auch funktionieren passen wir sie noch ein wenig an (die
+gänderten Zeilen sind farbig markiert):
+
+..  literalinclude:: ../../src/cookbook/addressbook/models.py
+    :emphasize-lines: 5, 10, 14, 16-17, 21, 23, 26, 28-29
+    :linenos:
+
+Außerdem müssen wir den ``CookbookRouter`` erweitern (die
+hinzugefügten Zeilen sind farbig markiert):
+
+..  literalinclude:: ../../src/cookbook/router.py
+    :emphasize-lines: 7-8, 14-15, 21-22
+    :linenos:
+
+Jetzt benötigen wir nur noch eine :file:`addressbook/admin.py`, um die Daten
+im Admin anzuzeigen. Wir aktivieren Suche und Filter, zeigen mehr Felder in
+der Liste an und machen alle Felder im Formular nur lesbar:
+
+..  literalinclude:: ../../src/cookbook/addressbook/admin.py
+    :linenos:
+
+Zuletzt aktivieren wir noch die App ``addressbook`` in den ``INSTALLED_APPS``
+in der :file:`settings.py` und starten dann den Entwicklungs-Webserver, um uns
+die Daten anzusehen.

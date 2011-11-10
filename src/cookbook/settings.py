@@ -22,7 +22,7 @@ DATABASES = {
     }
 }
 
-DATABASE_ROUTERS = ['cookbook.router.NewsRouter']
+DATABASE_ROUTERS = ['cookbook.router.CookbookRouter']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'userauth',
     'south',
     'news',
+    'addressbook',
 )
 
 # A sample logging configuration. The only tangible logging
