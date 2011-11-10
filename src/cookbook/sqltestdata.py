@@ -16,8 +16,8 @@ def get_random_zipcode():
 
 
 def drop_tables():
-    sql = """DROP TABLE "city";
-    DROP TABLE "address";
+    sql = """DROP TABLE IF EXISTS "city";
+    DROP TABLE IF EXISTS "address";
     """
     return sql
 
