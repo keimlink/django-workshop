@@ -39,6 +39,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(User, verbose_name='Autor')
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField(editable=False)
+    active = models.BooleanField('Aktiv')
 
     class Meta:
         verbose_name = 'Rezept'
@@ -51,13 +52,13 @@ class Recipe(models.Model):
 
     def __unicode__(self):
         return self.title
-    
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.date_created = datetime.datetime.now()
         self.date_updated = datetime.datetime.now()
         super(Recipe, self).save(*args, **kwargs)
-    
+
     def get_related_recipes(self):
         categories = self.category.all()
         related_recipes = Recipe.objects.all().filter(

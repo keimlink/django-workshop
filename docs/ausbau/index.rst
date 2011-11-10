@@ -19,3 +19,5 @@ Ausbau des Django Projekts
    modelmethoden
    softwaretests/index
    internationalisierung
+   migration
+   mehrere_datenbanken
