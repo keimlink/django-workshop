@@ -45,8 +45,8 @@ Dann müssen die bestehenden Apps konvertiert werden, damit diese mit South
 arbeiten können::
 
     $ python manage.py convert_to_south recipes
-    Creating migrations directory at '/Users/zappi/Projekte/Python/django-workshop/src/cookbook/recipes/migrations'...
-    Creating __init__.py in '/Users/zappi/Projekte/Python/django-workshop/src/cookbook/recipes/migrations'...
+    Creating migrations directory at '.../cookbook/recipes/migrations'...
+    Creating __init__.py in '.../cookbook/recipes/migrations'...
      + Added model recipes.Category
      + Added model recipes.Recipe
      + Added M2M table for category on recipes.Recipe
@@ -57,9 +57,10 @@ arbeiten können::
      > recipes:0001_initial
        (faked)
 
-    App 'recipes' converted. Note that South assumed the application's models matched the database
-    (i.e. you haven't changed it since last syncdb); if you have, you should delete the recipes/migrations
-    directory, revert models.py so it matches the database, and try again.
+    App 'recipes' converted. Note that South assumed the application's models
+    matched the database (i.e. you haven't changed it since last syncdb); if
+    you have, you should delete the recipes/migrations directory, revert
+    models.py so it matches the database, and try again.
 
 South hat automatisch die erste Migration :file:`0001_initial.py` für die
 App ``recipes`` in :file:`recipes/migrations` angelegt und diese als
@@ -89,7 +90,8 @@ wir aber die bestehenden Daten löschen. Das können wir mit South vermeiden::
 
     $ python manage.py schemamigration recipes --auto
      + Added field active on recipes.Recipe
-    Created 0002_auto__add_field_recipe_active.py. You can now apply this migration with: ./manage.py migrate recipes
+    Created 0002_auto__add_field_recipe_active.py. You can now apply this
+    migration with: ./manage.py migrate recipes
 
 South erkennt die Änderung automatisch und erstellt eine neue Migration. Diese
 wurde aber noch nicht angewendet::
