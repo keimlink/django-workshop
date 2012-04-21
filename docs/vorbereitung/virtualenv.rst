@@ -7,7 +7,7 @@ Was ist virtualenv?
 Wenn man beginnt an mehreren Projekten parallel zu arbeiten kommt irgendwann
 der Zeitpunkt, an den Kollisionen bei den installierten Paketen auftreten.
 
-Ein altes Projekt benutzt zum Beispiel noch Django 1.1 und kann aus Zeitmangel
+Ein altes Projekt benutzt zum Beispiel noch Django 1.2 und kann aus Zeitmangel
 nicht migriert werden. Gleichzeitig soll aber ein neues Projekt mit Django
 |djangoversion| gestartet werden.
 
@@ -18,7 +18,7 @@ die installierten Pakete von der Basisinstallation abkapselt.
 
 Außerdem kann :program:`virtualenv` jeder Umgebung eine bestimmte Python
 Version zuordnen. Man kann also ein virtuelle Arbeitsumgebung mit Python 2.5
-erstellen, das nächste mit Python 2.6.
+erstellen, die nächste mit Python 2.6.
 
 Außerdem lässt sich :program:`virtualenv` auch im Produktivbetrieb auf dem
 Server einsetzen. Man kann dort also die gleiche Umgebung nutzen wie schon
@@ -66,6 +66,28 @@ Nach der Installation werden die folgenden beiden Zeilen in die Datei
 Dadurch "weiss" :program:`virtualenvwrapper` wo sich alle virtuellen
 Arbeitsumgebungen befinden. Das Skript :file:`virtualenvwrapper.sh` lädt die
 Shell-Befehle, mit denen wir arbeiten werden.
+
+Nach dem Bearbeiten von :file:`.bashrc` oder :file:`.profile` muss die
+Konfiguration noch einmal neu geladen werden. Dabei legt
+:program:`virtualenvwrapper` die nötigen Skripte an:
+
+..  code-block:: bash
+
+    $ source .bashrc
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/initialize
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/premkvirtualenv
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/postmkvirtualenv
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/prermvirtualenv
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/postrmvirtualenv
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/predeactivate
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/postdeactivate
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/preactivate
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/postactivate
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/get_env_details
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/premkproject
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/postmkproject
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/prermproject
+    virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/postrmproject
 
 Weiterführende Links
 ====================

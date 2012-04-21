@@ -9,21 +9,19 @@ Nachdem nun Python und :program:`virtualenv` installiert sind kann ein neues
 
 ..  code-block:: bash
 
-    $ mkvirtualenv --distribute --no-site-packages django-workshop
+    $ mkvirtualenv --distribute django-workshop
 
 Falls kein :program:`virtualenvwrapper` installiert wurde muss folgendes
 Kommando ausgeführt werden:
 
 ..  code-block:: bash
 
-    $ virtualenv --distribute --no-site-packages .virtualenvs/django-workshop
+    $ virtualenv --distribute .virtualenvs/django-workshop
 
 Folgendes passiert:
 
     * Die Option ``--distribute`` installiert im *virtual environment*
       ``distribute`` statt ``setuptools``
-    * Durch die Option ``--no-site-packages`` stehen die in der zentralen
-      Python Installation vorhandenen Pakete nicht zur Verfügung
     * ``django-workshop`` ist der Name, unter dem das *virtual environment*
       später zur Verfügung steht
 
@@ -59,6 +57,13 @@ Verzeichnis ansehen:
 ..  code-block:: bash
 
     $ ls -l .virtualenvs/django-workshop/lib/python2.6/site-packages/
+
+Dort sollte sich jetzt ein Verzeichnis `django` befinden.
+
+Die Django Version kann man mit folgendem Kommando prüfen::
+
+    $ django-admin.py --version
+    1.4
 
 Weiterführende Links
 ====================

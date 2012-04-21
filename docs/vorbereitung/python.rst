@@ -7,21 +7,18 @@ werden.
 Python installieren
 ===================
 
-Django |djangoversion| unterstützt die Python Versionen 2.4, 2.5 und 2.6. Wenn
+Django |djangoversion| unterstützt die Python Versionen 2.5, 2.6 und 2.7. Wenn
 du eine ältere Python Version hast, solltest du diese aktualisieren. Ab Django
-1.4 wird Python 2.4 nicht mehr unterstützt werden.
+1.5 wird Python 2.5 nicht mehr unterstützt werden, dafür gibt es aber
+experimetelle Unterstützung für Python 3.3.
 
-Deine Python Version kannst du heraus finden indem du den Python Interpreter
-an der Kommandozeile startest:
+Deine Python Version kannst du heraus finden, indem du den Python Interpreter
+an der Kommandozeile mit der Option ``-V`` startest:
 
 ..  code-block:: bash
 
-    $ python
-    Python 2.6.1 (r261:67515, Feb 11 2010, 00:51:29)
-    [GCC 4.2.1 (Apple Inc. build 5646)] on darwin
-    Type "help", "copyright", "credits" or "license" for more information.
-
-Hier wurde eine Python 2.6 Installation unter Mac OS X gestartet.
+    $ python -V
+    Python 2.6.1
 
 Wenn du Python schon in der richtigen Version installiert hast, kannst du mit
 der Installation des :ref:`Python Paketmanagers <python_paketmanager>`
@@ -41,7 +38,11 @@ Mac OS X
 --------
 
 Mac OS X wird mit einer Python-Installation ausgeliefert: Snow Leopard bringt
-eine Python 2.6 Installation mit.
+eine Python 2.6 Installation mit, Lion hat Python 2.7.1 installiert.
+
+Alternativ kannst du auch Python mit Hilfe von Homebrew_ installieren.
+
+..  _Homebrew: http://mxcl.github.com/homebrew/
 
 Windows
 -------
@@ -89,6 +90,14 @@ werden:
 ..  code-block:: bash
 
     $ easy_install pip
+
+Falls :program:`easy_install` nicht installiert ist, kann :program:`pip` auch
+mit Hilfe eines Bootstrap-Skripts installiert werden:
+
+..  code-block:: bash
+
+    $ wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+    $ python get-pip.py
 
 ..  note::
 
