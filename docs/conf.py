@@ -11,6 +11,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+from datetime import date
 import sys, os
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -41,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Django Workshop'
-copyright = u'2010-2012, Markus Zapke-Gründemann'
+copyright = u'2010-%s, Markus Zapke-Gründemann' % date.today().year
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
