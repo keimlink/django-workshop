@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Django Workshop'
-copyright = u'2010, Markus Zapke-Gründemann'
+copyright = u'2010-2012, Markus Zapke-Gründemann'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -215,8 +215,10 @@ man_pages = [
      [u'Markus Zapke-Gründemann'], 1)
 ]
 
-extlinks = {'djangodocs': ('http://docs.djangoproject.com/en/1.3/%s', None)}
+extlinks = {'djangodocs': ('https://docs.djangoproject.com/en/1.4/%s', None)}
 
 rst_prolog = """
-.. |djangoversion| replace:: 1.3
+.. |djangoversion| replace:: 1.4
 """
+
+linkcheck_ignore = [r'http://127.0.0.1:\d+/', r'http://localhost:\d+/']
