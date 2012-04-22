@@ -14,6 +14,10 @@ class basic_setup {
     package { 'tree':
         ensure => present,
     }
+
+    package { 'sqlite3':
+        ensure => present,
+    }
 }
 
 include basic_setup
