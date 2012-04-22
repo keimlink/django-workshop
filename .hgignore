@@ -4,5 +4,7 @@ syntax: glob
 *.pyc
 .coverage
 .vagrant
+backup.json
+import.json
 docs/_build
 htmlcov

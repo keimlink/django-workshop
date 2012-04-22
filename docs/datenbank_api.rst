@@ -6,6 +6,52 @@ Die Datenbank API
 Django bringt eine Datenbank API mit, die Objekte erstellen, lesen, schreiben
 und löschen kann.
 
+Backup und Einspielen der Fixtures
+==================================
+
+Damit du alle Operationen durchführen kannst benötigst du exakt die gleichen
+Daten. Also musst du zuerst ein Backup deiner Daten machen, deine Daten löschen
+und dann die Fixtures importieren. Am Ende spielst du dann dein Backup wieder
+ein.
+
+..  note::
+
+    Du benötigst das Programm `sqlite3 <https://www.sqlite.org/>`_, um den
+    Befehl :program:`dbshell` nutzen zu können.
+
+Das Backup erstellst du so:
+
+..  code-block:: bash
+
+    $ python manage.py dumpdata > backup.json
+
+Nun kannst du die gesamte Datenbank löschen:
+
+..  code-block:: bash
+
+    $ python manage.py sqlflush | python manage.py dbshell
+
+Bevor du die Daten importieren kannst muss wieder ein Superuser angelegt werden:
+
+..  code-block:: bash
+
+    $ python manage.py createsuperuser
+    Username (leave blank to use 'vagrant'): admin
+    E-mail address: admin@example.com
+    Password:
+    Password (again):
+    Superuser created successfully.
+
+Jetzt importierst du die Daten, die du im Mercurial-Repository dieses Projekts
+`findest <https://bitbucket.org/keimlink/django-workshop/raw/bdabf8fb9e5d/src/e
+rste_schritte/cookbook/recipes/fixtures/initial_data.json>`_.
+
+..  code-block:: bash
+
+    $ wget -O import.json https://bitbucket.org/keimlink/django-workshop/raw/bdabf8fb9e5d/src/erste_schritte/cookbook/recipes/fixtures/initial_data.json
+    $ python manage.py loaddata import.json
+    Installed 18 object(s) from 2 fixture(s)
+
 Arbeiten mit der Datenbank API
 ==============================
 
@@ -28,7 +74,7 @@ passieren würde.
     # Ein QuerySet mit allen Rezepten
     >>> all_recipes = Recipe.objects.all()
     >>> all_recipes
-    [<Recipe: Omas beste Frikadellen>, <Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
+    [<Recipe: Bärlauchstrudel>, <Recipe: Kohleintopf mit Tortellini>, <Recipe: Käsespiegelei auf Spinatnudeln>]
     # all_recipes ist ein QuerySet
     >>> type(all_recipes)
     <class 'django.db.models.query.QuerySet'>
@@ -36,11 +82,11 @@ passieren würde.
     3
 
     # Betrachten eines Rezepts
-    >>> all_recipes[0]
-    <Recipe: Omas beste Frikadellen>
-    >>> all_recipes[0].title
-    u'Omas beste Frikadellen'
-    >>> all_recipes[0].number_of_portions
+    >>> all_recipes[1]
+    <Recipe: Kohleintopf mit Tortellini>
+    >>> all_recipes[1].title
+    u'Kohleintopf mit Tortellini'
+    >>> all_recipes[1].number_of_portions
     4
 
     # Eine neue Kategorie
@@ -48,7 +94,7 @@ passieren würde.
     >>> salate.id
     >>> salate.save()
     >>> salate.id
-    6
+    7
     >>> salate.name
     'Leckere Salate'
     >>> salate.slug
@@ -70,7 +116,7 @@ passieren würde.
     DoesNotExist: Category matching query does not exist.
 
     # Ein einziges Objekt holen
-    >>> Category.objects.get(pk=6)
+    >>> Category.objects.get(pk=7)
     <Category: Leckere Salate>
 
     # Filter benutzen
@@ -84,25 +130,25 @@ passieren würde.
     <Category: Leckere Salate>
     # Auch auf ein QuerySet kann ein Filter angewendet werden
     >>> categories = Category.objects.all()
-    >>> categories.filter(title__startswith='Lecker')
+    >>> categories.filter(name__startswith='Lecker')
     [<Category: Leckere Salate>]
 
-    # Die Kategorie benutzen, um auf die Rezepte zuzugereifen
-    >>> categories[0]
-    <Category: Nudeln und Pasta>
-    >>> type(categories[0].recipe_set)
+    # Eine Kategorie benutzen, um auf die Rezepte zuzugereifen
+    >>> categories[1]
+    <Category: Pasta>
+    >>> type(categories[1].recipe_set)
     <class 'django.db.models.fields.related.ManyRelatedManager'>
-    >>> categories[0].recipe_set.all()
-    [<Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
+    >>> categories[1].recipe_set.all()
+    [<Recipe: Kohleintopf mit Tortellini>, <Recipe: Käsespiegelei auf Spinatnudeln>]
 
     # Über die Relation eines Rezepts eine Kategorie anlegen
     >>> recipe = all_recipes[0]
-    # Zwei Kategorien am Model
+    # Drei Kategorien am Model
     >>> recipe.category.all()
-    [<Category: Hauptspeise>, <Category: Party>]
+    [<Category: Fleisch>, <Category: Backen>, <Category: Frühling>]
     >>> recipe.category.create(name='Foo')
     <Category: Foo>
-    # Jetzt sind es drei Kategorien
+    # Jetzt sind es vier Kategorien
     >>> recipe.category.all()
     [<Category: Hauptspeise>, <Category: Party>, <Category: Foo>]
     # Die neu angelegte Kategorie wieder löschen
@@ -111,7 +157,7 @@ passieren würde.
     [<Category: Foo>]
     >>> foo.delete()
     >>> recipe.category.all()
-    [<Category: Hauptspeise>, <Category: Party>]
+    [<Category: Fleisch>, <Category: Backen>, <Category: Frühling>]
 
     # Komplexe Abfragen mit Q Objekten
     # Die folgende Abfrage verknüpft beide Bedingungen mit "AND"
@@ -120,7 +166,23 @@ passieren würde.
     # Mit einem Q Objekt kann man eine "ODER" Verknüpfung realisieren
     >>> from django.db.models import Q
     >>> Recipe.objects.filter(Q(number_of_portions=4) | Q(title__startswith='Oma'))
-    [<Recipe: Aprikosenknödel>, <Recipe: Omas beste Frikadellen>, <Recipe: Aglio e Olio>, <Recipe: Bratnudeln auf deutsche Art>]
+    [<Recipe: Bärlauchstrudel>, <Recipe: Kohleintopf mit Tortellini>]
+
+Die Testdaten löschen und das Backup einspielen
+===============================================
+
+Jetzt löscht du die Testdaten:
+
+..  code-block:: bash
+
+    $ python manage.py sqlflush | python manage.py dbshell
+
+Und lädst dein Backup:
+
+..  code-block:: bash
+
+    $ python manage.py loaddata backup.json
+
 
 Weiterführende Links zur Django Dokumentation
 =============================================
