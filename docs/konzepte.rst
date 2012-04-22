@@ -23,10 +23,7 @@ Wichtige Konzepte für die Arbeit mit Django
     * Fixtures (Verzeichis :file:`fixtures`)
     * Tests (:file:`tests.py`)
     * ...
-* Eine App sollte sich nur dann auf ein Projekt beziehen, wenn sie auch zum Projekt gehört
-
-    * ``from cookbook.recipes.models import Recipe`` nur nutzen, wenn man die App nicht aus der Projekt entfernt
-    * Sonst ``from recipes.models import Recipe`` benutzen
+* Innerhalb einer App immer relative Imports benutzen (siehe :pep:`328`)
 * Falls nötig eine App in Python Packages für Models, Views oder Tests aufteilen
 * Models
 
