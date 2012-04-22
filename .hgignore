@@ -2,6 +2,7 @@ syntax: glob
 
 *.db
 *.pyc
-docs/_build
 .coverage
+.vagrant
+docs/_build
 htmlcov
