@@ -242,7 +242,7 @@ Als erstes muss ein zusätzlicher Import an den Beginn der Datei
 
 An das Ende kommt eine neue Methode für den neuen View::
 
-    def detail(render, slug):
+    def detail(request, slug):
         try:
             recipe = Recipe.objects.get(slug=slug)
         except Recipe.DoesNotExist:
@@ -266,7 +266,7 @@ Die komplette Datei sieht dann so aus::
         return HttpResponse(t.render(c))
 
 
-    def detail(render, slug):
+    def detail(request, slug):
         try:
             recipe = Recipe.objects.get(slug=slug)
         except Recipe.DoesNotExist:

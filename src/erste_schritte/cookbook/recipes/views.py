@@ -11,7 +11,7 @@ def index(request):
     return HttpResponse(t.render(c))
 
 
-def detail(render, slug):
+def detail(request, slug):
     try:
         recipe = Recipe.objects.get(slug=slug)
     except Recipe.DoesNotExist:
