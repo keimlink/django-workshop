@@ -95,6 +95,13 @@ HTML5 Boilerplate einsetzen
 
 Jetzt werden die CSS und JavaScript Dateien geladen.
 
+Statischen Dateien in Apps
+==========================
+
+Es ist auch möglich statische Dateien in Apps abzulegen. Dazu einfach ein
+Verzeichnis :file:`static` im App-Verzeichnis erstellen. Dieses kann dann genau
+wie das :file:`static`-Verzeichnis im Projektverzeichnis genutzt werden.
+
 Weiterführende Links zur Django Dokumentation
 =============================================
 
