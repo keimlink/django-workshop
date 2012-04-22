@@ -3,8 +3,6 @@ Views testen
 
 Natürlich möchte man auch gerne das Frontend der Applikation testen. Dafür
 gibt es zum Beispiel Werkzeuge wie `Selenium <http://seleniumhq.org/>`_.
-Selenium lässt sich mit Hilfe von `django-sane-testing
-<http://devel.almad.net/trac/django-sane-testing/>`_ in Django integrieren.
 
 Mit dem in Django eingebauten Testclient steht ein einfacher Testbrowser zur
 Verfügung, der zwar nicht alle Features von Selenium bietet, aber dafür auch
