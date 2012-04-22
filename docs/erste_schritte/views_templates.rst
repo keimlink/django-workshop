@@ -161,7 +161,7 @@ Templates erstellen
 
 Als erstes benötigst du ein Basis-Template für deine Website. Erstelle das
 Verzeichnis :file:`templates` im Projektverzeichnis. Das ist das Verzeichnis
-:file:`cookbook` mit der Datei :file:`__init__.py` darin. Im neuen Verzeichnis
+:file:`cookbook` mit der Datei :file:`manage.py` darin. Im neuen Verzeichnis
 erstellt du die Datei :file:`base.html`:
 
 ..  code-block:: html+django
@@ -204,27 +204,27 @@ Jetzt sollte deine Verzeichnisstruktur wie folgt aussehen:
 ..  code-block:: bash
 
     cookbook
-    |-- cookbook
-    |   |-- cookbook.db
-    |   |-- __init__.py
-    |   |-- settings.py
-    |   |-- templates
-    |   |   `-- base.html
-    |   |-- urls.py
-    |   `-- wsgi.py
-    |-- manage.py
-    `-- recipes
-        |-- admin.py
-        |-- fixtures
-        |   `-- initial_data.json
-        |-- __init__.py
-        |-- models.py
-        |-- templates
-        |   `-- recipes
-        |       |-- detail.html
-        |       `-- index.html
-        |-- tests.py
-        `-- views.py
+    ├── cookbook
+    │   ├── __init__.py
+    │   ├── settings.py
+    │   ├── urls.py
+    │   └── wsgi.py
+    ├── cookbook.db
+    ├── manage.py
+    ├── recipes
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── fixtures
+    │   │   └── initial_data.json
+    │   ├── models.py
+    │   ├── templates
+    │   │   └── recipes
+    │   │       ├── detail.html
+    │   │       └── index.html
+    │   ├── tests.py
+    │   └── views.py
+    └── templates
+        └── base.html
 
 Nachdem du den Entwicklungs-Webserver neu gestartet hast solltest du nun eine
 Liste aller Rezepte sehen, wenn du http://127.0.0.1:8000/ aufrufst.

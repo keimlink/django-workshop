@@ -25,10 +25,10 @@ befinden:
     |-- tests.py
     `-- views.py
 
-Die Datei :file:`__init__.py` definiert, wie schon beim Projektverzeichnis,
-dass das Verzeichnis :file:`recipes` ein `Python Paket
-<http://docs.python.org/tutorial/modules.html#packages>`_ ist. Die Models der
-Applikation werden wir gleich in der Datei :file:`models.py` anlegen. Tests
+Die Datei :file:`__init__.py` definiert, wie schon beim
+Konfigurationsverzeichnis, dass das Verzeichnis :file:`recipes` ein `Python
+Paket <http://docs.python.org/tutorial/modules.html#packages>`_ ist. Die Models
+der Applikation werden wir gleich in der Datei :file:`models.py` anlegen. Tests
 werden in der Datei :file:`tests.py` erstellt. Die Datei :file:`views.py`
 enthält die Views der Applikation.
 
@@ -44,7 +44,7 @@ Damit wird das Paket, dass die Felder und andere Teile des ORMs enthält,
 geladen.
 
 Damit du später keine Probleme mit dem Encoding bekommst füge noch vor dem
-``import`` folgender Zeile hinzu::
+``import`` folgende Zeile hinzu::
 
     # encoding: utf-8
 

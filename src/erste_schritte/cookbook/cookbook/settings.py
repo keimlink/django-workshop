@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(SITE_ROOT, 'cookbook.db'),
+        'NAME': os.path.join(SITE_ROOT, '..', 'cookbook.db'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -112,7 +112,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(SITE_ROOT, 'templates'),
+    os.path.join(SITE_ROOT, '..', 'templates'),
 )
 
 INSTALLED_APPS = (

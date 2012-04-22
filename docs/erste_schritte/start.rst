@@ -33,8 +33,8 @@ erstmal nicht viel:
 
 ..  code-block:: bash
 
-    cookbook
-    |-- cookbook
+    cookbook # Projektverzeichnis
+    |-- cookbook # Konfigurationsverzeichnis
     |   |-- __init__.py
     |   |-- settings.py
     |   |-- urls.py
@@ -43,17 +43,19 @@ erstmal nicht viel:
 
 Das erste Verzeichnis :file:`cookbook` ist das Projektverzeichnis. Es enthält
 die Datei :file:`manage.py`, die du benutzen wirst, um dein Projekt zu
-verwalten.
+verwalten. Auf dieses Verzeichnis wird in allen anderen Kapiteln mit
+**Projektverzeichnis** Bezug genommen.
 
 Außerdem enthält es das `Python Paket
-<http://docs.python.org/tutorial/modules.html#packages>`_ :file:`cookbook` mit
-dem eigentlichen Django Projekt. Dies wird durch die leere Datei
-:file:`__init__.py` angezeigt.
-
+<http://docs.python.org/tutorial/modules.html#packages>`_ :file:`cookbook`
+innnerhalb des Projektverzeichnisses mit der zentralen Konfiguration für das
+Django Projekt. Dies wird durch die leere Datei :file:`__init__.py` angezeigt.
 Die Datei :file:`settings.py` enthält alle Einstellungen deines Projekts. In
 :file:`urls.py` sind die regulären Ausdrücke enthalten, um einen URL zum
 richtigen View zu leiten. Dazu später mehr. :file:`wsgi.py` definiert die WSGI
-Applikation, die später beim Deployment benötigt wird.
+Applikation, die später beim Deployment benötigt wird. Auf dieses Verzeichnis
+wird in allen anderen Kapiteln mit **Konfigurationsverzeichnis** Bezug
+genommen.
 
 Anpassen der Konfiguration
 ==========================
@@ -84,7 +86,7 @@ Konfiguriere die Datenbankverbindung ``default`` wird folgt::
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, 'cookbook.db'),
+            'NAME': os.path.join(SITE_ROOT, '..', 'cookbook.db'),
             'USER': '',
             'PASSWORD': '',
             'HOST': '',
@@ -101,7 +103,7 @@ Als nächstes passen wir Zeitzone und Sprache an::
 Als letztes muss der Pfad zu den Templates definiert werden::
 
     TEMPLATE_DIRS = (
-        os.path.join(SITE_ROOT, 'templates'),
+        os.path.join(SITE_ROOT, '..', 'templates'),
     )
 
 Das Verzeichnis für die Templates erzeugen wir später in der Wurzel des
@@ -110,8 +112,8 @@ Präfix.
 
 ..  note::
 
-    Es wäre auch möglich die Templates außerhalb des Projekts zu speichern. Dazu
-    muss der Pfad auf dieses Verzeichnis verweisen.
+    Es wäre auch möglich die Templates außerhalb des Projekts zu speichern.
+    Dazu muss der Pfad auf dieses Verzeichnis verweisen.
 
 Weiterführende Links zur Django Dokumentation
 =============================================
