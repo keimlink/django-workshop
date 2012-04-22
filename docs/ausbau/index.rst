@@ -12,7 +12,6 @@ Ausbau des Django Projekts
    fehlerbehandlung
    debugging
    authentifizierung_registrierung
-.. ab hier Review nötig
    rezept_formular
    generische_views
    middleware_403
