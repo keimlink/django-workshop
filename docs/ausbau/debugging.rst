@@ -16,7 +16,8 @@ Provozieren eines ``AssertionError`` im View ``index``::
     def index(request):
         recipes = Recipe.objects.all()
         assert False
-        return render_to_response('recipes/index.html', {'object_list': recipes})
+        return render_to_response('recipes/index.html', {'object_list': recipes},
+            context_instance=RequestContext(request))
 
 Man kann den optionalen zweiten Parameter von ``assert`` zur Ausgabe
 von zusätzlichen Informationen nutzen::
@@ -24,7 +25,8 @@ von zusätzlichen Informationen nutzen::
     def index(request):
         recipes = Recipe.objects.all()
         assert False, 'Anzahl der Rezepte: %d' % recipes.count()
-        return render_to_response('recipes/index.html', {'object_list': recipes})
+        return render_to_response('recipes/index.html', {'object_list': recipes},
+            context_instance=RequestContext(request))
 
 ..  _logging_framework:
 
@@ -47,6 +49,11 @@ aus::
     LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
+        'filters': {
+            'require_debug_false': {
+                '()': 'django.utils.log.RequireDebugFalse'
+            }
+        },
         'formatters': {
             'simple': {
                 'format': '%(levelname)s %(asctime)s %(pathname)s %(message)s'
@@ -55,6 +62,7 @@ aus::
         'handlers': {
             'mail_admins': {
                 'level': 'ERROR',
+                'filters': ['require_debug_false'],
                 'class': 'django.utils.log.AdminEmailHandler'
             },
             'debuglog': {
@@ -74,9 +82,9 @@ aus::
         }
     }
 
-Jetzt muss noch am Ende der Datei der folgende Code einfügt werden, um den
-``logger`` zu registrieren. Allerdings soll dieser nur ausgeführt werden wenn
-``DEBUG`` den Wert ``True`` hat::
+Jetzt muss noch am Ende der Datei (nach dem Importieren von ``local_settings``)
+der folgende Code einfügt werden, um den ``logger`` zu registrieren. Allerdings
+soll dieser nur ausgeführt werden wenn ``DEBUG`` den Wert ``True`` hat::
 
     if DEBUG:
         LOGGING['loggers'].update(
@@ -112,7 +120,7 @@ Python enthält einen einfachen, aber sehr mächtigen interaktiven Debugger:
 Den Debugger aktiviert man am einfachsten durch den Aufruf von ``import pdb;
 pdb.set_trace()``::
 
-    def detail(render, slug):
+    def detail(request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
         import pdb; pdb.set_trace()
         return render_to_response('recipes/detail.html', {'object': recipe})
@@ -122,41 +130,48 @@ Konsole:
 
 ..  code-block:: bash
 
-    > /Users/zappi/Projekte/Python/django-workshop/src/cookbook/recipes/views.py(12)detail()
-    -> return render_to_response('recipes/detail.html', {'object': recipe})
+    > /vagrant/src/ausbau/cookbook/recipes/views.py(16)detail()
+    -> return render_to_response('recipes/detail.html', {'object': recipe},
     (Pdb) l
-      7         return render_to_response('recipes/index.html', {'object_list': recipes})
-      8
-      9     def detail(render, slug):
-     10         recipe = get_object_or_404(Recipe, slug=slug)
-     11         import pdb; pdb.set_trace()
-     12  ->     return render_to_response('recipes/detail.html', {'object': recipe})
+     11
+     12
+     13     def detail(request, slug):
+     14         recipe = get_object_or_404(Recipe, slug=slug)
+     15         import pdb; pdb.set_trace()
+     16  ->     return render_to_response('recipes/detail.html', {'object': recipe},
+     17             context_instance=RequestContext(request))
     [EOF]
+    (Pdb) slug
+    u'kohleintopf-mit-tortellini'
     (Pdb) recipe.id
-    3
-    (Pdb) j 9
-    > /Users/zappi/Projekte/Python/django-workshop/src/cookbook/recipes/views.py(9)detail()
-    -> def detail(render, slug):
+    2
+    (Pdb) j 13
+    > /vagrant/src/ausbau/cookbook/recipes/views.py(13)detail()
+    -> def detail(request, slug):
     (Pdb) s
     --Call--
-    > /Users/zappi/.virtualenvs/django-workshop/lib/python2.6/site-packages/django/shortcuts/__init__.py(75)get_object_or_404()
+    > /home/vagrant/.virtualenvs/django-workshop/lib/python2.6/site-packages/django/shortcuts/__init__.py(100)get_object_or_404()
     -> def get_object_or_404(klass, *args, **kwargs):
-    (Pdb) locals()
-    {'args': (), 'klass': <class 'recipes.models.Recipe'>, 'kwargs': {'slug': u'omas-beste-frikadellen'}}
+    (Pdb) args
+    klass = <class 'recipes.models.Recipe'>
+    args = ()
+    kwargs = {'slug': u'kohleintopf-mit-tortellini'}
     (Pdb) del(kwargs['slug'])
-    (Pdb) kwargs['id']=1
-    (Pdb) locals()
-    {'args': (), 'klass': <class 'recipes.models.Recipe'>, 'kwargs': {'id': 1}}
+    (Pdb) kwargs['id'] = 1
+    (Pdb) args
+    klass = <class 'recipes.models.Recipe'>
+    args = ()
+    kwargs = {'id': 1}
     (Pdb) c
-    > /Users/zappi/Projekte/Python/django-workshop/src/cookbook/recipes/views.py(12)detail()
-    -> return render_to_response('recipes/detail.html', {'object': recipe})
+    > /vagrant/src/ausbau/cookbook/recipes/views.py(16)detail()
+    -> return render_to_response('recipes/detail.html', {'object': recipe},
     (Pdb) recipe.id
     1
     (Pdb) c
 
 Hier wird der Schlüssel ``slug`` aus ``kwargs`` entfernt und mit dem Schlüssel
 ``id==1`` ersetzt. Dadurch wird nicht mehr der gewünscht Eintrag mit der
-``id==3`` aus der Datenbank geholt sondern der Datensatz mit ``id==1``.
+``id==2`` aus der Datenbank geladen, sondern der Datensatz mit ``id==1``.
 
 Eine Liste aller Befehle des Debuggers `findest du in der Dokumentation
 <http://docs.python.org/library/pdb.html#debugger-commands>`_.

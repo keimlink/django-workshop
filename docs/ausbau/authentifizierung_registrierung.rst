@@ -27,7 +27,7 @@ benutzt wird. Dazu erweiterst du zuerst die Datei :file:`settings.py`::
 
     INSTALLED_APPS = (
         ...
-        'userauth'
+        'userauth',
     )
 
     LOGIN_URL = '/benutzer/anmelden/'
@@ -42,10 +42,10 @@ Die drei neuen Konfigurationswerte haben folgende Aufgaben:
   angegeben wurde wird zu diesem URL weitergeleitet
 
 Außerdem können wir schon die URLs einbinden, die wir später für unsere neue
-Applikation erzeugen werden. Dazu erweiterst du die Datei :file:`urls.py` um
-folgende Zeile nach dem Eintrag für den Admin::
+Applikation erzeugen werden. Dazu erweiterst du die Datei :file:`urls.py` im
+Konfigurationsverzeichnis nach dem Eintrag für den Admin um folgende Zeile::
 
-    (r'^benutzer/', include('userauth.urls')),
+    url(r'^benutzer/', include('userauth.urls')),
 
 Authentifizierung mit der Applikation ``userauth``
 ==================================================
@@ -165,54 +165,29 @@ Das Basis-Template erweitern
 
 Das eben angelegte Template :file:`toggle_login.html` binden wir nun in das
 Basis-Template als eigenen Block unterhalb der Überschrift "Kochbuch" im
-``<body>`` ein:
+``<header>`` ein:
 
 ..  code-block:: html+django
 
-    <body>
+    <header>
         <h1>Kochbuch</h1>
         {% block toggle_login %}
             {% include "userauth/toggle_login.html" %}
         {% endblock %}
-        {% block content %}{% endblock %}
-    </body>
+    </header>
 
 .. _request_context_vorstellung:
 
-Applikation ``recipes`` erweitern
-=================================
+``RequestContext`` auch hier nötig
+----------------------------------
 
 Damit im Kontext des Response-Objekts auch die nötigen Informationen wie das
-User Objekt oder der ``csrf_token`` zur Verfügung stehen müssen wir die
-bestehenden View-Funktionen erweitern.
-
-Zuerst muss der folgende Import in :file:`recipes/views.py` hinzugefügt
-werden::
-
-    from django.template import RequestContext
-
-Dann müssen die Aufrufe von ``render_to_response`` um das Argument
-``context_instance=RequestContext(request)`` erweitert werden.
-
-Hinterher sollte die Datei :file:`recipes/views.py` so aussehen::
-
-    from django.template import RequestContext
-    from django.shortcuts import get_object_or_404, render_to_response
-
-    from recipes.models import Recipe
-
-    def index(request):
-        recipes = Recipe.objects.all()
-        return render_to_response('recipes/index.html', {'object_list': recipes},
-            context_instance=RequestContext(request))
-
-    def detail(request, slug):
-        recipe = get_object_or_404(Recipe, slug=slug)
-        return render_to_response('recipes/detail.html', {'object': recipe},
-            context_instance=RequestContext(request))
+User Objekt oder der ``csrf_token`` zur Verfügung stehen, muss der
+``RequestContext`` an die Rendering-Funktion übergeben werden. Dies haben wir
+schon beim der :ref:`staticfiles` gemacht. Also ist hier nichts weiter zu tun.
 
 Authentifizierung testen
-------------------------
+========================
 
 Das war der erste Teil. Du solltest nun die Authentifizierung im Frontend
 benutzen können.
@@ -256,6 +231,7 @@ folgende Funktion::
     from django.http import HttpResponseRedirect
     from django.shortcuts import render_to_response
     from django.template import RequestContext
+
 
     def register(request, template_name='userauth/register.html', next_page_name=None):
         if request.method == 'POST':
@@ -320,7 +296,8 @@ des Benutzers angezeigt wird (:file:`register_done.html`):
     {% endblock %}
 
 Damit es auch einen Link zum Registrierungsformular gibt fügen wir noch eine
-Zeile in das Template :file:`toggle_login.html` ein:
+Zeile mit dem Link zum Registrierungsformular in das Template
+:file:`toggle_login.html` ein:
 
 ..  code-block:: html+django
 

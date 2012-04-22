@@ -21,29 +21,11 @@ wenn diese existiert. Ist diese Datei nicht vorhanden passiert nichts. So kann
 man in der Datei :file:`local_settings.py` bestimmte Werte neu definieren und
 so die in :file:`settings.py` definierten Werte überschreiben.
 
-Erweitere deine Datei :file:`settings.py` am Ende wie oben angegeben. Dann
-passe die folgenden Werte an::
+Erweitere also deine Datei :file:`settings.py` am Ende wie oben angegeben.
 
-    DEBUG = False
-    
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.',
-            'NAME': '',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
-        }
-    }
-
-..  note::
-
-    Natürlich kann man auch gleich die Werte für das Produktivsystem in die
-    Datenbankkonfiguration eintragen.
-
-Jetzt legst du im Projektverzeichnis ``cookbook`` die Datei
-:file:`local_settings.py` mit folgendem Inhalt an::
+Jetzt legst du in dem Verzeichnis, in dem sich auch die Datei
+:file:`settings.py` befindet, die Datei :file:`local_settings.py` mit
+folgendem Inhalt an (du kannst aus :file:`settings.py` kopieren)::
 
     import os
 
@@ -63,7 +45,27 @@ Jetzt legst du im Projektverzeichnis ``cookbook`` die Datei
         }
     }
 
-So lange nun die Datei :file:`local_settings.py` vorhanden ist arbeitest du
+Danach passe die folgenden Werte in :file:`settings.py` an::
+
+    DEBUG = False
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.',
+            'NAME': '',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
+    }
+
+..  note::
+
+    Natürlich kann man auch gleich die Werte für das Produktivsystem in die
+    Datenbankkonfiguration eintragen (bis auf das Passwort!).
+
+So lange also die Datei :file:`local_settings.py` vorhanden ist, arbeitest du
 mit einer Konfiguration für die Entwicklung. Fehlt diese Datei benutzt du die
 Einstellungen aus der Datei :file:`settings.py`, die für das Produktivsystem
 optimiert sind.

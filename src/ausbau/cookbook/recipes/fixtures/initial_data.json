@@ -1,0 +1,118 @@
+[
+    {
+        "pk": 1, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "schnelles Essen", 
+            "slug": "schnelles-essen"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Pasta", 
+            "slug": "pasta"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Suppe", 
+            "slug": "suppe"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Fleisch", 
+            "slug": "fleisch"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Backen", 
+            "slug": "backen"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Fr\u00fchling", 
+            "slug": "fruhling"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                4, 
+                5, 
+                6
+            ], 
+            "time_for_preparation": 30, 
+            "number_of_portions": 4, 
+            "author": 1, 
+            "ingredients": "2 Handvoll\t B\u00e4rlauch, k\u00fcchenfertig\r\n200 g\t Gehacktes, (Faschiertes)\r\n3 \t Kartoffel(n)\r\n1 Pck.\t Bl\u00e4tterteig\r\n100 g\t K\u00e4se, w\u00fcrziger\r\n etwas\t Salz und Pfeffer\r\n etwas\t \u00d6l\r\n1 St\u00fcck\t Eiwei\u00df\r\n \t Gew\u00fcrzmischung (Suppen-)", 
+            "date_updated": "2012-04-22T02:13:23.151Z", 
+            "title": "B\u00e4rlauchstrudel", 
+            "preparation": "Faschiertes etwas anr\u00f6sten. B\u00e4rlauch ca. 5 Minuten d\u00fcnsten. Kartoffeln kochen, sch\u00e4len und klein schneiden. \r\nFaschiertes, B\u00e4rlauch und Kartoffeln vermengen, mit Gew\u00fcrzen abschmecken. \r\nBl\u00e4tterteig ausrollen, Masse darauf verteilen, K\u00e4se dar\u00fcber streuen, Teig einrollen, mit Eiklar bestreichen und bei 180\u00b0 goldbraun backen!", 
+            "difficulty": 1, 
+            "date_created": "2012-04-22T02:13:23.151Z", 
+            "slug": "barlauchstrudel"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                2, 
+                3, 
+                4
+            ], 
+            "time_for_preparation": 50, 
+            "number_of_portions": 4, 
+            "author": 1, 
+            "ingredients": "100 g\t Schinkenspeck\r\n50 g\t Zwiebel(n)\r\n1 Bund\t Fr\u00fchlingszwiebel(n) (Lauchzwiebeln)\r\n300 g\t M\u00f6hre(n)\r\n100 g\t Staudensellerie\r\n500 g\t Spitzkohl\r\n250 g\t Tomate(n)\r\n2 EL\t Oliven\u00f6l\r\n1 \t Knoblauchzehe(n)\r\n1 Liter\t Gem\u00fcsebr\u00fche\r\n150 g\t Erbsen, TK\r\n300 g\t Tortellini, aus dem K\u00fchlregal\r\n1 Pck.\t Kresse", 
+            "date_updated": "2012-04-22T00:02:54.199Z", 
+            "title": "Kohleintopf mit Tortellini", 
+            "preparation": "Speck fein w\u00fcrfeln. Zwiebeln abziehen und hacken. Fr\u00fchlingszwiebeln waschen. Kohl putzen, den Strunk und die Blattrippen entfernen. M\u00f6hren und Sellerie putzen und in Scheiben schneiden. Die Fr\u00fchlingszwiebeln in Ringe und den Kohl in St\u00fccke schneiden. Tomaten mit kochendem Wasser \u00fcberbr\u00fchen, h\u00e4uten, vierteln, entkernen, dann halbieren. \r\n\r\n\u00d6l in einem Topf erhitzen. Speck und Zwiebeln darin anbraten. Das vorbereitete Gem\u00fcse und die ungepellte Knoblauchzehe zuf\u00fcgen. Alles noch mal ca. 4 Minuten mitbraten. Die Br\u00fche zugie\u00dfen und den Eintopf ca. 20 Minuten kochen. \r\nDanach Erbsen, Tomaten und Tortellini zugeben und weitere 5 Minuten kochen. Zum Schluss den fertigen Eintopf mit Kresse bestreuen. \r\n\r\nDazu passen geriebener Parmesank\u00e4se und Bauernbrot", 
+            "difficulty": 2, 
+            "date_created": "2012-04-22T00:02:54.199Z", 
+            "slug": "kohleintopf-mit-tortellini"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                1, 
+                2
+            ], 
+            "time_for_preparation": 30, 
+            "number_of_portions": 2, 
+            "author": 1, 
+            "ingredients": "2 \t Ei(er)\r\n2 Scheiben\t K\u00e4se, ( z.B. Tilsiter)\r\n1 Paket\t Spinat, (Rahm- Tiefk\u00fchlware ca.450g)\r\n200 g\t Nudeln, (z.B. Mini-Penne)\r\n \t Salz\r\n \t Muskat\r\n etwas\t Butter\r\n etwas\t Milch", 
+            "date_updated": "2012-04-22T00:01:14.058Z", 
+            "title": "K\u00e4sespiegelei auf Spinatnudeln", 
+            "preparation": "Den Spinat in eine mikrowellengeeignete Sch\u00fcssel geben, mit Salz und Muskat w\u00fcrzen. Mit einem Teller bedecken und in der Mikrowelle bei h\u00f6chster Stufe ca. 14 Minuten garen. Kurz vor Ende der Garzeit noch etwas Milch (ca. 2 EL) hinzuf\u00fcgen und umr\u00fchren.\r\nIn der Zwischenzeit die Penne nach Packungsanweisung kochen.\r\nSobald die Nudeln im Wasser sind, in einer beschichteten Pfanne etwas Butter schmelzen lassen und die Pfanne mit den K\u00e4sescheiben auslegen. Den K\u00e4se etwas mitschmelzen lassen, bis er sch\u00f6n cremig aussieht. Dann die Eier darauf geben, salzen und langsam fertig backen.\r\nNudeln und Spinat auf den Teller geben, das K\u00e4sespiegelei dazu - fertig.\r\nWenn man in dieser Reihenfolge arbeitet, bekommt man nach 15 Minuten ein sehr preiswertes und einfaches Gericht.", 
+            "difficulty": 1, 
+            "date_created": "2012-04-22T00:01:14.058Z", 
+            "slug": "kasespiegelei-auf-spinatnudeln"
+        }
+    }
+]

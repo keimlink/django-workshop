@@ -6,11 +6,13 @@ Ausbau des Django Projekts
 
    local_settings
    debug_toolbar
-   fehlerbehandlung
    views
    urls
+   staticfiles
+   fehlerbehandlung
    debugging
    authentifizierung_registrierung
+.. ab hier Review nötig
    rezept_formular
    generische_views
    middleware_403
@@ -19,5 +21,12 @@ Ausbau des Django Projekts
    modelmethoden
    softwaretests/index
    internationalisierung
-   migration
-   mehrere_datenbanken
+.. Themen für Fortgeschrittene
+.. migration
+.. mehrere_datenbanken
+.. manager
+.. rss_feed
+.. pdf_erzeugung
+.. alternative_authentifizierung
+.. caching
+.. deployment

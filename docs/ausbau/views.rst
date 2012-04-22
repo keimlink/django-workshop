@@ -46,8 +46,8 @@ eine weitere Funktion, die ``django.shortcuts`` bereitstellt - sie heißt
 ``get_object_or_404``::
 
     from django.shortcuts import get_object_or_404
-    
-    def detail(render, slug):
+
+    def detail(request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
         return render_to_response('recipes/detail.html', {'object': recipe})
 
@@ -72,7 +72,7 @@ selbst schreiben müssen, stark reduziert.
         recipes = Recipe.objects.all()
         return render_to_response('recipes/index.html', {'object_list': recipes})
 
-    def detail(render, slug):
+    def detail(request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
         return render_to_response('recipes/detail.html', {'object': recipe})
 
