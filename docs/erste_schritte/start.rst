@@ -2,7 +2,7 @@ Ein neues Projekt beginnen
 **************************
 
 Nachdem nun alle Vorbereitungen getroffen wurden, um mit Django und Python zu
-arbeiten kann das erste Projekt beginnen.
+arbeiten, kann das erste Projekt beginnen.
 
 Ein Verzeichnis für alle Python Projekte
 ========================================
@@ -33,48 +33,27 @@ erstmal nicht viel:
 
 ..  code-block:: bash
 
-    cookbook/
-    |-- __init__.py
-    |-- manage.py
-    |-- settings.py
-    `-- urls.py
+    cookbook
+    |-- cookbook
+    |   |-- __init__.py
+    |   |-- settings.py
+    |   |-- urls.py
+    |   `-- wsgi.py
+    `-- manage.py
 
-Die leere Datei :file:`__init__.py` zeigt an, dass es sich beim Verzeichnis
-:file:`cookbook` um ein `Python Paket
-<http://docs.python.org/tutorial/modules.html#packages>`_ handelt.
+Das erste Verzeichnis :file:`cookbook` ist das Projektverzeichnis. Es enthält
+die Datei :file:`manage.py`, die du benutzen wirst, um dein Projekt zu
+verwalten.
 
-:file:`manage.py` wirst du benutzen, um dein Projekt zu verwalten.
+Außerdem enthält es das `Python Paket
+<http://docs.python.org/tutorial/modules.html#packages>`_ :file:`cookbook` mit
+dem eigentlichen Django Projekt. Dies wird durch die leere Datei
+:file:`__init__.py` angezeigt.
 
-Die Datei :file:`settings.py` enthält alle Einstellungen deines Projekts.
-
-In :file:`urls.py` sind die regulären Ausdrücke enthalten, um einen URL zum
-richtigen View zu leiten. Dazu später mehr.
-
-Das Projekt in das *virtual environment* einbinden
-==================================================
-
-Der Code aus unserem Projekt muss auch im *virtual environment* zur Verfügung
-stehen. Also müssen wir dem *virtual environment* mitteilen, wo sich unser
-Projekt befindet.
-
-Das Paket :program:`virtualenvwrapper` hat dafür ein Kommando:
-
-..  code-block:: bash
-
-    $ add2virtualenv pythonprojects
-
-Wenn :program:`virtualenvwrapper` nicht installiert ist muss der Pfad zum
-Verzeichnis :file:`pythonprojects` per Hand eingefügt werden:
-
-..  code-block:: bash
-
-    $ cd .virtualenvs/django-workshop/lib/python2.6/site-packages
-    $ echo $HOME/pythonprojects > virtualenv_path_extensions.pth
-
-..  note::
-
-    Wenn das *virtual environment* mit einer anderen Python Version erzeugt wurde
-    kann der Pfad zum Verzeichnis :file:`site-packages` abweichen.
+Die Datei :file:`settings.py` enthält alle Einstellungen deines Projekts. In
+:file:`urls.py` sind die regulären Ausdrücke enthalten, um einen URL zum
+richtigen View zu leiten. Dazu später mehr. :file:`wsgi.py` definiert die WSGI
+Applikation, die später beim Deployment benötigt wird.
 
 Anpassen der Konfiguration
 ==========================

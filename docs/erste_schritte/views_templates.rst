@@ -66,7 +66,7 @@ Nun startest du den Entwicklungs-Webserver:
     Validating models...
     0 errors found
 
-    Django version 1.3, using settings 'cookbook.settings'
+    Django version 1.4, using settings 'cookbook.settings'
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
@@ -160,16 +160,15 @@ Templates erstellen
 ===================
 
 Als erstes benötigst du ein Basis-Template für deine Website. Erstelle das
-Verzeichnis :file:`templates` im Projektverzeichnis. Darin erstellt du die
-Datei :file:`base.html`:
+Verzeichnis :file:`templates` im Projektverzeichnis. Das ist das Verzeichnis
+:file:`cookbook` mit der Datei :file:`__init__.py` darin. Im neuen Verzeichnis
+erstellt du die Datei :file:`base.html`:
 
 ..  code-block:: html+django
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <!doctype html>
     <head>
+        <meta charset="utf-8">
     	<title>{% block title %}Kochbuch{% endblock %}</title>
     </head>
     <body>
@@ -200,8 +199,35 @@ Datei :file:`index.html`:
     </ul>
     {% endblock %}
 
-Nun solltest du eine Liste aller Rezepte sehen, wenn du http://127.0.0.1:8000/
-aufrufst.
+Jetzt sollte deine Verzeichnisstruktur wie folgt aussehen:
+
+..  code-block:: bash
+
+    cookbook
+    |-- cookbook
+    |   |-- cookbook.db
+    |   |-- __init__.py
+    |   |-- settings.py
+    |   |-- templates
+    |   |   `-- base.html
+    |   |-- urls.py
+    |   `-- wsgi.py
+    |-- manage.py
+    `-- recipes
+        |-- admin.py
+        |-- fixtures
+        |   `-- initial_data.json
+        |-- __init__.py
+        |-- models.py
+        |-- templates
+        |   `-- recipes
+        |       |-- detail.html
+        |       `-- index.html
+        |-- tests.py
+        `-- views.py
+
+Nachdem du den Entwicklungs-Webserver neu gestartet hast solltest du nun eine
+Liste aller Rezepte sehen, wenn du http://127.0.0.1:8000/ aufrufst.
 
 Den zweiten View hinzufügen
 ===========================
@@ -232,11 +258,13 @@ Die komplette Datei sieht dann so aus::
 
     from recipes.models import Recipe
 
+
     def index(request):
         recipes = Recipe.objects.all()
         t = loader.get_template('recipes/index.html')
         c = Context({'object_list': recipes})
         return HttpResponse(t.render(c))
+
 
     def detail(render, slug):
         try:
@@ -268,6 +296,9 @@ gleichen Verzeichnis wie auch :file:`recipes/index.html` an:
     {{ object.preparation|linebreaks }}
     <p>Zubereitungszeit: {{ object.time_for_preparation }} Minuten</p>
     {% endblock %}
+
+Jetzt kannst du auch alle Rezepte ansehen, indem du auf die Links auf der
+Startseite klickst.
 
 Weiterführende Links zur Django Dokumentation
 =============================================

@@ -12,23 +12,47 @@ Die eigene Applikation beim Admin registrieren
 Damit der Admin mit unser Applikation benutzt werden kann, müssen wir unsere
 Models dem Admin bekannt machen.
 
-Dazu muss die Datei :file:`admin.py` in der Applikation angelegt werden.
+Dazu muss die Datei :file:`admin.py` in der Applikation angelegt werden. Das
+Projekt sieht danach folgendermassen aus:
+
+..  code-block:: bash
+
+    cookbook
+    |-- cookbook
+    |   |-- __init__.py
+    |   |-- settings.py
+    |   |-- urls.py
+    |   `-- wsgi.py
+    |-- manage.py
+    `-- recipes
+        |-- admin.py
+        |-- __init__.py
+        |-- models.py
+        |-- tests.py
+        `-- views.py
+
 Danach öffnest du die Datei in deinem Editor und fügst die beiden folgenden
 Zeilen Code ein::
 
     from django.contrib import admin
-    
-    from recipes.models import Category, Recipe
+
+    from .models import Category, Recipe
 
 Damit stehen dir der Admin und die Models der Applikation zur Verfügung.
+
+Der zweite ``import`` ist ein relativer import. Diese wurden in :pep:`328`
+definiert und sind ab Python 2.6 direkt verfügbar. In Python 2.5 müssen sie mit
+dem folgenden Code geladen werden::
+
+    from __future__ import absolute_import
 
 Als nächstes erstellen wir eine Klasse, um das Model ``Category`` beim Admin
 zu registrieren::
 
     class CategoryAdmin(admin.ModelAdmin):
         prepopulated_fields = {'slug': ['name']}
-    
-    
+
+
     admin.site.register(Category, CategoryAdmin)
 
 Mehr ist nicht zu tun.
@@ -41,8 +65,8 @@ Das gleiche tun wir jetzt für das Model ``Recipe``::
 
     class RecipeAdmin(admin.ModelAdmin):
         prepopulated_fields = {'slug': ['title']}
-    
-    
+
+
     admin.site.register(Recipe, RecipeAdmin)
 
 Die vollständige Datei
@@ -51,9 +75,10 @@ Die vollständige Datei
 Die Datei :file:`admin.py` sollte nun so aussehen::
 
     from django.contrib import admin
-    
-    from recipes.models import Category, Recipe
-    
+
+    from .models import Category, Recipe
+
+
     class CategoryAdmin(admin.ModelAdmin):
         prepopulated_fields = {'slug': ['name']}
 

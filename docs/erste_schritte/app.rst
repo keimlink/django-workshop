@@ -27,14 +27,10 @@ befinden:
 
 Die Datei :file:`__init__.py` definiert, wie schon beim Projektverzeichnis,
 dass das Verzeichnis :file:`recipes` ein `Python Paket
-<http://docs.python.org/tutorial/modules.html#packages>`_ ist.
-
-Die Models der Applikation werden wir gleich in der Datei :file:`models.py`
-anlegen.
-
-Tests werden in der Datei :file:`tests.py` erstellt.
-
-Die Datei :file:`views.py` enthält die Views der Applikation.
+<http://docs.python.org/tutorial/modules.html#packages>`_ ist. Die Models der
+Applikation werden wir gleich in der Datei :file:`models.py` anlegen. Tests
+werden in der Datei :file:`tests.py` erstellt. Die Datei :file:`views.py`
+enthält die Views der Applikation.
 
 Die Models
 ==========
@@ -44,17 +40,26 @@ Die Models
 
     from django.db import models
 
-Damit wird das Paket, dass die Models des ORMs enthält, geladen.
+Damit wird das Paket, dass die Felder und andere Teile des ORMs enthält,
+geladen.
+
+Damit du später keine Probleme mit dem Encoding bekommst füge noch vor dem
+``import`` folgender Zeile hinzu::
+
+    # encoding: utf-8
+
 
 Ein Model für die Kategorien
 ----------------------------
 
-Darunter beginnen wir mit dem ersten Model für die Kategorien::
+Unter diesen beiden Zeilen beginnen wir mit dem ersten Model für die
+Kategorien::
 
     class Category(models.Model):
-        name = models.CharField('Name', max_length=100)
+        """Category model."""
+        name = models.CharField(u'Name', max_length=100)
         slug = models.SlugField(unique=True)
-        description = models.TextField('Beschreibung', blank=True)
+        description = models.TextField(u'Beschreibung', blank=True)
 
 Das Model hat nun drei Attribute, die drei Feldern in einer Tabelle
 entsprechen. Die Feldtypen definieren den Datentyp.
@@ -71,8 +76,8 @@ Felder eines Models sind also Pflichtfelder.
 Nun wird die Klasse ``Category`` noch mit dem folgenden Code erweitert::
 
         class Meta:
-            verbose_name = 'Kategorie'
-            verbose_name_plural = 'Kategorien'
+            verbose_name = u'Kategorie'
+            verbose_name_plural = u'Kategorien'
 
         def __unicode__(self):
             return self.name
@@ -88,14 +93,15 @@ Das Model für die Rezepte
 Jetzt legen wird das zweite Model für die Rezepte an::
 
     class Recipe(models.Model):
-        title = models.CharField('Titel', max_length=255)
+        """Recipe model."""
+        title = models.CharField(u'Titel', max_length=255)
         slug = models.SlugField(unique=True)
-        ingredients = models.TextField('Zutaten',
-            help_text='Eine Zutat pro Zeile angeben')
-        preparation = models.TextField('Zubereitung')
-        time_for_preparation = models.IntegerField('Zubereitungszeit',
-            help_text='Zeit in Minuten angeben', blank=True, null=True)
-        number_of_portions = models.IntegerField('Anzahl der Portionen')
+        ingredients = models.TextField(u'Zutaten',
+            help_text=u'Eine Zutat pro Zeile angeben')
+        preparation = models.TextField(u'Zubereitung')
+        time_for_preparation = models.IntegerField(u'Zubereitungszeit',
+            help_text=u'Zeit in Minuten angeben', blank=True, null=True)
+        number_of_portions = models.IntegerField(u'Anzahl der Portionen')
 
 Das Model ist dem ersten ähnlich. Neu ist der Parameter ``help_text``, der in
 der Bearbeitungsansicht der Admin-Applikation als Hilfe benutzt wird.
@@ -106,9 +112,9 @@ String benutzt.
 
 Außerdem bekommt das Model noch fünf weitere Felder::
 
-    difficulty = models.SmallIntegerField('Schwierigkeitsgrad')
-    category = models.ManyToManyField(Category, verbose_name='Kategorie')
-    author = models.ForeignKey(User, verbose_name='Autor')
+    difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad')
+    category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
+    author = models.ForeignKey(User, verbose_name=u'Autor')
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField(editable=False)
 
@@ -139,22 +145,22 @@ legen wir am Anfang der Klasse eine Liste von Auswahlmöglichkeiten an::
     DIFFICULTY_MEDIUM = 2
     DIFFICULTY_HARD = 3
     DIFFICULTIES = (
-        (DIFFICULTY_EASY, 'einfach'),
-        (DIFFICULTY_MEDIUM, 'normal'),
-        (DIFFICULTY_HARD, 'schwer'),
+        (DIFFICULTY_EASY, u'einfach'),
+        (DIFFICULTY_MEDIUM, u'normal'),
+        (DIFFICULTY_HARD, u'schwer'),
     )
 
 Diese Verknüpfen wir mit dem Feld::
 
-    difficulty = models.SmallIntegerField('Schwierigkeitsgrad',
+    difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad',
         choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
 
 Zuletzt muss wieder eine ``Meta`` Klasse und eine ``__unicode__`` Methode
 erstellt werden::
 
         class Meta:
-            verbose_name = 'Rezept'
-            verbose_name_plural = 'Rezepte'
+            verbose_name = u'Rezept'
+            verbose_name_plural = u'Rezepte'
             ordering = ['-date_created']
 
         def __unicode__(self):
@@ -196,51 +202,54 @@ Die vollständige Datei
 
 Die Datei ``models.py`` sollte nun so aussehen::
 
+    # encoding: utf-8
     import datetime
 
     from django.contrib.auth.models import User
     from django.db import models
 
     class Category(models.Model):
-        name = models.CharField('Name', max_length=100)
+        """Category model."""
+        name = models.CharField(u'Name', max_length=100)
         slug = models.SlugField(unique=True)
-        description = models.TextField('Beschreibung', blank=True)
+        description = models.TextField(u'Beschreibung', blank=True)
 
         class Meta:
-            verbose_name = 'Kategorie'
-            verbose_name_plural = 'Kategorien'
+            verbose_name = u'Kategorie'
+            verbose_name_plural = u'Kategorien'
 
         def __unicode__(self):
             return self.name
 
 
     class Recipe(models.Model):
+        """Recipe model."""
         DIFFICULTY_EASY = 1
         DIFFICULTY_MEDIUM = 2
         DIFFICULTY_HARD = 3
         DIFFICULTIES = (
-            (DIFFICULTY_EASY, 'einfach'),
-            (DIFFICULTY_MEDIUM, 'normal'),
-            (DIFFICULTY_HARD, 'schwer'),
+            (DIFFICULTY_EASY, u'einfach'),
+            (DIFFICULTY_MEDIUM, u'normal'),
+            (DIFFICULTY_HARD, u'schwer'),
         )
-        title = models.CharField('Titel', max_length=255)
+        title = models.CharField(u'Titel', max_length=255)
         slug = models.SlugField(unique=True)
-        ingredients = models.TextField('Zutaten',
-            help_text='Eine Zutat pro Zeile angeben')
-        preparation = models.TextField('Zubereitung')
-        time_for_preparation = models.IntegerField('Zubereitungszeit',
-            help_text='Zeit in Minuten angeben', blank=True, null=True)
-        number_of_portions = models.IntegerField('Anzahl der Portionen')
-        difficulty = models.SmallIntegerField('Schwierigkeitsgrad',
+        ingredients = models.TextField(u'Zutaten',
+            help_text=u'Eine Zutat pro Zeile angeben')
+        preparation = models.TextField(u'Zubereitung')
+        time_for_preparation = models.IntegerField(u'Zubereitungszeit',
+            help_text=u'Zeit in Minuten angeben', blank=True, null=True)
+        number_of_portions = models.IntegerField(u'Anzahl der Portionen')
+        difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad',
             choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
-        category = models.ManyToManyField(Category, verbose_name='Kategorie')
-        author = models.ForeignKey(User, verbose_name='Autor')
+        category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
+        author = models.ForeignKey(User, verbose_name=u'Autor')
         date_created = models.DateTimeField(editable=False)
         date_updated = models.DateTimeField(editable=False)
 
         class Meta:
-            verbose_name = 'Rezept'
-            verbose_name_plural = 'Rezepte'
+            verbose_name = u'Rezept'
+            verbose_name_plural = u'Rezepte'
             ordering = ['-date_created']
 
         def __unicode__(self):

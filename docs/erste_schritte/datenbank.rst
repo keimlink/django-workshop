@@ -67,13 +67,13 @@ Um diese Queries direkt auszuführen und so die Tabellen und Indizes anzulegen
 musst du folgendes Kommando ausführen::
 
     $ python manage.py syncdb
+    Creating tables ...
     Creating table auth_permission
     Creating table auth_group_permissions
     Creating table auth_group
     Creating table auth_user_user_permissions
     Creating table auth_user_groups
     Creating table auth_user
-    Creating table auth_message
     Creating table django_content_type
     Creating table django_session
     Creating table django_site
@@ -84,20 +84,14 @@ musst du folgendes Kommando ausführen::
 
     You just installed Django's auth system, which means you don't have any superusers defined.
     Would you like to create one now? (yes/no): yes
-    Username (Leave blank to use 'zappi'): admin
+    Username (leave blank to use 'vagrant'): admin
     E-mail address: admin@example.com
     Password:
     Password (again):
     Superuser created successfully.
-    Installing index for auth.Permission model
-    Installing index for auth.Group_permissions model
-    Installing index for auth.User_user_permissions model
-    Installing index for auth.User_groups model
-    Installing index for auth.Message model
-    Installing index for admin.LogEntry model
-    Installing index for recipes.Recipe_category model
-    Installing index for recipes.Recipe model
-    No fixtures found.
+    Installing custom SQL ...
+    Installing indexes ...
+    Installed 0 object(s) from 0 fixture(s)
 
 ..  note::
 
@@ -114,9 +108,9 @@ starten:
 
     $ python manage.py runserver
     Validating models...
-    0 errors found
 
-    Django version 1.3, using settings 'cookbook.settings'
+    0 errors found
+    Django version 1.4, using settings 'cookbook.settings'
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
