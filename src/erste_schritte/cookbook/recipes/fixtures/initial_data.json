@@ -36,6 +36,45 @@
         }
     }, 
     {
+        "pk": 5, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Backen", 
+            "slug": "backen"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "recipes.category", 
+        "fields": {
+            "description": "", 
+            "name": "Fr\u00fchling", 
+            "slug": "fruhling"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "recipes.recipe", 
+        "fields": {
+            "category": [
+                4, 
+                5, 
+                6
+            ], 
+            "time_for_preparation": 30, 
+            "number_of_portions": 4, 
+            "author": 1, 
+            "ingredients": "2 Handvoll\t B\u00e4rlauch, k\u00fcchenfertig\r\n200 g\t Gehacktes, (Faschiertes)\r\n3 \t Kartoffel(n)\r\n1 Pck.\t Bl\u00e4tterteig\r\n100 g\t K\u00e4se, w\u00fcrziger\r\n etwas\t Salz und Pfeffer\r\n etwas\t \u00d6l\r\n1 St\u00fcck\t Eiwei\u00df\r\n \t Gew\u00fcrzmischung (Suppen-)", 
+            "date_updated": "2012-04-22T02:13:23.151Z", 
+            "title": "B\u00e4rlauchstrudel", 
+            "preparation": "Faschiertes etwas anr\u00f6sten. B\u00e4rlauch ca. 5 Minuten d\u00fcnsten. Kartoffeln kochen, sch\u00e4len und klein schneiden. \r\nFaschiertes, B\u00e4rlauch und Kartoffeln vermengen, mit Gew\u00fcrzen abschmecken. \r\nBl\u00e4tterteig ausrollen, Masse darauf verteilen, K\u00e4se dar\u00fcber streuen, Teig einrollen, mit Eiklar bestreichen und bei 180\u00b0 goldbraun backen!", 
+            "difficulty": 1, 
+            "date_created": "2012-04-22T02:13:23.151Z", 
+            "slug": "barlauchstrudel"
+        }
+    }, 
+    {
         "pk": 2, 
         "model": "recipes.recipe", 
         "fields": {
