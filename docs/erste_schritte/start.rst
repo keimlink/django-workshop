@@ -28,6 +28,12 @@ Wechsel nun in das neu erstellte Verzeichnis und erstelle ein Django Projekt:
     $ cd pythonprojects
     $ django-admin.py startproject cookbook
 
+..  note::
+
+    Unter Windows kann es nötig sein, dass den kompletten Pfad zu :file:`django-admin.py` angeben musst::
+
+        C:\pythonprojects> python C:\virtualenvs\django-workshop\Scrips\django-admin.py startproject cookbook
+
 Dein neues Projekt wurde erstellt. Das Verzeichnis :file:`cookbook` enthält
 erstmal nicht viel:
 
