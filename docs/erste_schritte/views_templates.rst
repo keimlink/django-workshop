@@ -204,27 +204,27 @@ Jetzt sollte deine Verzeichnisstruktur wie folgt aussehen:
 ..  code-block:: bash
 
     cookbook
-    ├── cookbook
-    │   ├── __init__.py
-    │   ├── settings.py
-    │   ├── urls.py
-    │   └── wsgi.py
-    ├── cookbook.db
-    ├── manage.py
-    ├── recipes
-    │   ├── __init__.py
-    │   ├── admin.py
-    │   ├── fixtures
-    │   │   └── initial_data.json
-    │   ├── models.py
-    │   ├── templates
-    │   │   └── recipes
-    │   │       ├── detail.html
-    │   │       └── index.html
-    │   ├── tests.py
-    │   └── views.py
-    └── templates
-        └── base.html
+    |-- cookbook
+    |   |-- __init__.py
+    |   |-- settings.py
+    |   |-- urls.py
+    |   `-- wsgi.py
+    |-- cookbook.db
+    |-- manage.py
+    |-- recipes
+    |   |-- __init__.py
+    |   |-- admin.py
+    |   |-- fixtures
+    |   |   `-- initial_data.json
+    |   |-- models.py
+    |   |-- templates
+    |   |   `-- recipes
+    |   |       |-- detail.html
+    |   |       `-- index.html
+    |   |-- tests.py
+    |   `-- views.py
+    `-- templates
+        `-- base.html
 
 Nachdem du den Entwicklungs-Webserver neu gestartet hast solltest du nun eine
 Liste aller Rezepte sehen, wenn du http://127.0.0.1:8000/ aufrufst.
