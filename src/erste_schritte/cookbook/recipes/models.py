@@ -36,10 +36,10 @@ class Recipe(models.Model):
     preparation = models.TextField(u'Zubereitung')
     time_for_preparation = models.IntegerField(u'Zubereitungszeit',
         help_text=u'Zeit in Minuten angeben', blank=True, null=True)
-    number_of_portions = models.IntegerField(u'Anzahl der Portionen')
+    number_of_portions = models.PositiveIntegerField(u'Anzahl der Portionen')
     difficulty = models.SmallIntegerField(u'Schwierigkeitsgrad',
         choices=DIFFICULTIES, default=DIFFICULTY_MEDIUM)
-    category = models.ManyToManyField(Category, verbose_name=u'Kategorie')
+    category = models.ManyToManyField(Category, verbose_name=u'Kategorien')
     author = models.ForeignKey(User, verbose_name=u'Autor')
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField(editable=False)
