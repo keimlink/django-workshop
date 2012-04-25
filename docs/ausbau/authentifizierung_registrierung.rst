@@ -313,6 +313,17 @@ Registrieren testen
 
 Nun kannst du auch die Registrierung im Frontend testen.
 
+Django Apps für Authentifizierung und Registrierung
+===================================================
+
+Natürlich gibt es auch Open Source Django Apps, die Lösungen für
+Authentifizierung und Registrierung anbieten. Die bekannteste und
+wahrscheinlich meist genutzte ist django-registration_. Eine neuere, aber sehr
+interessante App ist django-userena_.
+
+.. _django-registration: https://bitbucket.org/ubernostrum/django-registration/wiki/Home
+.. _django-userena: http://django-userena.org/
+
 Weiterführende Links zur Django Dokumentation
 =============================================
 
