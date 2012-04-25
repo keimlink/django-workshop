@@ -4,6 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<title>{% block title %}Kochbuch{% endblock %}</title>
+    <link rel="alternate" type="application/rss+xml"
+        title="Neuigkeiten aus dem Kochbuch" href="{% url news_article_feed %}" />
 </head>
 <body>
     <h1>Kochbuch</h1>

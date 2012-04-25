@@ -7,6 +7,8 @@ from django.views.generic import DetailView, ListView
 
 from recipes.forms import RecipeForm
 from recipes.models import Recipe
+from utils import PDFView
+
 
 logger = logging.getLogger('cookbook.recipes.views')
 
@@ -15,14 +17,19 @@ class RecipeListView(ListView):
     template_name = 'recipes/index.html'
 
     def get_queryset(self):
-        recipes = Recipe.objects.all()
+        recipes = Recipe.active.all()
         logger.debug('Anzahl der Rezepte: %d' % recipes.count())
         return recipes
 
 
 class RecipeDetailView(DetailView):
-    model = Recipe
+    queryset = Recipe.active.all()
     template_name = 'recipes/detail.html'
+
+
+class RecipePDFView(PDFView):
+    model = Recipe
+    template_name = 'recipes/detail_pdf.html'
 
 
 @login_required

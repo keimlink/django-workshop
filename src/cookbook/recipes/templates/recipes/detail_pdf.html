@@ -2,6 +2,8 @@
 
 {% block title %}{{ block.super }} - {{ object.title }}{% endblock %}
 
+{% block toggle_login %}{% endblock %}
+
 {% block content %}
 {% load recipes %}
 <h2>{{ object.title }}</h2>
@@ -25,15 +27,8 @@
 <h4>Verwandte Rezepte</h4>
 <ul>
 {% for recipe in related_recipes %}
-    <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
+    <li>{{ recipe.title }}</li>
 {% endfor %}
 </ul>
 {% endif %}
-<a href="{% url recipes_recipe_detail_pdf object.slug %}">Rezept als PDF herunterladen</a>
-{% is_author user object %}
-<a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
-{% else %}
-Bitte <a href="{% url userauth_login %}">einloggen</a>, um das Rezept zu bearbeiten.
-{% endis_author %}
-<a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
 {% endblock %}

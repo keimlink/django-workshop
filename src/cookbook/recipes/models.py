@@ -16,6 +16,11 @@ class Category(models.Model):
         return self.name
 
 
+class ActiveRecipeManager(models.Manager):
+    def get_query_set(self):
+        return super(ActiveRecipeManager, self).get_query_set().filter(is_active=True)
+
+
 class Recipe(models.Model):
     DIFFICULTY_EASY = 1
     DIFFICULTY_MEDIUM = 2
@@ -39,7 +44,10 @@ class Recipe(models.Model):
     author = models.ForeignKey(User, verbose_name='Autor')
     date_created = models.DateTimeField(editable=False)
     date_updated = models.DateTimeField(editable=False)
-    active = models.BooleanField('Aktiv')
+    is_active = models.BooleanField('Aktiv')
+
+    objects = models.Manager()
+    active = ActiveRecipeManager()
 
     class Meta:
         verbose_name = 'Rezept'
@@ -61,6 +69,6 @@ class Recipe(models.Model):
 
     def get_related_recipes(self):
         categories = self.category.all()
-        related_recipes = Recipe.objects.all().filter(
+        related_recipes = Recipe.active.all().filter(
             difficulty__exact=self.difficulty, category__in=categories)
         return related_recipes.exclude(pk=self.id).distinct()
