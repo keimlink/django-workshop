@@ -50,7 +50,7 @@ rste_schritte/cookbook/recipes/fixtures/initial_data.json>`_.
 
     $ wget -O import.json https://bitbucket.org/keimlink/django-workshop/raw/bdabf8fb9e5d/src/erste_schritte/cookbook/recipes/fixtures/initial_data.json
     $ python manage.py loaddata import.json
-    Installed 18 object(s) from 2 fixture(s)
+    Installed 9 object(s) from 1 fixture(s)
 
 Arbeiten mit der Datenbank API
 ==============================
@@ -62,10 +62,6 @@ folgenden Befehl kannst du diesen starten:
 
     $ python manage.py shell
 
-Dieser Befehl lädt die Einstellungen aus :file:`settings.py` für das aktuelle
-Projekt, was beim Start durch die Eingabe von :program:`python` nicht
-passieren würde.
-
 ..  code-block:: pycon
 
     # Importieren der Models
@@ -74,12 +70,20 @@ passieren würde.
     # Ein QuerySet mit allen Rezepten
     >>> all_recipes = Recipe.objects.all()
     >>> all_recipes
-    [<Recipe: Bärlauchstrudel>, <Recipe: Kohleintopf mit Tortellini>, <Recipe: Käsespiegelei auf Spinatnudeln>]
+    [<Recipe: Bärlauchstrudel>, <Recipe: Kohleintopf mit Tortellini>,
+        <Recipe: Käsespiegelei auf Spinatnudeln>]
     # all_recipes ist ein QuerySet
     >>> type(all_recipes)
     <class 'django.db.models.query.QuerySet'>
     >>> all_recipes.count()
     3
+
+    # Ausgabe aller Feldnamen eines Models
+    >>> Recipe._meta.get_all_field_names()
+    ['author', 'category', 'date_created', 'date_updated', 'difficulty', 'id',
+        'ingredients', 'number_of_portions', 'preparation', 'slug',
+        'time_for_preparation', 'title']
+
 
     # Betrachten eines Rezepts
     >>> all_recipes[1]
@@ -160,13 +164,23 @@ passieren würde.
     [<Category: Fleisch>, <Category: Backen>, <Category: Frühling>]
 
     # Komplexe Abfragen mit Q Objekten
-    # Die folgende Abfrage verknüpft beide Bedingungen mit "AND"
-    >>> Recipe.objects.filter(number_of_portions=4).filter(title__startswith='Oma')
-    []
+    # Ein einfacher Filter
+    >>> Recipe.objects.filter(number_of_portions=4)
+    [<Recipe: Bärlauchstrudel>, <Recipe: Kohleintopf mit Tortellini>]
+
+    # Alle Rezepte, die nicht dem Kriterium entsprechen
+    >>> Recipe.objects.exclude(number_of_portions=4)
+    [<Recipe: Käsespiegelei auf Spinatnudeln>]
+
+    # Die folgende Abfrage verknüpft beide Filer mit "AND"
+    >>> Recipe.objects.filter(number_of_portions=4).filter(title__startswith='K')
+    [<Recipe: Kohleintopf mit Tortellini>]
+
     # Mit einem Q Objekt kann man eine "ODER" Verknüpfung realisieren
     >>> from django.db.models import Q
-    >>> Recipe.objects.filter(Q(number_of_portions=4) | Q(title__startswith='Oma'))
-    [<Recipe: Bärlauchstrudel>, <Recipe: Kohleintopf mit Tortellini>]
+    >>> Recipe.objects.filter(Q(number_of_portions=4) | Q(title__startswith='K'))
+    [<Recipe: Bärlauchstrudel>, <Recipe: Kohleintopf mit Tortellini>,
+        <Recipe: Käsespiegelei auf Spinatnudeln>]
 
 Die Testdaten löschen und das Backup einspielen
 ===============================================
@@ -182,7 +196,7 @@ Und lädst dein Backup:
 ..  code-block:: bash
 
     $ python manage.py loaddata backup.json
-
+    Installed 57 object(s) from 1 fixture(s)
 
 Weiterführende Links zur Django Dokumentation
 =============================================
