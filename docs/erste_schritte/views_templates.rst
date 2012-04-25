@@ -27,7 +27,7 @@ Zeilen ein::
 
 Die Datei :file:`urls.py` sieht danach so aus::
 
-    from django.conf.urls.defaults import patterns, include, url
+    from django.conf.urls import patterns, include, url
 
     # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
@@ -54,9 +54,13 @@ Die Datei :file:`urls.py` sieht danach so aus::
     der einen regulären Ausdruck enthält.
 
     Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr
-    darüber auf `Regular-Expressions.info
-    <http://www.regular-expressions.info/>`_ oder im Artikel über das
-    `re-Modul <http://www.doughellmann.com/PyMOTW/re/>`_ erfahren.
+    darüber auf Regular-Expressions.info_ oder im Artikel von Doug Hellmann
+    über das re-Modul_ erfahren. Auf RegexPlanet_ kannst du reguläre Ausdrücke
+    direkt im Browser testen.
+
+.. _Regular-Expressions.info: http://www.regular-expressions.info/
+.. _re-Modul: http://www.doughellmann.com/PyMOTW/re/
+.. _RegexPlanet: http://www.regexplanet.com/advanced/python/index.html
 
 Nun startest du den Entwicklungs-Webserver:
 
@@ -88,6 +92,12 @@ Das erste Beispiel zeigt wie man ein Dictionary als Datenstruktur nutzen
 kann::
 
     $ python manage.py shell
+
+.. note::
+
+    Der Befehl :program:`shell` lädt die Einstellungen aus :file:`settings.py`
+    für das aktuelle Projekt, was beim Start durch die Eingabe von
+    :program:`python` nicht passieren würde.
 
 ::
 
@@ -194,7 +204,7 @@ Datei :file:`index.html`:
     <h2>Alle Rezepte</h2>
     <ul>
         {% for recipe in object_list %}
-        <li><a href="/rezept/{{ recipe.slug }}">{{ recipe.title }}</a></li>
+        <li><a href="/rezept/{{ recipe.slug }}/">{{ recipe.title }}</a></li>
         {% endfor %}
     </ul>
     {% endblock %}
@@ -219,7 +229,6 @@ Jetzt sollte deine Verzeichnisstruktur wie folgt aussehen:
     |   |-- models.py
     |   |-- templates
     |   |   `-- recipes
-    |   |       |-- detail.html
     |   |       `-- index.html
     |   |-- tests.py
     |   `-- views.py
@@ -300,10 +309,92 @@ gleichen Verzeichnis wie auch :file:`recipes/index.html` an:
 Jetzt kannst du auch alle Rezepte ansehen, indem du auf die Links auf der
 Startseite klickst.
 
+Warum versteckt die Template Engine Variablen, die nicht existieren?
+====================================================================
+
+Wenn eine Variable nicht als Schlüssel im Context definiert wurde, wird diese
+im Template von der Django Template Engine ignoriert. Dies ist vor allem im
+Produktivbetrieb sinnvoll, da so die Seite trotz einer fehlenden Variable noch
+gerendert werden kann.
+
+Um trotzdem zu sehen, ob eine Variable nicht gerendert wurde, kann man in der
+Konfiguration :file:`settings.py` eine Zeichenkette definieren, die in diesem
+Fall ausgegeben wird::
+
+    TEMPLATE_STRING_IF_INVALID = 'TEMPLATE NAME ERROR'
+
+Diese Einstellung sollte im Produktivbetrieb aber wieder deaktiviert werden.
+
+Maskierung von HTML und JavaScript
+==================================
+
+Aus Sicherheitsgründen maskiert die Django Template Engine alles HTML und
+JavaScript, dass sich im Context befindet. Nehmen wir an, ein Benutzer schreibt in das
+Feld "Zubereitung" seines Rezepts folgenden Text::
+
+    <script>alert('Das beste Rezept der Welt!')</script>
+    Das Wasser im Topf auf 100°C erhitzen.
+
+Dann würde dieses HTML erzeugt::
+
+    <p>&lt;script&gt;alert(&#39;Das beste Rezept der <Welt!&#39;)&lt;/script&gt;</p>
+    <p>Das Wasser im Topf auf 100°C erhitzen.</p>
+
+Der JavaScript Code würde also nicht ausgeführt werden.
+
+Es ist auch möglch, HTML Tags komplett zu entfernen. Dazu müsstest du im
+Template zusätzlich den ``striptags`` Filter einsetzen:
+
+..  code-block:: html+django
+
+    {% block content %}
+    <h2>{{ object.title }}</h2>
+    <p>Ergibt {{ object.number_of_portions }} Portionen.</p>
+    <h3>Zutaten</h3>
+    {{ object.ingredients|linebreaks }}
+    <h3>Zubereitung</h3>
+    {{ object.preparation|striptags|linebreaks }}
+    <p>Zubereitungszeit: {{ object.time_for_preparation }} Minuten</p>
+    {% endblock %}
+
+Jetzt sieht das HTML so aus::
+
+    <p>alert(&#39;Das beste Rezept der Welt!&#39;)</p>
+    <p>Das Wasser im Topf auf 100°C erhitzen.</p>
+
+Bist du dir dagegen sicher, dass HTML oder JavaScript gerendet und ggf.
+ausgeführt werden soll, kannst du den ``safe`` Filter benutzen, um dies
+explizit zu erlauben:
+
+..  code-block:: html+django
+
+    {% block content %}
+    <h2>{{ object.title }}</h2>
+    <p>Ergibt {{ object.number_of_portions }} Portionen.</p>
+    <h3>Zutaten</h3>
+    {{ object.ingredients|linebreaks }}
+    <h3>Zubereitung</h3>
+    {{ object.preparation|safe|linebreaks }}
+    <p>Zubereitungszeit: {{ object.time_for_preparation }} Minuten</p>
+    {% endblock %}
+
+Jetzt wird tatsächlich das JavaScript wie vom Benutzer gewüscht ausgeführt::
+
+    <p><script>alert('Das beste Rezept der Welt!')</script></p>
+    <p>Das Wasser im Topf auf 100°C erhitzen.</p>
+
+.. note::
+
+    Dies ermögicht natürlich XSS-Angriffe_ und sollte deshalb mit größter
+    Vorsicht eingesetzt werden.
+
+.. _XSS-Angriffe: https://de.wikipedia.org/wiki/Cross-Site-Scripting
+
 Weiterführende Links zur Django Dokumentation
 =============================================
 
 * :djangodocs:`Der URL dispatcher <topics/http/urls/#topics-http-urls>`
 * :djangodocs:`Views schreiben <topics/http/views/#topics-http-views>`
 * :djangodocs:`Templates und deren Vererbung <topics/templates/#topics-templates>`
+* :djangodocs:`Automatische Maskierung von HTML und JavaScript <topics/templates/#automatic-html-escaping>`
 * :djangodocs:`Django Templates für Python Programmierer <ref/templates/api/>`
