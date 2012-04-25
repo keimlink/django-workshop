@@ -156,6 +156,18 @@ Mit dem neuen Templatetag:
     {% endis_author %}
     <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
 
+Django Apps zum einfachen Schreiben von Templatetags
+====================================================
+
+Da das Schreiben von Templatetags mit Django Bordmitteln recht umständlich ist
+sind verschiedene Django Apps entstanden, die dies vereinfachen. Eine Übersicht
+gibt das `Templatetags Grid`_ auf Django Packages. Zwei der populärsten
+Templatetags Apps sind django-templatetag-sugar_ und django-ttag_.
+
+.. _Templatetags Grid: http://djangopackages.com/grids/g/templatetags/
+.. _django-templatetag-sugar: http://pypi.python.org/pypi/django-templatetag-sugar
+.. _django-ttag: http://pypi.python.org/pypi/django-ttag
+
 Weiterführende Links zur Django Dokumentation
 =============================================
 
