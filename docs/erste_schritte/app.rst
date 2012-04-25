@@ -186,8 +186,8 @@ sie ja nicht in der Admin-Applikation bearbeitet werden können. Dazu
 
         def save(self, *args, **kwargs):
             if not self.id:
-                self.date_created = datetime.datetime.now()
-            self.date_updated = datetime.datetime.now()
+                self.date_created = now()
+            self.date_updated = now()
             super(Recipe, self).save(*args, **kwargs)
 
 Das Feld ``date_created`` wird nur gefüllt, wenn das Model zum ersten mal
@@ -197,10 +197,10 @@ gespeichert wird und daher noch kein Attribut ``id`` besitzt. Das Feld
 
 .. _super: http://docs.python.org/library/functions.html#super
 
-Das Paket ``datetime`` müssen wir ebenfalls noch importieren. Also schreiben
-wir an den Anfang der Datei::
+Das Paket ``now`` müssen wir ebenfalls noch importieren. Also schreiben wir an
+den Anfang der Datei::
 
-    import datetime
+    from django.utils.timezone import now
 
 ..  note::
 
@@ -214,10 +214,10 @@ Die vollständige Datei
 Die Datei ``models.py`` sollte nun so aussehen::
 
     # encoding: utf-8
-    import datetime
-
     from django.contrib.auth.models import User
     from django.db import models
+    from django.utils.timezone import now
+
 
     class Category(models.Model):
         """Category model."""
@@ -268,8 +268,8 @@ Die Datei ``models.py`` sollte nun so aussehen::
 
         def save(self, *args, **kwargs):
             if not self.id:
-                self.date_created = datetime.datetime.now()
-            self.date_updated = datetime.datetime.now()
+                self.date_created = now()
+            self.date_updated = now()
             super(Recipe, self).save(*args, **kwargs)
 
 Die Applikation aktivieren

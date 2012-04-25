@@ -65,6 +65,16 @@ Die Django Version kann man mit folgendem Kommando prüfen::
     $ django-admin.py --version
     1.4
 
+Unterstützung für Zeitzonen installieren
+----------------------------------------
+
+Ab Django 1.4 existiert eine Unterstützung für :djangodocs:`Zeitzonen
+<topics/i18n/timezones/#time-zones>`, die als Voreinstellung aktiviert ist.
+Damit diese korrekt funktioniert, ist es emfehlenswert das Paket ``pytz``
+zusätzlich zu installieren::
+
+    $ pip install pytz
+
 Weiterführende Links
 ====================
 

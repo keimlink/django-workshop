@@ -1,8 +1,7 @@
 # encoding: utf-8
-import datetime
-
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.timezone import now
 
 
 class Category(models.Model):
@@ -54,8 +53,8 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.date_created = datetime.datetime.now()
-        self.date_updated = datetime.datetime.now()
+            self.date_created = now()
+        self.date_updated = now()
         super(Recipe, self).save(*args, **kwargs)
 
     @models.permalink
