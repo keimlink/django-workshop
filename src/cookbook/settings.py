@@ -130,11 +130,10 @@ INSTALLED_APPS = (
     'recipes',
     'debug_toolbar',
     'userauth',
-    # 'south',
+    'south',
     'news',
     'addressbook',
-    # 'gunicorn',
-    'django_extensions'
+    'gunicorn',
 )
 
 # A sample logging configuration. The only tangible logging
