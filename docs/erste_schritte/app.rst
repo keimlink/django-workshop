@@ -3,6 +3,17 @@ Die erste Applikation
 
 Nun beginnen wir mit der ersten Applikation für unser Projekt "Kochbuch".
 
+Das Datenmodell ist wie folgt aufgebaut:
+
+.. graphviz:: models.dot
+
+- unsere App heisst *recipes*
+- es gibt zwei Models: *Recipe* und *Category*
+- im Datenmodell fett gedruckte Felder sind Pflichtfelder
+- das Feld *id* wird vom Django ORM automatisch als Primärschlüssel angelegt
+- beide Models sind durch eine n-m Verknüpfung *category* verbunden
+- *Recipe.author* ist mit dem *User* Model verbunden
+
 Anlegen der Applikation
 =======================
 
@@ -90,7 +101,7 @@ zum Beispiel in der Admin-Applikation benutzt.
 Das Model für die Rezepte
 -------------------------
 
-Jetzt legen wird das zweite Model für die Rezepte an::
+Jetzt legen wir das zweite Model für die Rezepte an::
 
     class Recipe(models.Model):
         """Recipe model."""
