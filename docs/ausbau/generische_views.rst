@@ -49,7 +49,7 @@ am Ende der Datei ersetzt.
 
 ..  code-block:: python
 
-    from django.conf.urls.defaults import patterns, include, url
+    from django.conf.urls import patterns, include, url
 
     from recipes.views import RecipeDetailView, RecipeListView
 

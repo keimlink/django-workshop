@@ -11,7 +11,7 @@ Eine URLConf für die ``recipes`` Applikation
 Also legen wir in der Applikation :file:`recipes` eine leere Datei
 :file:`urls.py` an. Sie soll die URLs der Rezepte aufnehmen::
 
-    from django.conf.urls.defaults import patterns, include, url
+    from django.conf.urls import patterns, include, url
 
     urlpatterns = patterns('recipes.views',
         url(r'^rezept/(?P<slug>[-\w]+)/$', 'detail'),
@@ -32,7 +32,7 @@ Wir können also nun die beiden URLs für die :file:`recipes` Applikation aus
 der URLConf des Projekts entfernen. Statt dessen müssen wir die neue URLConf
 der Applikation einem URL zuweisen::
 
-    from django.conf.urls.defaults import patterns, include, url
+    from django.conf.urls import patterns, include, url
 
     # Uncomment the next two lines to enable the admin:
     from django.contrib import admin

@@ -15,7 +15,7 @@ Rezepte an in :file:`recipes/urls.py` an::
 
 Die vollständige URLConf sieht dann so aus::
 
-    from django.conf.urls.defaults import patterns, include, url
+    from django.conf.urls import patterns, include, url
 
     urlpatterns = patterns('recipes.views',
         url(r'^rezept/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
@@ -47,10 +47,7 @@ Damit du später das Rezept mit einem Benutzer verbinden kannst musst du den
 Konstruktor von ``RecipeForm`` überschreiben::
 
     def __init__(self, **kwargs):
-        try:
-            self.__user = kwargs.pop('user')
-        except KeyError:
-            self.__user = None
+        self.__user = kwargs.pop('user', None)
         super(RecipeForm, self).__init__(**kwargs)
 
 Als letztes überschreibst du die Methode ``save``::
@@ -85,10 +82,7 @@ Die komplette Datei sieht dann so aus::
             exclude = ('slug', 'author', 'date_created', 'date_updated')
 
         def __init__(self, **kwargs):
-            try:
-                self.__user = kwargs.pop('user')
-            except KeyError:
-                self.__user = None
+            self.__user = kwargs.pop('user', None)
             super(RecipeForm, self).__init__(**kwargs)
 
         def save(self, commit=True):
@@ -109,6 +103,7 @@ Dazu sind zuerst einige weitere Imports nötig::
 
     from django.contrib.auth.decorators import login_required
     from django.http import HttpResponseForbidden, HttpResponseRedirect
+    from django.shortcuts import render
 
     from recipes.forms import RecipeForm
 

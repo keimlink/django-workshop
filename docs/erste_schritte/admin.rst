@@ -111,7 +111,7 @@ die URL des Admins ebenfalls aktivieren.
 Öffne dazu die Datei :file:`cookbook/urls.py` und entferne die
 Kommentarzeichen in den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
 
-    from django.conf.urls.defaults import patterns, include, url
+    from django.conf.urls import patterns, include, url
 
     # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
