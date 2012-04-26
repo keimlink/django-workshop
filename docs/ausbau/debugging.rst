@@ -68,8 +68,9 @@ aus::
             'debuglog': {
                 'level': 'DEBUG',
                 'class': 'logging.handlers.RotatingFileHandler',
-                'filename': '/tmp/debug.log',
-                'maxBytes': 1000,
+                'filename': os.path.join(SITE_ROOT, '..', 'debug.log'),
+                'maxBytes': 50000,
+                'backupCount': 1,
                 'formatter': 'simple'
             }
         },
@@ -176,7 +177,10 @@ Hier wird der Schlüssel ``slug`` aus ``kwargs`` entfernt und mit dem Schlüssel
 Eine Liste aller Befehle des Debuggers `findest du in der Dokumentation
 <http://docs.python.org/library/pdb.html#debugger-commands>`_.
 
-Weiterführende Links zur Django Dokumentation
-=============================================
+Weiterführende Links zur Django und Python Dokumentation
+========================================================
 
 * :djangodocs:`Das Logging-Framework <topics/logging/>`
+* `logging <http://docs.python.org/library/logging.html>`_
+* `logging.config <http://docs.python.org/library/logging.config.html>`_
+* `logging.handlers <http://docs.python.org/library/logging.handlers.html>`_

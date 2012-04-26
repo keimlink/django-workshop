@@ -5,9 +5,9 @@ Im vorhergehenden Kapitel haben wir einen 403 Fehler erzeugt wenn ein Benutzer
 ein Rezept bearbeiten wollte, dessen Autor er nicht war. Allerdings ist das
 Ergebnis eine weiße Seite, was nicht besonders schön ist.
 
-Dieses Problem ist eine gute Gelegenheit eine einfache Middleware zu
-schreiben. Lege dazu im Projektverzeichnis die Datei :file:`middleware.py` an
-und erstelle darin die folgende Klasse:
+Dieses Problem ist eine gute Gelegenheit eine einfache Middleware zu schreiben.
+Lege dazu im Konfigurationsverzeichnis die Datei :file:`middleware.py` an und
+erstelle darin die folgende Klasse:
 
 ..  code-block:: python
 
