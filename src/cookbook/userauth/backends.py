@@ -3,9 +3,9 @@ from django.contrib.auth.models import User, check_password
 
 from userauth.models import UserProfile
 
+
 class SettingsBackend():
-    """
-    Authenticate against the settings ADMIN_LOGIN and ADMIN_PASSWORD.
+    """Authenticate against the settings ADMIN_LOGIN and ADMIN_PASSWORD.
 
     Use the login name, and a hash of the password. For example:
 
