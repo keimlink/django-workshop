@@ -20,12 +20,3 @@ Ausbau des Django Projekts
    modelmethoden
    softwaretests/index
    internationalisierung
-.. Themen für Fortgeschrittene
-.. migration
-.. mehrere_datenbanken
-.. manager
-.. rss_feed
-.. pdf_erzeugung
-.. alternative_authentifizierung
-.. caching
-.. deployment

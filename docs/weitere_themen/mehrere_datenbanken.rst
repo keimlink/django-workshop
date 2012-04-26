@@ -1,10 +1,12 @@
+.. _mehrere_datenbanken:
+
 Mehrere Datenbanken nutzen
 **************************
 
 Seit Django 1.2 kann man mit mehreren Datenbanken gleichzeitig arbeiten.
 
 Dazu tragen wir zuerst die neue Datenbank in die Datei
-:file:`local_settings.py`` ein::
+:file:`local_settings.py` ein::
 
     DATABASES = {
         'default': {
@@ -24,18 +26,24 @@ Dazu tragen wir zuerst die neue Datenbank in die Datei
 Eine neue App "news" erstellen
 ==============================
 
-Diese Datenbank soll von einer News App genutzt werden. Also erstellen wir
-diese jetzt::
+Diese Datenbank soll von einer News App genutzt werden. Sie soll das folgende
+Datenmodell haben:
+
+.. graphviz:: news.dot
+
+- Ein Model **Article**, dass von einem abstrakten Model **DateTimeInfo** erbt
+- Das abstrakte Model speichert die beiden Felder automatisch
+
+Also erstellen wir als erstes die neue App::
 
     $ python manage.py startapp news
 
-Zuerst wollen wir das Model anlegen. Dies soll auf einem abstrakten Model
-aufbauen. Für dieses abstrakte Model legen wir im Verzeichnis :file:`cookbook`
-die Datei :file:`basemodels.py` mit folgendem Inhalt an::
-
-    import datetime
+Der nächste Schritt ist das Anlegen des abstrakten Models. Dazu legen wir im
+Konfigurationsverzeichnis die Datei :file:`basemodels.py` mit folgendem Inhalt
+an::
 
     from django.db import models
+    from django.utils.timezone import now
 
 
     class DateTimeInfo(models.Model):
@@ -47,8 +55,8 @@ die Datei :file:`basemodels.py` mit folgendem Inhalt an::
 
         def save(self, *args, **kwargs):
             if not self.id:
-                self.date_created = datetime.datetime.now()
-            self.date_updated = datetime.datetime.now()
+                self.date_created = now()
+            self.date_updated = now()
             super(DateTimeInfo, self).save(*args, **kwargs)
 
 Danach erstellen wir das Model ``Article`` in der Datei
@@ -61,19 +69,20 @@ Danach erstellen wir das Model ``Article`` in der Datei
 
 
     class Article(DateTimeInfo):
-        headline = models.CharField('Überschrift', max_length=100)
-        body = models.TextField('Inhalt')
+        headline = models.CharField(u'Überschrift', max_length=100)
+        body = models.TextField(u'Inhalt')
 
         class Meta:
-            verbose_name = 'Artikel'
-            verbose_name_plural = 'Artikel'
+            verbose_name = u'Artikel'
+            verbose_name_plural = u'Artikel'
             ordering = ['-date_updated']
 
         def __unicode__(self):
             return self.headline
 
-Dadurch, dass das Model ``Article`` von dem Model ``DateTimeInfo`` erbt erhält
-es automatisch die beiden ``DateTimeField`` Felder.
+Dadurch, dass das Model ``Article`` von dem Model ``DateTimeInfo`` erbt, erhält
+es automatisch die beiden ``DateTimeField`` Felder und deren Verhalten beim
+Speichern.
 
 Jetzt brauchen wir noch eine :file:`admin.py`, um das Model im Admin nutzen zu
 können::
@@ -94,7 +103,7 @@ Die Klasse ``CookbookRouter`` erstellen
 
 Damit wir die neue Datenbank auch mit der App "news" nutzen können benötigen
 wir einen "database router". Diesen legen wir in der Datei
-:file:`cookbook/router.py` an:
+:file:`router.py` im Konfigurationsverzeichnis an:
 
 ..  literalinclude:: ../../src/cookbook/router.py
     :lines: 1-6, 9-13, 16-20, 23-
@@ -111,9 +120,9 @@ Die initiale Migration durchführen
 ==================================
 
 Da wir im Kapitel :doc:`Migration <migration>` auf South umgestellt haben
-können wir das neue Model ``Article`` nicht mehr mit dem Befehl ``syncdb``
-erstellen. Also erstellen wir zuerst eine Migration mit dem Kommando
-``schemamigration``::
+können wir das neue Model ``Article`` nicht mehr mit dem Befehl
+:program:`syncdb` erstellen. Also erstellen wir zuerst eine Migration mit dem
+Kommando :program:`schemamigration`::
 
     $ python manage.py schemamigration news --initial
     Creating migrations directory at '.../cookbook/news/migrations'...
@@ -176,13 +185,13 @@ Eine existierende Datenbank einbinden
 =====================================
 
 Seit Django 1.2 ist es auch möglich eine existierende Datenbank in Django
-einzubinden. Dazu müssen wir zuerst eine solche anlegen. Ich dafür ein Python
-Skript geschrieben, dass eine SQLite Datenbank mit Adressen füllt:
+einzubinden. Dazu müssen wir zuerst eine solche anlegen. Dafür habe ich ein
+Python Skript geschrieben, dass eine SQLite Datenbank mit Adressen füllt:
 
 ..  literalinclude:: ../../src/cookbook/sqltestdata.py
     :linenos:
 
-Wenn man das Skript an der Kommandozeile aufruft werden die erzeugten SQL
+Wenn man das Skript an der Kommandozeile aufruft, werden die erzeugten SQL
 Queries ausgegeben::
 
     $ python sqltestdata.py
@@ -241,8 +250,8 @@ Als nächstes erstellen wir eine App für die neue Datenbank::
 
     $ python manage.py startapp addressbook
 
-Und lassen Django mit Hilfe des Befehls ``inspectdb`` Models aus den Tabellen
-der Datenbank erzeugen::
+Und lassen Django mit Hilfe des Befehls :program:`inspectdb` Models aus den
+Tabellen der Datenbank erzeugen::
 
     $ python manage.py inspectdb --database=addressdb
     # This is an auto-generated Django model module.
@@ -301,7 +310,8 @@ Zuletzt aktivieren wir noch die App ``addressbook`` in den ``INSTALLED_APPS``
 in der :file:`settings.py` und starten dann den Entwicklungs-Webserver, um uns
 die Daten anzusehen.
 
-Weiterführende Links zur Django und Python Dokumentation
-========================================================
+Weiterführende Links zur Django Dokumentation
+=============================================
 
+* :djangodocs:`Abstract base classes <topics/db/models/#abstract-base-classes>`
 * :djangodocs:`Mehrere Datenbank nutzen <topics/db/multi-db/>`

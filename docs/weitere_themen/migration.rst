@@ -80,17 +80,18 @@ aktivieren und deaktivieren können::
 
     class Recipe(models.Model):
         ...
-        active = models.BooleanField('Aktiv')
+        is_active = models.BooleanField(u'Aktiv')
 
         class Meta:
             ...
 
-Normalerweise würden wir jetzt das Kommando ``syncdb`` ausführen. Dazu müssten
-wir aber die bestehenden Daten löschen. Das können wir mit South vermeiden::
+Normalerweise würden wir jetzt das Kommando :program:`syncdb` ausführen. Dazu
+müssten wir aber die bestehenden Daten löschen. Das können wir mit South
+vermeiden::
 
     $ python manage.py schemamigration recipes --auto
-     + Added field active on recipes.Recipe
-    Created 0002_auto__add_field_recipe_active.py. You can now apply this
+     + Added field is_active on recipes.Recipe
+    Created 0002_auto__add_field_recipe_is_active.py. You can now apply this
     migration with: ./manage.py migrate recipes
 
 South erkennt die Änderung automatisch und erstellt eine neue Migration. Diese
@@ -100,46 +101,46 @@ wurde aber noch nicht angewendet::
 
      recipes
       (*) 0001_initial
-      ( ) 0002_auto__add_field_recipe_active
+      ( ) 0002_auto__add_field_recipe_is_active
 
 Also müssen wir als letzten Schritt die Migration auch anwenden::
 
     $ python manage.py migrate recipes
     Running migrations for recipes:
-     - Migrating forwards to 0002_auto__add_field_recipe_active.
-     > recipes:0002_auto__add_field_recipe_active
+     - Migrating forwards to 0002_auto__add_field_recipe_is_active.
+     > recipes:0002_auto__add_field_recipe_is_active
      - Loading initial data for recipes.
     No fixtures found.
 
 Wenn wir jetzt noch einmal die Migrationen anschauen, können wir sehen, dass
-auch die zweite ausgeführt wurde::
+beide ausgeführt wurden::
 
     $ python manage.py migrate --list
 
      recipes
       (*) 0001_initial
-      (*) 0002_auto__add_field_recipe_active
+      (*) 0002_auto__add_field_recipe_is_active
 
 Wir können jetzt den Entwicklungs-Webserver starten und uns die Rezepte
 im Admin ansehen. Sie haben ein neues Feld mit dem Namen "Aktiv".
 
-Wenn wir zu der Version der Datenbank ohne das Feld ``active`` zurückkehren
-wollen können wir das mit dem Kommando::
+Wenn wir zu der Version der Datenbank ohne das Feld ``is_active`` zurückkehren
+wollen, können wir das mit dem folgenden Kommando tun::
 
     $ python manage.py migrate recipes 0001
      - Soft matched migration 0001 to 0001_initial.
     Running migrations for recipes:
      - Migrating backwards to just after 0001_initial.
-     < recipes:0002_auto__add_field_recipe_active
+     < recipes:0002_auto__add_field_recipe_is_active
 
-Und natürlich auch wieder vorwärts::
+Und natürlich geht es auch wieder vorwärts::
 
     $ python manage.py migrate recipes
     Running migrations for recipes:
-     - Migrating forwards to 0002_auto__add_field_recipe_active.
-     > recipes:0002_auto__add_field_recipe_active
+     - Migrating forwards to 0002_auto__add_field_recipe_is_active.
+     > recipes:0002_auto__add_field_recipe_is_active
      - Loading initial data for recipes.
     No fixtures found.
 
-South ersetzt also das Kommando ``syncdb`` mit den Kommandos
-``schemamigration`` und ``migrate``.
+South ersetzt also das Kommando :program:`syncdb` mit den Kommandos
+:program:`schemamigration` und :program:`migrate`.
