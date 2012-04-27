@@ -202,6 +202,51 @@ Außerdem wollen wir nur einen lesenden Zugriff auf ``UserResource`` erlauben::
             excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
             allowed_methods = ['get']
 
+Ressourcen filtern
+==================
+
+Mit etwas zusätzlicher Konfiguration ist es auch möglich Ressourcen zu filtern::
+
+    from django.contrib.auth.models import User
+    from tastypie import fields
+    from tastypie.authorization import Authorization
+    from tastypie.constants import ALL, ALL_WITH_RELATIONS
+    from tastypie.resources import ModelResource
+
+    from .models import Recipe
+
+
+    class UserResource(ModelResource):
+        class Meta:
+            queryset = User.objects.all()
+            resource_name = 'user'
+            excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
+            allowed_methods = ['get']
+            filtering = {
+                'username': ALL,
+            }
+
+
+    class RecipeResource(ModelResource):
+        author = fields.ForeignKey(UserResource, 'author')
+
+        class Meta:
+            queryset = Recipe.objects.all()
+            resource_name = 'recipe'
+            authorization = Authorization()
+            filtering = {
+                'title': ('exact', 'startswith', 'icontains', 'contains'),
+                'number_of_portions': ALL,
+                'author': ALL_WITH_RELATIONS,
+            }
+
+Jetzt sind folgende Abfragen möglich:
+
+* http://127.0.0.1:8000/api/v1/recipe/?format=json&title__startswith=k
+* http://127.0.0.1:8000/api/v1/recipe/?format=json&title__icontains=ei
+* http://127.0.0.1:8000/api/v1/recipe/?format=json&number_of_portions__gt=3
+* http://127.0.0.1:8000/api/v1/recipe/?format=json&author__username=admin
+
 Weiterführende Links zur Tastypie Dokumentation
 ===============================================
 
