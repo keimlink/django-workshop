@@ -125,4 +125,4 @@ Das Template für ein Feed Element
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Das  Feed Framwork<ref/contrib/syndication/>`
+* :djangodocs:`Das  Feed Framework<ref/contrib/syndication/>`
