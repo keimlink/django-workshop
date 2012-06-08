@@ -2,9 +2,10 @@ Internationalisierung
 *********************
 
 Um einen Applikation in verschiedenen Sprachen anbieten zu können ist
-Internationalisierung (I18N) und Lokalisierung (L10N) notwendig. Django
-benutzt dazu das `gettext Modul
-<http://docs.python.org/library/gettext.html>`_ von Python.
+Internationalisierung (I18N) und Lokalisierung (L10N) notwendig. Django benutzt
+dazu das `gettext Modul <http://docs.python.org/library/gettext.html>`_ von
+Python. Außerdem muss GNU gettext installiert sein, um die nötigen Dateien zur
+Internationalisierung zu erzeugen.
 
 Standard-Übersetzung
 ====================
@@ -12,8 +13,8 @@ Standard-Übersetzung
 Eine einfache Übersetzung im View würde mit Hilfe von ``ugettext`` wie folgt
 durchgeführt werden::
 
-    from django.utils.translation import ugettext as _ 
-    
+    from django.utils.translation import ugettext as _
+
     def my_view(request):
         output = _("Welcome to my site.")
         return HttpResponse(output)
@@ -56,7 +57,7 @@ In bestimmten Fällen bietet sich auch eine Verzögerung der Übersetzung mit
     ...
     class Meta:
         verbose_name = _('recipe')
-        verbose_name_plural = _('recipes')    
+        verbose_name_plural = _('recipes')
 
 Übersetzte Zeichenketten zusammenfügen
 --------------------------------------
@@ -65,7 +66,7 @@ Mit Hilfe von ``string_concat`` lassen sich übersetzte Zeichenketten
 zusammenfügen::
 
     from django.utils.translation import string_concat, ugettext_lazy
-    
+
     car = ugettext_lazy(u'Audi')
     color = ugettext_lazy(u'silber')
     result = string_concat(car, ': ', color)
@@ -237,7 +238,7 @@ Um die Auswahl der Sprachen einzuschränken kann man die Liste der verfügbaren
 Sprachen in der :file:`settings.py` reduzieren::
 
     ugettext = lambda s: s
-    
+
     LANGUAGES = (
         (’de’, ugettext(’German’)),
         (’en’, ugettext(’English’)),
