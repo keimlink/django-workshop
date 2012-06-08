@@ -9,6 +9,7 @@ Den Feed erstellen
 
 Dazu legst du zuerst die Datei :file:`news/feeds.py` an::
 
+    from django.conf import settings
     from django.contrib.syndication.views import Feed
 
     from news.models import Article
@@ -20,13 +21,18 @@ Dazu legst du zuerst die Datei :file:`news/feeds.py` an::
         description = 'Der RSS Feed der Kochbuch Website'
 
         def items(self):
-            return Article.objects.order_by('-date_created')[:5]
+            return Article.objects.order_by('-date_created')[:settings.NEWS_FEED_COUNT]
 
         def item_title(self, item):
             return item.headline
 
         def item_description(self, item):
             return item.body
+
+Da wir die Anzahl der Elemente im RSS Feed aus der Datei :file:`settings.py`
+lesen müssen wir sie auch dort definieren::
+
+    NEWS_FEED_COUNT = 5
 
 Die URLs für den Feed definieren
 ================================
@@ -121,6 +127,15 @@ Das Template für ein Feed Element
     <p>{{ article.date_updated }}</p>
     <p>{{ article.body }}</p>
     {% endblock %}
+
+Die Site anpassen
+=================
+
+Damit die Links im RSS Feed auch funktionieren muss noch die Site im Admin
+angepasst werden. Dazu im Admin die Liste der Sites anzeigen und die Site mit
+dem Domainnamen ``example.com`` zum Bearbeiten auswählen. Statt ``example.com``
+muss als Domainname ``127.0.0.1:8000`` eingetragen werden. Der Anzeigename
+muss nicht unbedingt geändert werden - es schadet aber auch nicht.
 
 Weiterführende Links zur Django Dokumentation
 =============================================
