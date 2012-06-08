@@ -1,16 +1,15 @@
 from django.conf import settings
 from django.contrib.auth.models import User, check_password
 
-from userauth.models import UserProfile
-
 
 class SettingsBackend():
     """Authenticate against the settings ADMIN_LOGIN and ADMIN_PASSWORD.
 
-    Use the login name, and a hash of the password. For example:
+    Use the login name, and a hash of the password. This example uses "admin"
+    as username and password:
 
     ADMIN_LOGIN = 'admin'
-    ADMIN_PASSWORD = 'sha1$4e987$afbcf42e21bd417fb71db8c66b321e9fc33051de'
+    ADMIN_PASSWORD = 'sha1$4e987$afec41beb01610c713124cac668d0becc75b4d4c'
     """
     def authenticate(self, username=None, password=None):
         login_valid = (settings.ADMIN_LOGIN == username)
@@ -26,9 +25,6 @@ class SettingsBackend():
                 user.is_staff = False
                 user.is_superuser = False
                 user.save()
-                user_profile = UserProfile(user=user)
-                user_profile.roomnumber = '23'
-                user_profile.save()
             return user
         return None
 
