@@ -120,9 +120,9 @@ Die initiale Migration durchführen
 ==================================
 
 Da wir im Kapitel :doc:`Migration <migration>` auf South umgestellt haben
-können wir das neue Model ``Article`` nicht mehr mit dem Befehl
-:program:`syncdb` erstellen. Also erstellen wir zuerst eine Migration mit dem
-Kommando :program:`schemamigration`::
+nutzen wir zum Erstellen des neue Models ``Article`` nicht mehr den Befehl
+:program:`syncdb`, sondern wir erstellen zuerst eine Migration mit dem Kommando
+:program:`schemamigration`::
 
     $ python manage.py schemamigration news --initial
     Creating migrations directory at '.../cookbook/news/migrations'...

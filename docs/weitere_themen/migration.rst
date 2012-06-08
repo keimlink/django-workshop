@@ -142,5 +142,6 @@ Und natürlich geht es auch wieder vorwärts::
      - Loading initial data for recipes.
     No fixtures found.
 
-South ersetzt also das Kommando :program:`syncdb` mit den Kommandos
-:program:`schemamigration` und :program:`migrate`.
+Für Applikationen, die South für die Migration benutzen, kommen also statt dem
+Kommando :program:`syncdb` die Kommandos :program:`schemamigration` und
+:program:`migrate` zum Einsatz.
