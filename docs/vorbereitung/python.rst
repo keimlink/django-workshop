@@ -108,7 +108,7 @@ Nach der Installation kannst du :program:`pip` so testen:
 
 ..  code-block:: bash
 
-    $ pip --help
+    $ pip --version
 
 Weiterführende Links
 ====================
