@@ -140,4 +140,4 @@ muss nicht unbedingt geändert werden - es schadet aber auch nicht.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Das  Feed Framwork<ref/contrib/syndication/>`
+* :djangodocs:`Das  Feed Framework<ref/contrib/syndication/>`
