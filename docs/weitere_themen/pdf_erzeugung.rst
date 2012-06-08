@@ -13,6 +13,18 @@ Zuerst müssen alle nötigen Pakete installiert werden::
 
     $ pip install pisa PIL html5lib httplib2 pyPdf reportlab
 
+Zur Installation von PIL müssen unter Linux die folgenden Pakete installiert sein:
+
+* libjpeg62
+* liblcms1
+* python-dev
+
+Für OS X muss man zum Beispiel mit Homebrew_ die Unterstützung für das JPG Format installieren::
+
+    $ brew install jpeg
+
+.. _Homebrew: http://mxcl.github.com/homebrew/
+
 Ein generischer View für PDFs
 =============================
 
@@ -25,6 +37,8 @@ Das PDF erzeugen
 ================
 
 Jetzt fügst du den URL ``recipes_recipe_detail_pdf`` zu :file:`recipes/urls.py` hinzu::
+
+    from .views import RecipeDetailView, RecipePDFView
 
     urlpatterns += patterns('',
         url(r'^rezept/(?P<slug>[-\w]+)/$', RecipeDetailView.as_view(),
