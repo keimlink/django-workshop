@@ -11,16 +11,18 @@ zeitaufwändig.
 Softwaretests sind auch gleichzeitig eine Dokumentation, denn sie erklären wie
 ein Feature benutzt werden kann.
 
-Django unterstützt mit dem eingebauten Testing Framework drei Arten von Tests:
+Django unterstützt mit dem eingebauten Testing Framework vier Arten von Tests:
 
 * Doctests
 * Unit Tests
 * Funktionale Tests der Views
+* GUI Tests mit Selenium
 
 Mit Hilfe eines zusätzlichen Paketes lässt sich auch die Test-Abdeckung
 ermitteln.
 
-Diese Themen werden in den folgenden Kapiteln behandelt.
+Bis auf das Testen mit Selenium werden die oben genannten Themen in den
+folgenden Kapiteln behandelt.
 
 .. toctree::
    :maxdepth: 2
