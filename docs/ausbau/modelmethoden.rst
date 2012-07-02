@@ -19,7 +19,7 @@ Füge also diese Methode dem Model ``Recipe`` in der Datei
 
     def get_related_recipes(self):
         categories = self.category.all()
-        related_recipes = Recipe.objects.all().filter(
+        related_recipes = Recipe.objects.filter(
             difficulty__exact=self.difficulty, category__in=categories)
         return related_recipes.exclude(pk=self.id).distinct()
 

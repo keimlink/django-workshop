@@ -21,7 +21,7 @@ Dazu erstellst du in :file:`recipes/models.py` eine neue Klasse
 
         def get_related_recipes(self):
             categories = self.category.all()
-            related_recipes = Recipe.active.all().filter(
+            related_recipes = Recipe.active.filter(
                 difficulty__exact=self.difficulty, category__in=categories)
             return related_recipes.exclude(pk=self.id).distinct()
 
