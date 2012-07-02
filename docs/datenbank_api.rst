@@ -16,7 +16,7 @@ ein.
 
 ..  note::
 
-    Du benötigst das Programm `sqlite3 <https://www.sqlite.org/>`_, um den
+    Du benötigst das Programm `sqlite3 <http://www.sqlite.org/>`_, um den
     Befehl :program:`dbshell` nutzen zu können.
 
 Das Backup erstellst du so:
