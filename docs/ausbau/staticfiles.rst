@@ -1,4 +1,4 @@
-..  _staticfiles:
+.. _staticfiles:
 
 Einbindung von statischen Dateien
 *********************************
@@ -10,6 +10,8 @@ müssen - also CSS, JavaScript, Bilder usw.
 Bis jetzt besteht unser Projekt ja nur aus drei Templates und einigen Python
 Dateien. Also machen wir uns daran, dass zu ändern. Dabei kann uns das `HTML5
 Boilerplate`_ helfen.
+
+.. _html5_boilerplate:
 
 HTML5 Boilerplate einsetzen
 ===========================

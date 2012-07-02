@@ -10,6 +10,7 @@ Weitere Themen
    admin_anpassung
    rss_feed
    pdf_erzeugung
+   ajax
    rest
    alternative_authentifizierung
    caching
