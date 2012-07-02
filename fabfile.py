@@ -1,4 +1,5 @@
 import os
+import sys
 import webbrowser
 
 from fabric.api import *
@@ -11,6 +12,12 @@ class DjangoWorkshopBaseTask(Task):
         super(DjangoWorkshopBaseTask, self).__init__(*args, **kwargs)
         self.prj_root = os.path.realpath(os.path.dirname(__file__))
         self.docs = os.path.join(self.prj_root, 'docs')
+
+    def get_release(self):
+        """Returns the release number."""
+        sys.path.append(self.docs)
+        import conf
+        return conf.release
 
 
 class BuildHtmlTask(DjangoWorkshopBaseTask):
@@ -41,12 +48,12 @@ class BuildPdfTask(DjangoWorkshopBaseTask):
 
 
 class DeployTask(BuildHtmlTask):
-    """Builds and deploys the Sphinx documentation."""
+    """Builds and deploys the Sphinx documentation as HTML."""
     name = 'deploy'
 
     def run(self):
         super(DeployTask, self).run(open_browser=False)
-        if not confirm('Do you wish to deploy this build?'):
+        if not confirm('Do you wish to deploy build %s?' % self.get_release()):
             abort('Deployment cancelled.')
         with cd('doms/django-workshop.de/subs'):
             run('rm -rf www')
