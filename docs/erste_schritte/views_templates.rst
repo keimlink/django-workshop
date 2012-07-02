@@ -153,7 +153,7 @@ wird dann den vom ``Template`` gerenderten String zurück geben::
     from django.http import HttpResponse
     from django.template import Context, loader
 
-    from recipes.models import Recipe
+    from .models import Recipe
 
 
     def index(request):
@@ -265,7 +265,7 @@ Die komplette Datei sieht dann so aus::
     from django.http import Http404, HttpResponse
     from django.template import Context, loader
 
-    from recipes.models import Recipe
+    from .models import Recipe
 
 
     def index(request):

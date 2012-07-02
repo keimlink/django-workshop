@@ -32,7 +32,7 @@ Als nächstes legst du das Formular an. Erstelle dazu die Datei
 
     from django.forms import ModelForm
 
-    from recipes.models import Recipe
+    from .models import Recipe
 
     class RecipeForm(ModelForm):
         class Meta:
@@ -74,7 +74,7 @@ Die komplette Datei sieht dann so aus::
     from django.forms import ModelForm
     from django.template.defaultfilters import slugify
 
-    from recipes.models import Recipe
+    from .models import Recipe
 
     class RecipeForm(ModelForm):
         class Meta:
@@ -105,7 +105,7 @@ Dazu sind zuerst einige weitere Imports nötig::
     from django.http import HttpResponseForbidden, HttpResponseRedirect
     from django.shortcuts import render
 
-    from recipes.forms import RecipeForm
+    from .forms import RecipeForm
 
 Zuerst legst du den View zum Erstellen eines neuen Rezeptes an::
 

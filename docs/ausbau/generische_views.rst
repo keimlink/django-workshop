@@ -51,7 +51,7 @@ am Ende der Datei ersetzt.
 
     from django.conf.urls import patterns, include, url
 
-    from recipes.views import RecipeDetailView, RecipeListView
+    from .views import RecipeDetailView, RecipeListView
 
     urlpatterns = patterns('recipes.views',
         url(r'^erstellen/$', 'add', name='recipes_recipe_add'),

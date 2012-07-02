@@ -32,7 +32,7 @@ Datei :file:`recipes/views.py` sieht dann wie folgt aus::
 
     from django.shortcuts import render_to_response
 
-    from recipes.models import Recipe
+    from .models import Recipe
 
     def index(request):
         recipes = Recipe.objects.all()
@@ -66,7 +66,7 @@ selbst schreiben müssen, stark reduziert.
 
     from django.shortcuts import get_object_or_404, render_to_response
 
-    from recipes.models import Recipe
+    from .models import Recipe
 
     def index(request):
         recipes = Recipe.objects.all()

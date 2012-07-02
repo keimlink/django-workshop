@@ -81,7 +81,7 @@ HTML5 Boilerplate einsetzen
         from django.shortcuts import get_object_or_404, render_to_response
         from django.template import RequestContext
 
-        from recipes.models import Recipe
+        from .models import Recipe
 
 
         def index(request):
