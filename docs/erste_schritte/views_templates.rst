@@ -177,6 +177,7 @@ erstellt du die Datei :file:`base.html`:
 ..  code-block:: html+django
 
     <!doctype html>
+    <html>
     <head>
         <meta charset="utf-8">
     	<title>{% block title %}Kochbuch{% endblock %}</title>
