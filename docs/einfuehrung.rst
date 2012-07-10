@@ -68,7 +68,7 @@ Die **Template-Engine** unterstützt die Vererbung von Templates und bietet
 umfangreiche Filter und Templates. Diese können auch selbst erweitert werden.
 
 Der **View** holt die Daten, zum Beispiel mit Hilfe des **Object Relational
-Mappers**. Es können aber auch anderen Datenquellen genutzt werden.
+Mappers**. Es können aber auch andere Datenquellen genutzt werden.
 
 Die **URLConf** steuert das Routing. Mit Hilfe von regulären Ausdrücken wird
 der Request dem richtigen View zugewiesen.

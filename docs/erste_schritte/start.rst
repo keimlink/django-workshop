@@ -7,7 +7,7 @@ arbeiten, kann das erste Projekt beginnen.
 Ein Verzeichnis für alle Python Projekte
 ========================================
 
-Zuerst erstellst du ein Verzeichnis für dies und alle zukünftigen Projekte:
+Zuerst erstellst du ein Verzeichnis für dieses und alle zukünftigen Projekte:
 
 ..  code-block:: bash
 
@@ -54,11 +54,11 @@ verwalten. Auf dieses Verzeichnis wird in allen anderen Kapiteln mit
 
 Außerdem enthält es das `Python Paket
 <http://docs.python.org/tutorial/modules.html#packages>`_ :file:`cookbook`
-innnerhalb des Projektverzeichnisses mit der zentralen Konfiguration für das
+innnerhalb des Projektverzeichnisses, mit der zentralen Konfiguration für das
 Django Projekt. Dies wird durch die leere Datei :file:`__init__.py` angezeigt.
 Die Datei :file:`settings.py` enthält alle Einstellungen deines Projekts. In
 :file:`urls.py` sind die regulären Ausdrücke enthalten, um einen URL zum
-richtigen View zu leiten. Dazu später mehr. :file:`wsgi.py` definiert die WSGI
+richtigen View zu leiten aber dazu später mehr. Die :file:`wsgi.py` definiert die WSGI
 Applikation, die später beim Deployment benötigt wird. Auf dieses Verzeichnis
 wird in allen anderen Kapiteln mit **Konfigurationsverzeichnis** Bezug
 genommen.
@@ -71,7 +71,7 @@ angepasst werden. Dazu öffnest du die Datei :file:`settings.py` in einem
 Texteditor.
 
 Damit wir das Arbeitsverzeichnis nicht mehrfach in die Konfiguration eintragen
-müssen ermitteln wir er dynamisch und speichern es in einer "Konstanten"::
+müssen, ermitteln wir es dynamisch und speichern es in einer "Konstanten"::
 
     import os
 
@@ -87,7 +87,7 @@ Version 2.5 in Python enthalten ist.
 
 Wenn du Python 2.4 benutzt musst du selbst ein Paket für SQLite installieren.
 
-Konfiguriere die Datenbankverbindung ``default`` wird folgt::
+Konfiguriere die Datenbankverbindung ``default`` wie folgt::
 
     DATABASES = {
         'default': {

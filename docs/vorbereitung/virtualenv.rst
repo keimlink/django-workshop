@@ -17,7 +17,7 @@ Solche Probleme kann :program:`virtualenv` lösen.
 die installierten Pakete von der Basisinstallation abkapselt.
 
 Außerdem kann :program:`virtualenv` jeder Umgebung eine bestimmte Python
-Version zuordnen. Man kann also ein virtuelle Arbeitsumgebung mit Python 2.5
+Version zuordnen. Man kann also eine virtuelle Arbeitsumgebung mit Python 2.5
 erstellen, die nächste mit Python 2.6.
 
 Außerdem lässt sich :program:`virtualenv` auch im Produktivbetrieb auf dem
