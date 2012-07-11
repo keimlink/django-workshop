@@ -24,10 +24,12 @@ class BuildHtmlTask(DjangoWorkshopBaseTask):
     """Builds the Sphinx documentation as HTML."""
     name = 'build'
 
-    def run(self, open_browser=True):
+    def run(self, open_browser=True, linkcheck=False):
         with lcd(self.docs):
             local('make clean')
             local('make html')
+            if linkcheck:
+                local('make linkcheck')
         if open_browser:
             webbrowser.open(os.path.join(self.docs, '_build/html/index.html'))
 
@@ -52,7 +54,7 @@ class DeployTask(BuildHtmlTask):
     name = 'deploy'
 
     def run(self):
-        super(DeployTask, self).run(open_browser=False)
+        super(DeployTask, self).run(open_browser=False, linkcheck=True)
         if not confirm('Do you wish to deploy build %s?' % self.get_release()):
             abort('Deployment cancelled.')
         with cd('doms/django-workshop.de/subs'):
