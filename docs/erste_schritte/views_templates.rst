@@ -54,10 +54,11 @@ Die Datei :file:`urls.py` sieht danach so aus::
     der einen regulären Ausdruck enthält.
 
     Falls du regulären Ausdrücken zum ersten Mal begegnest kannst du mehr
-    darüber auf Regular-Expressions.info_ oder im Artikel von Doug Hellmann
+    darüber im Regular-Expression-HOWTO_, auf Regular-Expressions.info_ oder im Artikel von Doug Hellmann
     über das re-Modul_ erfahren. Auf RegexPlanet_ kannst du reguläre Ausdrücke
     direkt im Browser testen.
 
+.. _Regular-Expression-HOWTO: http://docs.python.org/howto/regex.html
 .. _Regular-Expressions.info: http://www.regular-expressions.info/
 .. _re-Modul: http://www.doughellmann.com/PyMOTW/re/
 .. _RegexPlanet: http://www.regexplanet.com/advanced/python/index.html
@@ -172,7 +173,7 @@ Templates erstellen
 Als erstes benötigst du ein Basis-Template für deine Website. Erstelle das
 Verzeichnis :file:`templates` im Projektverzeichnis. Das ist das Verzeichnis
 :file:`cookbook` mit der Datei :file:`manage.py` darin. Im neuen Verzeichnis
-erstellt du die Datei :file:`base.html`:
+erstellst du die Datei :file:`base.html`:
 
 ..  code-block:: html+django
 
@@ -379,7 +380,7 @@ explizit zu erlauben:
     <p>Zubereitungszeit: {{ object.time_for_preparation }} Minuten</p>
     {% endblock %}
 
-Jetzt wird tatsächlich das JavaScript wie vom Benutzer gewüscht ausgeführt::
+Jetzt wird tatsächlich das JavaScript wie vom Benutzer gewünscht ausgeführt::
 
     <p><script>alert('Das beste Rezept der Welt!')</script></p>
     <p>Das Wasser im Topf auf 100°C erhitzen.</p>
