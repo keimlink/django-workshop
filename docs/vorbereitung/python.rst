@@ -113,9 +113,9 @@ Nach der Installation kannst du :program:`pip` so testen:
 Weiterführende Links
 ====================
 
-    * `Python Homepage <http://python.org/>`_
-    * `Offizielles Python Tutorial <http://docs.python.org/tutorial/index.html>`_
-    * `Learn Python The Hard Way <http://learnpythonthehardway.org/>`_
-    * `Code Like a Pythonista: Idiomatic Python (interaktives Tutorial) <http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html>`_
-    * `distribute Dokumentation <http://packages.python.org/distribute/>`_
-    * `pip Homepage <http://www.pip-installer.org/>`_
+* `Python Homepage <http://python.org/>`_
+* `Offizielles Python Tutorial <http://docs.python.org/tutorial/index.html>`_
+* `Learn Python The Hard Way <http://learnpythonthehardway.org/>`_
+* `Code Like a Pythonista: Idiomatic Python (interaktives Tutorial) <http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html>`_
+* `distribute Dokumentation <http://packages.python.org/distribute/>`_
+* `pip Homepage <http://www.pip-installer.org/>`_

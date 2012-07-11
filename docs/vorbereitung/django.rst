@@ -20,10 +20,10 @@ Kommando ausgeführt werden:
 
 Folgendes passiert:
 
-    * Die Option ``--distribute`` installiert im *virtual environment*
-      ``distribute`` statt ``setuptools``
-    * ``django-workshop`` ist der Name, unter dem das *virtual environment*
-      später zur Verfügung steht
+* Die Option ``--distribute`` installiert im *virtual environment*
+  ``distribute`` statt ``setuptools``
+* ``django-workshop`` ist der Name, unter dem das *virtual environment*
+  später zur Verfügung steht
 
 Falls der :program:`virtualenvwrapper` benutzt wurde ist das *virtual
 environment* jetzt schon aktiviert.
@@ -78,7 +78,7 @@ zusätzlich zu installieren::
 Weiterführende Links
 ====================
 
-    * `Django Homepage <http://www.djangoproject.com/>`_
-    * `The Django Book <http://djangobook.com/en/2.0/>`_
-    * `Django Packages <http://www.djangopackages.com/>`_ - Ein Verzeichnis für wiederverwendbare Apps
-    * `Django Snippets <http://djangosnippets.org/>`_ - Eine Sammlung nützlicher Code Schnipsel
+* `Django Homepage <http://www.djangoproject.com/>`_
+* `The Django Book <http://djangobook.com/en/2.0/>`_
+* `Django Packages <http://www.djangopackages.com/>`_ - Ein Verzeichnis für wiederverwendbare Apps
+* `Django Snippets <http://djangosnippets.org/>`_ - Eine Sammlung nützlicher Code Schnipsel

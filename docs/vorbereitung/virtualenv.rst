@@ -92,5 +92,5 @@ Konfiguration noch einmal neu geladen werden. Dabei legt
 Weiterführende Links
 ====================
 
-    * `virtualenv Dokumentation <http://www.virtualenv.org/en/latest/>`_
-    * `virtualenvwrapper Homepage <http://www.doughellmann.com/projects/virtualenvwrapper/>`_
+* `virtualenv Dokumentation <http://www.virtualenv.org/en/latest/>`_
+* `virtualenvwrapper Homepage <http://www.doughellmann.com/projects/virtualenvwrapper/>`_
