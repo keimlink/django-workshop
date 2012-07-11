@@ -42,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Django Workshop'
-copyright = u'2010-%s, Markus Zapke-Gründemann' % date.today().year
+copyright = u'2010-%s, Markus Zapke-Gründemann und andere' % date.today().year
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
