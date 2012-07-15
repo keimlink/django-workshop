@@ -41,22 +41,33 @@ Zuerst fügen wir also eine entsprechende neue URL für den View
 `autocomplete` in :file:`recipes/urls.py` ein::
 
     urlpatterns = patterns('recipes.views',
-        url(r'^rezept/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
+        url(r'^erstellen/$', 'add', name='recipes_recipe_add'),
+        url(r'^bearbeiten/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
         url(r'^autocomplete/$', 'autocomplete', name='recipes_recipe_autocomplete'),
-        url(r'^$', 'index', name='recipes_recipe_index'),
     )
 
 Dann schreiben wir den passenden View in :file:`recipes/views.py`, der
 den GET Parameter `term` zur Suche benutzt::
 
+    from django.http import HttpResponse
+    from django.utils import simplejson
+
     def autocomplete(request):
         term = request.GET.get('term', '')
-        recipes = Recipe.objects.filter(title__startswith=term).order_by('title')
-        titles = []
-        for recipe in recipes:
-            titles.append(recipe.title)
+        recipes = Recipe.active.filter(title__startswith=term).order_by('title')
+        titles = [recipe.title for recipe in recipes[:20]]
         json = simplejson.dumps(titles, ensure_ascii=False)
-        return HttpResponse(json, mimetype='application/json')
+        return HttpResponse(json, mimetype='application/json; charset=utf-8')
+
+Wenn du jetzt den URL http://127.0.0.1:8000/autocomplete/?term=ko
+aufrufst werden die Titel aller Rezepte als JSON ausgegeben, die mit den
+Buchstaben "ko" beginnen.
+
+Für Firefox und Chrome gibt es die sehr nützliche Extension `JSONView`_,
+die JSON in einer farbigen Baumstruktur anzeigt. Dies kann bei der
+Entwicklung sehr hilfreich sein.
+
+.. _JSONView: http://jsonview.com/
 
 Ein zweiter View für die Suche
 ==============================
@@ -80,7 +91,7 @@ Und der entsprechende View::
 
     def search(request):
         query = request.GET.get('begriff', '')
-        results = Recipe.objects.filter(title__startswith=query).order_by('title')
+        results = Recipe.objects.filter(title__icontains=query).order_by('title')
         return render(request, 'recipes/search.html', {'results': results})
 
 Da dieser View ein Template rendert, benötigt er auch eine
@@ -103,6 +114,10 @@ Template-Datei, nämlich :file:`recipes/templates/recipes/search.html`:
     </ul>
     {% endblock %}
 
+Diesen View kannst du auch schon testen, in dem du zum Beispiel
+http://127.0.0.1:8000/suche/?begriff=ko aufrufst. Dies sollte eine Liste
+aller Rezepte anzeigen, die die Buchstabenfolge "ko" enthalten.
+
 jQuery im Frontend einsetzen
 ============================
 
@@ -118,9 +133,10 @@ durch die letzte Nummer des aktuellen Release zu ersetzen.
     für den Download auszuwählen.
 
 Nachdem du das Zip-Archiv herunterladen hast entpackst du es. Danach
-hast du ein Verzeichnis das :file:`jquery-ui-1.8.x.custom` oder
-:file:`jquery-ui-1.8.x` heißt, je nachdem ob du jQueryUI vor dem
-Download angepasst hast oder nicht. Dann kopierst du die nötigen
+hast du ein Verzeichnis das :file:`jquery-ui-1.8.x.custom` heißt. (Falls
+dein Programm zum entpacken des Zip-Archivs kein Verzeichnis mit dem
+Namen des Zip-Archivs erstellt, befinden sich die Dateien alle im
+gleichen Verzeichnis wie das Zip-Archiv.) Dann kopierst du die nötigen
 Dateien in das Verzeichnis :file:`cookbook/static`:
 
 - das Verzeichnis :file:`ui-lightness` aus dem Verzeichnis :file:`jquery-ui-1.8.x.custom/css` in das Verzeichnis :file:`static/css`
@@ -170,12 +186,20 @@ Autovervollständigung an den Server senden wird:
       <script>
         $(function() {
           $("#search").autocomplete({
-            source: "/autocomplete/",
+            source: "{% url recipes_recipe_autocomplete %}",
             minLength: 2
           });
         });
       </script>
     </body>
+
+Jetzt kannst du im Suchfeld den Namen eines Rezepts eingeben, dass es
+bereits in der Datenbank gibt. Nachdem du den zweiten Buchstaben
+eingegeben hast sollte unter dem Eingabefeld die Liste aller Rezepte
+erscheinen, die mit diesen Buchstaben beginnen. Jetzt hast du die
+Möglichkeit entweder durch drücken der Eingabetaste direkt nach allen
+Rezepten zu suchen, die die eingegebene Buchstabenfolge enthalten oder
+du kannst einen der Rezept-Titel auswählen und nur nach diesem suchen.
 
 .. _jQueryUI: http://jqueryui.com/
 .. _jQueryUI Website herunterladen: http://jqueryui.com/download
