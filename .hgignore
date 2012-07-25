@@ -1,6 +1,8 @@
 syntax: glob
 
+*~
 *.db
+*.mo
 *.pyc
 .coverage
 .vagrant

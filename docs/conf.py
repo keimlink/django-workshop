@@ -223,3 +223,5 @@ rst_prolog = """
 """
 
 linkcheck_ignore = [r'http://127.0.0.1:\d+/', r'http://localhost:\d+/']
+
+locale_dirs = ['locale/']
