@@ -1,3 +1,11 @@
+"""Tasks to build and deploy the Django Workshop.
+
+The build commmands can be used to build the documentation in different
+formats.
+
+Use the make_messages commmand to create or update the message catalog
+for translations.
+"""
 import os
 import sys
 import webbrowser
