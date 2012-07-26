@@ -56,7 +56,12 @@ class DjangoWorkshopBaseTask(Task):
 
 
 class BuildHtmlTask(DjangoWorkshopBaseTask):
-    """Builds the Sphinx documentation as HTML."""
+    """Builds the Sphinx documentation as HTML.
+
+    The documentation is opened in the default browser after the build.
+    Use the language argument to build not the default language.
+    Set linkcheck to True to perform a linkcheck after the build.
+    """
     name = 'build'
 
     def run(self, language=None, linkcheck=False):
@@ -66,7 +71,12 @@ class BuildHtmlTask(DjangoWorkshopBaseTask):
 
 
 class BuildPdfTask(DjangoWorkshopBaseTask):
-    """Builds the Sphinx documentation as PDF."""
+    """Builds the Sphinx documentation as PDF.
+
+    The PDF is opened after the build with the default application.
+    Use the language argument to build not the default language.
+    Set linkcheck to True to perform a linkcheck after the build.
+    """
     name = 'build_pdf'
 
     def run(self, language=None, linkcheck=False):
@@ -81,7 +91,10 @@ class BuildPdfTask(DjangoWorkshopBaseTask):
 
 
 class MakeMessageCatalogTask(DjangoWorkshopBaseTask):
-    """Creates .po files in locale directory."""
+    """Creates .po files in locale directory.
+
+    The language argument is required and defines the language of the
+    translation. """
     name = 'make_messages'
 
     def _msginit(self, pot_file, po_file):
@@ -142,7 +155,10 @@ class MakeMessageCatalogTask(DjangoWorkshopBaseTask):
 
 
 class DeployTask(DjangoWorkshopBaseTask):
-    """Builds and deploys the Sphinx documentation as HTML."""
+    """Builds and deploys the Sphinx documentation as HTML.
+
+    Performs an automatic linkcheck after the build before the deployment.
+    """
     name = 'deploy'
 
     def run(self):
