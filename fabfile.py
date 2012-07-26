@@ -30,7 +30,7 @@ class DjangoWorkshopBaseTask(Task):
                 continue
             context['po_file'] = filename
             context['mo_file'] = os.path.splitext(filename)[0] + '.mo'
-            cmd = 'msgfmt -D %(locale_dir)s %(po_file)s '
+            cmd = 'msgfmt --check-format -D %(locale_dir)s %(po_file)s '
             cmd += '-o %(locale_dir)s/%(mo_file)s'
             local(cmd % context)
 
