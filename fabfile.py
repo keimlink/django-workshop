@@ -56,7 +56,8 @@ class BuildHtmlTask(DjangoWorkshopBaseTask):
     name = 'build'
 
     def run(self, language=None, linkcheck=False):
-        super(BuildHtmlTask, self).run('html', language, linkcheck)
+        with hide('running'):
+            super(BuildHtmlTask, self).run('html', language, linkcheck)
         webbrowser.open(os.path.join(self.docs, '_build/html/index.html'))
 
 
@@ -65,12 +66,14 @@ class BuildPdfTask(DjangoWorkshopBaseTask):
     name = 'build_pdf'
 
     def run(self, language=None, linkcheck=False):
-        super(BuildPdfTask, self).run('latexpdf', language, linkcheck)
+        with hide('running'):
+            super(BuildPdfTask, self).run('latexpdf', language, linkcheck)
         pdfpath = os.path.join(self.docs, '_build/latex/DjangoWorkshop.pdf')
         try:
             os.startfile(pdfpath)
         except AttributeError:
-            local('open %s' % pdfpath)
+            with hide('running'):
+                local('open %s' % pdfpath)
 
 
 class MakeMessageCatalogTask(DjangoWorkshopBaseTask):
@@ -129,8 +132,10 @@ class DeployTask(DjangoWorkshopBaseTask):
     name = 'deploy'
 
     def run(self):
-        super(DeployTask, self).run('html', linkcheck=True)
-        if not confirm('Do you wish to deploy build %s?' % self.get_release()):
+        with hide('running'):
+            super(DeployTask, self).run('html', linkcheck=True)
+        msg = 'Do you wish to deploy build %s?' % self.get_release()
+        if not confirm(msg, default=False):
             abort('Deployment cancelled.')
         with cd('doms/django-workshop.de/subs'):
             run('rm -rf www')
