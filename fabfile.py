@@ -48,7 +48,11 @@ class DjangoWorkshopBaseTask(Task):
             else:
                 local('make %s' % builder)
             if linkcheck:
+                fastprint('\n')
                 local('make linkcheck')
+                fastprint('\nLink check report:\n\n')
+                local('cat _build/linkcheck/output.txt')
+                fastprint('\n')
 
 
 class BuildHtmlTask(DjangoWorkshopBaseTask):
