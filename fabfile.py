@@ -93,15 +93,22 @@ class MakeMessageCatalogTask(DjangoWorkshopBaseTask):
         }
         local(cmd % context)
 
+    def _msgfilter(self, po_file):
+        """Filters the .po file and removes all msgstr strings."""
+        po_file = 'locale/%s/LC_MESSAGES/%s' % (self.lang_short, po_file)
+        cmd = 'msgfilter -i %(po_file)s --keep-header -o %(po_file)s echo -n'
+        local(cmd % {'po_file': po_file})
+
     def _msgmerge(self, pot_file, po_file):
         """Updates .po file from .pot file."""
-        cmd = 'msgmerge -U locale/%(lang_short)s/LC_MESSAGES/%(po_file)s '
-        cmd += '_build/locale/%(pot_file)s'
+        po_file = 'locale/%s/LC_MESSAGES/%s' % (self.lang_short, po_file)
+        cmd = 'msgmerge -U %(po_file)s _build/locale/%(pot_file)s'
         context = {
             'lang_short': self.lang_short,
             'pot_file': pot_file,
             'po_file': po_file
         }
+        fastprint('Updating %s' % po_file)
         local(cmd % context)
 
     def run(self, language=None):
@@ -114,17 +121,20 @@ class MakeMessageCatalogTask(DjangoWorkshopBaseTask):
         with lcd(self.docs):
             new_catalog = False
             locale_dir = os.path.join('locale', self.lang_short, 'LC_MESSAGES')
-            if not os.path.exists(locale_dir):
-                local('mkdir -p %s' % locale_dir)
-                new_catalog = True
-            local('make gettext')
-            for filename in os.listdir('_build/locale'):
-                if not filename.endswith('.pot'):
-                    continue
-                if new_catalog:
-                    self._msginit(filename, filename[:-1])
-                else:
-                    self._msgmerge(filename, filename[:-1])
+            with hide('running'):
+                if not os.path.exists(locale_dir):
+                    local('mkdir -p %s' % locale_dir)
+                    new_catalog = True
+                local('make gettext')
+                fastprint('\n')
+                for filename in os.listdir('_build/locale'):
+                    if not filename.endswith('.pot'):
+                        continue
+                    if new_catalog:
+                        self._msginit(filename, filename[:-1])
+                        self._msgfilter(filename[:-1])
+                    else:
+                        self._msgmerge(filename, filename[:-1])
 
 
 class DeployTask(DjangoWorkshopBaseTask):
