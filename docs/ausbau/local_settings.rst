@@ -29,7 +29,7 @@ folgendem Inhalt an (du kannst aus :file:`settings.py` kopieren)::
 
     import os
 
-    from settings import SITE_ROOT
+    from .settings import SITE_ROOT
 
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
