@@ -53,15 +53,15 @@ Konstruktor von ``RecipeForm`` überschreiben::
 Als letztes überschreibst du die Methode ``save``::
 
     def save(self, commit=True):
-        if self.instance.pk is None:
-            if self.__user is None:
+        if not self.instance.pk:
+            if not self.__user:
                 raise TypeError("You didn't give an user argument to the constructor.")
             self.instance.slug = slugify(self.instance.title)
             self.instance.author = self.__user
         return super(RecipeForm, self).save(commit)
 
-Wenn noch keine Instanz des Objekts ``Recipe`` erstellt wurde (``if
-self.instance.pk is None``) wird für diese ein Slug erstellt und sie wird mit
+Wenn noch keine Instanz des Objekts ``Recipe`` erstellt wurde (``if not
+self.instance.pk``) wird für diese ein Slug erstellt und sie wird mit
 dem Benutzer verbunden.
 
 Damit die Funktion ``slugify`` zur Verfügung steht musst du noch den folgenden
@@ -86,8 +86,8 @@ Die komplette Datei sieht dann so aus::
             super(RecipeForm, self).__init__(**kwargs)
 
         def save(self, commit=True):
-            if self.instance.pk is None:
-                if self.__user is None:
+            if not self.instance.pk:
+                if not self.__user:
                     raise TypeError("You didn't give an user argument to the constructor.")
                 self.instance.slug = slugify(self.instance.title)
                 self.instance.author = self.__user
