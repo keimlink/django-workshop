@@ -54,7 +54,7 @@ den GET Parameter `term` zur Suche benutzt::
 
     def autocomplete(request):
         term = request.GET.get('term', '')
-        recipes = Recipe.active.filter(title__startswith=term).order_by('title')
+        recipes = Recipe.active.filter(title__istartswith=term).order_by('title')
         titles = [recipe.title for recipe in recipes[:20]]
         json = simplejson.dumps(titles, ensure_ascii=False)
         return HttpResponse(json, mimetype='application/json; charset=utf-8')
@@ -91,7 +91,7 @@ Und der entsprechende View::
 
     def search(request):
         query = request.GET.get('begriff', '')
-        results = Recipe.objects.filter(title__icontains=query).order_by('title')
+        results = Recipe.active.filter(title__icontains=query).order_by('title')
         return render(request, 'recipes/search.html', {'results': results})
 
 Da dieser View ein Template rendert, benötigt er auch eine
