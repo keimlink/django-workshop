@@ -68,7 +68,7 @@ HTML5 Boilerplate einsetzen
 
     Dafür müssen beide Views erweitert werden. Jeder View muss einen
     ``RequestContext`` an die ``render_to_response`` Funktion übergeben. Zuerst
-    muss der entsprechende Import in :file:``recipes/views.py`` hinzugefügt
+    muss der entsprechende Import in :file:`recipes/views.py` hinzugefügt
     werden::
 
         from django.template import RequestContext
