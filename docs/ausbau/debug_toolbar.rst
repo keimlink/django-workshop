@@ -3,7 +3,7 @@
 Debug Toolbar
 *************
 
-Der `Debug Toolbar <https://github.com/robhudson/django-debug-toolbar>`_ kann
+Die `Debug Toolbar <https://github.com/robhudson/django-debug-toolbar>`_ kann
 während der Entwicklung eines Projekts mit Django eine große Hilfe sein.
 Folgende Panels können im Browser eingeblendet werden:
 
@@ -28,7 +28,7 @@ Außerdem wird ein weiteres Kommando zur :file:`manage.py` hinzugefügt:
 Installation
 ============
 
-So kannst du den Debug Toolbar installieren:
+So kannst du die Debug Toolbar installieren:
 
 ..  code-block:: bash
 
@@ -37,7 +37,7 @@ So kannst du den Debug Toolbar installieren:
 Konfiguration
 =============
 
-Um den Debug Toolbar für dein Projekt zu aktivieren fügst du den folgenden
+Um die Debug Toolbar für dein Projekt zu aktivieren fügst du den folgenden
 Code in die Datei :file:`settings.py` ein::
 
     MIDDLEWARE_CLASSES = (
@@ -58,11 +58,11 @@ in :file:`settings.py` einzutragen::
 
     DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
 
-Der Debug Toolbar ist nun im Browser auf der rechten Seite verfügbar.
+Die Debug Toolbar ist nun im Browser auf der rechten Seite verfügbar.
 
 ..  note::
 
-    Die Einstellung ``INTERNAL_IPS`` bestimmt, welche IP Adressen den Debug
+    Die Einstellung ``INTERNAL_IPS`` bestimmt, welche IP Adressen die Debug
     Toolbar sehen können. Hier kannst du noch weitere Adressen eintragen, wenn
     du zum Beispiel eine virtuelle Maschine als Entwicklungsumgebung benutzt.
 
