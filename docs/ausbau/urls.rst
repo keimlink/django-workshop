@@ -3,7 +3,7 @@ Vereinfachen und Entkoppeln der URLConf
 
 Im Moment werden alle URLs in der :file:`urls.py` im Hauptverzeichnis des
 Projekts definiert. Das wird auf Dauer unübersichtlich und verletzt außerdem
-das :ref:`dry`-Prinzip. Jede Applikation sollte seine URLs selbst bestimmen.
+das :ref:`dry`-Prinzip. Jede Applikation sollte ihre URLs selbst bestimmen.
 
 Eine URLConf für die ``recipes`` Applikation
 ============================================
@@ -62,8 +62,9 @@ worden, was zu mehr Übersichtlichkeit geführt hat. Aber es gibt immer noch
 Teile der Applikation, die ihre URLs selbst definieren.
 
 Im Template :file:`recipes/templates/recipes/index.html` wird der Link zum
-Rezept manuell definiert. Es kann also passieren, dass URL im Template nicht
-mit dem in der URLConf der Applikation übereinstimmt. Das werden wir ändern.
+Rezept manuell definiert. Es kann also passieren, dass ein URL im Template
+nicht mit dem in der URLConf der Applikation übereinstimmt. Das werden wir
+ändern.
 
 URLConf der Applikation erweitern
 ---------------------------------
@@ -92,7 +93,7 @@ Instanz ihren URL selbst erzeugen kann. Dafür ist die Methode
 
 Der Dekorator ``models.permalink`` erwartet einen Tupel mit drei Werten:
 
-* Name der URL
+* Name des URL
 * Argumente (Variablen im regulären Ausdruck des URL, die keinen Namen
   bekommen haben)
 * Schlüsselwort-Argumente (Variablen im regulären Ausdruck des URL mit Namen)
