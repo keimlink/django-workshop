@@ -20,4 +20,4 @@ Inhaltsverzeichnis:
    konzepte
    projekt
    autoren
-   lizenz
+   copyright
