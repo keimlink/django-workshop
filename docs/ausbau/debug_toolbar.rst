@@ -3,9 +3,10 @@
 Debug Toolbar
 *************
 
-Die `Debug Toolbar <https://github.com/robhudson/django-debug-toolbar>`_ kann
-während der Entwicklung eines Projekts mit Django eine große Hilfe sein.
-Folgende Panels können im Browser eingeblendet werden:
+Die `Debug Toolbar <https://github.com/django-debug-toolbar/django-
+debug-toolbar>`_ kann während der Entwicklung eines Projekts mit Django
+eine große Hilfe sein. Folgende Panels können im Browser eingeblendet
+werden:
 
 * Django Version
 * Python Version
