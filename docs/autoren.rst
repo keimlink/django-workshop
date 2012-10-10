@@ -23,3 +23,4 @@ Vielen Dank für die Unterstützung des Projekts an:
 
 - Max Brauer
 - Maik Derstappen
+- Daniel Kriesten
