@@ -55,40 +55,46 @@ wo man ihn auch erwarten würde.
 Model-Template-View
 ===================
 
-Django ist nach dem **Model-Template-View (MTV)** Muster aufgebaut. **MTV**
-orientiert sich am bekannten `Model-View-Controller Muster
+Django ist nach dem **Model-Template-View (MTV)** Muster aufgebaut.
+**MTV** orientiert sich am bekannten `Model-View-Controller Muster
 <http://de.wikipedia.org/wiki/Model_View_Controller>`_ (MVC).
 
-Der in Django enthaltene **Object Relational Mapper** (ORM) überträgt die
-Models in Datenbankstrukturen und führt alle Operationen in der Datenbank
-durch. Es können alle gängigen Datenbanken benutzt werden. Alle Models werden
-in Python geschrieben.
+Der in Django enthaltene **Object Relational Mapper** (ORM) überträgt
+die **Models** in Datenbankstrukturen und führt alle Operationen in der
+Datenbank durch. Es können alle gängigen Datenbanken benutzt werden.
+Alle Models werden in Python geschrieben.
 
-Die **Template-Engine** unterstützt die Vererbung von Templates und bietet
-umfangreiche Filter und Templates. Diese können auch selbst erweitert werden.
+Die **Template-Engine** unterstützt die Vererbung von Templates und
+bietet eine umfangreiche Bibliothek von Filtern und Tags. Diese können
+auch selbst erweitert werden.
 
-Der **View** holt die Daten, zum Beispiel mit Hilfe des **Object Relational
-Mappers**. Es können aber auch andere Datenquellen genutzt werden.
+Der **View** holt die Daten, zum Beispiel mit Hilfe des Object
+Relational Mappers. Es können aber auch andere Datenquellen genutzt
+werden. Diese Daten werden als **Context** an das Template übergeben.
 
-Die **URLConf** steuert das Routing. Mit Hilfe von regulären Ausdrücken wird
-der Request dem richtigen View zugewiesen.
+Die **URLConf** steuert das Routing. Mit Hilfe von regulären Ausdrücken
+wird der Request dem richtigen View zugewiesen.
+
+Eine wichtige Rolle spielt auch die **Middleware**: Sie kann an
+verschiedenen Stellen in die Verarbeitung des Requests eingreifen. Dies
+ist zum Beispiel für Session-Management oder Caching nötig.
 
 ..  _grafik_request_response:
 
 ..  digraph:: request_response
 
     label = "Schematische Darstellung einer Request / Response Verarbeitung"
-    {rank=same; "Browser" "Webserver"}
+    "Browser":w -> "Webserver":w [label="HTTP Request"];
+    {rank=min; "Browser"}
+    "Webserver":sw -> "URLConf" [label="process_request\n(Middleware)"];
+    "URLConf" -> "View" [label="process_view\n(Middleware)"];
     {rank=same; "URLConf" "View"}
-    "Browser" -> "Webserver" [label="Request"];
-    "Webserver" -> "URLConf" [label="Request"];
-    "URLConf" -> "View" [label="Request"];
-    "View" -> "Model (ORM)" -> "Datenbank"-> "Model (ORM)" -> "View"
+    "View" -> "Model (ORM)" -> "Datenbank"-> "Model (ORM)" -> "View";
     "View" -> "Template" [label="Context"];
     "Template" -> "Tags & Filter" -> "Template"
-    "Template" -> "View" [label="HTML"];
-    "View" -> "Webserver" [label="Response"];
-    "Webserver" -> "Browser" [label="Response"];
+    "Template":ne -> "View":e;
+    "View" -> "Webserver":e [label="process_template_response\nprocess_response\n(Middleware)"];
+    "Webserver":e -> "Browser":e [label="HTTP Response"];
 
 Eingebauter Entwicklungs-Webserver
 ==================================
