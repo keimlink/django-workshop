@@ -80,5 +80,6 @@ Weiterführende Links
 
 * `Django Homepage <http://www.djangoproject.com/>`_
 * `The Django Book <http://djangobook.com/en/2.0/>`_
+* `Django Cheat Sheet <http://www.revsys.com/django/cheatsheet/>`_
 * `Django Packages <http://www.djangopackages.com/>`_ - Ein Verzeichnis für wiederverwendbare Apps
 * `Django Snippets <http://djangosnippets.org/>`_ - Eine Sammlung nützlicher Code Schnipsel
