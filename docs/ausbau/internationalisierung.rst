@@ -1,11 +1,18 @@
 Internationalisierung
 *********************
 
-Um einen Applikation in verschiedenen Sprachen anbieten zu können ist
-Internationalisierung (I18N) und Lokalisierung (L10N) notwendig. Django benutzt
-dazu das `gettext Modul <http://docs.python.org/library/gettext.html>`_ von
-Python. Außerdem muss GNU gettext installiert sein, um die nötigen Dateien zur
-Internationalisierung zu erzeugen.
+Um einen Applikation in verschiedenen Sprachen anbieten zu können, ist
+Internationalisierung (I18N) und Lokalisierung (L10N) notwendig. Django
+benutzt dazu das `gettext Modul`_ von Python.
+
+Django benötigt dafür mindestens die Version 0.15 von `GNU gettext`_.
+Unter Linux und OS X lässt sich GNU gettext einfach mit einem
+Paketmanager installieren. Die :djangodocs:`Installation unter Windows
+<topics/i18n/translation/#gettext-on-windows>` ist in der Django
+Dokumentation beschrieben.
+
+.. _gettext Modul: http://docs.python.org/library/gettext.html
+.. _GNU gettext: https://www.gnu.org/software/gettext/
 
 Standard-Übersetzung
 ====================
