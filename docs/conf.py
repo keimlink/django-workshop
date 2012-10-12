@@ -26,7 +26,8 @@ needs_sphinx = '1.0'
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.doctest', 'sphinx.ext.extlinks', 'sphinx.ext.graphviz']
+extensions = ['sphinx.ext.doctest', 'sphinx.ext.extlinks',
+    'sphinx.ext.graphviz', 'sphinxcontrib.googleanalytics']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -223,3 +224,7 @@ rst_prolog = """
 """
 
 linkcheck_ignore = [r'http://127.0.0.1:\d+/', r'http://localhost:\d+/']
+
+# Google Analytics
+googleanalytics_enabled = True
+googleanalytics_id = 'UA-35530227-1'
