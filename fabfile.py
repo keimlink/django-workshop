@@ -72,10 +72,29 @@ class BuildHtmlTask(DjangoWorkshopBaseTask):
     """
     name = 'build'
 
-    def run(self, language=None, linkcheck=False):
+    def run(self, language=None, linkcheck=False, openbrowser=True):
         with hide('running'):
             super(BuildHtmlTask, self).run('html', language, linkcheck)
-        webbrowser.open(os.path.join(self.docs, '_build/html/index.html'))
+        if openbrowser:
+            webbrowser.open(os.path.join(self.docs, '_build/html/index.html'))
+
+
+class ServeHtmlTask(BuildHtmlTask):
+    """Builds and serves the Sphinx documentation as HTML.
+
+    The documentation is opened in the default browser after the build.
+    Use the language argument to build not the default language.
+    Set linkcheck to True to perform a linkcheck after the build.
+    """
+    name = 'serve'
+    port = 8000
+
+    def run(self, language=None, linkcheck=False):
+        super(ServeHtmlTask, self).run(language, linkcheck, False)
+        webbrowser.open('http://127.0.0.1:%d' % self.port)
+        with hide('running'):
+            with lcd(os.path.join(self.docs, '_build/html')):
+                local('python -m SimpleHTTPServer %d' % self.port)
 
 
 class BuildPdfTask(DjangoWorkshopBaseTask):
@@ -188,3 +207,4 @@ build = BuildHtmlTask()
 build_pdf = BuildPdfTask()
 make_messages = MakeMessageCatalogTask()
 deploy = DeployTask()
+serve = ServeHtmlTask()
