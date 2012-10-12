@@ -1,0 +1,14 @@
+/*
+ * custom.css
+ * ~~~~~~~~~~
+ *
+ * Custom Sphinx stylesheet.
+ *
+ */
+
+div.comment {
+    padding: 0 30px;
+}
+div.comment h3 {
+    color: #dadada;
+}
