@@ -69,3 +69,10 @@ So lange also die Datei :file:`local_settings.py` vorhanden ist, arbeitest du
 mit einer Konfiguration für die Entwicklung. Fehlt diese Datei benutzt du die
 Einstellungen aus der Datei :file:`settings.py`, die für das Produktivsystem
 optimiert sind.
+
+Natürlich kann man mit diesem Ansatz eine Konfiguration noch stärker aufteilen
+und damit ganz unterschiedliche Szenarien bedienen, zum Beispiel ein
+development/staging/production Setup. Eine Django App, die dies einfacher
+macht, ist django-configurations_.
+
+.. _django-configurations: https://github.com/jezdez/django-configurations
