@@ -86,9 +86,11 @@ Jetzt die (sehr einfachen) Views für den Feed in :file:`news/views.py` erstelle
 Die Templates erstellen
 =======================
 
-Und am Ende die Templates anlegen.
+Und am Ende die Templates anlegen bzw. erweitern.
 
-Das Template :file:`templates/base.html` um den Eintrag für den Feed erweitern::
+Zuerst das Template :file:`templates/base.html` um den Eintrag für den Feed erweitern:
+
+..  code-block:: html+django
 
     <head>
         <title>{% block title %}Kochbuch{% endblock %}</title>
@@ -96,8 +98,24 @@ Das Template :file:`templates/base.html` um den Eintrag für den Feed erweitern:
             title="Neuigkeiten aus dem Kochbuch" href="{% url news_article_feed %}" />
     </head>
 
-Das Template für die Liste der Feed Elemente
-:file:`news/templates/news/article_list.html` anlegen::
+Viele Browser zeigen den Link zum RSS Feed in der Adressleiste nur nach
+der Installation von zusätzlichen Erweiterungen an (`RSS-Abonnement für
+Chrome`_, `RSS Icon In Awesombar für Firefox`_). Daher kann es sinnvoll
+sein den Link zum RSS Feed auch im ``body`` der Seite einzutragen:
+
+..  code-block:: html+django
+
+    <body>
+        <header>
+            <h1>Kochbuch</h1>
+            <p><a href="{% url news_article_feed %}">RSS Feed</a></p>
+        </header>
+        ...
+    </body>
+
+Dann das Template für die Liste der Feed Elemente in :file:`news/templates/news/article_list.html` anlegen:
+
+..  code-block:: html+django
 
     {% extends "base.html" %}
 
@@ -115,8 +133,9 @@ Das Template für die Liste der Feed Elemente
     </ul>
     {% endblock %}
 
-Das Template für ein Feed Element
-:file:`news/templates/news/article_detail.html` anlegen::
+Und zuletzt das Template für ein Feed Element in :file:`news/templates/news/article_detail.html` erstellen:
+
+..  code-block:: html+django
 
     {% extends "base.html" %}
 
@@ -127,6 +146,9 @@ Das Template für ein Feed Element
     <p>{{ article.date_updated }}</p>
     <p>{{ article.body }}</p>
     {% endblock %}
+
+.. _RSS-Abonnement für Chrome: https://chrome.google.com/webstore/detail/rss-subscription-extensio/nlbjncdgjeocebhnmkbbbdekmmmcbfjd
+.. _RSS Icon In Awesombar für Firefox: https://addons.mozilla.org/de/firefox/addon/rss-icon-in-awesombar/
 
 Die Site anpassen
 =================
