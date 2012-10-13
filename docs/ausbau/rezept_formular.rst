@@ -227,10 +227,13 @@ zum Hinzufügen eines Rezeptes einsetzen:
 
     <a href="{% url recipes_recipe_add %}">Ein Rezept hinzufügen</a>
 
-Wenn du möchtest, kannst du die Datei :file:`403.html` im Template
-Verzeichnis des Projekts angelegen. Diese wird dann anstelle der Meldung
-"403 Forbidden" angezeigt wenn eine ``PermissionDenied`` Exception
-ausgelöst wird.
+Fertig! Nun kannst du als angemeldeter Benutzer im Frontend Rezepte
+erstellen und bearbeiten.
+
+Wenn du möchtest, kannst du außerdem  die Datei :file:`403.html` im
+Template Verzeichnis des Projekts angelegen. Diese wird dann anstelle
+der Meldung "403 Forbidden" angezeigt wenn eine ``PermissionDenied``
+Exception ausgelöst wird.
 
 ..  code-block:: html
 
@@ -242,9 +245,6 @@ ausgelöst wird.
         <h2>Zugriff nicht erlaubt</h2>
         <p>Sie haben nicht ausreichende Rechte, um auf diese Seite zuzugereifen.</p>
     {% endblock %}
-
-Fertig! Nun kannst du als angemeldeter Benutzer im Frontend Rezepte
-erstellen und bearbeiten.
 
 Weiterführende Links zur Django Dokumentation
 =============================================
