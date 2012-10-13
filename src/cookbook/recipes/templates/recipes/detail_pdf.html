@@ -27,7 +27,7 @@
 <h4>Verwandte Rezepte</h4>
 <ul>
 {% for recipe in related_recipes %}
-    <li>{{ recipe.title }}</li>
+    <li><a href="{% full_url recipe %}">{{ recipe.title }}</a></li>
 {% endfor %}
 </ul>
 {% endif %}

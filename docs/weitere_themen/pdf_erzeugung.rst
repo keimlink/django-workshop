@@ -81,18 +81,31 @@ Jetzt fügst du den URL ``recipes_recipe_detail_pdf`` zu :file:`recipes/urls.py`
         url(r'^$', RecipeListView.as_view(), name='recipes_recipe_index'),
     )
 
-Und nun erstellst mit Hilfe des generischen PDF Views eine View für die PDFs
-der Rezepte in :file:`recipes/views.py`::
+Und nun erstellst mit Hilfe des generischen PDF Views eine View zur
+Erzeugung der PDFs der Rezepte in :file:`recipes/views.py`::
 
-    from utils import PDFView
+    from cookbook.views import PDFView
 
 
-    class RecipePDFView(PDFView):
-        model = Recipe
+    class RecipePDFView(PDFView, RecipeDetailView):
         template_name = 'recipes/detail_pdf.html'
 
+Damit die URLs im PDF auch die aktuelle Domain benutzen benötigen wir
+noch ein kleines Template Tag. Dieses erstellst du wieder in
+``recipes/templatetags/recipes.py``::
+
+    from django.contrib.sites.models import Site
+
+
+    @register.simple_tag
+    def full_url(obj):
+        """Returns the absolute URL for a model prefixed with the domain."""
+        current_domain = Site.objects.get_current().domain
+        return 'http://%s%s' % (current_domain, obj.get_absolute_url())
+
+
 Jetzt fehlt noch das HTML Template, dass die Vorlage für das PDF ist. Erstelle
-er hier :file:`recipes/templates/recipes/detail_pdf.html`:
+es hier :file:`recipes/templates/recipes/detail_pdf.html`:
 
 ..  literalinclude:: ../../src/cookbook/recipes/templates/recipes/detail_pdf.html
 
