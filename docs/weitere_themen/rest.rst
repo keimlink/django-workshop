@@ -31,13 +31,45 @@ Danach fügst du ``tastypie`` zu den ``INSTALLED_APPS`` hinzu::
 
 Als letzten Schritt erzeugst du die nötigen Datenbankstrukturen::
 
-    $ python manage.py syncdb
+    $ python manage.py syncdb --migrate
+    Syncing...
     Creating tables ...
-    Creating table tastypie_apiaccess
-    Creating table tastypie_apikey
     Installing custom SQL ...
     Installing indexes ...
     Installed 0 object(s) from 0 fixture(s)
+    Migrating...
+    Running migrations for tastypie:
+     - Migrating forwards to 0001_initial.
+     > tastypie:0001_initial
+     - Loading initial data for tastypie.
+    Installed 0 object(s) from 0 fixture(s)
+    Running migrations for recipes:
+    - Nothing to migrate.
+     - Loading initial data for recipes.
+    Installed 0 object(s) from 0 fixture(s)
+    Running migrations for news:
+    - Nothing to migrate.
+     - Loading initial data for news.
+    Installed 0 object(s) from 0 fixture(s)
+
+    Synced:
+     > django.contrib.auth
+     > django.contrib.contenttypes
+     > django.contrib.sessions
+     > django.contrib.sites
+     > django.contrib.messages
+     > django.contrib.staticfiles
+     > django.contrib.admin
+     > django.contrib.admindocs
+     > debug_toolbar
+     > south
+     > userauth
+     > addressbook
+
+    Migrated:
+     - tastypie
+     - recipes
+     - news
 
 Eine Ressource erstellen
 ========================
@@ -80,15 +112,41 @@ Du kannst nun verschiedene Ressourcen aufrufen:
 * eine Gruppe von Rezepten: http://127.0.0.1:8000/api/recipe/set/1;3/?format=json
 * das Schema der Ressource: http://127.0.0.1:8000/api/recipe/schema/?format=json
 
-Momentan sind nur GET Operationen und keine POST/PUT/DELETE Operationen
-erlaubt. Diese enden alle mit einem “401 Unauthorized” Fehler, da aus
-Sicherheitsgründen nur lesender Zugriff möglich ist. Schreibende Zugriffe
-müssen erst aktiviert werden.
+Um leichter im Browser mit der API arbeiten zu können empfiehlt sich die
+Installation einer oder mehrerer Extensions:
+
+* JSONView_ (für Chrome und Firefox)
+* `cREST Client`_ (für Chrome)
+* Poster_ (für Firefox)
+
+Natürlich kannst du auch einfach cURL_ auf der Kommadozeile benutzen.
+
+Momentan kann auf Ressourcen nur lesend (GET) zugegriffen werden. Das
+Erstellen (POST), Aktualisieren (PUT) und Löschen (DELETE) von
+Ressourcen ist nicht erlaubt.
+
+::
+
+    $ curl -IX DELETE http://127.0.0.1:8000/api/recipe/1/
+    HTTP/1.0 401 UNAUTHORIZED
+    Date: Sat, 13 Oct 2012 11:22:43 GMT
+    Server: WSGIServer/0.1 Python/2.6.6
+    Vary: Cookie
+    Content-Type: text/html; charset=utf-8
+
+Wie du sehen kannst ist das Ergebnis einer DELETE Anfrage "401
+UNAUTHORIZED", da aus Sicherheitsgründen nur lesender Zugriff möglich
+ist. Schreibende Zugriffe müssen erst aktiviert werden.
+
+.. _JSONView: http://jsonview.com/
+.. _cREST Client: https://chrome.google.com/webstore/detail/crest-client/baedhhmoaooldchehjhlpppaieoglhml
+.. _Poster: https://addons.mozilla.org/en-US/firefox/addon/poster/
+.. _cURL: http://curl.haxx.se/
 
 Autorisierung erweitern
 =======================
 
-Damit du auch POST/PUT/DELETE Operationen ausführen kannst musst die
+Damit du auch POST/PUT/DELETE Operationen ausführen kannst musst du die
 Autorisierung der Ressource erweitern::
 
     from tastypie.authorization import Authorization
@@ -105,16 +163,41 @@ Autorisierung der Ressource erweitern::
 
 .. warning::
 
-    Diese Autorisierung erlaubt JEDEM ALLE OPERATIONEN auszuführen. Daher
-    eignet sich diese Konfiguration auch nur für die Entwicklungsumgebung und
-    muss für den produktiven Betrieb erweitert werden.
+    Eine so konfigurierte Autorisierung erlaubt JEDEM ALLE OPERATIONEN
+    auszuführen! Daher eignet sich diese Konfiguration auch nur für die
+    Entwicklungsumgebung und muss für den produktiven Betrieb erweitert
+    werden.
+
+Ressourcen via PUT änderen
+==========================
+
+Jetzt ist es möglich Ressourcen mit PUT zu aktualisieren. Hier lese ich
+via GET einen Datensatz mit dem cREST Client ein. Man kann sehen, dass
+das Attribut ``is_active`` den Wert ``true`` hat.
+
+.. image:: /images/cREST_Client_GET.png
+
+Zuerst kopiere ich die JSON Daten aus dem Response der GET Anfrage oben.
+Dann stelle ich die HTTP Methode auf PUT um und kopiere die JSON Daten
+in das Feld "Request Entity" und ändere ``is_active`` auf ``false``.
+Danach schalte ich die HTTP Header ein und setze den Header auf
+``Content-Type: application/json``. Als letzen Schritt schicke ich den
+Request ab und ändere damit dem Datensatz.
+
+.. image:: /images/cREST_Client_PUT.png
+
+Nachdem ich diesen Request abgeschickt habe rufe ich den Datensatz
+erneut mit GET auf. Der Wert des Attributs ``is_active`` hat sich auf
+``false`` geändert.
+
+.. image:: /images/cREST_Client_GET_after_PUT.png
 
 Eine weitere Ressource hinzufügen
 =================================
 
-Aktuell sind nur die Rezepte und nicht die damit verknüpften Benutzer sichtbar.
-Dies änderst du, indem du eine neue Ressource für die Benutzer in
-:file:`recipes/api.py` anlegst::
+Aktuell sind nur die Rezepte und nicht die damit verknüpften Benutzer
+sichtbar. Dies änderst du, indem du eine neue Ressource für die Benutzer
+in :file:`recipes/api.py` anlegst::
 
     from django.contrib.auth.models import User
     from tastypie import fields
@@ -157,7 +240,7 @@ Jetzt musst du diese neue Ressource noch in der URLConf einbinden::
         url(r'^api/', include(v1_api.urls)),
     )
 
-Jetzt stehen mehr Daten als vorher zu Verfügung und wir haben die API
+Nun stehen mehr Daten als vorher zu Verfügung und wir haben die API
 zusätzlich versioniert:
 
 * http://127.0.0.1:8000/api/v1/?format=json
