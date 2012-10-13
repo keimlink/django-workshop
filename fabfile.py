@@ -82,6 +82,8 @@ class BuildHtmlTask(DjangoWorkshopBaseTask):
 class ServeHtmlTask(BuildHtmlTask):
     """Builds and serves the Sphinx documentation as HTML.
 
+    This is useful for testing Disqus integration and search functionality.
+
     The documentation is opened in the default browser after the build.
     Use the language argument to build not the default language.
     Set linkcheck to True to perform a linkcheck after the build.
