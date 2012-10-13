@@ -2,7 +2,9 @@ Ein RSS Feed für die "News" App
 *******************************
 
 Die im Kapitel :ref:`mehrere_datenbanken` erstellte App "news" hat noch kein
-Frontend und soll deshalb einen RSS Feed bekommen.
+Frontend und soll deshalb einen `RSS Feed`_ bekommen.
+
+.. _RSS Feed: https://de.wikipedia.org/wiki/RSS
 
 Den Feed erstellen
 ==================
@@ -12,7 +14,7 @@ Dazu legst du zuerst die Datei :file:`news/feeds.py` an::
     from django.conf import settings
     from django.contrib.syndication.views import Feed
 
-    from news.models import Article
+    from .models import Article
 
 
     class ArticleFeed(Feed):
@@ -41,8 +43,8 @@ Dann erstellst du die ``URLConf`` in :file:`news/urls.py`::
 
     from django.conf.urls import patterns, include, url
 
-    from news.feeds import ArticleFeed
-    from news.views import ArticleDetailView, ArticleListView
+    from .feeds import ArticleFeed
+    from .views import ArticleDetailView, ArticleListView
 
 
     urlpatterns = patterns('',
@@ -73,7 +75,7 @@ Jetzt die (sehr einfachen) Views für den Feed in :file:`news/views.py` erstelle
 
     from django.views.generic import DetailView, ListView
 
-    from news.models import Article
+    from .models import Article
 
 
     class ArticleDetailView(DetailView):
@@ -113,7 +115,10 @@ sein den Link zum RSS Feed auch im ``body`` der Seite einzutragen:
         ...
     </body>
 
-Dann das Template für die Liste der Feed Elemente in :file:`news/templates/news/article_list.html` anlegen:
+Dann das Template für die Liste der Feed Elemente in
+:file:`news/templates/news/article_list.html` anlegen. Der Filter
+``truncatewords`` zeigt nur die ersten zehn Worte des Nachrichtentextes
+an:
 
 ..  code-block:: html+django
 
@@ -127,7 +132,7 @@ Dann das Template für die Liste der Feed Elemente in :file:`news/templates/news
         <li>
             <h4><a href="{{ article.get_absolute_url }}">{{ article.headline }}</a></h4>
             <p>{{ article.date_updated }}</p>
-            <p>{{ article.body }}</p>
+            <p>{{ article.body|truncatewords:10 }}</p>
         </li>
     {% endfor %}
     </ul>
