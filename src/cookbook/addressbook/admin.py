@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from addressbook.models import Address, City
+from .models import Address, City
 
 
 class AddressAdmin(admin.ModelAdmin):
