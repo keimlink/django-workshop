@@ -9,21 +9,54 @@ wollen die Bibliothek pisa_ nutzen, die ein html2pdf Konverter ist.
 Installation der nötigen Pakete
 ===============================
 
-Zuerst müssen alle nötigen Pakete installiert werden::
+Linux und OS X
+--------------
 
-    $ pip install pisa PIL html5lib httplib2 pyPdf reportlab
-
-Zur Installation von PIL müssen unter Linux die folgenden Pakete installiert sein:
+Zur Vorbereitung der Installation von PIL_ müssen unter Linux die
+folgenden Pakete installiert sein:
 
 * libjpeg62
 * liblcms1
 * python-dev
 
-Für OS X muss man zum Beispiel mit Homebrew_ die Unterstützung für das JPG Format installieren::
+Für OS X muss man zum Beispiel mit Homebrew_ die Unterstützung für das
+JPG Format installieren::
 
     $ brew install jpeg
 
+Dann können alle nötigen Pakete installiert werden::
+
+    $ pip install pisa PIL html5lib httplib2 pyPdf reportlab
+
+.. _PIL: http://www.pythonware.com/products/pil/
 .. _Homebrew: http://mxcl.github.com/homebrew/
+
+Windows
+-------
+
+Für Windows müssen PIL_ und ReportLab_ als Binärpaket mit Hilfe von
+``easy_install`` installiert werden. Der Downloadlink für PIL findet
+sich auf der `PIL Homepage`_. Den Downloadlink für ReportLab findest du
+auf dem `ReportLab FTP Server`_.
+
+So werden die beiden Pakete installiert::
+
+    > easy_install http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe
+    > easy_install http://www.reportlab.com/ftp/reportlab-2.5.win32-py2.7.exe
+
+.. note::
+
+    Hier werden PIL und ReportLab für Python 2.7 installiert. Falls du
+    eine andere Python Version benutzt musst du die passenden Links
+    unter den oben genannten URLs suchen.
+
+Jetzt können die restlichen Pakete installiert werden::
+
+    $ pip install pisa html5lib httplib2 pyPdf
+
+.. _ReportLab: http://www.reportlab.com/
+.. _PIL Homepage: http://www.pythonware.com/products/pil/
+.. _ReportLab FTP Server: http://www.reportlab.com/ftp/
 
 Ein generischer View für PDFs
 =============================
