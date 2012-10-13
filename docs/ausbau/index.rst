@@ -14,7 +14,7 @@ Ausbau des Django Projekts
    authentifizierung_registrierung
    rezept_formular
    generische_views
-   middleware_403
+   middleware
    templates_aufwerten
    templatetags
    modelmethoden

@@ -56,4 +56,4 @@ Wichtige Konzepte für die Arbeit mit Django
 
     * Statt Doctests :ref:`besser Unittests nutzen <vor_und_nachteile_unittests>`
     * Test-Abdeckung mit Hilfe von :doc:`coverage <ausbau/softwaretests/coverage>` ermitteln
-* Nicht davor zurückschrecken eine :doc:`Middleware zu schreiben <ausbau/middleware_403>`
+* Nicht davor zurückschrecken eine :doc:`Middleware zu schreiben <ausbau/middleware>`
