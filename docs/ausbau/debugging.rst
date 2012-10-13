@@ -89,7 +89,7 @@ soll dieser nur ausgeführt werden wenn ``DEBUG`` den Wert ``True`` hat::
 
     if DEBUG:
         LOGGING['loggers'].update(
-            {'cookbook': {
+            {'recipes': {
                 'handlers': ['debuglog'],
                 'level': 'DEBUG'
             }}
@@ -99,7 +99,7 @@ Nun kann man im View in das Log schreiben::
 
     import logging
 
-    logger = logging.getLogger('cookbook.recipes.views')
+    logger = logging.getLogger(__name__)
 
     def index(request):
         recipes = Recipe.objects.all()
@@ -127,9 +127,7 @@ pdb.set_trace()``::
         return render_to_response('recipes/detail.html', {'object': recipe})
 
 Nach dem Aufruf eines beliebigen ``detail``-Views startet der Debugger in der
-Konsole:
-
-..  code-block:: bash
+Konsole::
 
     > /vagrant/src/ausbau/cookbook/recipes/views.py(16)detail()
     -> return render_to_response('recipes/detail.html', {'object': recipe},
