@@ -102,7 +102,8 @@ Jetzt wollen wir die Views zum Erstellen und Bearbeiten der Rezepte in
 Dazu sind zuerst einige weitere Imports nötig::
 
     from django.contrib.auth.decorators import login_required
-    from django.http import HttpResponseForbidden, HttpResponseRedirect
+    from django.core.exceptions import PermissionDenied
+    from django.http import HttpResponseRedirect
     from django.shortcuts import render
 
     from .forms import RecipeForm
@@ -121,7 +122,12 @@ Zuerst legst du den View zum Erstellen eines neuen Rezeptes an::
         return render(request, 'recipes/form.html',
             {'form': form, 'add': True})
 
-Statt dem :ref:`schon bekannten <request_context_vorstellung>` Shortcut ``render_to_response`` benutzen wir hier den mit Django 1.3 neu eingeführten Shortcut ``render``, um den ``RequestContext`` zu erzeugen. Dieser erstellt aus dem ersten Argument ``request`` automatisch einen ``RequestContext``. Mit ``render_to_response`` hätte der Code so ausgehen::
+Statt dem :ref:`schon bekannten <request_context_vorstellung>` Shortcut
+``render_to_response`` benutzen wir hier den mit Django 1.3 neu
+eingeführten Shortcut ``render``, um den ``RequestContext`` zu erzeugen.
+Dieser erstellt aus dem ersten Argument ``request`` automatisch einen
+``RequestContext``. Mit ``render_to_response`` hätte der Code so
+ausgehen::
 
     return render_to_response('recipes/form.html',
         {'form': form, 'add': True},
@@ -147,7 +153,7 @@ Der zweite View dient zum Bearbeiten der Rezepte::
     def edit(request, recipe_id):
         recipe = get_object_or_404(Recipe, pk=recipe_id)
         if recipe.author != request.user and not request.user.is_staff:
-            return HttpResponseForbidden()
+            raise PermissionDenied
         if request.method == 'POST':
             form = RecipeForm(instance=recipe, data=request.POST)
             if form.is_valid():
@@ -162,7 +168,7 @@ Aus dem URL bekommen wir die Id des Rezeptes. Diese wird dazu benutzt eine
 Instanz zu holen oder eine 404 Seite anzuzeigen, falls dies nicht möglich ist.
 
 Falls der angemeldete Benutzer nicht der Autor ist oder nicht zu den
-Redakteuren der Website gehört wird eine 403 Seite angezeigt, da die Benutzer
+Redakteuren der Website gehört wird ein 403 Fehler angezeigt, da die Benutzer
 nur ihre eigenen Rezepte bearbeiten sollen.
 
 Die restliche Verarbeitung der POST-Daten unterscheidet sich nur in drei
@@ -221,8 +227,24 @@ zum Hinzufügen eines Rezeptes einsetzen:
 
     <a href="{% url recipes_recipe_add %}">Ein Rezept hinzufügen</a>
 
-Fertig! Nun kannst du als angemeldeter Benutzer im Frontend Rezepte erstellen
-und bearbeiten.
+Wenn du möchtest, kannst du die Datei :file:`403.html` im Template
+Verzeichnis des Projekts angelegen. Diese wird dann anstelle der Meldung
+"403 Forbidden" angezeigt wenn eine ``PermissionDenied`` Exception
+ausgelöst wird.
+
+..  code-block:: html
+
+    {% extends "base.html" %}
+
+    {% block title %}{{ block.super }} - Zugriff nicht erlaubt{% endblock %}
+
+    {% block content %}
+        <h2>Zugriff nicht erlaubt</h2>
+        <p>Sie haben nicht ausreichende Rechte, um auf diese Seite zuzugereifen.</p>
+    {% endblock %}
+
+Fertig! Nun kannst du als angemeldeter Benutzer im Frontend Rezepte
+erstellen und bearbeiten.
 
 Weiterführende Links zur Django Dokumentation
 =============================================
@@ -230,3 +252,4 @@ Weiterführende Links zur Django Dokumentation
 * :djangodocs:`Forms API <ref/forms/api/>`
 * :djangodocs:`Formulare für Models erstellen <topics/forms/modelforms/>`
 * :djangodocs:`Der render Shortcut <topics/http/shortcuts/#render>`
+* :djangodocs:`Der 403 (HTTP Forbidden) View <topics/http/views/#the-403-http-forbidden-view>`
