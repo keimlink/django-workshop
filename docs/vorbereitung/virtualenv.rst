@@ -27,9 +27,7 @@ während der Entwicklung.
 Installation
 ============
 
-:program:`virtualenv` wird mit Hilfe von :program:`pip` installiert:
-
-..  code-block:: bash
+:program:`virtualenv` wird mit Hilfe von :program:`pip` installiert::
 
     $ pip install virtualenv
 
@@ -39,9 +37,7 @@ Installation
     benötigt.
 
 Nach der Installation sollte ein Verzeichnis für *alle* virtuellen Projekte
-anlegt werden, zum Beispiel im Home-Verzeichnis:
-
-..  code-block:: bash
+anlegt werden, zum Beispiel im Home-Verzeichnis::
 
     $ mkdir .virtualenvs
 
@@ -49,11 +45,14 @@ Einfacher Arbeiten mit virtualenvwrapper
 ========================================
 
 Um die Arbeit mit :program:`virtualenv` zu vereinfachen kann man unter Linux
-oder Mac OS X das Paket :program:`virtualenvwrapper` installieren:
-
-..  code-block:: bash
+oder Mac OS X das Paket :program:`virtualenvwrapper` installieren::
 
     $ pip install virtualenvwrapper
+
+..  note::
+
+    Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation
+    benötigt.
 
 Nach der Installation werden die folgenden beiden Zeilen in die Datei
 :file:`.bashrc` oder :file:`.profile` eingefügt:
@@ -69,9 +68,7 @@ Shell-Befehle, mit denen wir arbeiten werden.
 
 Nach dem Bearbeiten von :file:`.bashrc` oder :file:`.profile` muss die
 Konfiguration noch einmal neu geladen werden. Dabei legt
-:program:`virtualenvwrapper` die nötigen Skripte an:
-
-..  code-block:: bash
+:program:`virtualenvwrapper` die nötigen Skripte an::
 
     $ source .bashrc
     virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/initialize
