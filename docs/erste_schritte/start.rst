@@ -32,7 +32,7 @@ Wechsel nun in das neu erstellte Verzeichnis und erstelle ein Django Projekt:
 
     Unter Windows kann es nötig sein, dass den kompletten Pfad zu :file:`django-admin.py` angeben musst::
 
-        C:\pythonprojects> python C:\virtualenvs\django-workshop\Scrips\django-admin.py startproject cookbook
+        > python C:\virtualenvs\django-workshop\Scrips\django-admin.py startproject cookbook
 
 Dein neues Projekt wurde erstellt. Das Verzeichnis :file:`cookbook` enthält
 erstmal nicht viel:
@@ -62,6 +62,26 @@ richtigen View zu leiten aber dazu später mehr. Die :file:`wsgi.py` definiert d
 Applikation, die später beim Deployment benötigt wird. Auf dieses Verzeichnis
 wird in allen anderen Kapiteln mit **Konfigurationsverzeichnis** Bezug
 genommen.
+
+Den Entwicklungsserver ausprobieren
+===================================
+
+Nachdem du das Projekt erstellt hast kannst du den Entwicklungsserver
+mit dem folgenden Kommando ausprobieren::
+
+    $ python manage.py runserver
+    Validating models...
+
+    0 errors found
+    Django version 1.4, using settings 'cookbook.settings'
+    Development server is running at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+
+Jetzt kannst du unter http://127.0.0.1:8000/ die "Welcome to Django"
+Seite sehen. Nachdem du die Seite aufgerufen hast beende die Ausführung
+des Entwicklungsservers wieder mit ``STRG + C``.
+
+.. image:: /images/welcome_to_django.png
 
 Anpassen der Konfiguration
 ==========================
