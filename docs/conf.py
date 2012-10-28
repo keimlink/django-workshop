@@ -218,7 +218,7 @@ man_pages = [
 
 extlinks = {'djangodocs': ('https://docs.djangoproject.com/en/1.4/%s', None)}
 
-rst_prolog = """
+rst_epilog = """
 .. |djangoversion| replace:: 1.4
 """
 
