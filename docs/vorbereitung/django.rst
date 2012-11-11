@@ -9,21 +9,17 @@ Nachdem nun Python und :program:`virtualenv` installiert sind kann ein neues
 
 ..  code-block:: bash
 
-    $ mkvirtualenv --distribute django-workshop
+    $ mkvirtualenv django-workshop
 
 Falls kein :program:`virtualenvwrapper` installiert wurde muss folgendes
 Kommando ausgeführt werden:
 
 ..  code-block:: bash
 
-    $ virtualenv --distribute .virtualenvs/django-workshop
+    $ virtualenv .virtualenvs/django-workshop
 
-Folgendes passiert:
-
-* Die Option ``--distribute`` installiert im *virtual environment*
-  ``distribute`` statt ``setuptools``
-* ``django-workshop`` ist der Name, unter dem das *virtual environment*
-  später zur Verfügung steht
+:file:`django-workshop` ist der Name, unter dem das *virtual
+environment* später zur Verfügung steht.
 
 Falls der :program:`virtualenvwrapper` benutzt wurde ist das *virtual
 environment* jetzt schon aktiviert.
