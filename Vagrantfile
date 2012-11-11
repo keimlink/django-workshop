@@ -23,7 +23,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "vim"
     chef.add_recipe "tree"
     chef.add_recipe "sqlite"
-    chef.add_recipe "mysql"
+    chef.add_recipe "mysql::server"
     chef.add_recipe "postgresql::server"
   end
 end
