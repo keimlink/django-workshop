@@ -10,3 +10,8 @@ backup.json
 import.json
 docs/_build
 htmlcov
+tmp
+
+syntax: regexp
+
+^cookbooks

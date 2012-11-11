@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'apt'
+
+cookbook 'vim'
+
+cookbook 'tree',
+    :path => 'vendor/cookbooks/tree'
+
+cookbook 'sqlite'
+
+cookbook 'mysql'
+
+cookbook 'postgresql'
