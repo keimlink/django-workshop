@@ -11,7 +11,9 @@ Vagrant::Config.run do |config|
       "mysql" => {
         "server_root_password" => "django",
         "server_repl_password" => "django",
-        "server_debian_password" => "django"
+        "server_debian_password" => "django",
+        # Temporary fix for COOK-1390 until mysql cookbook 1.3.1 is released.
+        "bind_address" => "0.0.0.0"
       },
       "postgresql" => {
         "password" => {
