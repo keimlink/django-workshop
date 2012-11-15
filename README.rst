@@ -2,7 +2,8 @@
 Django Workshop
 ***************
 
-Django Workshop is a free Django_ tutorial.
+Django Workshop is a free Django_ tutorial. The latest stable release is
+hosted at http://www.django-workshop.de/.
 
 The goal of the tutorial is to help beginners to learn the basics of the
 Python Web Application Framework Django. It can also help people with
