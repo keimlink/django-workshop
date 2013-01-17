@@ -76,7 +76,8 @@ class BuildHtmlTask(DjangoWorkshopBaseTask):
         with hide('running'):
             super(BuildHtmlTask, self).run('html', language, linkcheck)
         if openbrowser:
-            webbrowser.open(os.path.join(self.docs, '_build/html/index.html'))
+            path = os.path.join(self.docs, '_build/html/index.html')
+            webbrowser.open('file://%s' % path)
 
 
 class ServeHtmlTask(BuildHtmlTask):
