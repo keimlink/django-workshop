@@ -59,7 +59,7 @@ Dort sollte sich jetzt ein Verzeichnis `django` befinden.
 Die Django Version kann man mit folgendem Kommando prüfen::
 
     $ django-admin.py --version
-    1.4
+    1.5.1
 
 Unterstützung für Zeitzonen installieren
 ----------------------------------------

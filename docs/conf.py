@@ -216,10 +216,10 @@ man_pages = [
      [u'Markus Zapke-Gründemann'], 1)
 ]
 
-extlinks = {'djangodocs': ('https://docs.djangoproject.com/en/1.4/%s', None)}
+extlinks = {'djangodocs': ('https://docs.djangoproject.com/en/1.5/%s', None)}
 
 rst_epilog = """
-.. |djangoversion| replace:: 1.4
+.. |djangoversion| replace:: 1.5
 """
 
 linkcheck_ignore = [r'http://127.0.0.1:\d+/', r'http://localhost:\d+/']

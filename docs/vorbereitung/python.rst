@@ -7,10 +7,11 @@ werden.
 Python installieren
 ===================
 
-Django |djangoversion| unterstützt die Python Versionen 2.5, 2.6 und 2.7. Wenn
-du eine ältere Python Version hast, solltest du diese aktualisieren. Ab Django
-1.5 wird Python 2.5 nicht mehr unterstützt werden, dafür gibt es aber
-experimetelle Unterstützung für Python 3.3.
+Django |djangoversion| unterstützt Python-Versionen ab 2.6.5. Es wird
+empfohlen Python ab 2.7.3 zu benutzen. Wenn du eine ältere Python-
+Version hast, solltest du diese aktualisieren. Ab Version 1.5 hat Django
+experimentelle Unterstützung für Python 3.2 und höher. Eine stabile
+Unterstützung von Python 3 wird mit Django 1.6 verfügbar sein.
 
 Deine Python Version kannst du heraus finden, indem du den Python Interpreter
 an der Kommandozeile mit der Option ``-V`` startest:
@@ -18,7 +19,7 @@ an der Kommandozeile mit der Option ``-V`` startest:
 ..  code-block:: bash
 
     $ python -V
-    Python 2.6.1
+    Python 2.6.6
 
 Wenn du Python schon in der richtigen Version installiert hast, kannst du mit
 der Installation des :ref:`Python Paketmanagers <python_paketmanager>`
