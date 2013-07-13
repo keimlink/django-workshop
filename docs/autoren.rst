@@ -6,15 +6,17 @@ Autoren
 Markus Zapke-Gründemann
 =======================
 
-`Markus Zapke-Gründemann`_ kann auf mehr als zehn Jahre Erfahrung in der
-Softwareentwicklung zurückblicken und arbeitet seit über drei Jahren als
-selbständiger Softwareentwickler, Consultant und Trainer. Schwerpunkt
-seiner Arbeit ist die Entwicklung von Web Applikationen mit Django und
-die Integration von Mercurial. Seit 2011 ist er Geschäftsführer der
-`Inqbus GmbH & Co. KG`_.
+`Markus Zapke-Gründemann`_ kann auf mehr als zwölf Jahre Erfahrung in
+der Softwareentwicklung zurückblicken und arbeitet seit über vier Jahren
+als selbständiger Softwareentwickler, Consultant und Trainer.
+Schwerpunkt seiner Arbeit ist die Entwicklung von Web-Applikationen mit
+Django sowie die Integration von Mercurial. Außerdem engagiert er sich
+als Vorsitzender des Deutschen Django Vereins e.V. für die deutsche
+Django- Community und ist regelmäßig auf Konferenzen als Vortragender
+vertreten. Seit 2013 ist er Inhaber von `transcode`_.
 
 ..  _Markus Zapke-Gründemann: http://www.keimlink.de/
-..  _Inqbus GmbH & Co. KG: http://www.inqbus.de/
+..  _transcode: http://www.transcode.de/
 
 Weitere Autoren
 ===============
