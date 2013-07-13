@@ -41,18 +41,23 @@ anlegt werden, zum Beispiel im Home-Verzeichnis::
 
     $ mkdir .virtualenvs
 
+Unter Windows sollte das Verzeichnis nicht :file:`.virtualenvs` sondern
+:file:`Envs` heißen. Es befindet sich auch im Home-Verzeichnis.
+
 Einfacher Arbeiten mit virtualenvwrapper
 ========================================
 
-Um die Arbeit mit :program:`virtualenv` zu vereinfachen kann man unter Linux
-oder Mac OS X das Paket :program:`virtualenvwrapper` installieren::
+Linux und Mac OS X
+------------------
+
+Um die Arbeit mit :program:`virtualenv` zu vereinfachen kann man das
+Paket :program:`virtualenvwrapper` installieren::
 
     $ pip install virtualenvwrapper
 
 ..  note::
 
-    Unter Linux und Mac OS X werden evtl. *root*-Rechte für die Installation
-    benötigt.
+    Es werden evtl. *root*-Rechte für die Installation benötigt.
 
 Nach der Installation werden die folgenden beiden Zeilen in die Datei
 :file:`.bashrc` oder :file:`.profile` eingefügt:
@@ -86,8 +91,19 @@ Konfiguration noch einmal neu geladen werden. Dabei legt
     virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/prermproject
     virtualenvwrapper.user_scripts creating /home/vagrant/.virtualenvs/postrmproject
 
+Windows
+-------
+
+Für Windows-Benutzer gibt es das Paket :program:`virtualenvwrapper-win`.
+Dies kann man ebenfalls mit Hilfe von :program:`pip` installieren::
+
+    $ pip install virtualenvwrapper-win
+
+.. note:: :program:`virtualenvwrapper-win` läuft nur mit der "alten" Eingabeaufforderung und nicht mit der Powershell.
+
 Weiterführende Links
 ====================
 
 * `virtualenv Dokumentation <http://www.virtualenv.org/en/latest/>`_
 * `virtualenvwrapper Homepage <http://www.doughellmann.com/projects/virtualenvwrapper/>`_
+* `virtualenvwrapper-win <https://pypi.python.org/pypi/virtualenvwrapper-win>`_
