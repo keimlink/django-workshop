@@ -150,7 +150,7 @@ Zuerst binden wir das neue CSS und JavaScript von jQueryUI im Template ein:
 
     <head>
     ...
-      <link rel="stylesheet" href="{{ STATIC_URL }}css/ui-lightness/jquery-ui-1.8.x.custom.css">
+      <link rel="stylesheet" href="{% static 'css/ui-lightness/jquery-ui-1.8.x.custom.css' %}">
     ...
     </head>
 
@@ -158,8 +158,8 @@ Zuerst binden wir das neue CSS und JavaScript von jQueryUI im Template ein:
 
       </footer>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-      <script src="{{ STATIC_URL }}js/libs/jquery-ui-1.8.21.custom.min.js"></script>
+      <script>window.jQuery || document.write('<script src="{% static 'js/libs/jquery-1.7.1.min.js' %}"><\/script>')</script>
+      <script src="{% static 'js/libs/jquery-ui-1.8.21.custom.min.js' %}"></script>
       ...
     </body>
 
