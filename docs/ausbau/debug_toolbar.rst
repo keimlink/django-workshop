@@ -11,7 +11,7 @@ werden:
 * Django Version
 * Python Version
 * Versionen der installierten Python Packages
-* Benutze Resourcen
+* Benutze Ressourcen
 * Eine Liste der Werte aus :file:`settings.py`
 * HTTP Header
 * GET/POST/cookie/session Variablen
