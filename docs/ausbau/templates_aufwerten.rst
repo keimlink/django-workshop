@@ -58,7 +58,7 @@ Als nächstes wollen wir den Autor ausgeben, was wieder einfach ist:
 
 ..  code-block:: html+django
 
-    <p>Autor: {{ object.author }}</p>
+    <p>Autor: {% firstof object.author.get_full_name object.author.username %}</p>
 
 Kategorien
 ==========
