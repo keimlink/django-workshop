@@ -43,9 +43,9 @@ Damit stehen dir der Admin und die Models der Applikation zur Verfügung.
 .. note::
 
     Der zweite ``import`` ist ein relativer import. Diese wurden in
-    :pep:`328` definiert und sind ab Python 2.6 direkt verfügbar. In
-    Python 2.5 müssen sie mit folgendem Code in der ersten Zeile der
-    Datei geladen werden::
+    :pep:`328` definiert und mit Python 2.6 eingeführt. In Python 2.5
+    müssen sie mit folgendem Code in der ersten Zeile der Datei geladen
+    werden::
 
         from __future__ import absolute_import
 
@@ -75,8 +75,7 @@ Das gleiche tun wir jetzt für das Model ``Recipe``::
 Die vollständige Datei
 ----------------------
 
-Die Datei :file:`admin.py` sollte nun so aussehen (ab Python 2.6, für
-Python 2.5 muss wie oben erwähnt noch eine Zeile eingefügt werden)::
+Die Datei :file:`admin.py` sollte nun so aussehen::
 
     from django.contrib import admin
 
