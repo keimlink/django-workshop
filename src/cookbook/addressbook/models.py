@@ -14,7 +14,7 @@ class Address(models.Model):
         managed = False
 
     def __unicode__(self):
-        return '%s %s' % (self.first_name, self.last_name)
+        return u'%s %s' % (self.first_name, self.last_name)
 
 
 class City(models.Model):
