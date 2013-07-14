@@ -122,7 +122,7 @@ jQuery im Frontend einsetzen
 ============================
 
 Allerdings benötigen wir für die Darstellung im Browser auch jQueryUI_,
-das wir noch installieren müssen. Dazu die Version 1.8.x auf der
+das wir noch installieren müssen. Dazu die Version 1.9.x auf der
 `jQueryUI Website herunterladen`_. Das "x" in der Version ist immer
 durch die letzte Nummer des aktuellen Release zu ersetzen.
 
@@ -133,14 +133,14 @@ durch die letzte Nummer des aktuellen Release zu ersetzen.
     für den Download auszuwählen.
 
 Nachdem du das Zip-Archiv herunterladen hast entpackst du es. Danach
-hast du ein Verzeichnis das :file:`jquery-ui-1.8.x.custom` heißt. (Falls
+hast du ein Verzeichnis das :file:`jquery-ui-1.9.x.custom` heißt. (Falls
 dein Programm zum entpacken des Zip-Archivs kein Verzeichnis mit dem
 Namen des Zip-Archivs erstellt, befinden sich die Dateien alle im
 gleichen Verzeichnis wie das Zip-Archiv.) Dann kopierst du die nötigen
 Dateien in das Verzeichnis :file:`cookbook/static`:
 
-- das Verzeichnis :file:`ui-lightness` aus dem Verzeichnis :file:`jquery-ui-1.8.x.custom/css` in das Verzeichnis :file:`static/css`
-- die Datei :file:`jquery-ui-1.8.x.custom.min` aus dem Verzeichnis :file:`jquery-ui-1.8.x.custom/js` in das Verzeichnis :file:`static/js/libs`
+- das Verzeichnis :file:`ui-darkness` aus dem Verzeichnis :file:`jquery-ui-1.9.x.custom/css` in das Verzeichnis :file:`static/css`
+- die Datei :file:`jquery-ui-1.9.x.custom.min.js` aus dem Verzeichnis :file:`jquery-ui-1.9.x.custom/js` in das Verzeichnis :file:`static/js/vendor`
 
 Alle weiteren Arbeiten werden am Template :file:`base.html` durchgeführt.
 
@@ -150,16 +150,16 @@ Zuerst binden wir das neue CSS und JavaScript von jQueryUI im Template ein:
 
     <head>
     ...
-      <link rel="stylesheet" href="{% static 'css/ui-lightness/jquery-ui-1.8.x.custom.css' %}">
+      <link rel="stylesheet" href="{% static 'css/ui-darkness/jquery-ui-1.9.x.custom.css' %}">
     ...
     </head>
 
 .. code-block:: html+django
 
       </footer>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{% static 'js/libs/jquery-1.7.1.min.js' %}"><\/script>')</script>
-      <script src="{% static 'js/libs/jquery-ui-1.8.21.custom.min.js' %}"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="{% static "js/vendor/jquery-1.8.2.min.js" %}"><\/script>')</script>
+      <script src="{% static 'js/vendor/jquery-ui-1.9.x.custom.min.js' %}"></script>
       ...
     </body>
 
