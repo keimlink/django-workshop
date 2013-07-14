@@ -173,7 +173,7 @@ folgenden Befehl kannst du diesen starten:
     [<Recipe: Käsespiegelei auf Spinatnudeln>]
 
     # Die folgende Abfrage verknüpft beide Filer mit "AND"
-    >>> Recipe.objects.filter(number_of_portions=4).filter(title__startswith='K')
+    >>> Recipe.objects.filter(number_of_portions=4, title__startswith='K')
     [<Recipe: Kohleintopf mit Tortellini>]
 
     # Mit einem Q Objekt kann man eine "ODER" Verknüpfung realisieren
