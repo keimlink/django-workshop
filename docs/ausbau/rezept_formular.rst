@@ -35,13 +35,17 @@ Als nächstes legst du das Formular an. Erstelle dazu die Datei
     from .models import Recipe
 
     class RecipeForm(ModelForm):
+        error_css_class = 'alert-error'
+        required_css_class = 'alert'
+
         class Meta:
             model = Recipe
             exclude = ('slug', 'author', 'date_created', 'date_updated')
 
 Mit Hilfe von ``ModelForm`` kannst du direkt aus dem Model ``Recipe`` ein
 Formular bauen und musst nur noch angeben welche Felder nicht im Formular
-auftauchen sollen.
+auftauchen sollen. Außerdem kannst du gleich die CSS-Klassen für das Formular
+festlegen.
 
 Damit du später das Rezept mit einem Benutzer verbinden kannst musst du den
 Konstruktor von ``RecipeForm`` überschreiben::
