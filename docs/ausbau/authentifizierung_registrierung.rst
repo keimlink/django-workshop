@@ -143,7 +143,6 @@ angezeigt. Wie in der URLConf angegeben ist sein Name
 
     {% block content %}
     <p>Dein Passwort wurde erfolgreich geändert.</p>
-    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
     {% endblock %}
 
 Außerdem erstellen wir noch ein Template, um überall Login vzw. Logout
@@ -153,28 +152,47 @@ anzuzeigen. Dieses Template erstellst du in
 ..  code-block:: html+django
 
     {% if user.is_authenticated %}
-        <p>Hallo {{ user.username }}!
-        <a href="{% url 'userauth_password_change' %}">Passwort ändern</a>
-        <a href="{% url 'userauth_logout' %}">Logout</a></p>
+    <ul class="nav pull-right">
+        <li class="dropdown">
+            <a class="dropdown-toggle" id="dropuser" data-toggle="dropdown" href="#">{{ user.username }}</a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropuser">
+                <li><a href="{% url "userauth_password_change" %}">Passwort ändern</a></li>
+                <li><a href="{% url "userauth_logout" %}">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
     {% else %}
-        <p><a href="{% url 'userauth_login' %}">Login</a></p>
+    <form class="navbar-form pull-right" action="{% url "userauth_login" %}" method="post" accept-charset="utf-8">
+        <input class="span2" type="text" placeholder="Username" name="username">
+        <input class="span2" type="password" placeholder="Password" name="password">
+        {% csrf_token %}
+        <button type="submit" class="btn">Login</button>
+    </form>
     {% endif %}
 
 Das Basis-Template erweitern
 ----------------------------
 
-Das eben angelegte Template :file:`toggle_login.html` binden wir nun in das
-Basis-Template als eigenen Block unterhalb der Überschrift "Kochbuch" im
-``<header>`` ein:
+Im Template :file:`cookbook/templates/base.html` ist in der Navigation
+ursprünglich das folgende Login Formular enthalten:
+
+.. code-block:: html
+
+    <form class="navbar-form pull-right">
+        <input class="span2" type="text" placeholder="Email">
+        <input class="span2" type="password" placeholder="Password">
+        <button type="submit" class="btn">Sign in</button>
+    </form>
+
+Dieses ersetzt du mit einem Block, in dem mit Hilfe des ``include`` Tags
+das eben erstellte Template :file:`userauth/templates/userauth/toggle_login.html`
+geladen wird:
 
 ..  code-block:: html+django
 
-    <header>
-        <h1>Kochbuch</h1>
-        {% block toggle_login %}
-            {% include "userauth/toggle_login.html" %}
-        {% endblock %}
-    </header>
+    {% block toggle_login %}
+        {% include "userauth/toggle_login.html" %}
+    {% endblock %}
 
 .. _request_context_vorstellung:
 
@@ -292,7 +310,6 @@ des Benutzers angezeigt wird (:file:`register_done.html`):
 
     {% block content %}
     <p>Du hast dich registriert. Viel Spass mit dem Kochbuch!</p>
-    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
     {% endblock %}
 
 Damit es auch einen Link zum Registrierungsformular gibt fügen wir noch eine

@@ -207,7 +207,6 @@ aus:
         {% csrf_token %}
         <p><input type="submit" value="Speichern"/></p>
     </form>
-    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
     {% endblock %}
 
 Im Template kann man jetzt sehen, wie der Parameter ``add`` zur Unterscheidung

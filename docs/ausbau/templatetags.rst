@@ -138,12 +138,11 @@ Kopf des Templates:
     Endung ".py"). Das Python Modul muss sich im Verzeichnis ``templatetags``
     einer installierten Applikation befinden.
 
-Dann ersetzt du diese beiden Zeilen:
+Dann ersetzt du die Zeile:
 
 ..  code-block:: html+django
 
     <a href="{% url 'recipes_recipe_edit' object.pk %}">Rezept bearbeiten</a>
-    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
 
 Mit dem neuen Templatetag:
 
@@ -155,7 +154,6 @@ Mit dem neuen Templatetag:
         Bitte als Autor des Rezepts oder als Redakteur
         <a href="{% url 'userauth_login' %}">einloggen</a>, um das Rezept zu bearbeiten.
     {% endis_author %}
-    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
 
 Django Apps zum einfachen Schreiben von Templatetags
 ====================================================
