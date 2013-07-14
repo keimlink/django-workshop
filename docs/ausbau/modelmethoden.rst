@@ -32,7 +32,7 @@ Du kannst die neue Methode sofort im Template
 ..  code-block:: html+django
 
     {% if object.get_related_recipes %}
-    <h4>Verwandte Rezepte</h4>
+    <h4>Ähnliche Rezepte</h4>
     <ul>
     {% for recipe in object.get_related_recipes %}
         <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
@@ -90,7 +90,7 @@ Nun kannst du den Code im Template mit dem Templatetag ersetzen:
 
     {% get_related_recipes object 5 as related_recipes %}
     {% if related_recipes %}
-    <h4>Verwandte Rezepte</h4>
+    <h4>Ähnliche Rezepte</h4>
     <ul>
     {% for recipe in related_recipes %}
         <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
