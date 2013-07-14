@@ -152,5 +152,5 @@ Außerdem kannst du die Daten auch manuell mit dem Befehl :program:`loaddata` la
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Informationen zu django-admin.py and manage.py <ref/django-admin/#ref-django-admin>`
+* :djangodocs:`Informationen zu django-admin.py and manage.py <ref/django-admin/>`
 * :djangodocs:`Daten für die Erstellung der Models bereit stellen <howto/initial-data/>`

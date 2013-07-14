@@ -65,4 +65,4 @@ dem Hinweis angezeigt.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Middleware benutzen und selbst schreiben <topics/http/middleware/#topics-http-middleware>`
+* :djangodocs:`Middleware benutzen und selbst schreiben <topics/http/middleware/>`

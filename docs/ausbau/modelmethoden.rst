@@ -119,4 +119,4 @@ mit diesem Ausdruck
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`QuerySet API Referenz <ref/models/querysets/#ref-models-querysets>`
+* :djangodocs:`QuerySet API Referenz <ref/models/querysets/>`

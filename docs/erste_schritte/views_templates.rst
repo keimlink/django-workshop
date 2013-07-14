@@ -395,8 +395,8 @@ Jetzt wird tatsächlich das JavaScript wie vom Benutzer gewünscht ausgeführt::
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Der URL dispatcher <topics/http/urls/#topics-http-urls>`
-* :djangodocs:`Views schreiben <topics/http/views/#topics-http-views>`
-* :djangodocs:`Templates und deren Vererbung <topics/templates/#topics-templates>`
+* :djangodocs:`Der URL dispatcher <topics/http/urls/>`
+* :djangodocs:`Views schreiben <topics/http/views/>`
+* :djangodocs:`Templates und deren Vererbung <topics/templates/>`
 * :djangodocs:`Automatische Maskierung von HTML und JavaScript <topics/templates/#automatic-html-escaping>`
 * :djangodocs:`Django Templates für Python Programmierer <ref/templates/api/>`

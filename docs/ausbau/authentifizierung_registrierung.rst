@@ -234,8 +234,8 @@ Zuerst wird die URLConf in :file:`userauth/urls.py` um zwei URLs erweitert::
 
 Der zweite URL ``userauth_register_done`` benutzt den generischen View
 ``django.views.generic.TemplateView`` (:djangodocs:`Dokumentation
-<topics/class-based-views/#simple-usage>`), da wir hier einfach nur das
-Template ohne weitere Daten rendern wollen.
+<topics/class-based-views/#simple-usage-in-your-urlconf>`), da wir hier einfach
+nur das Template ohne weitere Daten rendern wollen.
 
 Ein View für das Formular
 -------------------------

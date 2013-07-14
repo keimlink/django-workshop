@@ -201,5 +201,5 @@ Und lädst dein Backup:
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Query API <topics/db/queries/#topics-db-queries>`
+* :djangodocs:`Query API <topics/db/queries/>`
 * :djangodocs:`QuerySet API <ref/models/querysets/>`

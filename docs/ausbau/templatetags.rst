@@ -168,4 +168,4 @@ Templatetag Apps sind django-classy-tags_ und django-ttag_.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Eigene Templatetags und Filter schreiben <howto/custom-template-tags/#howto-custom-template-tags>`
+* :djangodocs:`Eigene Templatetags und Filter schreiben <howto/custom-template-tags/#writing-custom-template-tags>`

@@ -135,4 +135,4 @@ Kommentarzeichen in den Zeilen 4, 5 und 16. Danach sieht die Datei so aus::
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Informationen zur Admin-Applikation <ref/contrib/admin/#ref-contrib-admin>`
+* :djangodocs:`Informationen zur Admin-Applikation <ref/contrib/admin/>`

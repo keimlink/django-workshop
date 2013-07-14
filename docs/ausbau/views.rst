@@ -79,4 +79,4 @@ selbst schreiben müssen, stark reduziert.
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Django shortcut Funktionen <topics/http/shortcuts/#topics-http-shortcuts>`
+* :djangodocs:`Django shortcut Funktionen <topics/http/shortcuts/>`

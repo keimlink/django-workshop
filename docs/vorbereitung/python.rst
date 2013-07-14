@@ -84,7 +84,7 @@ pip
 
 Das eigentliche Programm zum Installieren der Pakete ist :program:`pip`. Es
 ist ein Ersatz für :program:`easy_install` mit `größerem Funktionsumfang
-<http://www.pip-installer.org/en/latest/index.html#pip-compared-to-easy-install>`_.
+<http://www.pip-installer.org/en/latest/other-tools.html#easy-install>`_.
 :program:`pip` kann mit dessen Hilfe von :program:`easy_install` installiert
 werden:
 

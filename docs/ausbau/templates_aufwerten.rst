@@ -101,6 +101,6 @@ Deshalb können wir den folgenden Code nutzen, um die Kategorien auszugeben:
 Weiterführende Links zur Django Dokumentation
 =============================================
 
-* :djangodocs:`Eingebaute Templatetags und Filter <ref/templates/builtins/#ref-templates-builtins>`
+* :djangodocs:`Eingebaute Templatetags und Filter <ref/templates/builtins/>`
 * :djangodocs:`Zusätzliche Methoden der Model-Instanzen <ref/models/instances/#extra-instance-methods>`
-* :djangodocs:`Manager für "Relations" <ref/models/relations/#ref-models-relations>`
+* :djangodocs:`Manager für "Relations" <ref/models/relations/>`

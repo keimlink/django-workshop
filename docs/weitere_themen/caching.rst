@@ -16,8 +16,8 @@ Als Cache Backends stehen zur Verfügung:
 - :djangodocs:`Local-Memory <topics/cache/#local-memory-caching>`
 - :djangodocs:`Dummy Caching (zur Entwicklung) <topics/cache/#dummy-caching-for-development>`
 
-Jedes Cache Backend kann mit :djangodocs:`Optionen <topics/cache/#cache-
-arguments>` konfiguriert werden::
+Jedes Cache Backend kann mit
+:djangodocs:`Optionen <topics/cache/#cache-arguments>` konfiguriert werden::
 
     CACHES = {
         'default': {
@@ -59,5 +59,5 @@ und man kann einfach Teile des Caches löschen.
 
 Außerdem kann man Dekoratoren nutzen, um entweder :djangodocs:`HTTP Header als
 Cache-Kriterien zu nutzen <topics/cache/#using-vary-headers>` oder um
-:djangodocs:`HTTP Header zu senden <topics/cache/#controlling-cache-using-
-other-headers>`, die sich auf das Caching beziehen.
+:djangodocs:`HTTP Header zu senden <topics/cache/#controlling-cache-using-other-headers>`,
+die sich auf das Caching beziehen.
