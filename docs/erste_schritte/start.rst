@@ -105,8 +105,6 @@ Nun konfigurieren wir die Datenbankverbindung. Wir werden eine `SQLite
 <http://www.sqlite.org/>`_ Datenbank benutzen, da ein ``sqlite3`` Paket ab der
 Version 2.5 in Python enthalten ist.
 
-Wenn du Python 2.4 benutzt musst du selbst ein Paket für SQLite installieren.
-
 Konfiguriere die Datenbankverbindung ``default`` wie folgt::
 
     DATABASES = {
