@@ -94,8 +94,22 @@ vermeiden::
     Created 0002_auto__add_field_recipe_is_active.py. You can now apply this
     migration with: ./manage.py migrate recipes
 
-South erkennt die Änderung automatisch und erstellt eine neue Migration. Diese
-wurde aber noch nicht angewendet::
+South erkennt die Änderung automatisch und erstellt eine neue Migration. Damit
+die Migration auch funktioniert müssen wir noch einen Defaultwert für das neue
+Feld setzen. Das machen wir in der gerade erzeugten Datei
+:file:`0002_auto__add_field_recipe_is_active.py`. Hier ersetzen wir
+``default=False`` mit ``default=True``::
+
+    class Migration(SchemaMigration):
+
+        def forwards(self, orm):
+            # Adding field 'Recipe.is_active'
+            db.add_column('recipes_recipe', 'is_active',
+                          self.gf('django.db.models.fields.BooleanField')(default=True),
+                          keep_default=False)
+
+Die Migration wurde aber noch nicht angewendet. Das kann man mit dem
+``migrate --list`` Befehl sehen::
 
     $ python manage.py migrate --list
 
