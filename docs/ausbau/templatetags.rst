@@ -46,16 +46,14 @@ wir :file:`recipes.py`.
 Das Templatetag erstellen
 =========================
 
-Ein Templatetag besteht immer aus einer Kompilierungsfunktion und einer Node.
-Die Kompilierungsfunktion parst das Tag mit Hilfe eines Parsers. Als Ergebnis
-gibt sie eine Instanz der Node zurück. Diese hat eine ``render``-Methode, die
-die Ausgabe erzeugt.
+Ein Templatetag besteht immer aus einem Parser und einer Node. Der Parser parst
+das Tag mit Hilfe eines Parsers. Als Ergebnis gibt sie eine Instanz der Node
+zurück. Diese hat eine ``render``-Methode, die die Ausgabe erzeugt.
 
-Die Kompilierungsfunktion
--------------------------
+Der Parser
+----------
 
-Zuerst erstellt du die Kompilierungsfunktion in der neu angelegten Datei
-:file:`recipes.py`:
+Zuerst erstellt du der Parser in der neu angelegten Datei :file:`recipes.py`:
 
 ..  code-block:: python
 
