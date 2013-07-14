@@ -142,20 +142,20 @@ Dann ersetzt du diese beiden Zeilen:
 
 ..  code-block:: html+django
 
-    <a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
-    <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
+    <a href="{% url 'recipes_recipe_edit' object.pk %}">Rezept bearbeiten</a>
+    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
 
 Mit dem neuen Templatetag:
 
 ..  code-block:: html+django
 
     {% is_author user object %}
-        <a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
+        <a href="{% url 'recipes_recipe_edit' object.pk %}">Rezept bearbeiten</a>
     {% else %}
         Bitte als Autor des Rezepts oder als Redakteur
-        <a href="{% url userauth_login %}">einloggen</a>, um das Rezept zu bearbeiten.
+        <a href="{% url 'userauth_login' %}">einloggen</a>, um das Rezept zu bearbeiten.
     {% endis_author %}
-    <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
+    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
 
 Django Apps zum einfachen Schreiben von Templatetags
 ====================================================

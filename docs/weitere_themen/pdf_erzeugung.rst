@@ -112,6 +112,6 @@ es hier :file:`recipes/templates/recipes/detail_pdf.html`:
 Und füge als letzten Schritt eine Link zum PDF in das Template für ein Rezept
 ein :file:`recipes/templates/recipes/detail.html`::
 
-    <a href="{% url recipes_recipe_detail_pdf object.slug %}">Rezept als PDF herunterladen</a>
+    <a href="{% url 'recipes_recipe_detail_pdf' object.slug %}">Rezept als PDF herunterladen</a>
 
 Jetzt kannst du das Rezept auch als PDF ansehen.

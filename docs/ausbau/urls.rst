@@ -125,7 +125,7 @@ zur Übersicht ein:
 
 ..  code-block:: html+django
 
-    <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
+    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
 
 So können alle URLs zentral in der URLConf verwaltet werden.
 

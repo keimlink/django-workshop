@@ -168,7 +168,7 @@ Dann folgt das Suchformular:
 .. code-block:: html+django
 
       <div role="main">
-        <form action="{% url recipes_recipe_search %}">
+        <form action="{% url 'recipes_recipe_search' %}">
           <div class="ui-widget">
             <label for="search">Suche: </label>
             <input id="search" name="begriff" />
@@ -186,7 +186,7 @@ Autovervollständigung an den Server senden wird:
       <script>
         $(function() {
           $("#search").autocomplete({
-            source: "{% url recipes_recipe_autocomplete %}",
+            source: "{% url 'recipes_recipe_autocomplete' %}",
             minLength: 2
           });
         });

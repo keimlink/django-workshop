@@ -97,7 +97,7 @@ Zuerst das Template :file:`templates/base.html` um den Eintrag für den Feed erw
     <head>
         <title>{% block title %}Kochbuch{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml"
-            title="Neuigkeiten aus dem Kochbuch" href="{% url news_article_feed %}" />
+            title="Neuigkeiten aus dem Kochbuch" href="{% url 'news_article_feed' %}" />
     </head>
 
 Viele Browser zeigen den Link zum RSS Feed in der Adressleiste nur nach
@@ -110,7 +110,7 @@ sein den Link zum RSS Feed auch im ``body`` der Seite einzutragen:
     <body>
         <header>
             <h1>Kochbuch</h1>
-            <p><a href="{% url news_article_feed %}">RSS Feed</a></p>
+            <p><a href="{% url 'news_article_feed' %}">RSS Feed</a></p>
         </header>
         ...
     </body>

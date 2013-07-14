@@ -197,17 +197,17 @@ aus:
     {% block content %}
     {% if add %}
     <h2>Rezept erstellen</h2>
-    {% url recipes_recipe_add as action_url %}
+    {% url 'recipes_recipe_add' as action_url %}
     {% else %}
     <h2>Rezept "{{ object.title }}" bearbeiten</h2>
-    {% url recipes_recipe_edit object.pk as action_url %}
+    {% url 'recipes_recipe_edit' object.pk as action_url %}
     {% endif %}
     <form action="{{ action_url }}" method="post" accept-charset="utf-8">
         {{ form.as_p }}
         {% csrf_token %}
         <p><input type="submit" value="Speichern"/></p>
     </form>
-    <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
+    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
     {% endblock %}
 
 Im Template kann man jetzt sehen, wie der Parameter ``add`` zur Unterscheidung
@@ -218,14 +218,14 @@ einen Link zum Bearbeiten des Rezeptes erweitern:
 
 ..  code-block:: html+django
 
-    <a href="{% url recipes_recipe_edit object.pk %}">Rezept bearbeiten</a>
+    <a href="{% url 'recipes_recipe_edit' object.pk %}">Rezept bearbeiten</a>
 
 Und im Listentemplate :file:`recipes/templates/recipes/index.html` einen Link
 zum Hinzufügen eines Rezeptes einsetzen:
 
 ..  code-block:: html+django
 
-    <a href="{% url recipes_recipe_add %}">Ein Rezept hinzufügen</a>
+    <a href="{% url 'recipes_recipe_add' %}">Ein Rezept hinzufügen</a>
 
 Fertig! Nun kannst du als angemeldeter Benutzer im Frontend Rezepte
 erstellen und bearbeiten.

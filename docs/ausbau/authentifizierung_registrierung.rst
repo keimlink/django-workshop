@@ -91,7 +91,7 @@ Als nächstes Erstellen wir ein Template für das Login in
     {% block toggle_login %}{% endblock %}
 
     {% block content %}
-        <form action="{% url userauth_login %}" method="post" accept-charset="utf-8">
+        <form action="{% url 'userauth_login' %}" method="post" accept-charset="utf-8">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
@@ -124,7 +124,7 @@ Passwortes. Erstelle es ebenfalls im Verzeichnis
     {% block toggle_login %}{% endblock %}
 
     {% block content %}
-    <form action="{% url userauth_password_change %}" method="post" accept-charset="utf-8">
+    <form action="{% url 'userauth_password_change' %}" method="post" accept-charset="utf-8">
         {{ form.as_p }}
         {% csrf_token %}
         <input type="submit" value="Passwort ändern"/>
@@ -143,7 +143,7 @@ angezeigt. Wie in der URLConf angegeben ist sein Name
 
     {% block content %}
     <p>Dein Passwort wurde erfolgreich geändert.</p>
-    <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
+    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
     {% endblock %}
 
 Außerdem erstellen wir noch ein Template, um überall Login vzw. Logout
@@ -154,10 +154,10 @@ anzuzeigen. Dieses Template erstellst du in
 
     {% if user.is_authenticated %}
         <p>Hallo {{ user.username }}!
-        <a href="{% url userauth_password_change %}">Passwort ändern</a>
-        <a href="{% url userauth_logout %}">Logout</a></p>
+        <a href="{% url 'userauth_password_change' %}">Passwort ändern</a>
+        <a href="{% url 'userauth_logout' %}">Logout</a></p>
     {% else %}
-        <p><a href="{% url userauth_login %}">Login</a></p>
+        <p><a href="{% url 'userauth_login' %}">Login</a></p>
     {% endif %}
 
 Das Basis-Template erweitern
@@ -271,7 +271,7 @@ Template für das Formular:
     {% block toggle_login %}{% endblock %}
 
     {% block content %}
-    <form action="{% url userauth_register %}" method="post" accept-charset="utf-8">
+    <form action="{% url 'userauth_register' %}" method="post" accept-charset="utf-8">
         {{ form.as_p }}
         {% csrf_token %}
         <input type="submit" value="registrieren"/>
@@ -292,7 +292,7 @@ des Benutzers angezeigt wird (:file:`register_done.html`):
 
     {% block content %}
     <p>Du hast dich registriert. Viel Spass mit dem Kochbuch!</p>
-    <a href="{% url recipes_recipe_index %}">zurück zur Übersicht</a>
+    <a href="{% url 'recipes_recipe_index' %}">zurück zur Übersicht</a>
     {% endblock %}
 
 Damit es auch einen Link zum Registrierungsformular gibt fügen wir noch eine
@@ -304,8 +304,8 @@ Zeile mit dem Link zum Registrierungsformular in das Template
     {% if user.is_authenticated %}
         ...
     {% else %}
-        <p><a href="{% url userauth_login %}">Login</a>
-        <a href="{% url userauth_register %}">Registrieren</a></p>
+        <p><a href="{% url 'userauth_login' %}">Login</a>
+        <a href="{% url 'userauth_register' %}">Registrieren</a></p>
     {% endif %}
 
 Registrieren testen
