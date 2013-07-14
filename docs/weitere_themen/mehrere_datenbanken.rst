@@ -11,7 +11,7 @@ Dazu tragen wir zuerst die neue Datenbank in die Datei
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, 'cookbook.db'),
+            'NAME': os.path.join(BASE_DIR, 'cookbook.db'),
             'USER': '',
             'PASSWORD': '',
             'HOST': '',
@@ -19,7 +19,7 @@ Dazu tragen wir zuerst die neue Datenbank in die Datei
         },
         'newsdb': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, 'news.db'),
+            'NAME': os.path.join(BASE_DIR, 'news.db'),
         },
     }
 
@@ -206,7 +206,7 @@ angelegt werden::
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, 'cookbook.db'),
+            'NAME': os.path.join(BASE_DIR, 'cookbook.db'),
             'USER': '',
             'PASSWORD': '',
             'HOST': '',
@@ -214,11 +214,11 @@ angelegt werden::
         },
         'newsdb': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, 'news.db'),
+            'NAME': os.path.join(BASE_DIR, 'news.db'),
         },
         'addressdb': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, 'address.db'),
+            'NAME': os.path.join(BASE_DIR, 'address.db'),
         },
     }
 

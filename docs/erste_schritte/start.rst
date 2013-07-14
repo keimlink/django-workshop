@@ -95,7 +95,7 @@ müssen, ermitteln wir es dynamisch und speichern es in einer "Konstanten"::
 
     import os
 
-    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ..  note::
 
@@ -112,7 +112,7 @@ Konfiguriere die Datenbankverbindung ``default`` wie folgt::
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, '..', 'cookbook.db'),
+            'NAME': os.path.join(BASE_DIR, 'cookbook.db'),
             'USER': '',
             'PASSWORD': '',
             'HOST': '',
@@ -129,7 +129,7 @@ Als nächstes passen wir Zeitzone und Sprache an::
 Als letztes muss der Pfad zu den Templates definiert werden::
 
     TEMPLATE_DIRS = (
-        os.path.join(SITE_ROOT, '..', 'templates'),
+        os.path.join(BASE_DIR, 'templates'),
     )
 
 Das Verzeichnis für die Templates erzeugen wir später in der Wurzel des

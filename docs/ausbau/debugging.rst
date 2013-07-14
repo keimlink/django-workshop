@@ -68,7 +68,7 @@ aus::
             'debuglog': {
                 'level': 'DEBUG',
                 'class': 'logging.handlers.RotatingFileHandler',
-                'filename': os.path.join(SITE_ROOT, '..', 'debug.log'),
+                'filename': os.path.join(BASE_DIR, 'debug.log'),
                 'maxBytes': 50000,
                 'backupCount': 1,
                 'formatter': 'simple'

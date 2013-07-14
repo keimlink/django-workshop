@@ -29,7 +29,7 @@ folgendem Inhalt an (du kannst aus :file:`settings.py` kopieren)::
 
     import os
 
-    from .settings import SITE_ROOT
+    from .settings import BASE_DIR
 
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
@@ -37,7 +37,7 @@ folgendem Inhalt an (du kannst aus :file:`settings.py` kopieren)::
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SITE_ROOT, 'cookbook.db'),
+            'NAME': os.path.join(BASE_DIR, 'cookbook.db'),
             'USER': '',
             'PASSWORD': '',
             'HOST': '',

@@ -7,7 +7,7 @@ Wichtige Konzepte für die Arbeit mit Django
 
     * Diese verweist auf die zentrale URLConf (``ROOT_URLCONF``)
     * Sie enthält die Liste aller installierten Apps, die nicht zwingend im Projektverzeichnis sein müssen sondern aus dem ``PYTHONPATH`` geladen werden können
-    * Eine Konstante wie zum Beispiel ``SITE_ROOT`` nutzen, um den Pfad zum Konfigurationsverzeichnis zur Laufzeit zu ermitteln
+    * Eine Konstante wie zum Beispiel ``BASE_DIR`` nutzen, um den Pfad zum Konfigurationsverzeichnis zur Laufzeit zu ermitteln
     * Zusätzliche Dateien wie zum Beispiel :file:`local_settings.py` für das Trennen der Einstellungen benutzen
     * Eventuell `paster create <http://pythonpaste.org/script/#paster-create>`_ zur Erstellung von Projekten nutzen
 * Das Verzeichnis einer App sollte immer alle nötigen Komponenten enthalten

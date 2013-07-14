@@ -21,7 +21,7 @@ HTML5 Boilerplate einsetzen
 #. Konfiguriere ``STATICFILES_DIRS`` in :file:`settings.py`::
 
     STATICFILES_DIRS = (
-        os.path.join(SITE_ROOT, '..', 'static'),
+        os.path.join(BASE_DIR, 'static'),
     )
 #. Kopiere die Verzeichnisse :file:`css` und :file:`js` aus dem HTML5 Boilerplate Verzeichnis in das :file:`static` Verzeichnis.
 #. Führe die Datei :file:`index.html` des HTML5 Boilerplates mit dem Template :file:`base.html` zusammen. Dabei musst du ``STATIC_URL`` benutzen, um die CSS und JavaScript Dateien auch laden zu können::
