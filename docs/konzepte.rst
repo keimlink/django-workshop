@@ -16,7 +16,7 @@ Wichtige Konzepte für die Arbeit mit Django
         * In der URLConf immer "named URLs" benutzen
     * Models (:file:`models.py`)
     * Templates (:file:`templates/APPNAME/*.html`)
-        * Die Verzeichnisstruktur so aufbauen, dass die Templateloader auch richtig funktionieren
+        * Die Verzeichnisstruktur so aufbauen, dass die Templateloader auch richtig arbeiten
     * Templatetags (:file:`templatetags`)
     * Views (:file:`views.py`)
     * Fomulare (:file:`forms.py`)

@@ -5,7 +5,7 @@ Ohne Softwaretests wird Softwareentwicklung schwieriger.
 
 Man muss ständig manuell testen, ob ein Feature noch funktioniert. Da aber
 jeder anders testet kann man nicht garantieren, dass auch wirklich alle
-Feature zuverlässig funktionieren. Außerdem ist manuelles Testen sehr
+Features zuverlässig arbeiten. Außerdem ist manuelles Testen sehr
 zeitaufwändig.
 
 Softwaretests sind auch gleichzeitig eine Dokumentation, denn sie erklären wie
