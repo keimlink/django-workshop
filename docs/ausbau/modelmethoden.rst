@@ -102,6 +102,20 @@ Nun kannst du den Code im Template mit dem Templatetag ersetzen:
 
     Durch die Verwendung des Templatetags sparst du auch einen SQL Query.
 
+Allerdings läßt sich das gleiche Ergebnis auch mit dem ``slice`` Filter
+erreichen, der schon in Django enthalten ist. Dazu ersetzt du die folgende
+Zeile
+
+.. code-block:: html+django
+
+    {% get_related_recipes object 5 as related_recipes %}
+
+mit diesem Ausdruck
+
+.. code-block:: html+django
+
+    {% with related_recipes=object.get_related_recipes|slice:":5" %}
+
 Weiterführende Links zur Django Dokumentation
 =============================================
 
