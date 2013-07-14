@@ -121,6 +121,13 @@ Locale Dateien erzeugen
 Um nun die Übersetzung in eine andere Sprache durchführen zu können müssen die
 Sprachdateien für Projekt und Applikation erzeugt werden.
 
+Dazu wird zuerst der Ort der Sprachdateien in der Konfiguration
+:file:`settings.py` festgelegt.
+
+::
+
+    LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
+
 Erzeugen der Sprachdateien für das Projekt::
 
     $ mkdir locale
