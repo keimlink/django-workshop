@@ -56,7 +56,7 @@ Inhalt::
     from django.core.urlresolvers import reverse
     from django.test import TestCase
 
-    from recipes.models import Recipe
+    from ..models import Recipe
 
     class RecipeViewsTests(TestCase):
         """Test the views for the recipes"""
@@ -67,11 +67,16 @@ Inhalt::
             response = self.client.get(reverse('recipes_recipe_index'))
             self.assertEqual(response.status_code, 200)
             self.assertContains(response, 'Kochbuch', count=2)
-            self.assertNotContains(response, 'Cookbook',
-                msg_prefix='Found untranslated string in response')
+            with self.settings(TEMPLATE_STRING_IF_INVALID='INVALID CONTENT'):
+                self.assertNotContains(response,
+                    settings.TEMPLATE_STRING_IF_INVALID,
+                    msg_prefix='Missing template variable')
             self.assertTemplateUsed(response, 'recipes/index.html')
-            self.assertEqual(map(repr, response.context['object_list']),
-                map(repr, Recipe.objects.all()))
+            self.assertEqual(
+                [recipe.slug for recipe in response.context['object_list']],
+                [recipe.slug for recipe in Recipe.objects.all()]
+            )
+
 
 Die Funktion ``reverse`` importieren wir, damit wir die Namen der URLs auch
 auflösen können und diese nicht "hart" in den Test eintragen müssen.
@@ -128,9 +133,8 @@ und diese Testmethoden zur Klasse ``RecipeViewsTests`` hinzufügen::
         self.assertRedirects(response, redirect_url)
         self.assertTemplateNotUsed(response, 'recipes/form.html')
 
-    def test_add_302(self):
+    def test_add_login_required(self):
         """Test the add view without an authenticated user"""
-        self.client.logout()
         response = self.client.get(reverse('recipes_recipe_add'))
         self.assertEqual(response.status_code, 302)
         self.assertTemplateNotUsed(response, 'recipes/form.html')

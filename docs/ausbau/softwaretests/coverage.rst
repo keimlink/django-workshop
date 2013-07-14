@@ -12,8 +12,8 @@ Damit ``coverage`` auch nur unsere Applikationen und nicht das Framework
 selbst betrachtet legst du die Datei :file:`.coveragerc` mit folgendem Inhalt
 im Projektverzeichnis an::
 
-    [report]
-    omit = /path/to/.virtualenvs
+    [run]
+    source = .
 
 Jetzt kannst du mit dem folgenden Kommando die Daten für den Coverage-Report
 der Applikation ``recipes`` erzeugen::
