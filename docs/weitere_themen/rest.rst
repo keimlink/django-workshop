@@ -31,7 +31,7 @@ Danach fügst du ``tastypie`` zu den ``INSTALLED_APPS`` hinzu::
 
 Als letzten Schritt erzeugst du die nötigen Datenbankstrukturen::
 
-    $ python manage.py syncdb --migrate
+    $ python manage.py migrate tastypie
     Syncing...
     Creating tables ...
     Installing custom SQL ...
@@ -42,14 +42,6 @@ Als letzten Schritt erzeugst du die nötigen Datenbankstrukturen::
      - Migrating forwards to 0001_initial.
      > tastypie:0001_initial
      - Loading initial data for tastypie.
-    Installed 0 object(s) from 0 fixture(s)
-    Running migrations for recipes:
-    - Nothing to migrate.
-     - Loading initial data for recipes.
-    Installed 0 object(s) from 0 fixture(s)
-    Running migrations for news:
-    - Nothing to migrate.
-     - Loading initial data for news.
     Installed 0 object(s) from 0 fixture(s)
 
     Synced:
