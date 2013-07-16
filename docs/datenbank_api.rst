@@ -154,7 +154,7 @@ folgenden Befehl kannst du diesen starten:
     <Category: Foo>
     # Jetzt sind es vier Kategorien
     >>> recipe.category.all()
-    [<Category: Hauptspeise>, <Category: Party>, <Category: Foo>]
+    [<Category: Fleisch>, <Category: Backen>, <Category: Frühling>, <Category: Foo>]
     # Die neu angelegte Kategorie wieder löschen
     >>> foo = Category.objects.filter(name='Foo')
     >>> foo
