@@ -2,8 +2,9 @@
 Django Workshop
 ***************
 
-Django Workshop is a free Django_ tutorial. The latest stable release is
-hosted at http://www.django-workshop.de/.
+Django Workshop is a free `Django <https://www.djangoproject.com/>`_
+tutorial. The latest stable release is hosted at http://www.django-
+workshop.de/.
 
 The goal of the tutorial is to help beginners to learn the basics of the
 Python Web Application Framework Django. It can also help people with
@@ -14,8 +15,6 @@ also be used for self-study.
 
 Currently there is only a German version available. An English
 translation is in progress.
-
-.. _Django: https://www.djangoproject.com/
 
 Creating a Virtual Machine using Vagrant
 ========================================
@@ -50,12 +49,10 @@ Contributions and Bugs
 ======================
 
 Feel free to improve Django Workshop or create translations. `Pull
-requests are welcome!`_
+requests are welcome! <https://bitbucket.org/keimlink/django-workshop>`_
 
-Please report problems to our `issue tracker`_.
-
-.. _Pull requests are welcome!: https://bitbucket.org/keimlink/django-workshop
-.. _issue tracker: https://bitbucket.org/keimlink/django-workshop/issues?status=new&status=open
+Please report problems to our `issue tracker
+<https://bitbucket.org/keimlink/django-workshop/issues?status=new&status=open>`_.
 
 Documentation License
 =====================
