@@ -1,6 +1,7 @@
 syntax: glob
 
 *~
+*.box
 *.db
 *.mo
 *.pyc
@@ -10,6 +11,8 @@ backup.json
 import.json
 docs/_build
 htmlcov
+packer/template/output*
+packer_cache
 tmp
 
 syntax: regexp
