@@ -22,40 +22,29 @@ Creating a Virtual Machine using Vagrant
 
 The repository contains a configuration for a Virtual Machine. This
 configuration will install all necessary software during setup. It's a
-Debian GNU/Linux 6.0 system. The following packages will be installed
-using Chef_:
+Debian GNU/Linux 7.2 system. The following packages will be installed
+using `Salt <http://www.saltstack.com/community/>`_:
 
-* Vim
-* tree
 * Sqlite
-* MySQL
-* PostgreSQL
+* tree
+* Vim
 
-To setup the Virtual Machine you have to install Vagrant_ and Librarian_
-at first::
+To setup the Virtual Machine you have to `install Vagrant
+<http://docs.vagrantup.com/v2/installation/index.html>`_ at first. Then
+simply start the Virtual Machine using::
 
-    $ gem install vagrant librarian
-    $ librarian-chef install
     $ vagrant up
 
-..  note::
-
-    If you use Linux or OS X you may need *root* permissions to install
-    Vagrant and Librarian.
-
-Now you can connect to the Virtual Machine using ``ssh``::
+Now you can connect to the Virtual Machine using Vagrant`s ``ssh`` command::
 
     $ vagrant ssh
 
-After that you can connect to the MySQL and PostgreSQL. Use the password
-"django" to authenticate::
+.. TODO Add MySQL and PostgreSQL to the Salt setup
+.. After that you can connect to the MySQL and PostgreSQL. Use the password
+.. "django" to authenticate::
 
-    $ mysql -p -u root
-    $ psql -h localhost -U postgres
-
-.. _Chef: http://community.opscode.com/
-.. _Vagrant: http://vagrantup.com/
-.. _Librarian: https://github.com/applicationsonline/librarian
+..     $ mysql -p -u root
+..     $ psql -h localhost -U postgres
 
 Contributions and Bugs
 ======================
