@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-
-{% block title %}{{ block.super }} - {{ article.headline }}{% endblock %}
-
-{% block content %}
-<h4>{{ article.headline }}</h4>
-<p>{{ article.date_updated }}</p>
-<p>{{ article.body }}</p>
-{% endblock %}
