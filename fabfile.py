@@ -90,7 +90,7 @@ class ServeHtmlTask(BuildHtmlTask):
     Set linkcheck to True to perform a linkcheck after the build.
     """
     name = 'serve'
-    port = 8000
+    port = 9000
 
     def run(self, language=None, linkcheck=False):
         super(ServeHtmlTask, self).run(language, linkcheck, False)
