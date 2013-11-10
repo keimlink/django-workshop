@@ -1,0 +1,5 @@
+base:
+  '*':
+    - tree
+    - sqlite
+    - vim

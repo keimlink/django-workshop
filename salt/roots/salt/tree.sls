@@ -1,0 +1,3 @@
+tree:
+  pkg:
+    - installed
