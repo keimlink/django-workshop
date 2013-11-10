@@ -35,6 +35,7 @@ Table of contents
    preparation
    install_django
    start_django_project
+   recipes_app
    authors
    copyright
 
