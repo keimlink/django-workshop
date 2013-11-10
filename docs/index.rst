@@ -34,6 +34,7 @@ Table of contents
    introduction
    preparation
    install_django
+   start_django_project
    authors
    copyright
 

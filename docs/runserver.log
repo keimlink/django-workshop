@@ -1,0 +1,8 @@
+$ python manage.py runserver
+Validating models...
+
+0 errors found
+November 10, 2013 - 22:21:46
+Django version 1.5.5, using settings 'cookbook.settings'
+Development server is running at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.

@@ -15,7 +15,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 # runserver variables.
-RUNSERVER_DIR = ../src/mysite
+RUNSERVER_DIR = ../src/cookbook
 RUNSERVER_CMD = python manage.py runserver
 RUNSERVER_LOG = ../../docs/runserver.log
 
