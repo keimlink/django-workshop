@@ -87,10 +87,12 @@ Customize URLconf
 Thus the admin application can also be accessed in the browser we must
 also enable the URL of the admin.
 
-Jump to the file :file:`cookbook/urls.py` and uncomment the lines 4, 5
-and 16. Then the file looks like this:
+Jump to the file :file:`cookbook/urls.py` and uncomment the emphasized
+lines. Then the file looks like this:
 
 .. literalinclude:: ../src/cookbook/cookbook/urls.py
+    :lines: 1, 3-18
+    :emphasize-lines: 4, 5, 16
     :linenos:
 
 Further links to the Django documentation

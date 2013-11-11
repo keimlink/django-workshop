@@ -37,6 +37,7 @@ Table of contents
    start_django_project
    recipes_app
    recipes_admin
+   syncdb_runserver
    authors
    copyright
 
