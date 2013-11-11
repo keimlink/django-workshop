@@ -6,10 +6,11 @@ Now we start with the first Django application for our project "cookbook".
 This is how the data model looks like:
 
 .. graphviz:: recipes_models.dot
+    :alt: An entity–relationship model of the recipes application
+    :inline:
 
 - The name of the app is *recipes*
 - It has two models: *Recipe* und *Category*
-- All bold fields are required
 - The *id* field will be created automatically as primary key by the Django ORM
 - Both models are connected by the n-m relation *category*
 - *Recipe.author* is connected to the *User* model provided by Django's auth app
