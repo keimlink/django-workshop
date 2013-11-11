@@ -247,7 +247,12 @@ rst_epilog = """
 .. |djangoversion| replace:: 1.5
 """
 
-linkcheck_ignore = [r'http://127.0.0.1:\d+/', r'http://localhost:\d+/']
+linkcheck_ignore = [
+    r'http://127.0.0.1:\d+/',
+    r'http://localhost:\d+/',
+    # Unfortunately linkcheck doesn't work with SourceForge.
+    r'http://.*sourceforge.net/.*',
+]
 
 # Configuration for internationalization
 locale_dirs = ['locale/']
