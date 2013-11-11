@@ -39,13 +39,17 @@ with the following command:
     :file:`django-admin`. That's not a problem, just leave off the
     extension ``.py``.
 
+.. note::
+
     On Windows you may get an ``ImportError`` when you try to run
-    :file:`django-admin.py`. Prefix all commands that use ``.py`` files
-    with ``python`` and use the full path to the file, like so:
+    :file:`django-admin.py`. This is because Windows does not run the
+    Python interpreter from your virtual environment unless you invoke
+    it directly. Instead, prefix all commands that use ``.py`` files
+    with :program:`python` and use the full path to the file, like so:
 
     ::
 
-        > python C:\Python27\Scripts\django-admin.py
+        > python %USERPROFILE%\Envs\django-workshop\Scripts\django-admin.py
 
 .. index:: timezones
 
