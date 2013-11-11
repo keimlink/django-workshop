@@ -8,7 +8,6 @@ This is how the data model looks like:
 
 .. graphviz:: recipes_models.dot
     :alt: An entity–relationship model of the recipes application
-    :inline:
 
 - The name of the app is *recipes*
 - It has two models: *Recipe* und *Category*
