@@ -1,15 +1,24 @@
 syntax: glob
 
 *~
-*.box
 *.db
 *.mo
 *.pyc
-.coverage
 .vagrant
+src/*/media
+
+# Fixtures
 backup.json
 import.json
-docs/_build
+
+# coverage
+.coverage
 htmlcov
+
+# Sphinx
+docs/_build
+
+# Packer
+*.box
 packer/template/output*
 packer_cache
