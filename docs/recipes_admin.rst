@@ -91,7 +91,7 @@ Jump to the file :file:`cookbook/urls.py` and uncomment the emphasized
 lines. Then the file looks like this:
 
 .. literalinclude:: ../src/cookbook/cookbook/urls.py
-    :lines: 1, 3-18
+    :lines: 1, 3-17, 20
     :emphasize-lines: 4, 5, 16
     :linenos:
 

@@ -102,7 +102,7 @@ Finally you need to setup a media URL for development. Add the following
 lines at the end of :file:`cookbook/urls.py`:
 
 .. literalinclude:: ../src/cookbook/cookbook/urls.py
-    :lines: 2, 19-25
+    :lines: 2, 22-27
 
 Start the Web Development Server
 ================================

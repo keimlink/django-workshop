@@ -38,6 +38,7 @@ Table of contents
    recipes_app
    recipes_admin
    syncdb_runserver
+   recipes_views_templates
    authors
    copyright
 

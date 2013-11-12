@@ -90,7 +90,7 @@ session management or caching.
 
 ..  digraph:: request_response
 
-    label = "Schematic Diagram of Django's Request/Response Processing"
+    label = "Illustration: Schematic Diagram of Django's Request/Response Processing"
     "Browser":w -> "Web server":w [label="HTTP request"];
     {rank=min; "Browser"}
     "Web server":sw -> "URLconf" [label="process_request\n(middleware)"];
