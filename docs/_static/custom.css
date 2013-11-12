@@ -6,9 +6,6 @@
  *
  */
 
-div.comment {
-    padding: 0 30px;
-}
-div.comment h3 {
-    color: #dadada;
+.comment {
+    padding: 30px 30px;
 }
