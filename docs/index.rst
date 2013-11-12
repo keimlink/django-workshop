@@ -39,6 +39,7 @@ Table of contents
    recipes_admin
    syncdb_runserver
    recipes_views_templates
+   database_api
    authors
    copyright
 
