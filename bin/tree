@@ -1,4 +1,4 @@
 #!/bin/bash
 # Wrapper for tree with some useful defaults.
 command -v tree >/dev/null 2>&1 || { echo >&2 "I require tree but it's not installed.  Aborting."; exit 1; }
-tree -I *.pyc --charset=ascii $1
+tree -I "*.pyc" --charset=ascii $1
