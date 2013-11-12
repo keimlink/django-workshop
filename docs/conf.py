@@ -260,3 +260,13 @@ locale_dirs = ['locale/']
 # Google Analytics
 googleanalytics_enabled = True
 googleanalytics_id = 'UA-35530227-1'
+
+# Configuration for sphinx.ext.doctest.
+doctest_path = [os.path.abspath('../src/cookbook')]
+doctest_global_setup = """
+from django.conf import settings
+from cookbook import settings as cookbook_settings
+
+if not settings.configured:
+    settings.configure(**cookbook_settings.__dict__)
+"""
