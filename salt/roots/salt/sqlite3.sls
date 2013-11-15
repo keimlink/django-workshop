@@ -1,3 +1,3 @@
-sqlite:
+sqlite3:
   pkg:
     - installed
