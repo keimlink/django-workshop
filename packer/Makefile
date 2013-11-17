@@ -5,7 +5,7 @@ BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=.box)
 
 vpath %.json template
 
-.PHONY: list clean-output clean-packer-cache
+.PHONY: list clean clean-builds clean-output clean-packer-cache
 
 list:
 	@for builder in $(BUILDER_TYPES) ; do \
@@ -13,6 +13,10 @@ list:
 			echo $$builder/$$box_filename ; \
 		done ; \
 	done
+	@echo "clean"
+	@echo "clean-builds"
+	@echo "clean-output"
+	@echo "clean-packer-cache"
 
 vmware/%.box: %.json
 	cd $(dir $<); \
@@ -25,6 +29,16 @@ virtualbox/%.box: %.json
 	rm -rf output-virtualbox; \
 	mkdir -p ../virtualbox; \
 	packer build -only=virtualbox $(notdir $<)
+
+clean: clean-builds clean-output clean-packer-cache
+
+clean-builds:
+		@for builder in $(BUILDER_TYPES) ; do \
+				if test -d $$builder ; then \
+						echo Deleting $$builder ; \
+						rm -rf $$builder ; \
+				fi ; \
+		done
 
 clean-output:
 	@for builder in $(BUILDER_TYPES) ; do \
