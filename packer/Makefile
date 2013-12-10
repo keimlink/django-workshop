@@ -22,13 +22,15 @@ vmware/%.box: %.json
 	cd $(dir $<); \
 	rm -rf output-vmware; \
 	mkdir -p ../vmware; \
-	packer build -only=vmware $(notdir $<)
+	packer build -only=vmware $(notdir $<); \
+	shasum -a 256 ../vmware/$(basename $(notdir $<)).box
 
 virtualbox/%.box: %.json
 	cd $(dir $<); \
 	rm -rf output-virtualbox; \
 	mkdir -p ../virtualbox; \
-	packer build -only=virtualbox $(notdir $<)
+	packer build -only=virtualbox $(notdir $<); \
+	shasum -a 256 ../virtualbox/$(basename $(notdir $<)).box
 
 clean: clean-builds clean-output clean-packer-cache
 
