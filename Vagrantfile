@@ -8,11 +8,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "debian72"
 
   config.vm.box_url = "https://bitbucket.org/keimlink/django-workshop/downloads/debian72.box"
-  config.vm.box_download_checksum_type = "sha1"
-  config.vm.box_download_checksum = "f29e08d39b252c20e10ad56d1a668a1ac6dc7720"
+  config.vm.box_download_checksum_type = "sha256"
+  config.vm.box_download_checksum = "28890f1f0a6409d8f6988b9a9a292ed777f1aa3a9b195e453643eb6204472e4b"
   config.vm.provider "vmware_fusion" do |v, override|
     override.vm.box_url = "https://bitbucket.org/keimlink/django-workshop/downloads/debian72_vmware.box"
-    override.vm.box_download_checksum = "f197cad61586c6a8c8447e55c5366bac86a37e94"
+    override.vm.box_download_checksum = "e721719458feec14a34514d87296f573813e2a3889735ae0fc4d3e770c8e55ab"
   end
 
   # Port forwarding for Django's development server.
