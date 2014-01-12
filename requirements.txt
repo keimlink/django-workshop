@@ -1,10 +1,10 @@
 Django==1.5.5
 Fabric==1.8.0
-Jinja2==2.7.1
+Jinja2==2.7.2
 MarkupSafe==0.18
 Pillow==2.2.1
 Pygments==1.6
-Sphinx==1.2b3
+Sphinx==1.2
 django-extensions==1.2.5
 docutils==0.11
 ecdsa==0.10
