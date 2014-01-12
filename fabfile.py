@@ -204,10 +204,36 @@ class DeployTask(DjangoWorkshopBaseTask):
             put('docs/.htaccess', 'www')
 
 
+class DiffSourceTask(DjangoWorkshopBaseTask):
+    """Shows a recursive diff of the src directory against another directory."""
+    name = 'diff'
+    diff_options = '-r'
+    diff_exclude = '-x \'*.pyc\' -x \'*.DS_Store\''
+
+    def run(self, target):
+        context = {
+            'options': self.diff_options,
+            'exclude': self.diff_exclude,
+            'source': os.path.join(self.prj_root, 'src'),
+            'target': target,
+        }
+        with settings(hide('warnings', 'stderr'), warn_only=True):
+            local('diff %(options)s %(exclude)s %(source)s %(target)s' % context)
+
+
+class DiffSourceBriefTask(DiffSourceTask):
+    """Shows a brief, recursive diff of the src directory against another directory."""
+    name = 'diff_brief'
+    diff_options = '-rq'
+
+
 env.user = 'zed00-keimlink'
 env.hosts = ['zed00.hostsharing.net']
+
 build = BuildHtmlTask()
 build_pdf = BuildPdfTask()
-make_messages = MakeMessageCatalogTask()
 deploy = DeployTask()
+diff = DiffSourceTask()
+diff_brief = DiffSourceBriefTask()
+make_messages = MakeMessageCatalogTask()
 serve = ServeHtmlTask()
