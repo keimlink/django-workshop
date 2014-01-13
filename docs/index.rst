@@ -43,6 +43,7 @@ Table of contents
    functional_and_unit_tests
    internationalisation
    migrations
+   multiple_databases
    authors
    copyright
 
