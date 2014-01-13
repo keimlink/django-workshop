@@ -40,6 +40,7 @@ Table of contents
    syncdb_runserver
    recipes_views_templates
    database_api
+   functional_and_unit_tests
    authors
    copyright
 

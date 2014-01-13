@@ -1,0 +1,4 @@
+[run]
+branch = True
+source = .
+omit = *migrations*, *settings.py, *urls.py, *wsgi.py

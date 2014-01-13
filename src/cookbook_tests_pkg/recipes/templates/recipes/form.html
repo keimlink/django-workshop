@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ block.super }} - 
+    {% if add %}
+        Create new
+    {% else %}
+        Edit "{{ form.instance.title }}"
+    {% endif %}
+    Recipe
+{% endblock %}
+
+{% block content %}
+{% if add %}
+<h2>Create new Recipe</h2>
+{% url "recipes_recipe_add" as action_url %}
+{% else %}
+<h2>Edit "{{ form.instance.title }}" Recipe</h2>
+{% url "recipes_recipe_edit" form.instance.pk as action_url %}
+{% endif %}
+<form action="{{ action_url }}" method="post" accept-charset="utf-8"  enctype="multipart/form-data">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <input class="btn btn-success" type="submit" value="Save"/>
+</form>
+{% endblock %}
