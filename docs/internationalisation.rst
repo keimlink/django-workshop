@@ -2,7 +2,7 @@
 Internationalisation
 ********************
 
-In order to offer an application in different languages​​,
+In order to offer an application in different languages,
 Internationalization (I18N) and localization (L10N) is necessary. Django
 uses Python's `gettext <http://docs.python.org/library/gettext.html>`_
 module to do this.
@@ -226,8 +226,8 @@ How ``LocaleMiddleware`` determines the language
 Limit the languages
 -------------------
 
-In order to restrict the choice of languages ​​you reduce the list of
-available languages ​​in :file:`settings.py`::
+In order to restrict the choice of languages you reduce the list of
+available languages in :file:`settings.py`::
 
     ugettext = lambda s: s
 
@@ -240,7 +240,7 @@ The ``lambda`` construct is necessary because
 ``django.utils.translation`` is not yet available in
 :file:`settings.py`. It also depends on the configuration.
 
-Thus the names of the languages ​​are actually translated, that code
+Thus the names of the languages are actually translated, that code
 must be used again at a position at which it actually is executed (for
 example :file:`urls.py`).
 
