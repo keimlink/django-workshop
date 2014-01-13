@@ -42,6 +42,7 @@ Table of contents
    database_api
    functional_and_unit_tests
    internationalisation
+   migrations
    authors
    copyright
 
