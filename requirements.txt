@@ -4,6 +4,7 @@ Jinja2==2.7.2
 MarkupSafe==0.18
 Pillow==2.2.1
 Pygments==1.6
+South==0.8.4
 Sphinx==1.2
 coverage==3.7.1
 django-crispy-forms==1.4.0

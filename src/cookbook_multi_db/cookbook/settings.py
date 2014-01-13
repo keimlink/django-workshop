@@ -78,7 +78,6 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'static_vendor'),
 )
 
 # List of finder classes that know how to find static files in
@@ -137,6 +136,9 @@ INSTALLED_APPS = (
     'debug_toolbar',
     #'userauth',
     'crispy_forms',
+    'south',
+    'news',
+    'addressbook',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
