@@ -41,6 +41,7 @@ Table of contents
    recipes_views_templates
    database_api
    functional_and_unit_tests
+   internationalisation
    authors
    copyright
 
