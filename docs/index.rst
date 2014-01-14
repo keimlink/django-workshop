@@ -45,6 +45,7 @@ Table of contents
    migrations
    multiple_databases
    rss_feed
+   pdf
    authors
    copyright
 
