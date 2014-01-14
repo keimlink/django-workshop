@@ -47,6 +47,7 @@ Table of contents
    rss_feed
    pdf
    admin_adjustments
+   ajax
    authors
    copyright
 
