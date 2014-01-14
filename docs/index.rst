@@ -49,6 +49,7 @@ Table of contents
    admin_adjustments
    ajax
    rest_api
+   other_authentication_sources
    authors
    copyright
 
