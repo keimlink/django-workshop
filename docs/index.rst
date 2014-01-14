@@ -46,6 +46,7 @@ Table of contents
    multiple_databases
    rss_feed
    pdf
+   admin_adjustments
    authors
    copyright
 
