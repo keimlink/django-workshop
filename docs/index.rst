@@ -48,6 +48,7 @@ Table of contents
    pdf
    admin_adjustments
    ajax
+   rest_api
    authors
    copyright
 
