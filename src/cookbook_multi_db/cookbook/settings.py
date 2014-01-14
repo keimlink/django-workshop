@@ -197,6 +197,8 @@ LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+NEWS_FEED_COUNT = 5
+
 try:
     from local_settings import *
 except ImportError:

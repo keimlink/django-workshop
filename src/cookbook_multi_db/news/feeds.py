@@ -1,15 +1,16 @@
+from django.conf import settings
 from django.contrib.syndication.views import Feed
 
 from news.models import Article
 
 
 class ArticleFeed(Feed):
-    title = 'Neuigkeiten aus dem Kochbuch'
+    title = 'News from the cookbook'
     link = '/'
-    description = 'Der RSS Feed der Kochbuch Website'
+    description = 'RSS Feed of the cookbook site'
 
     def items(self):
-        return Article.objects.order_by('-date_created')[:5]
+        return Article.objects.order_by('-date_created')[:settings.NEWS_FEED_COUNT]
 
     def item_title(self, item):
         return item.headline

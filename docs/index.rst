@@ -44,6 +44,7 @@ Table of contents
    internationalisation
    migrations
    multiple_databases
+   rss_feed
    authors
    copyright
 

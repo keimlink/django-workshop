@@ -1,3 +1,5 @@
+.. _multiple_databases:
+
 ******************
 Multiple Databases
 ******************

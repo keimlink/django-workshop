@@ -2,10 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}Kochbuch{% endblock %}</title>
+        <title>{% block title %}Cookbook{% endblock %}</title>
+        <link rel="alternate" type="application/rss+xml"
+            title="News from the cookbook" href="{% url 'news_article_feed' %}" />
     </head>
     <body>
-        <h1>Kochbuch</h1>
+        <h1>Cookbook</h1>
+        <p><a href="{% url 'news_article_feed' %}">RSS Feed</a></p>
         {% block content %}{% endblock %}
     </body>
 </html>
