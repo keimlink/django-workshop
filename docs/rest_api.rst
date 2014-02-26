@@ -2,35 +2,28 @@
 RESTful Webservice
 ******************
 
-Oft möchten auch andere Applikationen auf die Daten des Django-Projekts
-zugreifen. Dafür bietet es sich an, einen `RESTful Webservice`_ zu nutzen. Eine
-Möglichkeit einen solchen Webservice zu implementieren bietet Tastypie_.
-
-.. _RESTful Webservice: https://de.wikipedia.org/wiki/Representational_State_Transfer
-.. _Tastypie: http://tastypieapi.org/
+Often other applications want to access the data of the Django project. There has to be a `RESTful web service <http://en.wikipedia.org/wiki/Representational_state_transfer>`_ to do so. A
+possible way to implement such a web service is to use `Tastypie <http://tastypieapi.org/>`_.
 
 Installation
 ============
 
-Der erste Schritt ist die Installation des Python Packages::
+The first step is to install the Python Packages ::
 
     $ pip install django-tastypie
 
 .. note::
 
-    Tastypie benötigt einige weitere Python Pakete, die es automatisch mit
-    installiert. Um Features wie den XML Serializer, YAML Serializer oder die
-    ApiKey Authentifizierung zu nutzen müssen weitere Python Pakete manuell
-    installiert werden.
+     Tastypie needed some more Python packages, which are automatically installed. In order to use such features as the XML serializer, YAML serializer or useing a authentication APIKEY, more Python packages need to be manually installed.
 
-Danach fügst du ``tastypie`` zu den ``INSTALLED_APPS`` hinzu::
+Then you add ``tastypie`` to the ``INSTALLED_APPS``::
 
     INSTALLED_APPS = (
         # Andere Apps...
         'tastypie',
     )
 
-Als letzten Schritt erzeugst du die nötigen Datenbankstrukturen::
+As a last step you have to generate the necessary database structures::
 
     $ python manage.py migrate tastypie
     Syncing...
@@ -64,11 +57,11 @@ Als letzten Schritt erzeugst du die nötigen Datenbankstrukturen::
      - recipes
      - news
 
-Eine Ressource erstellen
-========================
+Create a resource
+=================
 
-Ein RESTful Webservice stellt Ressourcen zur Verfügung. Also legst du diese in
-Form von ``Resource`` Klassen an. Dazu erstellst du die Datei
+A RESTful web service provides available resources. So you have to put these in
+the shape of ``Resource`` classes. For this purpose, you create the file
 :file:`recipes/api.py`::
 
     from tastypie.resources import ModelResource
@@ -81,8 +74,7 @@ Form von ``Resource`` Klassen an. Dazu erstellst du die Datei
             queryset = Recipe.objects.all()
             resource_name = 'recipe'
 
-Jetzt musst du die ``RecipeResource`` in :file:`recipes/urls.py` an einen URL
-binden::
+Now you have to bind the ``RecipeResource`` to a URL in the :file:`recipes / urls.py`::
 
     from django.conf.urls.defaults import patterns, include, url
     # weitere Importe...
@@ -98,27 +90,22 @@ binden::
         url(r'^api/', include(recipe_resource.urls)),
     )
 
-Du kannst nun verschiedene Ressourcen aufrufen:
+You can now access various resources:
 
-* eine Liste aller Rezepte: http://127.0.0.1:8000/api/recipe/?format=json
-* ein einzelnes Rezept: http://127.0.0.1:8000/api/recipe/1/?format=json
-* eine Gruppe von Rezepten: http://127.0.0.1:8000/api/recipe/set/1;3/?format=json
-* das Schema der Ressource: http://127.0.0.1:8000/api/recipe/schema/?format=json
+* a list of all recipes: http://127.0.0.1:8000/api/recipe/?format=json
+* a single recipe: http://127.0.0.1:8000/api/recipe/1/?format=json
+* a group of recipes: http://127.0.0.1:8000/api/recipe/set/1;3/?format=json
+* the pattern of the resource: http://127.0.0.1:8000/api/recipe/schema/?format=json
 
-Um leichter im Browser mit der API arbeiten zu können empfiehlt sich die
-Installation einer oder mehrerer Extensions:
+In order to work more easily in the browser with the API, we recommend to the install one or more extensions:
 
-* JSONView_ (für Chrome und Firefox)
-* `cREST Client`_ (für Chrome)
-* Poster_ (für Firefox)
+* `JSONView <http://jsonview.com/>`_ (für Chrome und Firefox)
+* `cREST Client <https://chrome.google.com/webstore/detail/crest-client/baedhhmoaooldchehjhlpppaieoglhml>`_ (für Chrome)
+* `Poster <https://addons.mozilla.org/en-US/firefox/addon/poster/>`_ (für Firefox)
 
-Natürlich kannst du auch einfach cURL_ auf der Kommadozeile benutzen.
+Of course, you also can use `cURL <http://curl.haxx.se/>`_ on the commandline type.
 
-Momentan kann auf Ressourcen nur lesend (GET) zugegriffen werden. Das
-Erstellen (POST), Aktualisieren (PUT) und Löschen (DELETE) von
-Ressourcen ist nicht erlaubt.
-
-::
+Currently you have read only access to the resources (GET). Creating (POST), updating (PUT), and deleting (DELETE) of resources is not allowed.::
 
     $ curl -IX DELETE http://127.0.0.1:8000/api/recipe/1/
     HTTP/1.0 401 UNAUTHORIZED
@@ -127,20 +114,12 @@ Ressourcen ist nicht erlaubt.
     Vary: Cookie
     Content-Type: text/html; charset=utf-8
 
-Wie du sehen kannst ist das Ergebnis einer DELETE Anfrage "401
-UNAUTHORIZED", da aus Sicherheitsgründen nur lesender Zugriff möglich
-ist. Schreibende Zugriffe müssen erst aktiviert werden.
+As you can see, the result of a DELETE request is "401 UNAUTHORIZED ". For security reasons, there is only read access. Write access must be activated.
 
-.. _JSONView: http://jsonview.com/
-.. _cREST Client: https://chrome.google.com/webstore/detail/crest-client/baedhhmoaooldchehjhlpppaieoglhml
-.. _Poster: https://addons.mozilla.org/en-US/firefox/addon/poster/
-.. _cURL: http://curl.haxx.se/
+Extend authorization
+====================
 
-Autorisierung erweitern
-=======================
-
-Damit du auch POST/PUT/DELETE Operationen ausführen kannst musst du die
-Autorisierung der Ressource erweitern::
+To perform POST / PUT / DELETE operations, you need to extend the authorization of the resource::
 
     from tastypie.authorization import Authorization
     from tastypie.resources import ModelResource
@@ -156,41 +135,28 @@ Autorisierung der Ressource erweitern::
 
 .. warning::
 
-    Eine so konfigurierte Autorisierung erlaubt JEDEM ALLE OPERATIONEN
-    auszuführen! Daher eignet sich diese Konfiguration auch nur für die
-    Entwicklungsumgebung und muss für den produktiven Betrieb erweitert
-    werden.
+    Such a configured authorization allows EVERYONE to perform ALL OPERATIONS! Therefore, this configuration is only suitable for the development environment and need to be extended for production.
 
-Ressourcen via PUT änderen
-==========================
+Change resources via PUT
+========================
 
-Jetzt ist es möglich Ressourcen mit PUT zu aktualisieren. Hier lese ich
-via GET einen Datensatz mit dem cREST Client ein. Man kann sehen, dass
-das Attribut ``is_active`` den Wert ``true`` hat.
+Now it is possible to update resource with PUT. Here I am reading a record via GET with the cREST client. You can see that the attribute ``is_active`` has the value ``true``.
 
 .. image:: /images/cREST_Client_GET.png
 
-Zuerst kopiere ich die JSON Daten aus dem Response der GET Anfrage oben.
-Dann stelle ich die HTTP Methode auf PUT um und kopiere die JSON Daten
-in das Feld "Request Entity" und ändere ``is_active`` auf ``false``.
-Danach schalte ich die HTTP Header ein und setze den Header auf
-``Content-Type: application/json``. Als letzen Schritt schicke ich den
-Request ab und ändere damit dem Datensatz.
+
+First I copy the JSON data from the response of the GET request above. Then I set the HTTP method to PUT and copy the JSON data in the field "Request Entity" and change ``is_active`` to ``false``. Then I activate the HTTP headers and set the header to ``Content-Type: application / json``. As a last step I will send a Request and so change the record.
 
 .. image:: /images/cREST_Client_PUT.png
 
-Nachdem ich diesen Request abgeschickt habe rufe ich den Datensatz
-erneut mit GET auf. Der Wert des Attributs ``is_active`` hat sich auf
-``false`` geändert.
+After I sent this request I call the record again with GET. The value of the attribute ``is_active`` has to be changed to ``false``.
 
 .. image:: /images/cREST_Client_GET_after_PUT.png
 
-Eine weitere Ressource hinzufügen
-=================================
+Adding another resource
+=======================
 
-Aktuell sind nur die Rezepte und nicht die damit verknüpften Benutzer
-sichtbar. Dies änderst du, indem du eine neue Ressource für die Benutzer
-in :file:`recipes/api.py` anlegst::
+Currently, only the recipes and not the associated user is visible. You can change this by enabling a new resource for the user in :file:`recipes / api.py`::
 
     from django.contrib.auth.models import User
     from tastypie import fields
@@ -214,7 +180,7 @@ in :file:`recipes/api.py` anlegst::
             resource_name = 'recipe'
             authorization = Authorization()
 
-Jetzt musst du diese neue Ressource noch in der URLConf einbinden::
+Now you just have to integrate this new resource into the URLconf::
 
     from django.conf.urls.defaults import patterns, include, url
     # weitere Importe...
@@ -233,8 +199,7 @@ Jetzt musst du diese neue Ressource noch in der URLConf einbinden::
         url(r'^api/', include(v1_api.urls)),
     )
 
-Nun stehen mehr Daten als vorher zu Verfügung und wir haben die API
-zusätzlich versioniert:
+Now there are more data available than previously and in addition we have the API versioned:
 
 * http://127.0.0.1:8000/api/v1/?format=json
 * http://127.0.0.1:8000/api/v1/recipe/?format=json
@@ -245,15 +210,15 @@ zusätzlich versioniert:
 * http://127.0.0.1:8000/api/v1/user/1/?format=json
 * http://127.0.0.1:8000/api/v1/user/schema/?format=json
 
-Allerdings haben wir jetzt ein neues Problem, denn im der ``UserResource``
-werden auch sensitive Daten wie Passwörter ausgegeben.
+However, we now have a new problem, because in the ``User`` Resource
+also contain sensitive data such as passwords.
 
-Zugriff beschränken
-===================
+Restrict access
+===============
 
-Also müssen wir den Zugriff beschränken. Dafür gibt es zwei Möglichkeiten.
+So we have to restrict the access. There are two possibilities.
 
-#. Die nicht erwünschten Felder ausschliessen::
+#. Exclude the unwanted fields::
 
     class UserResource(ModelResource):
         class Meta:
@@ -261,7 +226,7 @@ Also müssen wir den Zugriff beschränken. Dafür gibt es zwei Möglichkeiten.
             resource_name = 'user'
             excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
 
-#. Nur die Felder angeben, die erlaubt sind::
+#. Only specify the fields that are allowed::
 
     class UserResource(ModelResource):
         class Meta:
@@ -269,7 +234,7 @@ Also müssen wir den Zugriff beschränken. Dafür gibt es zwei Möglichkeiten.
             resource_name = 'user'
             fields = ['username', 'first_name', 'last_name', 'last_login']
 
-Außerdem wollen wir nur einen lesenden Zugriff auf ``UserResource`` erlauben::
+In addition, we only want to allow read access to the ``User`` resource::
 
     class UserResource(ModelResource):
         class Meta:
@@ -278,10 +243,10 @@ Außerdem wollen wir nur einen lesenden Zugriff auf ``UserResource`` erlauben::
             excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
             allowed_methods = ['get']
 
-Ressourcen filtern
-==================
+filter ressources
+=================
 
-Mit etwas zusätzlicher Konfiguration ist es auch möglich Ressourcen zu filtern::
+With some additional configuration, it is also possible to filter resources::
 
     from django.contrib.auth.models import User
     from tastypie import fields
@@ -316,14 +281,14 @@ Mit etwas zusätzlicher Konfiguration ist es auch möglich Ressourcen zu filtern
                 'author': ALL_WITH_RELATIONS,
             }
 
-Jetzt sind folgende Abfragen möglich:
+Now following queries are possible:
 
 * http://127.0.0.1:8000/api/v1/recipe/?format=json&title__startswith=k
 * http://127.0.0.1:8000/api/v1/recipe/?format=json&title__icontains=ei
 * http://127.0.0.1:8000/api/v1/recipe/?format=json&number_of_portions__gt=3
 * http://127.0.0.1:8000/api/v1/recipe/?format=json&author__username=admin
 
-Weiterführende Links zur Tastypie Dokumentation
-===============================================
+Further links to the Django documentation
+=========================================
 
 * `Tastypie Dokumentation <http://django-tastypie.readthedocs.org/>`_
