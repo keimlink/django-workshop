@@ -16,12 +16,11 @@ The first step is to install the Python Packages ::
 
      Tastypie needed some more Python packages, which are automatically installed. In order to use such features as the XML serializer, YAML serializer or useing a authentication APIKEY, more Python packages need to be manually installed.
 
-Then you add ``tastypie`` to the ``INSTALLED_APPS``::
+Then you add ``tastypie`` to the ``INSTALLED_APPS``
 
-    INSTALLED_APPS = (
-        # Andere Apps...
-        'tastypie',
-    )
+.. literalinclude:: ../src/cookbook_rest_api/cookbook/settings.py
+    :lines: 121-134
+    :emphasize-lines: 13
 
 As a last step you have to generate the necessary database structures::
 
@@ -60,30 +59,19 @@ As a last step you have to generate the necessary database structures::
 Create a resource
 =================
 
-A RESTful web service provides available resources. So you have to put these in
-the shape of ``Resource`` classes. For this purpose, you create the file
-:file:`recipes/api.py`::
+A RESTful web service provides available resources. So you have to put these in the shape of ``Resource`` classes. For this purpose, you create the file :file:`recipes/api.py`
 
-    from tastypie.resources import ModelResource
-
-    from .models import Recipe
+.. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
+    :lines: 5-9, 21, 24-26
 
 
-    class RecipeResource(ModelResource):
-        class Meta:
-            queryset = Recipe.objects.all()
-            resource_name = 'recipe'
+Now you have to bind the ``RecipeResource`` to a URL in the :file:`cookbook / urls.py`::
 
-Now you have to bind the ``RecipeResource`` to a URL in the :file:`recipes / urls.py`::
-
-    from django.conf.urls.defaults import patterns, include, url
-    # weitere Importe...
-
-    from .api import RecipeResource
+    from recipes.api import RecipeResource
 
     recipe_resource = RecipeResource()
 
-    # Andere urlpatterns...
+    # other url patterns...
 
     urlpatterns += patterns('',
         # Andere url Definitionen...
@@ -119,19 +107,11 @@ As you can see, the result of a DELETE request is "401 UNAUTHORIZED ". For secur
 Extend authorization
 ====================
 
-To perform POST / PUT / DELETE operations, you need to extend the authorization of the resource::
+To perform POST / PUT / DELETE operations, you need to extend the authorization of the resource
 
-    from tastypie.authorization import Authorization
-    from tastypie.resources import ModelResource
+.. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
+    :lines: 3, 5-6, 7-9, 21, 24-27
 
-    from .models import Recipe
-
-
-    class RecipeResource(ModelResource):
-        class Meta:
-            queryset = Recipe.objects.all()
-            resource_name = 'recipe'
-            authorization = Authorization()
 
 .. warning::
 
@@ -156,48 +136,16 @@ After I sent this request I call the record again with GET. The value of the att
 Adding another resource
 =======================
 
-Currently, only the recipes and not the associated user is visible. You can change this by enabling a new resource for the user in :file:`recipes / api.py`::
+Currently, only the recipes and not the associated user is visible. You can change this by enabling a new resource for the user in :file:`recipes / api.py`
 
-    from django.contrib.auth.models import User
-    from tastypie import fields
-    from tastypie.authorization import Authorization
-    from tastypie.resources import ModelResource
+.. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
+    :lines: 1-3, 5-13, 19-27
 
-    from .models import Recipe
+Now you just have to integrate this new resource into the URLconf.
 
-
-    class UserResource(ModelResource):
-        class Meta:
-            queryset = User.objects.all()
-            resource_name = 'user'
-
-
-    class RecipeResource(ModelResource):
-        author = fields.ForeignKey(UserResource, 'author')
-
-        class Meta:
-            queryset = Recipe.objects.all()
-            resource_name = 'recipe'
-            authorization = Authorization()
-
-Now you just have to integrate this new resource into the URLconf::
-
-    from django.conf.urls.defaults import patterns, include, url
-    # weitere Importe...
-    from tastypie.api import Api
-
-    from .api import RecipeResource, UserResource
-
-    v1_api = Api(api_name='v1')
-    v1_api.register(UserResource())
-    v1_api.register(RecipeResource())
-
-    # Andere urlpatterns...
-
-    urlpatterns += patterns('',
-        # Andere url Definitionen...
-        url(r'^api/', include(v1_api.urls)),
-    )
+.. literalinclude:: ../src/cookbook_rest_api/cookbook/urls.py
+    :lines: 1-34
+    :emphasize-lines: 8-14, 33
 
 Now there are more data available than previously and in addition we have the API versioned:
 
@@ -218,13 +166,10 @@ Restrict access
 
 So we have to restrict the access. There are two possibilities.
 
-#. Exclude the unwanted fields::
+#. Exclude the unwanted fields
 
-    class UserResource(ModelResource):
-        class Meta:
-            queryset = User.objects.all()
-            resource_name = 'user'
-            excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
+.. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
+    :lines: 10-14
 
 #. Only specify the fields that are allowed::
 
@@ -234,52 +179,18 @@ So we have to restrict the access. There are two possibilities.
             resource_name = 'user'
             fields = ['username', 'first_name', 'last_name', 'last_login']
 
-In addition, we only want to allow read access to the ``User`` resource::
+In addition, we only want to allow read access to the ``User`` resource
 
-    class UserResource(ModelResource):
-        class Meta:
-            queryset = User.objects.all()
-            resource_name = 'user'
-            excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
-            allowed_methods = ['get']
+.. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
+    :lines: 10-15
 
 filter ressources
 =================
 
-With some additional configuration, it is also possible to filter resources::
+With some additional configuration, it is also possible to filter resources
 
-    from django.contrib.auth.models import User
-    from tastypie import fields
-    from tastypie.authorization import Authorization
-    from tastypie.constants import ALL, ALL_WITH_RELATIONS
-    from tastypie.resources import ModelResource
-
-    from .models import Recipe
-
-
-    class UserResource(ModelResource):
-        class Meta:
-            queryset = User.objects.all()
-            resource_name = 'user'
-            excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
-            allowed_methods = ['get']
-            filtering = {
-                'username': ALL,
-            }
-
-
-    class RecipeResource(ModelResource):
-        author = fields.ForeignKey(UserResource, 'author')
-
-        class Meta:
-            queryset = Recipe.objects.all()
-            resource_name = 'recipe'
-            authorization = Authorization()
-            filtering = {
-                'title': ('exact', 'startswith', 'icontains', 'contains'),
-                'number_of_portions': ALL,
-                'author': ALL_WITH_RELATIONS,
-            }
+.. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
+    :emphasize-lines: 16-18, 28-32
 
 Now following queries are possible:
 
