@@ -214,7 +214,7 @@ class DiffSourceTask(DjangoWorkshopBaseTask):
         context = {
             'options': self.diff_options,
             'exclude': self.diff_exclude,
-            'source': os.path.join(self.prj_root, 'src'),
+            'source': os.path.join(self.prj_root, 'src', 'cookbook'),
             'target': target,
         }
         with settings(hide('warnings', 'stderr'), warn_only=True):
