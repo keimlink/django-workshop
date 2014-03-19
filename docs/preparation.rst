@@ -112,6 +112,8 @@ manage distribution and installation of Python packages. Because we will
 need to install several packages, we must first install the package
 manager.
 
+.. todo:: Remove setuptools
+
 .. index:: setuptools
 
 setuptools

@@ -2,6 +2,8 @@
 PDF-Erzeugung
 *************
 
+.. todo:: Translate PDF chapter
+
 Für die Erzeugung von PDF-Dokumenten gibt es verschiedene Möglichkeiten. Wir
 wollen die Bibliothek pisa_ nutzen, die ein html2pdf Konverter ist.
 

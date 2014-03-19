@@ -2,6 +2,8 @@
 Eine Suche mit AJAX
 *******************
 
+.. todo:: Translate AJAX chapter
+
 Die Wikipedia_ erklärt AJAX wie folgt:
 
     "Ajax ist ein Apronym für die Wortfolge „Asynchronous JavaScript and

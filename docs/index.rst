@@ -53,6 +53,28 @@ Table of contents
    authors
    copyright
 
+.. todo::
+
+    Add missing chapters:
+
+    - Local Settings
+    - Debug Toolbar
+    - Extending the Views
+    - Simplify and Decoupling URLconf
+    - Inclusion of Static Files
+    - Error Handling
+    - Debugging
+    - Authentication and Registration
+    - Add recipes with a Form
+    - Generic Views
+    - Middleware
+    - Enhance templates
+    - Template Tags
+    - Defining Methods on the Model
+    - Managers
+    - Caching
+    - Deployment
+
 Indices and tables
 ==================
 
