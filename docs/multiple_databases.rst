@@ -12,8 +12,8 @@ configuration in :file:`local_settings.py`:
 .. literalinclude:: ../src/cookbook_multi_db/cookbook/local_settings.py
     :lines: 10-23,28
 
-Eine neue App "news" erstellen
-==============================
+Create a new app "news"
+=======================
 
 This database will be used by a app called "news". It should have the
 following data model:
