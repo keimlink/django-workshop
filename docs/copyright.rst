@@ -15,6 +15,9 @@ California, 94041, USA.
 
 .. centered:: |cc-by-sa|
 
+The :ref:`authors page <authors>` has a list of all authors and
+contributors.
+
 Parts of this work are based on the
 `django-marcador tutorial <http://django-marcador.keimlink.de/>`_
 licensed under Creative Commons Attribution-ShareAlike 4.0 International
