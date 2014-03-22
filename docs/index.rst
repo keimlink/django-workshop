@@ -42,6 +42,7 @@ Table of contents
    database_api
    local_settings
    debug_toolbar
+   expand_views
    functional_and_unit_tests
    internationalisation
    migrations
@@ -59,7 +60,6 @@ Table of contents
 
     Add missing chapters:
 
-    - Extending the Views
     - Simplify and Decoupling URLconf
     - Inclusion of Static Files
     - Error Handling
