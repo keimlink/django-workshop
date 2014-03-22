@@ -44,6 +44,7 @@ Table of contents
    debug_toolbar
    expand_views
    simplify_urls
+   staticfiles
    functional_and_unit_tests
    internationalisation
    migrations
@@ -61,7 +62,6 @@ Table of contents
 
     Add missing chapters:
 
-    - Inclusion of Static Files
     - Error Handling
     - Debugging
     - Authentication and Registration
