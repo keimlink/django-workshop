@@ -17,7 +17,7 @@ The following code is added at the end of the file :file:`settings.py`:
 
 This code loads all the settings from the file :file:`local_settings.py`
 if it exists. If this file does not exist, nothing happens. So you can
-define in the file :file:`local_settings.py` certain values ​​and
+define in the file :file:`local_settings.py` certain values and
 overwrite the values defined in :file:`settings.py`.
 
 So upgrade your :file:`settings.py` file at the end as stated above.
@@ -28,7 +28,7 @@ the following content (you can copy from :file:`settings.py`):
 
 .. literalinclude:: ../src/cookbook_improved/cookbook/local_settings.py
 
-After that you adjust the following values ​​in :file:`settings.py`:
+After that you adjust the following values in :file:`settings.py`:
 
 .. literalinclude:: ../src/cookbook_improved/cookbook/settings.py
     :lines: 6-8, 15-25
