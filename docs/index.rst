@@ -45,6 +45,11 @@ Table of contents
    expand_views
    simplify_urls
    staticfiles
+   fehlerbehandlung
+   debugging
+   authentifizierung_registrierung
+   middleware
+   templatetags
    functional_and_unit_tests
    internationalisation
    migrations
@@ -62,14 +67,9 @@ Table of contents
 
     Add missing chapters:
 
-    - Error Handling
-    - Debugging
-    - Authentication and Registration
     - Add recipes with a Form
     - Generic Views
-    - Middleware
     - Enhance templates
-    - Template Tags
     - Defining Methods on the Model
     - Managers
     - Caching

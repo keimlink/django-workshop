@@ -16,7 +16,6 @@ So far, our project only consists of three templates and some Python files. So w
 #. Extract the ZIP archive
 #. Copy the file :file:`index.html` into the directory
    :file:`cookbook/templates` and rename it to :file:`base.html`
-#. Copy the file :file:`404.html` into the same directory
 #. Copy the directories :file:`css`, :file:`img` and :file:`js`
    into the directory :file:`cookbook/static`
 
