@@ -74,21 +74,18 @@ of ``Resource`` classes. For this purpose, you create the file
 .. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
     :lines: 5-9, 21, 24-26
 
-.. todo:: Add :file:`recipes/urls.py`
-
 Now you have to bind the ``RecipeResource`` to a URL in
-:file:`cookbook/urls.py`:
+:file:`recipes/urls.py`:
 
 ::
 
-    from recipes.api import RecipeResource
+    from .api import RecipeResource
 
     recipe_resource = RecipeResource()
 
     # other urlpatterns...
 
     urlpatterns += patterns('',
-        # other urls...
         url(r'^api/', include(recipe_resource.urls)),
     )
 
@@ -175,11 +172,11 @@ can change this by enabling a new resource for the user in
 .. literalinclude:: ../src/cookbook_rest_api/recipes/api.py
     :lines: 1-3, 5-13, 19-27
 
-Now you just have to integrate this new resource into the URLconf:
+Now you just have to integrate this new resource into
+:file:`recipes/urls.py`, replacing the old API URL:
 
-.. literalinclude:: ../src/cookbook_rest_api/cookbook/urls.py
-    :lines: 1-34
-    :emphasize-lines: 8-14, 33
+.. literalinclude:: ../src/cookbook_rest_api/recipes/urls.py
+    :emphasize-lines: 2-8, 15-17
 
 Afterwards there is more data available than previously and in addition
 we have the API versioned:

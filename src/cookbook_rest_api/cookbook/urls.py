@@ -5,15 +5,6 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-from recipes.api import RecipeResource, UserResource
-
-from tastypie.api import Api
-
-v1_api = Api(api_name='v1')
-v1_api.register(UserResource())
-v1_api.register(RecipeResource())
-
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'cookbook.views.home', name='home'),
@@ -24,13 +15,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^recipe/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
-    url(r'^$', 'recipes.views.index'),
-)
-
-
-urlpatterns += patterns('',
-    url(r'^api/', include(v1_api.urls)),
+    url(r'^', include('recipes.urls')),
 )
 
 if settings.DEBUG:
