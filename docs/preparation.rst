@@ -107,60 +107,17 @@ Windows XP
 Python Package Manager
 ======================
 
-Python uses its own `package system <https://pypi.python.org/pypi>`_ to
-manage distribution and installation of Python packages. Because we will
-need to install several packages, we must first install the package
-manager.
-
-.. todo:: Remove setuptools
-
-.. index:: setuptools
-
-setuptools
-----------
-
-First `setuptools <http://pythonhosted.org/setuptools/>`_ needs to be
-installed. Some systems install it by default, this can be verfied by
-executing::
-
-    $ python -c "import setuptools"
-
-If the execution results in an ``ImportError`` setuptools is not
-installed and you have to follow the commands below. Otherwise continue
-with the installation of :ref:`install-pip`.
-
-It's installed with the help of a bootstrap script which can be
-downloaded `here <https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py>`_.
-If installed, you can use :program:`curl` to download it at the command
-line. Otherwise just use the browser.
-
-::
-
-    $ curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-
-When the bootstrap script has been downloaded execute it to install
-:program:`setuptools`::
-
-    $ python ez_setup.py
-
-.. note:: Under Linux and Mac OS X root privileges may be required.
-
-You can delete the bootstrap script when the installation has been finished.
-
 .. index:: pip
-.. _install-pip:
 
-pip
----
-
-We will use `pip <http://www.pip-installer.org/>`_ to install the
-packages. :program:`pip` was originally written as `an improvement
-<http://www.pip-installer.org/en/latest/other-tools.html#easy-install>`_
-of :program:`easy_install`. :program:`pip` can be installed with the
-help from a bootstrap script which can be downloaded from
-`GitHub <https://raw.github.com/pypa/pip/master/contrib/get-pip.py>`_.
-If installed, you can use :program:`curl` to download it at the command
-line. Otherwise just use the browser.
+Python has its own `package system <https://pypi.python.org/pypi>`_ to
+manage distribution and installation of Python packages. Because we will
+need to install several packages, we must first install the package manager
+`pip <http://www.pip-installer.org/>`_. :program:`pip` was originally
+written as an improvement of :program:`easy_install`. :program:`pip` can be
+installed with the help from a bootstrap script which can be downloaded
+from `GitHub <https://raw.github.com/pypa/pip/master/contrib/get-pip.py>`_.
+If :program:`curl` is installed, you can use it to download :program:`pip` at
+the command line. Otherwise just use the browser.
 
 ::
 
@@ -171,7 +128,10 @@ When the bootstrap script has been downloaded execute it to install
 
     $ python get-pip.py
 
-.. note:: Under Linux and Mac OS X root privileges may be required.
+.. note:: Under Linux and Mac OS X root privileges may be required. In this
+    case use::
+
+       $ sudo python get-pip.py
 
 You can delete the bootstrap script when the installation has been finished.
 
