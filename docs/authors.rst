@@ -24,4 +24,7 @@ Many thanks for supporting this project go to:
 - Dinu Gherman
 - Florian Apolloner
 - Maik Derstappen
+- Markus Holtermann
 - Max Brauer
+- Raphael Ackermann
+- Sean Hammond
