@@ -41,6 +41,7 @@ Table of contents
    recipes_views_templates
    database_api
    local_settings
+   debug_toolbar
    functional_and_unit_tests
    internationalisation
    migrations
@@ -58,7 +59,6 @@ Table of contents
 
     Add missing chapters:
 
-    - Debug Toolbar
     - Extending the Views
     - Simplify and Decoupling URLconf
     - Inclusion of Static Files

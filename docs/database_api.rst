@@ -1,4 +1,4 @@
-..  _datenbank-api:
+..  _database-api:
 
 ****************
 The Database API
@@ -6,7 +6,6 @@ The Database API
 
 Django brings a database API, which can create, read, write and delete
 objects.
-
 
 Backup your data and import the fixtures
 ========================================
