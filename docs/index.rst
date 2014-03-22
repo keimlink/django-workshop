@@ -43,6 +43,7 @@ Table of contents
    local_settings
    debug_toolbar
    expand_views
+   simplify_urls
    functional_and_unit_tests
    internationalisation
    migrations
@@ -60,7 +61,6 @@ Table of contents
 
     Add missing chapters:
 
-    - Simplify and Decoupling URLconf
     - Inclusion of Static Files
     - Error Handling
     - Debugging

@@ -1,5 +1,6 @@
 # encoding: utf-8
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.timezone import now
 
@@ -57,3 +58,6 @@ class Recipe(models.Model):
             self.date_created = now()
         self.date_updated = now()
         super(Recipe, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('recipes_recipe_detail', kwargs={'slug': self.slug})
