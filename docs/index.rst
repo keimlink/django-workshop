@@ -40,6 +40,7 @@ Table of contents
    syncdb_runserver
    recipes_views_templates
    database_api
+   local_settings
    functional_and_unit_tests
    internationalisation
    migrations
@@ -57,7 +58,6 @@ Table of contents
 
     Add missing chapters:
 
-    - Local Settings
     - Debug Toolbar
     - Extending the Views
     - Simplify and Decoupling URLconf
