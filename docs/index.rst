@@ -48,6 +48,7 @@ Table of contents
    fehlerbehandlung
    debugging
    authentifizierung_registrierung
+   rezept_formular
    middleware
    templatetags
    functional_and_unit_tests
@@ -67,7 +68,6 @@ Table of contents
 
     Add missing chapters:
 
-    - Add recipes with a Form
     - Generic Views
     - Enhance templates
     - Defining Methods on the Model
