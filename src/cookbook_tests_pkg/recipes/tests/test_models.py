@@ -12,7 +12,7 @@ from freezegun import freeze_time
 from recipes.models import Recipe
 
 
-class RecipeSaveTest(TestCase):
+class RecipeSaveTests(TestCase):
     title = u'Pea soup with sausage'
     number_of_portions = 4
 

@@ -2,57 +2,23 @@
 Functional and Unit Tests
 *************************
 
-Django’s uses the Python standard library module
-`unittest <http://docs.python.org/library/unittest.html>`_ for unit
-tests.
-
-Running the tests
-=================
-
-You can run the tests with the following command:
-
-.. command-output:: python manage.py test
-    :cwd: ../src/cookbook
-
-To get a more detailed output use the :option:`-v2` option:
-
-.. command-output:: python manage.py test -v2
-    :cwd: ../src/cookbook
-    :ellipsis: 10
-
-Use the :option:`-v0` option to hide most of the output:
-
-.. command-output:: python manage.py test -v0
-    :cwd: ../src/cookbook
-
-You can also run the tests for a single application:
-
-.. command-output:: python manage.py test recipes
-    :cwd: ../src/cookbook
-
-Or just for a single test case:
-
-.. command-output:: python manage.py test messages.SessionTest
-    :cwd: ../src/cookbook
-
-And even for a single test method:
-
-.. command-output:: python manage.py test messages.SessionTest.test_add
-    :cwd: ../src/cookbook
+Django supports two different test approaches: Doctests and unit tests. We will
+look at the advantages and disadvantages of both in this chapter.
 
 Doctests
 ========
 
-`Doctests <http://docs.python.org/library/doctest.html>`_ are also
-supported by Django. But for the use with Django they have more
-disadvantages than benefits.
+`Doctests <http://docs.python.org/library/doctest.html>`_ are supported by
+Django, but they are :djangodocs:`not automatically discovered <releases/1.6/#new-test-runner>`.
+In addition the disadvantages outweigh the advantages when you want to write
+doctests for Django.
 
-Benefits
---------
+Advantages
+----------
 
-- Easy to create
-- At the same documentation of the code
-- Tests are where the source code is
+* Easy to create
+* Augment the code documentation
+* Tests are where the source code is
 
 Disadvantages
 -------------
@@ -68,27 +34,40 @@ Therefore we won't write any doctests.
 Unit tests
 ==========
 
-Before we can write the first tests we have to install an additional package::
+Django uses the Python standard library module
+`unittest <http://docs.python.org/library/unittest.html>`_ for
+`unit tests <https://en.wikipedia.org/wiki/Unit_testing>`_.
+
+Before we can write the first tests we have to install an additional package:
+
+::
 
     $ pip install freezegun
 
-The file :file:`recipes/tests.py` currently contains a sample test:
+The file :file:`recipes/tests.py` currently contains only an import of the ``TestCase`` base class:
 
 .. literalinclude:: ../src/cookbook/recipes/tests.py
 
-Replace it with the following code:
+It extends ``unittest.TestCase`` and provides additional functionality:
+
+* Automatic :djangodocs:`loading of fixtures <topics/testing/tools/#fixture-loading>`
+* Wraps each test in a :djangodocs:`transaction <topics/testing/tools/#transactiontestcase>`
+* Creates a :djangodocs:`TestClient <topics/testing/tools/#the-test-client>` instance
+* :djangodocs:`Django-specific assertions <topics/testing/tools/#assertions>` for testing for things like redirection and form errors
+
+Add the following code:
 
 .. literalinclude:: ../src/cookbook_tests/recipes/tests.py
 
 And run the tests:
 
-.. command-output:: python manage.py test recipes.RecipeSaveTest
+.. command-output:: python manage.py test recipes
     :cwd: ../src/cookbook_tests
 
-Unit tests have much more benefits than disadvantages:
+Unit tests have much more advantages than disadvantages:
 
-Benefits
---------
+Advantages
+----------
 
 * Output of the test execution is clear
 * Each test can be called individually
@@ -104,8 +83,44 @@ Disadvantages
 * Creating the unit test requires more effort than creating doctests
 * Also, a documentation of the source code, but not as obvious as the doctest
 
-Determine test coverage
-=======================
+Different ways of running the tests
+===================================
+
+To get a more detailed output use the :option:`-v2` option:
+
+.. command-output:: python manage.py test recipes -v2
+    :cwd: ../src/cookbook_tests
+
+Use the :option:`-v0` option to hide most of the output, passing no arguments
+to the ``test`` command executes all tests:
+
+.. command-output:: python manage.py test -v0
+    :cwd: ../src/cookbook_tests
+
+You can also run the tests just for a single test case:
+
+.. command-output:: python manage.py test recipes.tests.RecipeSaveTests
+    :cwd: ../src/cookbook_tests
+
+And even for a single test method:
+
+.. command-output:: python manage.py test recipes.tests.RecipeSaveTests.test_slug_is_unique
+    :cwd: ../src/cookbook_tests
+
+You can also provide a path to a directory to discover tests below that directory:
+
+.. command-output:: python manage.py test recipes/
+    :cwd: ../src/cookbook_tests
+
+You can specify a custom filename pattern match using the :option:`-p` (or :option:`--pattern`)
+option, if your test files are named differently from the :file:`test*.py` pattern:
+
+::
+
+    $ ./manage.py test --pattern="tests_*.py"
+
+Determining test coverage
+=========================
 
 Of course it is also important to know for which parts of the
 application tests were already written. Here the Python package
@@ -130,7 +145,7 @@ Now you can create the data for the coverage report of the application
 
 Display the coverage data with this command in the shell:
 
-.. command-output:: coverage report -m
+.. command-output:: coverage report
     :cwd: ../src/cookbook_tests
 
 You can create a HTML coverage report with this command::
@@ -154,21 +169,19 @@ directory and inside the new directory a file called :file:`__init__.py`::
     $ touch tests/__init__.py
 
 Now you move the file :file:`tests.py` in the new directory and
-rename it to :file:`model_tests.py`::
+rename it to :file:`test_models.py`::
 
-    $ mv tests.py tests/model_tests.py
+    $ mv tests.py tests/test_models.py
 
 Next, you delete also the bytecode file :file:`tests.py` so this does
 not prevent the execution of the code in the :file:`tests` package::
 
     $ rm tests.pyc
 
-Last you add the following code to the file
-:file:`recipes/tests/__init__.py`, so that our tests from the module
-:file:`model_tests` are also discovered:
+Finally run the tests:
 
-.. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/__init__.py
-    :lines: 1
+.. command-output:: python manage.py test recipes.tests.test_models
+    :cwd: ../src/cookbook_tests_pkg
 
 Functional tests (testing views)
 ================================
@@ -187,25 +200,13 @@ and :file:`userauth`::
 
 Then you create a JSON file with the models of each application::
 
-    $ python manage.py dumpdata recipes --indent 4 > recipes/fixtures/view_tests_data.json
-    $ python manage.py dumpdata auth --indent 4 > userauth/fixtures/test_users.json
+    $ python manage.py dumpdata recipes --indent 4 --natural > recipes/fixtures/test_views_data.json
 
-With the following command we can load these fixtures in a test server
-and look at it in the browser::
-
-    $ python manage.py testserver view_tests_data.json test_users.json
-
-For the front-end tests to be discovered they have to be loaded into
-:file:`recipes/tests/__init__.py`:
-
-.. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/__init__.py
-    :emphasize-lines: 2
-
-Now you create the file :file:`recipes/tests/view_tests.py` with the
+Now you create the file :file:`recipes/tests/test_views.py` with the
 following content:
 
-.. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/view_tests.py
-    :lines: 1-30
+.. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/test_views.py
+    :lines: 1-35
 
 To extend the test suite for the front-end you can add the following
 code to the ``RecipeViewsTests`` class. The
@@ -213,14 +214,25 @@ code to the ``RecipeViewsTests`` class. The
 the :file:`recipes/fixtures` directory and change the filename in the
 code to match your file name.
 
-.. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/view_tests.py
-    :lines: 32-
+.. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/test_views.py
+    :lines: 37-
 
-The front-end tests can be called explicitly with this command::
+The front-end tests can be called explicitly with this command:
 
-    $ python manage.py test recipes.RecipeViewsTests
+.. command-output:: python manage.py test recipes.tests.test_views
+    :cwd: ../src/cookbook_tests_pkg
+
+If you create now another coverage report you can see that the coverage for the views has increased:
+
+.. command-output:: coverage run manage.py test recipes
+    :cwd: ../src/cookbook_tests_pkg
+
+Display the coverage data with this command in the shell:
+
+.. command-output:: coverage report
+    :cwd: ../src/cookbook_tests_pkg
 
 Further links to the Django documentation
 =========================================
 
-- :djangodocs:`Testing in Django <topics/testing/>`
+* :djangodocs:`Testing in Django <topics/testing/>`

@@ -2,6 +2,7 @@
 import os
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.test import TestCase
@@ -10,7 +11,11 @@ from ..models import Recipe
 
 class RecipeViewsTests(TestCase):
     """Test the views for the recipes"""
-    fixtures = ['view_tests_data.json', 'test_users.json']
+    fixtures = ['test_views_data.json']
+
+    @classmethod
+    def setUpClass(cls):
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 
     def test_index(self):
         """Test the index view"""

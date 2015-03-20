@@ -1,4 +1,13 @@
 [run]
 branch = True
 source = .
-omit = *migrations*, *settings.py, *urls.py, *wsgi.py
+omit =
+    *migrations*
+    *urls.py
+    */tests*
+    cookbook/*wsgi*.py
+    cookbook/settings*
+    manage.py
+
+[report]
+show_missing = True
