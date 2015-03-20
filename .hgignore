@@ -5,6 +5,7 @@ syntax: glob
 *.log
 *.mo
 *.pyc
+*.sqlite3
 .vagrant
 src/*/media
 
