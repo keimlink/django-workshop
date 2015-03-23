@@ -61,6 +61,7 @@ Table of contents
    ajax
    rest_api
    other_authentication_sources
+   deployment
    authors
    copyright
 
