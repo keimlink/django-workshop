@@ -19,7 +19,7 @@ RUNSERVER_DIR = ../src/cookbook
 RUNSERVER_CMD = python manage.py runserver
 RUNSERVER_LOG = ../../docs/runserver.log
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext runserver
+.PHONY: help clean clean-migrations html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext runserver
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -46,6 +46,11 @@ help:
 
 clean:
 	-rm -rf $(BUILDDIR)/*
+
+clean-migrations:
+	rm -f ../src/cookbook_migrations/db.sqlite3
+	rm -fr ../src/cookbook_migrations/recipes/migrations/0002*
+	python ../src/cookbook_migrations/manage.py migrate
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

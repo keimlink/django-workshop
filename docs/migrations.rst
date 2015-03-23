@@ -2,157 +2,92 @@
 Database Migrations
 *******************
 
-Install South
-=============
+Prior to version 1.7, Django only supported adding new models to the database.
+It was not possible to alter or remove existing models via the
+:command:`syncdb` command. Most people were using `South
+<http://south.aeracode.org/>`_ to apply changes to their database.
 
-To perform database migrations we need to install `South <http://south.aeracode.org/>`_ ::
+Displaying all existing migrations
+==================================
 
-    $ pip install south
+Use the :command:`migrate` command to display all existing migrations:
 
-First South must be added to the ``INSTALLED_APPS`` setting. In addition
-the database tables for South must be generated::
+.. command-output:: python manage.py migrate --list
+    :cwd: ../src/cookbook_migrations
 
-    $ python manage.py syncdb
-    Syncing...
-    Creating tables ...
-    Creating table south_migrationhistory
-    Installing custom SQL ...
-    Installing indexes ...
-    No fixtures found.
+Adding a new field to the model ``Recipe``
+===========================================
 
-    Synced:
-     > django.contrib.auth
-     > django.contrib.contenttypes
-     > django.contrib.sessions
-     > django.contrib.sites
-     > django.contrib.messages
-     > django.contrib.staticfiles
-     > django.contrib.admin
-     > recipes
-     > debug_toolbar
-     > userauth
-     > south
+Now add a new field to the ``Recipe`` model in :file:`recipes/models.py`, so
+that you can enable and disable recipes:
 
-    Not synced (use migrations):
-     -
-    (use ./manage.py migrate to migrate these)
+.. literalinclude:: ../src/cookbook_migrations/recipes/models.py
+    :lines: 44-49
+    :emphasize-lines: 3
 
-Setting up the existing apps for migration
-==========================================
+After that execute the :command:`makemigrations` command to create the a new
+migration:
 
-Now the existing apps need to be converted so that they can work with South::
+.. command-output:: python manage.py makemigrations
+    :cwd: ../src/cookbook_migrations
 
-    $ python manage.py convert_to_south recipes
-    Creating migrations directory at '.../cookbook/recipes/migrations'...
-    Creating __init__.py in '.../cookbook/recipes/migrations'...
-     + Added model recipes.Category
-     + Added model recipes.Recipe
-     + Added M2M table for category on recipes.Recipe
-    Created 0001_initial.py. You can now apply this migration with: ./manage.py migrate recipes
-     - Soft matched migration 0001 to 0001_initial.
-    Running migrations for recipes:
-     - Migrating forwards to 0001_initial.
-     > recipes:0001_initial
-       (faked)
+The new migration is created by scanning and comparing to the versions
+currently contained in your migration files to your :file:`recipes/models.py`.
 
-    App 'recipes' converted. Note that South assumed the application's models
-    matched the database (i.e. you haven't changed it since last syncdb); if
-    you have, you should delete the recipes/migrations directory, revert
-    models.py so it matches the database, and try again.
+The migration has not yet been applied. You can see this by running the
+:command:`migrate --list` command again, but now just for the `recipes` app:
 
-South has automatically created the first migration :file:`0001_initial.py` for the
-App ``recipes`` in the directory :file:`recipes/migrations` and marked it as
-executed. That we can see when we run the following command::
+.. command-output:: python manage.py migrate --list recipes
+    :cwd: ../src/cookbook_migrations
 
-    $ python manage.py migrate --list
+So you need to apply the migration as a last step:
 
-     recipes
-      (*) 0001_initial
+.. command-output:: python manage.py migrate
+    :cwd: ../src/cookbook_migrations
 
-Add a new field to the model ``recipes``
-========================================
+Migrations are simple Python files. Let's have a look at the migrate you created:
 
-Now we add a new field to the model ``recipes``, so that we can enable
-and disable recipes::
+.. Because the migration for the new is_active field is created when the
+.. document gets rendered it can't be included using literalinclude.
 
-    class Recipe(models.Model):
-        ...
-        is_active = models.BooleanField('active')
+::
 
-        class Meta:
-            ...
+    # -*- coding: utf-8 -*-
+    from __future__ import unicode_literals
 
-Normally we would now execute the command :program:`syncdb`. To do that
-we would have to delete the existing data. With South we can avoid
-this::
+    from django.db import models, migrations
 
-    $ python manage.py schemamigration recipes --auto
-     + Added field is_active on recipes.Recipe
-    Created 0002_auto__add_field_recipe_is_active.py. You can now apply this
-    migration with: ./manage.py migrate recipes
 
-South detects the change automatically and creates a new migration. In
-order to make the migration work, we need to set a default value for the
-new field. We do this in the file
-:file:`0002_auto__add_field_recipe_is_active.py` which just has been
-created. Here we replace ``default = False`` with ``default = True``::
+    class Migration(migrations.Migration):
 
-    class Migration(SchemaMigration):
+        dependencies = [
+            ('recipes', '0001_initial'),
+        ]
 
-        def forwards(self, orm):
-            # Adding field 'Recipe.is_active'
-            db.add_column('recipes_recipe', 'is_active',
-                          self.gf('django.db.models.fields.BooleanField')(default=True),
-                          keep_default=False)
+        operations = [
+            migrations.AddField(
+                model_name='recipe',
+                name='is_active',
+                field=models.BooleanField(default=True, verbose_name=b'active'),
+                preserve_default=True,
+            ),
+        ]
 
-The migration has not yet been applied. This can seen by running the
-``migrate --list`` command::
+You can now start the development web server and view the recipes in the admin,
+where you see the new field named "active".
 
-    $ python manage.py migrate --list
+If you want to go back to the version of the database without the field
+``is_active``, you can use the following command to do so:
 
-     recipes
-      (*) 0001_initial
-      ( ) 0002_auto__add_field_recipe_is_active
+.. command-output:: python manage.py migrate recipes 0001
+    :cwd: ../src/cookbook_migrations
 
-So we also need to apply the migration as a last step::
+And of course the migration can be moved forward again:
 
-    $ python manage.py migrate recipes
-    Running migrations for recipes:
-     - Migrating forwards to 0002_auto__add_field_recipe_is_active.
-     > recipes:0002_auto__add_field_recipe_is_active
-     - Loading initial data for recipes.
-    No fixtures found.
+.. command-output:: python manage.py migrate recipes
+    :cwd: ../src/cookbook_migrations
 
-If we now have another look at the migrations, we can see that
-both were carried out::
+Further links to the Django documentation
+=========================================
 
-    $ python manage.py migrate --list
-
-     recipes
-      (*) 0001_initial
-      (*) 0002_auto__add_field_recipe_is_active
-
-We can now start the development web server and view the recipes
-in the admin where we see the new field named "active".
-
-If we want to go back to the version of the database without the field
-``is_active``, we can use the following command to do so::
-
-    $ python manage.py migrate recipes 0001
-     - Soft matched migration 0001 to 0001_initial.
-    Running migrations for recipes:
-     - Migrating backwards to just after 0001_initial.
-     < recipes:0002_auto__add_field_recipe_is_active
-
-And of course the migration can be moved forward again::
-
-    $ python manage.py migrate recipes
-    Running migrations for recipes:
-     - Migrating forwards to 0002_auto__add_field_recipe_is_active.
-     > recipes:0002_auto__add_field_recipe_is_active
-     - Loading initial data for recipes.
-    No fixtures found.
-
-Applications that use South to migrate, use :program:`schemamigration`
-and :program:`migrate` instead of :program:`syncdb`. There is also a way
-to run both commands at once with :program:`syncdb --migrate`.
+* :djangodocs:`Migrations <topics/migrations/>`

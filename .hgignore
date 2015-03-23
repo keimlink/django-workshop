@@ -24,3 +24,6 @@ docs/_build
 *.box
 packer/template/output*
 packer_cache
+
+# Migrations
+src/cookbook_migrations/recipes/migrations/0002_recipe_is_active.py
