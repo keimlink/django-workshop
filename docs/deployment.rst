@@ -8,7 +8,7 @@ how a web server communicates with web applications, and how web applications
 can be chained together to process a single request. WSGI is a Python standard
 described in detail in :pep:`3333`.
 
-The ``startproject`` management command has created a
+The :command:`startproject` management command has created a
 simple default WSGI configuration for you, which you can direct to any
 WSGI-compliant application server to use.
 
