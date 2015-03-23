@@ -23,10 +23,7 @@ class CookbookRouter(object):
         return None
 
     def allow_syncdb(self, db, model):
-        allowed = ['south']
-        if model._meta.app_label in allowed:
-            return True
-        elif db == 'newsdb':
+        if db == 'newsdb':
             return model._meta.app_label == 'news'
         elif model._meta.app_label == 'news':
             return False

@@ -10,7 +10,7 @@ At first we add the new database ``newsdb`` to the database
 configuration in :file:`local_settings.py`:
 
 .. literalinclude:: ../src/cookbook_multi_db/cookbook/local_settings.py
-    :lines: 10-23,28
+    :lines: 10-18,23
 
 Create a new app "news"
 =======================
@@ -64,64 +64,40 @@ We also have to activate the new app "news" in ``INSTALLED_APPS``.
 Perform the initial Migration
 =============================
 
-At first we create a new schemamigration for the model ``Article``::
+At first we create a new migration for the model ``Article``::
 
-    $ python manage.py schemamigration news --initial
-    Creating migrations directory at '.../cookbook/news/migrations'...
-    Creating __init__.py in '.../cookbook/news/migrations'...
-     + Added model news.Article
-    Created 0001_initial.py. You can now apply this migration with: ./manage.py migrate news
+    $ python manage.py makemigrations news
+    Migrations for 'news':
+      0001_initial.py:
+        - Create model Article
 
-Since the database ``newsdb`` still is new, we must once create the
-tables for South::
+Then we run the first migration::
 
-    $ python manage.py syncdb --noinput --database=newsdb
-    Syncing...
-    Creating tables ...
-    Creating table south_migrationhistory
-    Installing custom SQL ...
-    Installing indexes ...
-    No fixtures found.
+    $ python manage.py migrate --database=newsdb news
+    Operations to perform:
+      Apply all migrations: news
+    Running migrations:
+      Applying news.0001_initial... OK
 
-    Synced:
-     > django.contrib.auth
-     > django.contrib.contenttypes
-     > django.contrib.sessions
-     > django.contrib.sites
-     > django.contrib.messages
-     > django.contrib.staticfiles
-     > django.contrib.admin
-     > debug_toolbar
-     > userauth
-     > south
-
-    Not synced (use migrations):
-     - recipes
-     - news
-    (use ./manage.py migrate to migrate these)
-
-It looks as if there are more tables created. This is not the case,
-because the ``CookbookRouter`` suppresses the creation of the tables. We
-can also examine that::
+The ``CookbookRouter`` should suppresses the creation of all tables except for
+the ``news_article`` table in the ``newsdb``. We can examine this by using the
+:command:`dbshell` command::
 
     $ python manage.py dbshell --database=newsdb
     SQLite version 3.7.6.3
     Enter ".help" for instructions
     Enter SQL statements terminated with a ";"
     sqlite> .tables
-    south_migrationhistory
+    django_migrations  news_article
 
-Now we perform the first migration::
+We can see that, beside the ``news_article`` table, a table for the migrations
+has been created automatically. As explained in the :ref:`migrations` chapter
+this special table is needed to track the state of every migration.
 
-    $ python manage.py migrate news --database=newsdb
-    Running migrations for news:
-     - Migrating forwards to 0001_initial.
-     > news:0001_initial
-     - Loading initial data for news.
-    No fixtures found.
+Now we can start the development web server and create several articles in the
+admin for the new news app:
 
-Then we can start the development web server and create several articles
-in the new news app.
+.. literalinclude:: runserver.log
 
 Integrate an existing database
 ==============================
@@ -143,10 +119,10 @@ You can determine the number of addresses generated with an argument::
     $ python sqltestdata.py 200
 
 First, however, has the database connection in :file:`local_settings.py`
-to be created:
+to be defined:
 
 .. literalinclude:: ../src/cookbook_multi_db/cookbook/local_settings.py
-    :lines: 10-28
+    :lines: 10-23
 
 Now we can run the queries with the new database::
 
@@ -233,7 +209,9 @@ the list and make all fields in the form read only:
 
 Finally, we activate the app ``addressbook`` in ``INSTALLED_APPS`` in
 the in :file:`settings.py` and then start the development web server to
-view the data.
+view the data:
+
+.. literalinclude:: runserver.log
 
 Further links to the Django documentation
 =========================================
