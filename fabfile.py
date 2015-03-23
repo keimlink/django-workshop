@@ -27,6 +27,17 @@ class DjangoWorkshopBaseTask(Task):
         import conf
         return conf.release
 
+    @classmethod
+    def string_to_bool(cls, value):
+        """Converts a string to a boolean."""
+        if not isinstance(value, bool):
+            value = value.strip().lower()
+            if value in ('true', '1'):
+                value = True
+            elif value in ('false', '0'):
+                value = False
+        return value
+
     @staticmethod
     def _msgfmt(language):
         """Compiles a message object."""
@@ -43,13 +54,14 @@ class DjangoWorkshopBaseTask(Task):
             local(cmd % context)
 
     def run(self, builder=None, language=None, linkcheck=False):
+        linkcheck = self.string_to_bool(linkcheck)
         if not builder:
             abort('Missing argument builder.')
         if language:
             if len(language) != 2:
                 abort('language must be in ll format.')
         with lcd(self.docs):
-            local('make clean')
+            local('make clean-migrations clean')
             if language:
                 self._msgfmt(language)
                 local('make SPHINXOPTS="-Dlanguage=%s" %s' % (language, builder))
@@ -73,6 +85,8 @@ class BuildHtmlTask(DjangoWorkshopBaseTask):
     name = 'build'
 
     def run(self, language=None, linkcheck=False, openbrowser=True):
+        linkcheck = self.string_to_bool(linkcheck)
+        openbrowser = self.string_to_bool(openbrowser)
         with hide('running'):
             super(BuildHtmlTask, self).run('html', language, linkcheck)
         if openbrowser:
@@ -93,6 +107,7 @@ class ServeHtmlTask(BuildHtmlTask):
     port = 9000
 
     def run(self, language=None, linkcheck=False):
+        linkcheck = self.string_to_bool(linkcheck)
         super(ServeHtmlTask, self).run(language, linkcheck, False)
         webbrowser.open('http://127.0.0.1:%d' % self.port)
         with hide('running'):
@@ -110,6 +125,7 @@ class BuildPdfTask(DjangoWorkshopBaseTask):
     name = 'build_pdf'
 
     def run(self, language=None, linkcheck=False):
+        linkcheck = self.string_to_bool(linkcheck)
         with hide('running'):
             super(BuildPdfTask, self).run('latexpdf', language, linkcheck)
         pdfpath = os.path.join(self.docs, '_build/latex/DjangoWorkshop.pdf')
