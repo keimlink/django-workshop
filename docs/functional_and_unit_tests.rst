@@ -192,13 +192,13 @@ disposal.
 First we need some fixtures so that data in the front end is available
 for testing.
 
-Create a directory :file:`fixtures` for the applications :file:`recipes`
-and :file:`userauth`::
+Create a directory :file:`fixtures` in the directory :file:`recipes`:
+
+::
 
     $ mkdir recipes/fixtures
-    $ mkdir userauth/fixtures
 
-Then you create a JSON file with the models of each application::
+Then you create a JSON file with the models of the recipes application::
 
     $ python manage.py dumpdata recipes --indent 4 --natural > recipes/fixtures/test_views_data.json
 
