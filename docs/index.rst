@@ -73,7 +73,9 @@ Table of contents
     - Enhance templates
     - Defining Methods on the Model
     - Managers
+    - Permissions
     - Caching
+    - Packaging
     - Deployment
 
 Indices and tables
