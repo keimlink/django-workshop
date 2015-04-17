@@ -8,6 +8,7 @@ syntax: glob
 *.sqlite3
 .vagrant
 src/*/media
+projects
 
 # Fixtures
 backup.json
