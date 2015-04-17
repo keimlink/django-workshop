@@ -22,7 +22,7 @@ class CookbookRouter(object):
             return False
         return None
 
-    def allow_syncdb(self, db, model):
+    def allow_migrate(self, db, model):
         if db == 'newsdb':
             return model._meta.app_label == 'news'
         elif model._meta.app_label == 'news':
