@@ -1,4 +1,4 @@
-Django==1.7.7
+Django==1.8
 Fabric==1.8.0
 Jinja2==2.7.2
 MarkupSafe==0.18
