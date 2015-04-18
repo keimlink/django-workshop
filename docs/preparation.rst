@@ -15,12 +15,9 @@ Therefore Python needs to be installed first.
 
 .. note::
 
-    Django |djangoversion| supports Python from version 2.6.5. It's
-    recommended to use Python version 2.7.3 or higher. If you have an
-    older version of Python, you should update it.
-
-    Since version 1.5, Django has experimental support for Python 3.2
-    and later. Django 1.6. will have stable support for Python 3.
+    Django |djangoversion| supports Python from version 2.7. If you have an
+    older version of Python, you should update it. Since version 1.5 Django
+    supports Python 3.
 
 You can find out which version of Python you're running by using the
 command line option :option:`-V`:
@@ -121,7 +118,7 @@ the command line. Otherwise just use the browser.
 
 ::
 
-    $ curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+    $ curl -LO https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 
 When the bootstrap script has been downloaded execute it to install
 :program:`pip`::
