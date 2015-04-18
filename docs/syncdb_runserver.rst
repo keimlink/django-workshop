@@ -10,55 +10,60 @@ Check the Models
 
 First, you should check your models with the following command::
 
-    $ python manage.py validate
+    $ python manage.py check
 
 Django automatically checks the models for all operations that use
 models. With this command you can also perform targeted testing.
 
-Synchronize the Database
-========================
+Migrate the Database
+====================
 
 SQL queries from the models must now be produced, in order to fill the database.
 
 With the following command you can issue the queries:
 
-.. command-output:: python manage.py sqlall recipes
+.. command-output:: python manage.py sqlmigrate recipes 0001
     :cwd: ../src/cookbook
 
-To run these queries directly and create the tables and indexes you need
-to run the following command. You will be asked if you would like to
-create a superuser. Answer yes and fill out the fields that follow. In
-the next step, you can login with these login details.
+To run these queries directly and create the tables and indexes you need to run
+the following command.
 
-.. code-block:: text
-    :emphasize-lines: 17-23
+::
 
-    $ python manage.py syncdb
-    Creating tables ...
-    Creating table auth_permission
-    Creating table auth_group_permissions
-    Creating table auth_group
-    Creating table auth_user_user_permissions
-    Creating table auth_user_groups
-    Creating table auth_user
-    Creating table django_content_type
-    Creating table django_session
-    Creating table django_site
-    Creating table django_admin_log
-    Creating table recipes_category
-    Creating table recipes_recipe_category
-    Creating table recipes_recipe
+    $ python manage.py migrate
+    Operations to perform:
+      Synchronize unmigrated apps: staticfiles, messages
+      Apply all migrations: admin, contenttypes, recipes, auth, sessions
+    Synchronizing apps without migrations:
+      Creating tables...
+        Running deferred SQL...
+      Installing custom SQL...
+    Running migrations:
+      Rendering model states... DONE
+      Applying contenttypes.0001_initial... OK
+      Applying auth.0001_initial... OK
+      Applying admin.0001_initial... OK
+      Applying contenttypes.0002_remove_content_type_name... OK
+      Applying auth.0002_alter_permission_name_max_length... OK
+      Applying auth.0003_alter_user_email_max_length... OK
+      Applying auth.0004_alter_user_username_opts... OK
+      Applying auth.0005_alter_user_last_login_null... OK
+      Applying auth.0006_require_contenttypes_0002... OK
+      Applying recipes.0001_initial... OK
+      Applying sessions.0001_initial... OK
 
-    You just installed Django's auth system, which means you don't have any superusers defined.
-    Would you like to create one now? (yes/no): yes
-    Username (leave blank to use 'vagrant'): admin
-    E-mail address: admin@example.com
+The next command creates a new superuser. Fill out username and password as you
+like, the email address is optional. Make sure you remmeber username and
+password because in the next step you can login with these details.
+
+::
+
+    $ python manage.py createsuperuser
+    Username (leave blank to use 'keimlink'): admin
+    Email address:
     Password:
     Password (again):
     Superuser created successfully.
-    Installing custom SQL ...
-    Installing indexes ...
-    Installed 0 object(s) from 0 fixture(s)
 
 Prepare Media Handling
 ======================
@@ -102,7 +107,7 @@ Finally you need to setup a media URL for development. Add the following
 lines at the end of :file:`cookbook/urls.py`:
 
 .. literalinclude:: ../src/cookbook/cookbook/urls.py
-    :lines: 2, 22-27
+    :lines: 1, 14-20
 
 Start the Web Development Server
 ================================
@@ -112,8 +117,7 @@ Now you can start the development server:
 .. literalinclude:: runserver.log
 
 Using the URL http://127.0.0.1:8000/admin/ you can now access the admin
-application, log in to the super user you just created and add a few
-recipes.
+application, log in to the superuser you just created and add a few recipes.
 
 Export and Import of Data using JSON
 ====================================
@@ -127,14 +131,7 @@ you can export the models of the application ``recipes``:
     $ mkdir recipes/fixtures
     $ python manage.py dumpdata --indent 4 recipes > recipes/fixtures/initial_data.json
 
-.. note::
-
-    Django loads the fixtures from a fixture called
-    :file:`initial_data.json` every time you execute :program:`syncdb`.
-    Therefore the data you just stored will be loaded automatically
-    every time you execute :program:`syncdb`.
-
-In addition, you can load the data with the command :program:`loaddata`:
+You can load the data with the command :program:`loaddata`:
 
 .. code-block:: text
 
