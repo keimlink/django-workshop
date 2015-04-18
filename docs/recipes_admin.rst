@@ -2,40 +2,21 @@
 The Admin application
 *********************
 
-Next, we will enable the admin application so that we can enter, edit
-and delete data in our app.
-
-This application is already included in Django.
+Next, we will enable the admin application so that we can enter, edit and
+delete data in our app. This application is already included in Django.
 
 Register your own application to the Admin
 ==========================================
 
-In order that the admin can be used with our application, we need to
-make our models known to the admin.
-
-This requires the file :file:`admin.py` to be created in the
-application. The project will then look like this::
-
-    cookbook
-    |-- cookbook
-    |   |-- __init__.py
-    |   |-- settings.py
-    |   |-- urls.py
-    |   `-- wsgi.py
-    |-- manage.py
-    |-- recipes
-    |   |-- __init__.py
-    |   |-- admin.py
-    |   |-- models.py
-    |   |-- tests.py
-    |   `-- views.py
-    |-- static
-    `-- templates
-
-Then you open the file in your editor and add the following two lines of code:
+In order that the admin can be used with our application, we need to make our
+models known to the admin. To achieve this you have to edit the file
+:file:`recipes/admin.py`. It has been created in the previous chapter when we
+created the structure for the ``recipes`` app using the :command:`startapp`
+command. Open the file in your editor and add the highlighted line:
 
 .. literalinclude:: ../src/cookbook/recipes/admin.py
     :lines: 1-3
+    :emphasize-lines: 3
 
 The ``admin`` module and the ``models`` of the application are now available.
 
@@ -67,32 +48,6 @@ The complete file
 The file :file:`admin.py` should look like this:
 
 .. literalinclude:: ../src/cookbook/recipes/admin.py
-    :linenos:
-
-Activate the admin application
-==============================
-
-To activate the admin application, two steps are necessary.
-
-Customizing the configuration
------------------------------
-
-In the file :file:`settings.py` remove the comment before the line
-``'django.contrib.admin'`` in ``INSTALLED_APPS`` to enable the admin
-application.
-
-Customize URLconf
------------------
-
-Thus the admin application can also be accessed in the browser we must
-also enable the URL of the admin.
-
-Jump to the file :file:`cookbook/urls.py` and uncomment the emphasized
-lines. Then the file looks like this:
-
-.. literalinclude:: ../src/cookbook/cookbook/urls.py
-    :lines: 1, 3-17, 20
-    :emphasize-lines: 4, 5, 16
     :linenos:
 
 Further links to the Django documentation
