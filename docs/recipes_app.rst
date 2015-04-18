@@ -24,14 +24,17 @@ Because the application will manage recipes we will call it
     $ cd cookbook
     $ python manage.py startapp recipes
 
-This command will create a directory :file:`recipes` containing these
-four files::
+This command will create a directory :file:`recipes` containing these six files
+and an additional directory::
 
     recipes
-    |-- __init__.py
-    |-- models.py
-    |-- tests.py
-    `-- views.py
+    ├── __init__.py
+    ├── admin.py
+    ├── migrations
+    │   └── __init__.py
+    ├── models.py
+    ├── tests.py
+    └── views.py
 
 Create the Models
 =================
@@ -78,7 +81,8 @@ We habe to add another ``import`` for the ``User`` class:
 Add some constants for the ``difficulty`` field at the top of the class:
 
 .. literalinclude:: ../src/cookbook/recipes/models.py
-    :lines: 23-30
+    :lines: 21-30
+    :emphasize-lines: 3-10
 
 Again we have to add a ``Meta`` class and a ``__unicode__``  method
 for the ``Recipe`` class:
@@ -126,7 +130,7 @@ application at the end of the ``INSTALLED_APPS`` setting.
 Now ``INSTALLED_APPS`` looks like this:
 
 .. literalinclude:: ../src/cookbook/cookbook/settings.py
-    :lines: 121-133
+    :lines: 33-41
 
 Further links to the Django documentation
 =========================================
