@@ -51,17 +51,13 @@ Configuration
 In order to work with the project, you need to configure it. To do that,
 open the file :file:`settings.py` in a text editor.
 
-So that you don't need to enter the project directory several times in
-the configuration, you can save it in a "constant". This constant can
-then be used everywhere where the project directory is required.
+So that you don't need to enter the project directory several times in the
+configuration, it's saved in a "constant". This constant can then be used
+everywhere where the project directory is required. You can find it right at
+the top of the :file:`settings.py` file:
 
 .. literalinclude:: ../src/cookbook/cookbook/settings.py
-    :lines: 2-4
-
-.. note::
-
-    It is important that the constant is defined at the very beginning
-    of the configuration file.
+    :lines: 13-16
 
 .. doctest::
     :hide:
@@ -69,15 +65,21 @@ then be used everywhere where the project directory is required.
     >>> settings.BASE_DIR.endswith('/cookbook')
     True
 
-Next the database needs to be configured. We'll use `SQLite
-<http://www.sqlite.org/>`_, as it's built into Python.
-
-Configure the existing database connection ``default`` as follows by
-editing the emphasized lines:
+The first thing that needs to be configured is the path where the templates
+will be located. The :file:`settings.py` already contains a ``TEMPLATES``
+constant which is preconfigured to use Django's template engine. Add the path
+to the templates directory to the ``DIRS`` list:
 
 .. literalinclude:: ../src/cookbook/cookbook/settings.py
-    :lines: 15-25
-    :emphasize-lines: 3-4
+    :lines: 56-70
+    :emphasize-lines: 4
+
+The the existing database connection ``default`` is already configured to use
+`SQLite <http://www.sqlite.org/>`_, because it's built into Python:
+
+.. literalinclude:: ../src/cookbook/cookbook/settings.py
+    :lines: 75-83
+    :emphasize-lines: 5-8
 
 .. doctest::
     :hide:
@@ -90,7 +92,7 @@ editing the emphasized lines:
 Next change the timezone and language to suit:
 
 .. literalinclude:: ../src/cookbook/cookbook/settings.py
-    :lines: 31-39
+    :lines: 86-91
 
 .. doctest::
     :hide:
@@ -105,13 +107,11 @@ inferface which we will use later to English. You can change it to a
 different language, e.g. use ``de`` as ``LANGUAGE_CODE`` if you want
 to use German.
 
-Lastly, the paths to static files and templates must be defined. Add the
-emphasized lines to the already existing constants. You can find them
-further below the configuration file:
+Lastly, the path to the static files and the location for uploaded files must
+be defined:
 
 .. literalinclude:: ../src/cookbook/cookbook/settings.py
-    :lines: 73-80, 114-119
-    :emphasize-lines: 6, 13
+    :lines: 105-110
 
 .. doctest::
     :hide:
@@ -125,10 +125,10 @@ further below the configuration file:
     >>> settings.TEMPLATE_DIRS[0].endswith('templates')
     True
 
-Now create the directory for static files and templates under directory
-:file:`cookbook`::
+Now create the directories for media and static files as well as templates
+under the directory :file:`cookbook`::
 
-    $ mkdir static templates
+    $ mkdir media static templates
 
 Afterwards the directory structure should look as follows::
 
@@ -139,6 +139,7 @@ Afterwards the directory structure should look as follows::
     |   |-- urls.py
     |   `-- wsgi.py
     |-- manage.py
+    |-- media
     |-- static
     `-- templates
 
