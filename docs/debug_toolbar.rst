@@ -50,6 +50,10 @@ properly <howto/static-files/>` and add ``debug_toolbar`` to your
 
     STATIC_URL = '/static/'
 
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
 After that the Debug Toolbar is displayed at the right side of your
 browser window.
 
