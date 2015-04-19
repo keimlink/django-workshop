@@ -22,12 +22,8 @@ For now, we want to create two URLs. Jump to the file :file:`urls.py`
 and add at the end of ``urlpatterns`` the following two lines:
 
 .. literalinclude:: ../src/cookbook/cookbook/urls.py
-    :lines: 17-18
-
-The file :file:`urls.py` then looks like this:
-
-.. literalinclude:: ../src/cookbook/cookbook/urls.py
     :linenos:
+    :emphasize-lines: 12-13
 
 ..  note::
 
@@ -180,6 +176,9 @@ Now your directory structure should look like this:
     |-- recipes
     |   |-- __init__.py
     |   |-- admin.py
+    |   ├-- migrations
+    |   │   |-- 0001_initial.py
+    |   │   `-- __init__.py
     |   |-- fixtures
     |   |   `-- initial_data.json
     |   |-- models.py
@@ -236,13 +235,28 @@ the Django template engine. This is mainly makes sense in the production
 environemnt, since as the site despite the absence of another variable
 can be rendered.
 
-To see anyway, if a variable has not been rendered, one can define a
-string in the configuration :file:`settings.py` which in this case
-appears:
+To see anyway, if a variable has not been rendered, one can define the option
+``string_if_invalid`` for Django's template backend in the configuration
+:file:`settings.py` which in this case appears:
 
 ::
 
-    TEMPLATE_STRING_IF_INVALID = 'TEMPLATE NAME ERROR'
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+                'string_if_invalid': 'TEMPLATE NAME ERROR: %s not found',
+            },
+        },
+    ]
 
 This setting should be disabled again in a production environment.
 
