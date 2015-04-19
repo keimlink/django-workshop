@@ -28,13 +28,13 @@ This command will create a directory :file:`recipes` containing these six files
 and an additional directory::
 
     recipes
-    ├── __init__.py
-    ├── admin.py
-    ├── migrations
-    │   └── __init__.py
-    ├── models.py
-    ├── tests.py
-    └── views.py
+    |-- __init__.py
+    |-- admin.py
+    |-- migrations
+    │   `-- __init__.py
+    |-- models.py
+    |-- tests.py
+    `-- views.py
 
 Create the Models
 =================

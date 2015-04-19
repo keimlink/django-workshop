@@ -176,7 +176,7 @@ Now your directory structure should look like this:
     |-- recipes
     |   |-- __init__.py
     |   |-- admin.py
-    |   ├-- migrations
+    |   |-- migrations
     |   │   |-- 0001_initial.py
     |   │   `-- __init__.py
     |   |-- fixtures
