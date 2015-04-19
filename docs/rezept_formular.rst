@@ -213,4 +213,4 @@ Weiterführende Links zur Django Dokumentation
 * :djangodocs:`Forms API <ref/forms/api/>`
 * :djangodocs:`Formulare für Models erstellen <topics/forms/modelforms/>`
 * :djangodocs:`Der render Shortcut <topics/http/shortcuts/#render>`
-* :djangodocs:`Der 403 (HTTP Forbidden) View <topics/http/views/#the-403-http-forbidden-view>`
+* :djangodocs:`Der 403 (HTTP Forbidden) View <ref/views/#the-403-http-forbidden-view>`

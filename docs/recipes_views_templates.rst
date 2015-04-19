@@ -325,5 +325,5 @@ Further links to the Django documentation
 - :djangodocs:`URL dispatcher <topics/http/urls/>`
 - :djangodocs:`Writing views <topics/http/views/>`
 - :djangodocs:`The Django template language <topics/templates/>`
-- :djangodocs:`Automatic HTML escaping <topics/templates/#automatic-html-escaping>`
+- :djangodocs:`Automatic HTML escaping <ref/templates/language/#automatic-html-escaping>`
 - :djangodocs:`The Django template language: For Python programmers <ref/templates/api/>`
