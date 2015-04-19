@@ -1,8 +1,8 @@
 .. _simplify_urls:
 
-*************************************
-Simplifing and decoupling the URLconf
-*************************************
+**************************************
+Simplifying and decoupling the URLconf
+**************************************
 
 At the moment, all URLs are defined in :file:`urls.py` in the
 configuration directory of the project. This is confusing in the long
@@ -17,19 +17,14 @@ So we put an empty file named :file:`urls.py` inside the application
 
 .. code-block:: python
 
-    from django.conf.urls import patterns, include, url
+    from django.conf.urls import include, url
 
-    urlpatterns = patterns('recipes.views',
-        url(r'^recipe/(?P<slug>[-\w]+)/$', 'detail'),
-        url(r'^$', 'index'),
-    )
+    urlpatterns = [
+        url(r'^recipe/(?P<slug>[-\w]+)/$', 'recipes.views.detail'),
+        url(r'^$', 'recipes.views.index'),
+    ]
 
-The first argument of the function ``patterns`` that until now was only
-an empty string, we can use now. It is a prefix for all views that are
-defined in this function call. Therefore, we need to pass only the
-actual name of the view function to the ``url`` function.
-
-The two URLs we take otherwise from the URLconf of the project.
+The two URLs we take from the URLconf of the project.
 
 Simplifing the URLconf of the project
 =====================================
@@ -39,7 +34,8 @@ application from the URLconf of the project. Instead, we need to assign
 the new URLconf of the application to an URL:
 
 .. literalinclude:: ../src/cookbook_improved/cookbook/urls.py
-    :lines: 16-19
+    :lines: 6-13
+    :emphasize-lines: 7
     :language: python
 
 You can now test this configuration, the frontend should work as usual.
@@ -62,10 +58,10 @@ Expand the URLconf of the application
 First, we give the URLs in the URLconf of the application a name:
 
 .. literalinclude:: ../src/cookbook_improved/recipes/urls.py
-    :lines: 3-6
+    :lines: 3-7
 
 The function ``url`` accepts an argument ``name`` to specify the name of
-an URL. Normally, the name is constructed after the APPLIKATION_MODEL_VIEW
+an URL. Normally, the name is constructed after the APPLICATION_MODEL_VIEW
 scheme - this way a name can not occur twice.
 
 A new method for the model

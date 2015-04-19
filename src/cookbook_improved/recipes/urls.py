@@ -1,6 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 
-urlpatterns = patterns('recipes.views',
-    url(r'^recipe/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
-    url(r'^$', 'index', name='recipes_recipe_index'),
-)
+urlpatterns = [
+    url(r'^recipe/(?P<slug>[-\w]+)/$', 'recipes.views.detail',
+        name='recipes_recipe_detail'),
+    url(r'^$', 'recipes.views.index', name='recipes_recipe_index'),
+]
