@@ -75,11 +75,10 @@ following command you can start it:
     3
 
     # a list of all fields names of the Recipe model
-    >>> Recipe._meta.get_all_field_names()
-    ['author', 'category', 'date_created', 'date_updated', 'difficulty', 'id',
-        'ingredients', 'number_of_portions', 'preparation', 'slug',
-        'time_for_preparation', 'title']
-
+    >>> [f.name for f in Recipe._meta.get_fields()]
+    [u'id', 'title', 'slug', 'ingredients', 'preparation', 'time_for_preparation',
+        'number_of_portions', 'difficulty', 'author', 'photo', 'date_created',
+        'date_updated', 'category']
 
     # look at single recipe from the QuerySet
     >>> all_recipes[1]
@@ -198,3 +197,4 @@ Further links to the Django documentation
 
 - :djangodocs:`Query API <topics/db/queries/>`
 - :djangodocs:`QuerySet API <ref/models/querysets/>`
+- :djangodocs:`Model _meta API <ref/models/meta/>`
