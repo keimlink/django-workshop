@@ -131,6 +131,7 @@ Now ``INSTALLED_APPS`` looks like this:
 
 .. literalinclude:: ../src/cookbook/cookbook/settings.py
     :lines: 33-41
+    :emphasize-lines: 8
 
 Further links to the Django documentation
 =========================================
