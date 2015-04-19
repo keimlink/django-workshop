@@ -44,7 +44,7 @@ the end of the template :file:`base.html`:
 .. literalinclude:: ../src/cookbook_staticfiles/templates/base.html
     :language: html+django
     :lines: 76-99
-    :emphasize-lines: 5, 7, 9
+    :emphasize-lines: 2, 4, 6
 
 Now replace the ``title`` HTML tag with the highlighted line:
 
