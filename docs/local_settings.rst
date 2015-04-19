@@ -28,15 +28,8 @@ the following content (you can copy from :file:`settings.py`):
 
 .. literalinclude:: ../src/cookbook_improved/cookbook/local_settings.py
 
-After that you adjust the following values in :file:`settings.py`:
-
-.. literalinclude:: ../src/cookbook_improved/cookbook/settings.py
-    :lines: 6-8, 15-25
-
-.. note::
-
-    Of course you can also enter the data for the production system in
-    the database configuration (except the password!).
+After that you can adjust the ``DEBUG`` setting in :file:`settings.py` to
+``False``.
 
 As long as the file :file:`local_settings.py` is available, you work
 with a configuration for development. If this file is missing, you use
