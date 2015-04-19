@@ -45,10 +45,10 @@ Don't Repeat Yourself
 
 The **Don't Repeat Yourself (DRY)** principle is defined as follows:
 
-    *Every piece of knowledge must have a single, unambiguous, authoritative
-    representation within a system.*
+    *"Every piece of knowledge must have a single, unambiguous, authoritative
+    representation within a system."*
 
-    -- http://c2.com/cgi/wiki?DontRepeatYourself
+    -- `Don't repeat yourself - Wikipedia, the free encyclopedia <https://en.wikipedia.org/wiki/Don%27t_repeat_yourself>`_
 
 **DRY** is one prerequisite for **Loose Coupling** because components
 can only be separated from each other if their purpose is clear.
