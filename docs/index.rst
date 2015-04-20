@@ -45,10 +45,10 @@ Table of contents
    expand_views
    simplify_urls
    staticfiles
-   fehlerbehandlung
+   error_handling
    debugging
-   authentifizierung_registrierung
-   rezept_formular
+   authentication_registration
+   recipe_form
    middleware
    templatetags
    functional_and_unit_tests
