@@ -1,61 +1,57 @@
 ..  _templatetags:
 
+************
 Templatetags
 ************
 
-.. todo:: Translate chapter
+Django's template tags are good to work with. But what's really interesting is
+the possibility to write your own template tags.
 
-Mit den Templatetags, die Django zur Verfügung stellt, lässt sich gut
-arbeiten. Wirklich interessant ist aber die Möglichkeit eigene Templatetags zu
-schreiben.
+We want to write a template tag for our project, with which we can determine
+whether a user is the author of a recipe. In addition, it should provide the
+ability to render an alternative block, if this is not the case.
 
-Wir wollen ein Templatetag für unser Projekt schreiben mit dem wir ermitteln
-können ob ein Benutzer der Autor eines Rezeptes ist. Außerdem soll es die
-Möglichkeit bieten einen alternativen Block zu rendern, wenn dies nicht der
-Fall ist.
-
-Das Templatetag dafür soll also so aussehen:
+The template tag should look like this:
 
 ..  code-block:: html+django
 
     {% is_author user recipe %}
-        Der Benutzer ist Autor des Rezepts oder Redakteur.
+        The user is owner of this recipe or a staff member.
     {% else %}
-        Dieses Rezept darf von diesem Benutzer nicht bearbeitet werden.
+        The user has no permissions to edit this recipe.
     {% endis_author %}
 
-Das Templatetag ist ``is_author``. Das erste Argument ``user`` ist ein User
-Objekt. Das zweite Argument ``recipe`` ist eine Recipe Instanz. Ansonsten soll
-das Templatetag wie eine ``if``-Bedingung funktionieren.
+The name of the template tag is ``is_author``. The first argument ``user`` is a
+``User`` object. The second argument ``recipe`` is a ``Recipe`` instance.
+Otherwise, the template tag should work like an ``if`` condition.
 
-Die Verzeichnisstruktur für Templatetags
-========================================
+The directory structure for template tags
+=========================================
 
-Templatetags müssen mit einer bestimmten Verzeichnisstruktur angelegt werden.
-Im Verzeichnis der Applikation wird ein neues Verzeichnis :file:`templatetags`
-erstellt. Darin wird die leere Datei :file:`__init__.py` angelegt, um das
-Verzeichnis als Python Package zu markieren. Als letztes legen wir eine Python
-Datei an, die das Modul für unsere Templatetags ist. Unser erstes Modul nennen
-wir :file:`recipes.py`.
+Template tags must be created with a specific directory structure. In the
+application directory :file:`recipes` a new directory :file:`templatetags`
+needs to be created. In this directory an empty file :file:`__init __ py` has
+to be created to mark the directory as Python package. Finally, we create a
+Python file that is the module for our template tags: :file:`recipes.py`.
 
-..  code-block:: bash
+::
 
-    recipes/
+    recipes
     `-- templatetags
         |-- __init__.py
         `-- recipes.py
 
-Das Templatetag erstellen
-=========================
+Create the template tag
+=======================
 
-Ein Templatetag besteht immer aus einem Parser und einer Node. Der Parser parst
-das Tag mit Hilfe eines Parsers. Als Ergebnis gibt sie eine Instanz der Node
-zurück. Diese hat eine ``render``-Methode, die die Ausgabe erzeugt.
+A template tag always consists of a parser and a node. The parser walks through the
+template and collects the tags. As a result, it returns instances of nodes.
+Nodes have a ``render()`` method that generates the output.
 
-Der Parser
+The Parser
 ----------
 
-Zuerst erstellt du der Parser in der neu angelegten Datei :file:`recipes.py`:
+First you create the parser in the file :file:`recipes.py` you just created:
 
 ..  code-block:: python
 
@@ -91,12 +87,12 @@ Zuerst erstellt du der Parser in der neu angelegten Datei :file:`recipes.py`:
             nodelist_false = template.NodeList()
         return IsAuthorNode(user, recipe, nodelist_true, nodelist_false)
 
-Der Renderer
+The Renderer
 ------------
 
-Danach schreibst du die Node, die die Ausgabe rendert. Dieser Code muss
-oberhalb der Funktion ``do_is_author`` stehen, denn sonst steht die Klasse
-``IsAuthorNode`` nicht in der Funktion zur Verfügung.
+Then you write the node that renders the output. This code must stand above the
+function ``do_is_author()``, otherwise the class ``IsAuthorNode`` is not
+available inside the function.
 
 ..  code-block:: python
 
@@ -118,14 +114,14 @@ oberhalb der Funktion ``do_is_author`` stehen, denn sonst steht die Klasse
             else:
                 return self.nodelist_false.render(context)
 
-Das Templatetag nutzen
-======================
+Use the template tag
+====================
 
-Nun kannst du das neue Templatetag nutzen, zum Beispiel im Template
+Now you can use the new template tag, for example in the template
 :file:`recipes/templates/recipes/detail.html`.
 
-Dazu muss zuerst unser Templatetag geladen werden. Das machst du am besten im
-Kopf des Templates:
+At first our template tag must be loaded. The best place to do this is the head
+of the template:
 
 ..  code-block:: html+django
 
@@ -133,41 +129,39 @@ Kopf des Templates:
 
 ..  note::
 
-    Der Bezeichner hinter dem ``load`` Templatetag ist immer der Name des Python
-    Moduls, dass die Templatetags enthält, die geladen werden sollen (ohne die
-    Endung ".py"). Das Python Modul muss sich im Verzeichnis ``templatetags``
-    einer installierten Applikation befinden.
+    The identifier behind the ``load`` template tag is always the name of the
+    Python module that contains the template tags that are to be loaded
+    (without the ".py" ending). The Python module must be in the directory
+    :file:`templatetags` of an application listed in ``INSTALLED_APPS``.
 
-Dann ersetzt du die Zeile:
+Then you replace the line:
 
 ..  code-block:: html+django
 
-    <a href="{% url 'recipes_recipe_edit' object.pk %}">Rezept bearbeiten</a>
+    <a href="{% url 'recipes_recipe_edit' object.pk %}">Edit recipe</a>
 
-Mit dem neuen Templatetag:
+With the new template tag:
 
 ..  code-block:: html+django
 
     {% is_author user object %}
-        <a href="{% url 'recipes_recipe_edit' object.pk %}">Rezept bearbeiten</a>
+        <a href="{% url 'recipes_recipe_edit' object.pk %}">Edit recipe</a>
     {% else %}
-        Bitte als Autor des Rezepts oder als Redakteur
-        <a href="{% url 'userauth_login' %}">einloggen</a>, um das Rezept zu bearbeiten.
+        To edit this recipe please <a href="{% url 'userauth_login' %}">log in</a>
+            as author of the recipe or as editor.
     {% endis_author %}
 
-Django Apps zum einfachen Schreiben von Templatetags
-====================================================
-
-Da das Schreiben von Templatetags mit Django Bordmitteln recht umständlich ist,
-sind verschiedene Django Apps entstanden, die dies vereinfachen. Eine Übersicht
-gibt das `Templatetags Grid`_ auf Django Packages. Zwei der populärsten
-Templatetag Apps sind django-classy-tags_ und django-ttag_.
-
-.. _Templatetags Grid: http://www.djangopackages.com/grids/g/templatetags/
-.. _django-classy-tags: http://pypi.python.org/pypi/django-classy-tags/
-.. _django-ttag: http://pypi.python.org/pypi/django-ttag
-
-Weiterführende Links zur Django Dokumentation
+Django apps for easy writing of template tags
 =============================================
 
-* :djangodocs:`Eigene Templatetags und Filter schreiben <howto/custom-template-tags/#writing-custom-template-tags>`
+Since the writing of template tags is quite cumbersome with Django's standard
+tools, various Django apps have been created to simplify it. An overview is the
+`Templatetags Grid <http://www.djangopackages.com/grids/g/templatetags/>`_ on
+Django Packages. Two of the most popular template tag apps are `django-classy-
+tags <http://pypi.python.org/pypi/django-classy-tags/>`_ and `django-ttag
+<http://pypi.python.org/pypi/django-ttag>`_.
+
+Further links to the Django documentation
+=========================================
+
+* :djangodocs:`Writing custom template tags <howto/custom-template-tags/#writing-custom-template-tags>`
