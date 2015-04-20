@@ -1,18 +1,15 @@
+**********
 Middleware
 **********
 
-.. todo:: Translate chapter
+A middleware can intervene at different points in the processing of a HTTP
+request or sending the HTTP response (see :ref:`Illustration: Schematic Diagram
+of Django's Request/Response Processing <request_response_graph>`).
 
-Mit einer Middleware kann man an verschiedenen Stellen in die
-Verarbeitung des HTTP Requests bzw. das Senden der HTTP Response
-eingreifen (siehe :ref:`Grafik: Schematische Darstellung einer Request /
-Response Verarbeitung <request_response_graph>`).
-
-Mit der folgenden Middleware wollen wir bestimmte Browser zurückweisen.
-Sie sollen also immer die gleiche Seite angezeigt bekommen, auf der der
-Benutzer erklärt bekommt, dass sein Browser zum Besuch der Website nicht
-geeignet ist. Lege dazu im Konfigurationsverzeichnis die Datei
-:file:`middleware.py` an und erstelle darin die folgende Klasse:
+The following middleware will reject certain browsers. So the users should
+always get displayed the same page which explains that the browser is not
+suitable to visit the website. Put the file :file:`middleware.py` in the
+configuration directory and create in the following class:
 
 ..  code-block:: python
 
@@ -34,37 +31,37 @@ geeignet ist. Lege dazu im Konfigurationsverzeichnis die Datei
                     return render(request, 'reject.html', ctx)
             return None
 
-Das Template, dass im Falle der Zurückweisung gerendert werden soll,
-legst du in :file:`templates/reject.html` an:
+The template that will be rendered in the event of rejection should be put in
+:file:`templates/reject.html`:
 
 ..  code-block:: html+django
 
     {% extends "base.html" %}
 
-    {% block title %}{{ block.super }} - Browser nicht unterstützt{% endblock %}
+    {% block title %}{{ block.super }} - Browser not supported{% endblock %}
 
     {% block toggle_login %}{% endblock %}
 
     {% block content %}
-    <h2>Browser nicht unterstützt</h2>
-    <p>Ihr Browser <em>{{ user_agent }} wird leider nicht unterstützt.</em></p>
+    <h2>Browser not supported</h2>
+    <p>Unfortunately your Browser <em>{{ user_agent }}</em>
+        is not suported by this website. :(</p>
     {% endblock %}
 
-Damit die Middleware auch benutzt wird muss sie in die Liste der
-Middlewares in der ``settings.py`` eingefügt werden:
+In order for the middleware to be used it must be inserted at the end of the
+list of middlewares in the file :file:`settings.py`:
 
 ..  code-block:: python
 
     MIDDLEWARE_CLASSES = (
-        ...
+        # ...
         'cookbook.middleware.RejectMiddleware'
     )
 
-Nun kannst du verschiedene Browser ausprobieren. Alle Browser, deren
-User Agent auf den regulären Ausdruck passt, bekommen nur die Seite mit
-dem Hinweis angezeigt.
+Now you can try different browsers. All browsers whose user agent matches the
+regular expression only get the page where the notice appears.
 
-Weiterführende Links zur Django Dokumentation
-=============================================
+Further links to the Django documentation
+=========================================
 
-* :djangodocs:`Middleware benutzen und selbst schreiben <topics/http/middleware/>`
+* :djangodocs:`Middleware <topics/http/middleware/>`
