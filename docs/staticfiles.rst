@@ -70,6 +70,8 @@ highlighted:
 If you want to you can delete the ``div`` containers overwritten with
 ``<!-- Example row of columns -->``.
 
+.. _using_request_context:
+
 Using ``RequestContext`` in the views
 =====================================
 
