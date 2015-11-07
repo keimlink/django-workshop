@@ -206,7 +206,7 @@ Now you create the file :file:`recipes/tests/test_views.py` with the
 following content:
 
 .. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/test_views.py
-    :lines: 1-35
+    :lines: 1-37
 
 To extend the test suite for the front-end you can add the following
 code to the ``RecipeViewsTests`` class. The
@@ -215,7 +215,7 @@ the :file:`recipes/fixtures` directory and change the filename in the
 code to match your file name.
 
 .. literalinclude:: ../src/cookbook_tests_pkg/recipes/tests/test_views.py
-    :lines: 37-
+    :lines: 39-
 
 The front-end tests can be called explicitly with this command:
 

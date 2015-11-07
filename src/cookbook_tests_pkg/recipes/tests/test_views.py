@@ -9,6 +9,7 @@ from django.test import TestCase
 
 from ..models import Recipe
 
+
 class RecipeViewsTests(TestCase):
     """Test the views for the recipes"""
     fixtures = ['test_views_data.json']
@@ -16,6 +17,7 @@ class RecipeViewsTests(TestCase):
     @classmethod
     def setUpClass(cls):
         User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+        super(cls, RecipeViewsTests).setUpClass()
 
     def test_index(self):
         """Test the index view"""
