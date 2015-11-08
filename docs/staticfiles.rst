@@ -6,11 +6,9 @@ Integration of static files
 
 It is difficult to create a website without any static files. Static files are all files that need not be processed by the Python interpreter - ie CSS, JavaScript, images, etc.
 
-So far, our project only consists of three templates and some Python files. So we set out to change that. `HTML5 Boilerplate <http://html5boilerplate.com/>`_ and `Bootstrap 3 <http://getbootstrap.com/>`_ will help us to do that.
+So far, our project only consists of three templates and some Python files. So we set out to change that. HTML5 Boilerplate and `Bootstrap 3 <http://getbootstrap.com/>`_ will help us to do that.
 
-#. Click at the `HTML5 Boilerplate Website <http://html5boilerplate.com/>`_ on the button
-   "Get a custom build"
-#. On the following page click on "Bootstrap"
+#. Click at the `Initializr Website <http://www.initializr.com/>`_ on "Bootstrap"
 #. In the section "H5BP Optional" check the "404 Page" option
 #. Finally click on the button "Download it!"
 #. Extract the ZIP archive

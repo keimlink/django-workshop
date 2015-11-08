@@ -51,11 +51,11 @@ If you create the file :file:`500.html` in the template directory inside the
 project directory, this template is rendered and the stack trace disappears on
 the terminal.
 
-The `HTML5 Boilerplate <http://de.html5boilerplate.com/>`_ that you've used in
-the chapter :ref:`staticfiles` also contains a ready-to-use 404 page. To use
-this page you copy the file :file:`404.html` from the HTML5 Boilerplate
-directory in the template directory in the project directory. If you are now
-call a not existing URL, you see this page instead.
+The HTML5 Boilerplate that you've used in the chapter :ref:`staticfiles` also
+contains a ready-to-use 404 page. To use this page you copy the file
+:file:`404.html` from the HTML5 Boilerplate directory in the template directory
+in the project directory. If you are now call a not existing URL, you see this
+page instead.
 
 Further links to the Django documentation
 =========================================
