@@ -117,6 +117,13 @@ It means that all migrations of the app managing the user model (which is
 ``django.contrib.auth`` by default) have to be run before the initial migration
 of the recipes app can be executed.
 
+To show the migrations of the `recipes` app and all dependencies in the order
+they will be applied use the :command:`showmigrations` command with the
+:option:`-p` option:
+
+.. command-output:: python manage.py showmigrations -p recipes
+    :cwd: ../src/cookbook_migrations
+
 Further links to the Django documentation
 =========================================
 
