@@ -11,9 +11,7 @@ Django needs at least Version 0.15 of
 `GNU gettext <https://www.gnu.org/software/gettext/>`_. On Linux and OS
 X it can be easily installed using a package manager. The
 :djangodocs:`Installation on Windows <topics/i18n/translation/#gettext-on-windows>`
-is described in the Django Documentation. The archive containing the
-files for Windows can be found
-`here <https://bitbucket.org/keimlink/django-workshop/downloads>`_.
+is described in the Django Documentation.
 
 Standard translation
 ====================
