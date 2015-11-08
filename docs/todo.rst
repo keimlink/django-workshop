@@ -10,9 +10,8 @@ case this page contains no more text there is nothing to do.
 .. note::
 
     For all entries there should be an issue in the `BitBucket Issue Tracker
-    <https://bitbucket.org/keimlink/django-workshop/issues?status=new&status=open>`_.
-    In order to reference these issues you can use ``extlinks``-key
-    ``issue``::
+    <https://github.com/keimlink/django-workshop/issues>`_. In order to
+    reference these issues you can use ``extlinks``-key ``issue``::
 
         .. todo:: :issue:`68` Typo on "URLs and Views"
 

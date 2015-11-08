@@ -50,10 +50,10 @@ Contributions and Bugs
 ======================
 
 Feel free to improve Django Workshop or create translations. `Pull
-requests are welcome! <https://bitbucket.org/keimlink/django-workshop>`_
+requests are welcome! <https://github.com/keimlink/django-workshop>`_
 
 Please report problems to our `issue tracker
-<https://bitbucket.org/keimlink/django-workshop/issues?status=new&status=open>`_.
+<https://github.com/keimlink/django-workshop/issues>`_.
 
 Documentation License
 =====================

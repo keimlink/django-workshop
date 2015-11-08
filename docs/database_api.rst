@@ -39,12 +39,12 @@ Before you can import the data must create a superuser again:
     $ python manage.py createsuperuser
 
 Now you import the data that you can `find
-<https://bitbucket.org/keimlink/django-workshop/raw/70cb6a2ce280f35f60c5161f4d27f88049148279/src/cookbook/recipes/fixtures/initial_data.json>`_
+<https://raw.githubusercontent.com/keimlink/django-workshop/4842c8c8a829472d9bdaaae0db2417ac1231ce9c/src/cookbook_tests/recipes/fixtures/recipes.json>`_
 in the Mercurial repository of this project.
 
 ::
 
-    $ wget -O import.json https://bitbucket.org/keimlink/django-workshop/raw/70cb6a2ce280f35f60c5161f4d27f88049148279/src/cookbook/recipes/fixtures/initial_data.json
+    $ wget -O import.json https://raw.githubusercontent.com/keimlink/django-workshop/4842c8c8a829472d9bdaaae0db2417ac1231ce9c/src/cookbook_tests/recipes/fixtures/recipes.json
     $ python manage.py loaddata import.json
     Installed 11 object(s) from 1 fixture(s)
 

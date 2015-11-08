@@ -1,9 +1,9 @@
 <h4>{{ _('Useful Links') }}</h4>
 <ul class="topless">
-    <li><a href="https://bitbucket.org/keimlink/django-workshop/" rel="nofollow">{{ _('Repository on BitBucket') }}</a></li>
+    <li><a href="https://github.com/keimlink/django-workshop" rel="nofollow">{{ _('Repository on GitHub') }}</a></li>
     {%- if has_source and sourcename %}
-        <li><a href="https://bitbucket.org/keimlink/django-workshop/src/{{ release }}/docs/{{ pagename }}.rst" rel="nofollow">{{ _('Show Source on BitBucket') }}</a></li>
-        <li><a href="https://bitbucket.org/keimlink/django-workshop/src/default/docs/{{ pagename }}.rst" rel="nofollow">{{ _('Edit Source on BitBucket') }}</a></li>
+        <li><a href="https://github.com/keimlink/django-workshop/blob/{{ release }}/docs/{{ pagename }}.rst" rel="nofollow">{{ _('Show Source on GitHub') }}</a></li>
+        <li><a href="https://github.com/keimlink/django-workshop/blob/master/docs/{{ pagename }}.rst" rel="nofollow">{{ _('Edit Source on GitHub') }}</a></li>
     {%- endif %}
-    <li><a href="https://bitbucket.org/keimlink/django-workshop/issues?status=new&amp;status=open" rel="nofollow">{{ _('Issue Tracker') }}</a></li>
+    <li><a href="https://github.com/keimlink/django-workshop/issues" rel="nofollow">{{ _('Issue Tracker') }}</a></li>
 </ul>
