@@ -128,7 +128,9 @@ Another example would be the caching of the
       </ul>
       <ul class="nav pull-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" id="dropuser" data-toggle="dropdown" href="#">{{ user.username }}</a>
+          <a class="dropdown-toggle" id="dropuser" data-toggle="dropdown" href="#">
+            {{ user.username }}
+          </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropuser">
             <li><a href="{% url 'userauth_password_change' %}">Change password</a></li>
             <li><a href="{% url 'userauth_logout' %}">Logout</a></li>
@@ -140,7 +142,8 @@ Another example would be the caching of the
       <ul class="nav navbar-nav">
         <li><a href="{% url 'userauth_register' %}">Register</a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="form" action="{% url 'userauth_login' %}" method="post" accept-charset="utf-8">
+      <form class="navbar-form navbar-right" role="form" action="{% url 'userauth_login' %}"
+          method="post" accept-charset="utf-8">
         <div class="form-group">
           <input type="text" placeholder="Username" class="form-control" name="username">
         </div>
@@ -172,7 +175,8 @@ from the database.
         @cached_property
         def related_recipes(self):
             categories = self.category.all()
-            related_recipes = Recipe.objects.filter(difficulty__exact=self.difficulty, category__in=categories)
+            related_recipes = Recipe.objects.filter(
+                difficulty__exact=self.difficulty, category__in=categories)
             return related_recipes.exclude(pk=self.id).distinct()
 
 ..  code-block:: html+django
