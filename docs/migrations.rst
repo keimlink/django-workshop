@@ -14,7 +14,7 @@ Displaying all existing migrations
 
 Use the :command:`migrate` command to display all existing migrations:
 
-.. command-output:: python manage.py migrate --list
+.. command-output:: python manage.py showmigrations
     :cwd: ../src/cookbook_migrations
 
 Adding a new field to the model ``Recipe``
@@ -36,9 +36,9 @@ migration:
 The new migration is created by scanning and comparing to the versions
 currently contained in your migration files to your :file:`recipes/models.py`.
 But it has not yet been applied. You can see this by running the
-:command:`migrate --list` command again, but now just for the `recipes` app:
+:command:`showmigrations` command again, but now just for the `recipes` app:
 
-.. command-output:: python manage.py migrate --list recipes
+.. command-output:: python manage.py showmigrations recipes
     :cwd: ../src/cookbook_migrations
 
 So you need to apply the migration as a last step:
