@@ -58,6 +58,7 @@ Table of contents
    rss_feed
    pdf
    admin_adjustments
+   permissions
    ajax
    rest_api
    other_authentication_sources
