@@ -1,213 +1,265 @@
-*******************
-Eine Suche mit AJAX
-*******************
+********************
+An AJAX-based search
+********************
 
-.. todo:: Translate AJAX chapter
+AJAX, short for asynchronous JavaScript and XML, is a set of web development
+techniques utilizing many web technologies used on the client-side to create
+asynchronous web applications. Despite the name, the use of XML is not
+required, and we will use JSON to sent and receive the content. Sometimes this
+variant is called AJAJ.
 
-Die Wikipedia_ erklärt AJAX wie folgt:
+JavaScript and the `XMLHttpRequest (XHR)
+<https://en.wikipedia.org/wiki/XMLHttpRequest>`_ object provide a method for
+exchanging data asynchronously between browser and server to avoid full page
+reloads.
 
-    "Ajax ist ein Apronym für die Wortfolge „Asynchronous JavaScript and
-    XML“. Es bezeichnet ein Konzept der asynchronen Datenübertragung
-    zwischen einem Browser und dem Server."
+The following technologies are incorporated:
 
-Moderne Web Applikationen nutzen oft AJAX, um den Benutzern eine bessere
-User Experience zu bieten. Denn AJAX ermöglicht es einzelne Teile des
-DOMs der Seite auszutauschen, ohne dabei die Seite komplett neu zu
-laden.
+* HTML and CSS for presentation
+* The Document Object Model (DOM) for dynamic display of and interaction with data
+* XML or JSON for the interchange of data
+* The XMLHttpRequest object for asynchronous communication
+* JavaScript to bring these technologies together
 
-Da bei der Implementierung die Eigenarten der verschiedenen Browser
-berücksichtigt werden müssen ist es sinnvoll ein JavaScript-Framework
-wie zum Beispiel jQuery_ einzusetzen, dass sich um diese Unterschiede
-kümmert. Das HTML5 Boilerplate enthält bereits jQuery, wir müssen diese
-Bibliothek also nicht mehr installieren.
+.. note::
 
-.. _Wikipedia: https://de.wikipedia.org/wiki/Ajax_(Programmierung)
-.. _jQuery: http://jquery.com/
+    Note that the `same origin policy
+    <https://en.wikipedia.org/wiki/Same-origin_policy>`_ prevents some Ajax
+    techniques from being used across domains, so you can't send or receive
+    content from a different domain.
 
-Ein View, der JSON generiert
-============================
+To simplify the client-side scripting of HTML we will use the cross-platform
+JavaScript library `jQuery <https://jquery.com/>`_. jQuery is free, open-source
+software licensed under the MIT License. We installed it already together with
+the HTML5 Boilerplate.
 
-Wir wollen in diesem Kapitel eine kleine Suche bauen. Es soll ein
-Eingabefeld geben, in das man den Suchbegriff eintippt. Dabei sollen,
-nachdem der zweite Buchstabe eingegeben wurde, Rezept-Titel vom Server
-gelesen und unterhalb des Eingabefelds ausgegeben werden. Dazu benötigen
-wir zuerst einen View, der das JSON erzeugt, dass im Browser als Liste
-der Vorschläge dienen soll.
+Generating JSON with a view
+===========================
 
-Der Pfad der URLs, die an den Server gesendet werden, um eine Liste von
-Rezept-Titeln zu holen, sieht so aus::
+In this chapter we want to build a small search with autocompletion. There
+should be an input field, in which you type in the search term. It should,
+after the second letter has been entered, fetch recipe titles from the server
+and display them below the input field. The recipe titles must be JSON, so we
+need a view that generates a JSON. It will be used by the browser to present a
+list of choices.
 
-    /autocomplete/?term=ko
+The path component of the URL that is called to get a list of choices should
+look like this:
 
-Zuerst fügen wir also eine entsprechende neue URL für den View
-`autocomplete` in :file:`recipes/urls.py` ein::
+::
 
-    urlpatterns = patterns('recipes.views',
-        url(r'^erstellen/$', 'add', name='recipes_recipe_add'),
-        url(r'^bearbeiten/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
-        url(r'^autocomplete/$', 'autocomplete', name='recipes_recipe_autocomplete'),
-    )
+    /autocomplete/?term=cake
 
-Dann schreiben wir den passenden View in :file:`recipes/views.py`, der
-den GET Parameter `term` zur Suche benutzt::
+First, we add the corresponding new URL for the ``autocomplete`` view in
+:file:`recipes/urls.py` at the top of ``urlpatterns``:
 
-    from django.http import HttpResponse
-    from django.utils import simplejson
-
-    def autocomplete(request):
-        term = request.GET.get('term', '')
-        recipes = Recipe.active.filter(title__istartswith=term).order_by('title')
-        titles = [recipe.title for recipe in recipes[:20]]
-        json = simplejson.dumps(titles, ensure_ascii=False)
-        return HttpResponse(json, mimetype='application/json; charset=utf-8')
-
-Wenn du jetzt den URL http://127.0.0.1:8000/autocomplete/?term=ko
-aufrufst werden die Titel aller Rezepte als JSON ausgegeben, die mit den
-Buchstaben "ko" beginnen.
-
-Für Firefox und Chrome gibt es die sehr nützliche Extension `JSONView`_,
-die JSON in einer farbigen Baumstruktur anzeigt. Dies kann bei der
-Entwicklung sehr hilfreich sein.
-
-.. _JSONView: http://jsonview.com/
-
-Ein zweiter View für die Suche
-==============================
-
-Außerdem benötigen wir noch einen zweiten View, der die Suche dann
-durchführt und die Ergebnisse anzeigt. Dieser soll folgenden URL-Pfad
-benutzen::
-
-    /suche/?begriff=ko
-
-Der URL für den View `search` in :file:`recipes/urls.py`::
+::
 
     urlpatterns = patterns('recipes.views',
-        url(r'^rezept/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
         url(r'^autocomplete/$', 'autocomplete', name='recipes_recipe_autocomplete'),
-        url(r'^suche/$', 'search', name='recipes_recipe_search'),
+        url(r'^recipe/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
+        url(r'^add/$', 'add', name='recipes_recipe_add'),
+        url(r'^edit/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
         url(r'^$', 'index', name='recipes_recipe_index'),
     )
 
-Und der entsprechende View::
+Then we write the appropriate view in :file:`recipes/views.py` that uses the
+GET parameter ``term`` to search the database:
+
+::
+
+    import json
+
+    from django.http import HttpResponse
+
+    def autocomplete(request):
+        term = request.GET.get('term')
+        if term:
+            recipes = Recipe.objects.filter(title__icontains=term).order_by('title')
+            titles = recipes.values_list('title', flat=True)[:20]
+            content = json.dumps(titles, ensure_ascii=False)
+        else:
+            content = ''
+        return HttpResponse(content, mimetype='application/json; charset=utf-8')
+
+If you now call the ``autocomplete`` URL, the titles of all recipes are
+displayed as JSON, which contain the word "cake".
+
+For Firefox and Chrome there is the very useful extension `JSONView
+<http://jsonview.com/>`_ representing JSON in a coloured tree structure. This
+can be very helpful when working with JSON data.
+
+Displaying the search results
+=============================
+
+In addition, we need a second view, which then performs the search and displays
+the results. This should use the following URL path component:
+
+::
+
+    /search/?term=ko
+
+Add an URL for the view `search` to :file:`recipes/urls.py` right below the
+``autocomplete`` URL:
+
+::
+
+    urlpatterns = patterns('recipes.views',
+        url(r'^autocomplete/$', 'autocomplete', name='recipes_recipe_autocomplete'),
+        url(r'^search/$', 'search', name='recipes_recipe_search'),
+        url(r'^recipe/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
+        url(r'^add/$', 'add', name='recipes_recipe_add'),
+        url(r'^edit/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
+        url(r'^$', 'index', name='recipes_recipe_index'),
+    )
+
+Add the corresponding view to :file:`recipes/views.py`:
+
+::
 
     def search(request):
-        query = request.GET.get('begriff', '')
-        results = Recipe.active.filter(title__icontains=query).order_by('title')
+        term = request.GET.get('term', '')
+        results = Recipe.objects.filter(title__icontains=term).order_by('title')
         return render(request, 'recipes/search.html', {'results': results})
 
-Da dieser View ein Template rendert, benötigt er auch eine
-Template-Datei, nämlich :file:`recipes/templates/recipes/search.html`:
+Since this view renders a template, it also requires a template file, namely
+:file:`recipes/templates/recipes/search.html`:
 
 .. code-block:: html+django
 
     {% extends "base.html" %}
 
-    {% block title %}{{ block.super }} - Suche{% endblock %}
+    {% block title %}{{ block.super }} - Search{% endblock %}
 
     {% block content %}
-    <h2>Suchergebnisse</h2>
+    <h2>Search results</h2>
     <ul>
         {% for recipe in results %}
           <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></li>
         {% empty %}
-          <li>Keine Rezepte gefunden.</li>
+          <li>No recipes found.</li>
         {% endfor %}
     </ul>
     {% endblock %}
 
-Diesen View kannst du auch schon testen, in dem du zum Beispiel
-http://127.0.0.1:8000/suche/?begriff=ko aufrufst. Dies sollte eine Liste
-aller Rezepte anzeigen, die die Buchstabenfolge "ko" enthalten.
+You can test this view already, by visiting
+http://127.0.0.1:8000/search/?term=cake, for example. This should display a
+list of recipes that contain the letters "cake" in it's title.
 
-jQuery im Frontend einsetzen
-============================
+Using jQuery for autocompletion
+===============================
 
-Allerdings benötigen wir für die Darstellung im Browser auch jQueryUI_,
-das wir noch installieren müssen. Dazu die Version 1.9.x auf der
-`jQueryUI Website herunterladen`_. Das "x" in der Version ist immer
-durch die letzte Nummer des aktuellen Release zu ersetzen.
+We will use the JavaScript library jQuery to add the autocompletion
+functionality. But we also need `jQuery UI <https://jqueryui.com/>`_, a
+collection of GUI widgets, animated visual effects, and themes. It is free,
+open-source software licensed under the MIT License like jQuery.
 
-.. note::
+So visit the `jQuery UI download page <https://jqueryui.com/download/>`_. The
+latest stable version should already be pre-selected. You should check that the
+selected version is compatible with the jQuery version you are using. You can
+find out which jQuery version you using by looking at the first line of the
+jQuery JavaScript file in :file:`static/js/vendor/`. It should look like this:
 
-    Wenn du jQueryUI klein halten möchtest, reicht es nur die
-    Komponenten *Core*, *Widget*, *Position* und *Autocomplete*
-    für den Download auszuwählen.
+::
 
-Nachdem du das Zip-Archiv herunterladen hast entpackst du es. Danach
-hast du ein Verzeichnis das :file:`jquery-ui-1.9.x.custom` heißt. (Falls
-dein Programm zum entpacken des Zip-Archivs kein Verzeichnis mit dem
-Namen des Zip-Archivs erstellt, befinden sich die Dateien alle im
-gleichen Verzeichnis wie das Zip-Archiv.) Dann kopierst du die nötigen
-Dateien in das Verzeichnis :file:`cookbook/static`:
+    /*! jQuery v1.10.1 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license
 
-- das Verzeichnis :file:`ui-darkness` aus dem Verzeichnis :file:`jquery-ui-1.9.x.custom/css` in das Verzeichnis :file:`static/css`
-- die Datei :file:`jquery-ui-1.9.x.custom.min.js` aus dem Verzeichnis :file:`jquery-ui-1.9.x.custom/js` in das Verzeichnis :file:`static/js/vendor`
+To keep the size of the jQuery UI JavaScript file small select only the
+components we need for the autocompletion feature. Do the following on the
+jQuery UI download page:
 
-Alle weiteren Arbeiten werden am Template :file:`base.html` durchgeführt.
+#. Below "Components" deselect the "Toggle All" check box
+#. Scroll down to "Widgets"
+#. Select the check box beside "Autocomplete", all requirements will be selected automatically
+#. Scroll down to the "Theme" section
+#. Select the "Smoothness" theme
+#. Click on the "Download" button
 
-Zuerst binden wir das neue CSS und JavaScript von jQueryUI im Template ein:
+Now unzip the archive you downloaded. After that you have a directory whose
+name begins with :file:`jquery-ui`. Move the complete directory into the
+directory :file:`static`.
+
+First, we add the new CSS and JavaScript from jQuery UI to the template
+:file:`base.html`:
 
 .. code-block:: html+django
 
     <head>
-    ...
-      <link rel="stylesheet" href="{% static 'css/ui-darkness/jquery-ui-1.9.x.custom.css' %}">
-    ...
+      ...
+      <link rel="stylesheet" href="{% static "jquery-ui-1.11.4.custom/jquery-ui.min.css" %}">
+      ...
     </head>
-
-.. code-block:: html+django
-
-      </footer>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{% static "js/vendor/jquery-1.8.2.min.js" %}"><\/script>')</script>
-      <script src="{% static 'js/vendor/jquery-ui-1.9.x.custom.min.js' %}"></script>
+    <body>
+      ...
+      <script src="{% static "js/vendor/jquery-1.11.2.min.js" %}"></script>
+      <script src="{% static "jquery-ui-1.11.4.custom/jquery-ui.min.js" %}"></script>
       ...
     </body>
 
-Dann folgt das Suchformular:
+.. note::
+
+    The name of your jQuery UI directory may be different if you downloaded a
+    different version.
+
+.. note::
+
+    It is important that jQuery UI is loaded **after** jQuery.
+
+Then we add the search form to the navigation bar, also in :file:`base.html`:
 
 .. code-block:: html+django
 
-      <div role="main">
-        <form action="{% url 'recipes_recipe_search' %}">
-          <div class="ui-widget">
-            <label for="search">Suche: </label>
-            <input id="search" name="begriff" />
-          </div>
-        </form>
-        {% block content %}{% endblock %}
-      </div>
+      <form class="navbar-form navbar-left" role="search" action="{% url "recipes_recipe_search" %}">
+        <div class="form-group ui-widget">
+          <input type="text" class="form-control" placeholder="Search" id="search" name="term">
+        </div>
+      </form>
 
-Als letztes erstellen wir den JavaScript-Code, der die Anfrage zur
-Autovervollständigung an den Server senden wird:
+Finally, we write the JavaScript code that will send the request for the
+autocompletion choices to the server in :file:`static/js/main.js`:
+
+.. code-block:: javascript
+
+    $(function() {
+        $("#search").autocomplete({
+            source: autocomplete_url,
+            minLength: 2
+        });
+    });
+
+To populate the variable ``autocomplete_url`` used in the JavaScript code
+above, we need to add the following line to the template :file:`base.html`:
 
 .. code-block:: html+django
 
       ...
       <script>
-        $(function() {
-          $("#search").autocomplete({
-            source: "{% url 'recipes_recipe_autocomplete' %}",
-            minLength: 2
-          });
-        });
+        var autocomplete_url = "{% url "recipes_recipe_autocomplete" %}";
       </script>
+      <script src="{% static "js/main.js" %}"></script>
     </body>
 
-Jetzt kannst du im Suchfeld den Namen eines Rezepts eingeben, dass es
-bereits in der Datenbank gibt. Nachdem du den zweiten Buchstaben
-eingegeben hast sollte unter dem Eingabefeld die Liste aller Rezepte
-erscheinen, die mit diesen Buchstaben beginnen. Jetzt hast du die
-Möglichkeit entweder durch drücken der Eingabetaste direkt nach allen
-Rezepten zu suchen, die die eingegebene Buchstabenfolge enthalten oder
-du kannst einen der Rezept-Titel auswählen und nur nach diesem suchen.
+.. note::
 
-.. _jQueryUI: http://jqueryui.com/
-.. _jQueryUI Website herunterladen: http://jqueryui.com/download
+    The code must be placed **before** :file:`main.js` gets loaded.
 
-Weiterführende Links zur Django Dokumentation
-=============================================
+Now you can enter the name of a recipe into the search box that already exists
+in the database. After you enter the second letter, a list of all recipes
+beginning with those letters should appear below the entry field. Now you
+either can press Enter to search immediately for all the recipes that contain
+the character sequence you entered, or you can select one of the recipe titles
+and search only for this recipe.
 
-* :djangodocs:`Django Objekte serialisieren <topics/serialization/>`
-* :djangodocs:`Das HttpResponse Objekt <ref/request-response/#django.http.HttpResponse>`
+Extending the search
+====================
+
+Here are a few ideas how you could extend this simple search:
+
+* Display the search term on top of the results
+* Search also for other fields of the ``Recipe`` model like ``ingredients`` or ``author`` in the view ``search()``
+
+Further links to the Django documentation
+=========================================
+
+* :djangodocs:`Serializing Django objects <topics/serialization/>`
+* :djangodocs:`The HttpResponse class <ref/request-response/#django.http.HttpResponse>`
