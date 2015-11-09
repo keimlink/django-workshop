@@ -80,9 +80,9 @@ perform a login. Another thing that must not be cached are the CSRF tokens in
 the forms. Otherwise no user would be able to submit a form.
 
 Therefore we will cache the template fragments that produce the highest query
-count. The :ref:`debug_toolbar` is very helpful for this. It can display all
-database queries that are performed to render a page and also the cache hits.
-So it's a perfect tool for optimizing a page.
+count. The :ref:`Django Debug Toolbar <debug_toolbar>` is very helpful for
+this. It can display all database queries that are performed to render a page
+and also the cache hits. So it's a perfect tool for optimizing a page.
 
 For example we could cache the detail page of every recipe:
 
