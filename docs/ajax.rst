@@ -55,13 +55,13 @@ First, we add the corresponding new URL for the ``autocomplete`` view in
 
 ::
 
-    urlpatterns = patterns('recipes.views',
-        url(r'^autocomplete/$', 'autocomplete', name='recipes_recipe_autocomplete'),
-        url(r'^recipe/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
-        url(r'^add/$', 'add', name='recipes_recipe_add'),
-        url(r'^edit/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
-        url(r'^$', 'index', name='recipes_recipe_index'),
-    )
+    urlpatterns = [
+        url(r'^autocomplete/$', 'recipes.views.autocomplete', name='recipes_recipe_autocomplete'),
+        url(r'^recipe/(?P<slug>[-\w]+)/$', 'recipes.views.detail', name='recipes_recipe_detail'),
+        url(r'^add/$', 'recipes.views.add', name='recipes_recipe_add'),
+        url(r'^edit/(?P<recipe_id>\d+)/$', 'recipes.views.edit', name='recipes_recipe_edit'),
+        url(r'^$', 'recipes.views.index', name='recipes_recipe_index'),
+    ]
 
 Then we write the appropriate view in :file:`recipes/views.py` that uses the
 GET parameter ``term`` to search the database:
@@ -104,14 +104,14 @@ Add an URL for the view `search` to :file:`recipes/urls.py` right below the
 
 ::
 
-    urlpatterns = patterns('recipes.views',
-        url(r'^autocomplete/$', 'autocomplete', name='recipes_recipe_autocomplete'),
-        url(r'^search/$', 'search', name='recipes_recipe_search'),
-        url(r'^recipe/(?P<slug>[-\w]+)/$', 'detail', name='recipes_recipe_detail'),
-        url(r'^add/$', 'add', name='recipes_recipe_add'),
-        url(r'^edit/(?P<recipe_id>\d+)/$', 'edit', name='recipes_recipe_edit'),
-        url(r'^$', 'index', name='recipes_recipe_index'),
-    )
+    urlpatterns = [
+        url(r'^autocomplete/$', 'recipes.views.autocomplete', name='recipes_recipe_autocomplete'),
+        url(r'^search/$', 'recipes.views.search', name='recipes_recipe_search'),
+        url(r'^recipe/(?P<slug>[-\w]+)/$', 'recipes.views.detail', name='recipes_recipe_detail'),
+        url(r'^add/$', 'recipes.views.add', name='recipes_recipe_add'),
+        url(r'^edit/(?P<recipe_id>\d+)/$', 'recipes.views.edit', name='recipes_recipe_edit'),
+        url(r'^$', 'recipes.views.index', name='recipes_recipe_index'),
+    ]
 
 Add the corresponding view to :file:`recipes/views.py`:
 
