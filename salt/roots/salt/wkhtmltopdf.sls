@@ -1,0 +1,3 @@
+wkhtmltopdf:
+  pkg:
+    - installed
