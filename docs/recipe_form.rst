@@ -71,7 +71,7 @@ Then you add the view to create a new recipe:
     @login_required
     def create(request):
         if request.method == 'POST':
-            form = RecipeForm(request.POST)
+            form = RecipeForm(request.POST, request.FILES)
             if form.is_valid():
                 recipe = form.save(commit=False)
                 recipe.author = request.user
@@ -118,7 +118,7 @@ The second view is used to edit the recipes:
         if recipe.author != request.user and not request.user.is_staff:
             raise PermissionDenied
         if request.method == 'POST':
-            form = RecipeForm(instance=recipe, data=request.POST)
+            form = RecipeForm(instance=recipe, data=request.POST, files=request.FILES)
             if form.is_valid():
                 form.save()
                 return redirect(recipe)
