@@ -59,7 +59,7 @@ Authentication with the application ``user auth``
 Create URLconf
 --------------
 
-Now we create the file :file:`urls.py` in directory :file:` userauth`:
+Now we create the file :file:`urls.py` in directory :file:`userauth`:
 
 ::
 
