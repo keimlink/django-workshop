@@ -64,11 +64,15 @@ Now we create the file :file:`urls.py` in directory :file:`userauth`:
 ::
 
     from django.conf.urls import include, url
+    from django.core.urlresolvers import reverse_lazy
+
 
     urlpatterns = [
         url(r'^login/$', 'django.contrib.auth.views.login',
             {'template_name': 'userauth/login.html'}, name='userauth_login'),
-        url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'},
+        url(r'^logout/$', 'django.contrib.auth.views.logout', {
+                'next_page': reverse_lazy('recipes_recipe_index'),
+            },
             name='userauth_logout'),
         url(r'^password-change/$', 'django.contrib.auth.views.password_change',
             {'template_name': 'userauth/password_change_form.html'},
