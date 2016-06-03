@@ -56,13 +56,13 @@ Here, the first (empty) block will be defined with the help of the
 
 The section overwritten with ``<!-- Main jumbotron for a primary
 marketing message or call to action -->`` is deleted and two additional
-blocks are added to the following div-container; one for the headline
-and the other for the contents of the current page. New lines are
+blocks are added inside the following ``<div class="container">`` tag; one for
+the headline and the other for the contents of the current page. New lines are
 highlighted:
 
 .. literalinclude:: ../src/cookbook_staticfiles/templates/base.html
     :language: html+django
-    :lines: 65-78
+    :lines: 62-75
     :emphasize-lines: 3-8
 
 If you want to you can delete the ``div`` containers overwritten with
