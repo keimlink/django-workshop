@@ -101,6 +101,12 @@ to use the Bootstrap 3 template pack:
 
 ::
 
+    INSTALLED_APPS = (
+        ...
+        'userauth',
+        'crispy_forms',
+    )
+
     CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 Next, we'll create a template for the login in
