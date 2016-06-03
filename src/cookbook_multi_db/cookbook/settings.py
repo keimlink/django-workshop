@@ -106,6 +106,6 @@ DATABASE_ROUTERS = ['cookbook.router.CookbookRouter']
 NEWS_FEED_COUNT = 5
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
