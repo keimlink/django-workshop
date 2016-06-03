@@ -165,7 +165,7 @@ like:
             <h2>Edit "{{ object.title }}" recipe</h2>
             {% url 'recipes_recipe_edit' object.pk as action_url %}
         {% endif %}
-        <form action="{{ action_url }}" method="post" accept-charset="utf-8">
+        <form action="{{ action_url }}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             {{ form|crispy }}
             {% csrf_token %}
             <p><input type="submit" value="Save"/></p>
