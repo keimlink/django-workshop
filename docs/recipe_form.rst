@@ -182,12 +182,26 @@ with a link to edit the recipe:
 
     <a href="{% url 'recipes_recipe_edit' object.pk %}">Edit recipe</a>
 
-And add a link to create a recipe to the list template
-:file:`recipes/templates/recipes/index.html`:
+And add a link to create a recipe to
+:file:`userauth/templates/userauth/toggle_login.html`:
 
 ..  code-block:: html+django
 
-    <a href="{% url 'recipes_recipe_create' %}">Create new recipe</a>
+    {% if user.is_authenticated %}
+      <ul class="nav navbar-nav">
+      <li><a href="{% url 'recipes_recipe_create' %}">Create recipe</a></li>
+      </ul>
+      <ul class="nav pull-right">
+          <li class="dropdown">
+              <a class="dropdown-toggle" id="dropuser"  data-toggle="dropdown" href="#">{{ user.username }}</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropuser">
+                  <li><a href="{% url 'userauth_password_change' %}">Change password</a></li>
+                  <li><a href="{% url 'userauth_logout' %}">Logout</a></li>
+              </ul>
+          </li>
+      </ul>
+    {% else %}
+    ...
 
 Finished! As a registered user you can now create and edit recipes in the front
 end.
