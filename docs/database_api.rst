@@ -38,13 +38,26 @@ Before you can import the data must create a superuser again:
 
     $ python manage.py createsuperuser
 
-Now you import the data that you can `find
+Now you have to import the data you're going to use in this exercise. You can
+`find it in the Git repository of this project
 <https://raw.githubusercontent.com/keimlink/django-workshop/4842c8c8a829472d9bdaaae0db2417ac1231ce9c/src/cookbook_tests/recipes/fixtures/recipes.json>`_
-in the Mercurial repository of this project.
+. If you have :command:`wget` installed you can download it from the command
+line:
 
 ::
 
     $ wget -O import.json https://raw.githubusercontent.com/keimlink/django-workshop/4842c8c8a829472d9bdaaae0db2417ac1231ce9c/src/cookbook_tests/recipes/fixtures/recipes.json
+
+If you can't click the URL or can't use :command:`wget` open
+https://github.com/keimlink/django-workshop in your browser and navigate to
+``src/cookbook_tests/recipes/fixtures/recipes.json``. If you are not at
+revision ``4842c8c`` click on the "History" button and select ``4842c8c``. Now right-click on the
+"Raw" button and click "Save Link As…".
+
+Now you can import the data using the `loaddata` command:
+
+::
+
     $ python manage.py loaddata import.json
     Installed 11 object(s) from 1 fixture(s)
 
