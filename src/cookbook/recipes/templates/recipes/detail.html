@@ -10,4 +10,5 @@
 <h3>Preparation</h3>
 {{ object.preparation|linebreaks }}
 <p>Time for preparation: {{ object.time_for_preparation }} minutes</p>
+<p><img src="{{ object.photo.url }}" width="{{ object.photo.width }}" height="{{ object.photo.height }}"></p>
 {% endblock %}
