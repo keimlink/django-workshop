@@ -75,7 +75,10 @@ Now we create the file :file:`urls.py` in directory :file:`userauth`:
             },
             name='userauth_logout'),
         url(r'^password-change/$', 'django.contrib.auth.views.password_change',
-            {'template_name': 'userauth/password_change_form.html'},
+            {
+                'template_name': 'userauth/password_change_form.html',
+                'post_change_redirect': 'userauth_password_change_done',
+            },
             name='userauth_password_change'),
         url(r'^password-change-done/$', 'django.contrib.auth.views.password_change_done',
             {'template_name': 'userauth/password_change_done.html'},
