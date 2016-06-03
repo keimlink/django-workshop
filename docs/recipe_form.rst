@@ -1,6 +1,6 @@
-***********************
-Add Recipes with a Form
-***********************
+**************************
+Create Recipes with a Form
+**************************
 
 Now we want to allow all authenticated users to create recipes in the front end.
 
@@ -12,7 +12,7 @@ in :file:`recipes/urls.py`:
 
 ::
 
-    url(r'^create/$', 'recipes.views.add', name='recipes_recipe_add'),
+    url(r'^create/$', 'recipes.views.create', name='recipes_recipe_create'),
     url(r'^edit/(?P<recipe_id>\d+)/$', 'recipes.views.edit', name='recipes_recipe_edit'),
 
 The full URLconf looks like this:
@@ -23,7 +23,7 @@ The full URLconf looks like this:
 
     urlpatterns = [
         url(r'^recipe/(?P<slug>[-\w]+)/$', 'recipes.views.detail', name='recipes_recipe_detail'),
-        url(r'^create/$', 'recipes.views.add', name='recipes_recipe_add'),
+        url(r'^create/$', 'recipes.views.create', name='recipes_recipe_create'),
         url(r'^edit/(?P<recipe_id>\d+)/$', 'recipes.views.edit', name='recipes_recipe_edit'),
         url(r'^$', 'recipes.views.index', name='recipes_recipe_index'),
     ]
@@ -69,7 +69,7 @@ Then you add the view to create a new recipe:
 ::
 
     @login_required
-    def add(request):
+    def create(request):
         if request.method == 'POST':
             form = RecipeForm(request.POST)
             if form.is_valid():
@@ -81,7 +81,7 @@ Then you add the view to create a new recipe:
                 return redirect(recipe)
         else:
             form = RecipeForm()
-        context = {'form': form, 'add': True}
+        context = {'form': form, 'create': True}
         return render(request, 'recipes/form.html', context)
 
 Instead of using the :ref:`already known <using_request_context>` shortcut
@@ -93,7 +93,7 @@ like so:
 ::
 
     return render_to_response('recipes/form.html',
-        {'form': form, 'add': True}, context_instance=RequestContext(request))
+        {'form': form, 'create': True}, context_instance=RequestContext(request))
 
 If POST data is available it will be used to create the ``RecipeForm``
 instance. Thereafter, it is checked whether the data is valid or not. When the
@@ -103,8 +103,8 @@ recipe and the many-to-many relations are stored. Finally a redirect to the new
 recipe is made. If no POST data is available only an instance of the form is
 created.
 
-The parameter ``add`` is used to distinguish later in the template, if a recipe
-is just created or added. Because we only use a single template for both
+The parameter ``create`` is used to distinguish later in the template, if a recipe
+is just created or created. Because we only use a single template for both
 actions. By using the decorator ``login_required`` this view can only be called
 by authenticated users.
 
@@ -124,7 +124,7 @@ The second view is used to edit the recipes:
                 return redirect(recipe)
         else:
             form = RecipeForm(instance=recipe)
-        context = {'form': form, 'add': False, 'object': recipe}
+        context = {'form': form, 'create': False, 'object': recipe}
         return render(request, 'recipes/form.html', context)
 
 The id of the recipe is extracted from the URL and passed to the view function
@@ -133,10 +133,10 @@ is not possible. If the logged in user is neither the author nor an editor a
 403 error appears because the users are only allowed to edit their own recipes.
 
 The rest of the processing of POST data differs only in three points of the
-``add ()`` view:
+``create()`` view:
 
 #. The ``RecipeForm`` instance is created using the additional keyword argment ``instance=recipe``.
-#. The context parameter ``add`` is set to ``False``.
+#. The context parameter ``create`` is set to ``False``.
 #. In addition, the instance of the recipe is called ``object`` in the context.
 
 Create and expand the templates
@@ -153,14 +153,14 @@ like:
     {% load crispy_forms_tags %}
 
     {% block title %}
-        {{ block.super }} - {% if add %}Create{% else %}
+        {{ block.super }} - {% if create %}Create{% else %}
             Edit "{{ object.title }}"{% endif %} recipe
     {% endblock %}
 
     {% block content %}
-        {% if add %}
+        {% if create %}
             <h2>Create recipe</h2>
-            {% url 'recipes_recipe_add' as action_url %}
+            {% url 'recipes_recipe_create' as action_url %}
         {% else %}
             <h2>Edit "{{ object.title }}" recipe</h2>
             {% url 'recipes_recipe_edit' object.pk as action_url %}
@@ -172,7 +172,7 @@ like:
         </form>
     {% endblock %}
 
-In the template, you can now see how the parameter ``add`` is used to
+In the template, you can now see how the parameter ``create`` is used to
 distinguish between creating and editing.
 
 Now you can expand the template :file:`recipes/templates/recipes/detail.html`
@@ -187,7 +187,7 @@ And add a link to create a recipe to the list template
 
 ..  code-block:: html+django
 
-    <a href="{% url 'recipes_recipe_add' %}">Create new recipe</a>
+    <a href="{% url 'recipes_recipe_create' %}">Create new recipe</a>
 
 Finished! As a registered user you can now create and edit recipes in the front
 end.
