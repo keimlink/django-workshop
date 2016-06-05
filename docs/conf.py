@@ -45,7 +45,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'Django Workshop'
 authors = u'Markus Zapke-Gründemann et al.'
-copyright = u'2010-%s, %s' % (date.today().year, authors[:-1])
+copyright = u'2010 {0}'.format(authors[:-1])
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
