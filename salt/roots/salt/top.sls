@@ -10,6 +10,7 @@ base:
     - nano
     - vim
     - deps
+    - python3
     - npm
     - postgresql
     - wkhtmltopdf
