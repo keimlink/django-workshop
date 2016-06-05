@@ -21,7 +21,7 @@ Creating a Virtual Machine using Vagrant
 
 The repository contains a configuration for a Virtual Machine. This
 configuration will install all necessary software during setup. It's a
-`Debian 7.2 <http://www.debian.org/releases/wheezy/>`_ system. The
+`Debian 8.2 <https://www.debian.org/releases/jessie/>`_ system. The
 following packages will be installed using `Salt
 <http://www.saltstack.com/community/>`_:
 

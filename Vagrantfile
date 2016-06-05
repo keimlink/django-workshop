@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "bento/debian-8.2"
+  config.vm.box = "boxcutter/debian82"
 
   config.vm.provider "vmware_fusion" do |v, override|
     override.vm.synced_folder ".", "/vagrant", type: "nfs"
