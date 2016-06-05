@@ -71,7 +71,7 @@ California, 94041, USA.
 Source Code License
 ===================
 
-Copyright (c) 2010-2012, Markus Zapke-Gründemann
+Copyright (c) 2010, Markus Zapke-Gründemann
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
