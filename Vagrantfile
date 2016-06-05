@@ -30,7 +30,7 @@ Vagrant.configure(2) do |config|
   # Salt provisioning.
   config.vm.synced_folder "salt/roots/", "/srv/"
   config.vm.provision :salt do |salt|
-    salt.bootstrap_options = "-F -c /tmp -P"  # Vagrant Issues #6011, #6029
+    salt.masterless = true
     salt.minion_config = "salt/minion"
     salt.run_highstate = true
   end
