@@ -8,6 +8,7 @@ base:
     - nfs-common
     - sqlite3
     - tree
+    - nano
     - vim
     - deps
     - virtualenv
