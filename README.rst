@@ -25,9 +25,19 @@ configuration will install all necessary software during setup. It's a
 following packages will be installed using `Salt
 <http://www.saltstack.com/community/>`_:
 
-* Sqlite
+* cURL
+* Git
+* nano
+* npm
+* PostgreSQL
+* SQLite
 * tree
 * Vim
+* wkhtmltopdf
+
+.. note::
+
+    Username, password and database name for PostgreSQL are ``django``.
 
 To setup the Virtual Machine you have to `install Vagrant
 <http://docs.vagrantup.com/v2/installation/index.html>`_ at first. Then
@@ -38,13 +48,6 @@ simply start the Virtual Machine using::
 Now you can connect to the Virtual Machine using Vagrant`s ``ssh`` command::
 
     $ vagrant ssh
-
-.. TODO Add MySQL and PostgreSQL to the Salt setup
-.. After that you can connect to the MySQL and PostgreSQL. Use the password
-.. "django" to authenticate::
-
-..     $ mysql -p -u root
-..     $ psql -h localhost -U postgres
 
 Contributions and Bugs
 ======================
