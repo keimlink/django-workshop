@@ -1,3 +1,0 @@
-memcached:
-  pkg:
-    - installed
