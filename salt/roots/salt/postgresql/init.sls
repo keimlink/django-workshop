@@ -1,6 +1,6 @@
 postgresql:
   pkg.installed:
-    - name: postgresql
+    - name: postgresql-9.4
   service.running:
     - enable: True
     - watch:
@@ -14,7 +14,7 @@ postgresql:
     - source: salt://postgresql/pg_hba.conf
     - template: jinja
     - require:
-      - pkg: postgresql
+      - pkg: postgresql-9.4
 
 postgresql-user-django:
   postgres_user.present:
